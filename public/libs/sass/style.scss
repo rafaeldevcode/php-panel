@@ -1,0 +1,67 @@
+// Original bootstrap variables
+$primary : #0066ff;
+$secondary : #6C757D;
+$success : #198754;
+$info : #0DCAF0;
+$warning : #FFC107;
+$danger : #DC3545;
+$light : #F8F9FA;
+$dark : #212529;
+
+// Change radius border size
+$border-radius: .2rem;
+
+// Theme with original bootstrap colors
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+
+// Custom variables
+$color-main : #3695FF;
+$cm-primary : #0077FF;
+$cm-secondary : #6C757D;
+$cm-success : #008000;
+$cm-info : #00BFFF;
+$cm-warning : #FFFF00;
+$cm-danger : #FF0000;
+$cm-light : #FFFFFF;
+$cm-dark : #000000;
+$cm-grey : #F4F4F4;
+
+// Custom color theme
+$custom-colors: (
+  "color-main":    $color-main,
+  "cm-primary":    $cm-primary,
+  "cm-secondary":  $cm-secondary,
+  "cm-success":    $cm-success,
+  "cm-info":       $cm-info,
+  "cm-warning":    $cm-warning,
+  "cm-danger":     $cm-danger,
+  "cm-light":      $cm-light,
+  "cm-dark":       $cm-dark,
+  "cm-grey":       $cm-grey
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "~bootstrap/scss/bootstrap-utilities";
+
+// Generate utilites for Cursor
+$utilities: map-merge(
+    $utilities,
+    (
+        "cursor": (
+            property: cursor,
+            values: auto default pointer wait text move help not-allowed
+        ),
+    )
+);
+
+@import  "~bootstrap/scss/bootstrap"

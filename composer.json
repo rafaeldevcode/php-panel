@@ -1,0 +1,25 @@
+{ 
+	"name": "rafaeldevcode/php-panel",
+	"description": "",
+	"keywords": [],
+	"homepage": "http://rafaeldevcode.ml",
+	"time": "2022-10-16",
+	"type": "website",
+	"license": "MIT",
+	"support": {
+		"email": "rafaeldevcode@gmail.com",
+		"issues": "https://github.com/rafaeldevcode/php-panel",
+		"forum": "http://rafaeldevcode.ml"
+	},
+	"require": {
+		"php": ">=8.0.0",
+		"vlucas/phpdotenv": "^5.4",
+		"phpmailer/phpmailer": "^6.8"
+	},
+	"autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+	},
+	"minimum-stability": "stable"
+}

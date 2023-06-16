@@ -1,0 +1,4 @@
+# Redirects for middleware.php
+RewriteEngine on
+RewriteCond $1 !^(.*)(middleware\.php|logout\.php|login\.php|post\.php|update\.php|create\.php|delete\.php|register\.php|\.css|\.js|\.png|\.gif|\.jpg|\.jpeg|\.svg|\.webp|\.map|\.TTF|\.woff|\.ttf)
+RewriteRule ^(.*)$ /middleware.php/$1 [L]
