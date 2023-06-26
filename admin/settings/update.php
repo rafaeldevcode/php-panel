@@ -8,7 +8,7 @@ use Src\Models\Setting;
 verifyMethod(500, 'POST');
 
 $setting = new Setting();
-
+$requests = requests();
 $current_setting = $setting->first();
 
 $current_site_logo_main = isset($current_setting) ? $current_setting->site_logo_main : null;
@@ -20,28 +20,28 @@ $site_logo_main = saveImage($_FILES, 'site_logo_main', $current_site_logo_main);
 $site_logo_secondary = saveImage($_FILES, 'site_logo_secondary', $current_site_logo_secondary);
 $site_favicon = saveImage($_FILES, 'site_favicon', $current_site_favicon);
 $site_bg_login = saveImage($_FILES, 'site_bg_login', $current_site_bg_login);
-$preloader = isset($_POST['preloader']) ? $_POST['preloader'] : 'off';
-$cookies = isset($_POST['cookies']) ? $_POST['cookies'] : 'off';
+$preloader = isset($requests->preloader) ? $requests->preloader : 'off';
+$cookies = isset($requests->cookies) ? $requests->cookies : 'off';
 
     $data = [
-        'site_name'           => $_POST['site_name'],
-        'site_description'    => $_POST['site_description'],
-        'andress'             => $_POST['andress'],
-        'phone'               => $_POST['phone'],
-        'email'               => $_POST['email'],
-        'whatsapp'            => $_POST['whatsapp'],
-        'telegram'            => $_POST['telegram'],
-        'profile_linkedin'    => $_POST['profile_linkedin'],
-        'profile_facebook'    => $_POST['profile_facebook'],
-        'profile_instagram'   => $_POST['profile_instagram'],
-        'google_analytics'    => $_POST['google_analytics'],
-        'copyright'           => $_POST['copyright'],
-        'telegram_message'    => $_POST['telegram_message'],
-        'whatsapp_message'    => $_POST['whatsapp_message'],
-        'facebook_pixel'      => $_POST['facebook_pixel'],
+        'site_name'           => $requests->site_name,
+        'site_description'    => $requests->site_description,
+        'andress'             => $requests->andress,
+        'phone'               => $requests->phone,
+        'email'               => $requests->email,
+        'whatsapp'            => $requests->whatsapp,
+        'telegram'            => $requests->telegram,
+        'profile_linkedin'    => $requests->profile_linkedin,
+        'profile_facebook'    => $requests->profile_facebook,
+        'profile_instagram'   => $requests->profile_instagram,
+        'google_analytics'    => $requests->google_analytics,
+        'copyright'           => $requests->copyright,
+        'telegram_message'    => $requests->telegram_message,
+        'whatsapp_message'    => $requests->whatsapp_message,
+        'facebook_pixel'      => $requests->facebook_pixel,
         'preloader'           => $preloader,
         'cookies'             => $cookies,
-        'preloader_image'     => $_POST['preloader_image']
+        'preloader_image'     => $requests->preloader_image
     ];
 
 if(!isset($current_setting)):

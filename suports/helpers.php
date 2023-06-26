@@ -7,6 +7,18 @@ require __DIR__.'/env.php';
 
 define('APP_VERSION', '1.4.0');
 
+if (! function_exists('requests')):
+    /**
+     * @return stdClass|array
+     */
+    function requests(): stdClass|array
+    {
+        $data = $_POST+$_GET;
+
+        return json_decode(json_encode($data));
+    }
+endif;
+
 if (! function_exists('asset')):
     /**
      * @param string $route

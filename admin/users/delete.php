@@ -8,8 +8,9 @@ use Src\Models\User;
 verifyMethod(500, 'POST');
 
 $user = new User();
+$requests = requests();
 
-foreach($_POST['ids'] as $ID):
+foreach($requests->ids as $ID):
     if($ID == 1):
         session([
             'message' => 'A remoção de usuários foi interrompida, tentiva de remoção de um usuário do sistema!',
