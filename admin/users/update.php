@@ -20,20 +20,20 @@ if(!empty($_POST['password'])): // Verificar se o campo senha não esta vazio pa
         return header("Location: /admin/users?method=edit&id={$_POST['id']}", true, 302);
     endif;
 
-    $user->update([
+    $user->find($_POST['id'])->update([
         'name'     => $_POST['name'],
         'email'    => $_POST['email'],
         'status'   => $status,
         'password' => password_hash($_POST['password'], PASSWORD_BCRYPT)
-    ], $_POST['id']);
+    ]);
 
 else: // Atualizar usuário sem alterar a senha
     
-    $user->update([
+    $user->find($_POST['id'])->update([
         'name'   => $_POST['name'],
         'email'  => $_POST['email'],
         'status' => $status
-    ], $_POST['id']);
+    ]);
 endif;
 
 session([

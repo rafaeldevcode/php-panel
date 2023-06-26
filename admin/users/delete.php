@@ -19,7 +19,7 @@ foreach($_POST['ids'] as $ID):
         return header('Location: /admin/users', true, 302);
     endif;
 
-    $user->delete($ID);
+    $user->find($ID)->delete();
 endforeach;
 
 session([

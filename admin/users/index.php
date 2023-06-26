@@ -15,19 +15,18 @@
 
     if($method == 'read'):
         $user = new User();
-        $users = !isset($_POST['search']) ? $user->paginate(20, 'id', null) : $user->paginate(20, 'id', ['name', 'LIKE', "'%{$_POST['search']}%'"]);
+        $users = !isset($_POST['search']) ? $user->paginate(20) : $user->where('name', 'LIKE', "'%{$_POST['search']}%'")->paginate(20);
         $color = 'cm-secondary';
         $text  = 'Visualizar';
 
         $data = ['users' => $users];
     elseif($method == 'edit'):
-        $user_id = querys('id');
         $user = new User();
-        $user = $user->find($user_id);
+        $user = $user->find(querys('id'));
         $color = 'cm-success';
         $text  = 'Editar';
 
-        $data = ['user' => $user];
+        $data = ['user' => $user->data];
     elseif($method == 'create'):
         $color = 'cm-primary';
         $text  = 'Adicionar';

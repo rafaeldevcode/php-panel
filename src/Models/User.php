@@ -15,25 +15,25 @@ class User extends Model
      */
     public function login(string $email, string $password): array
     {
-        $user = $this->where('email', $email);
+        $user = $this->where('email', '=', $email)->first();
 
-        if(isset($user[0])):
-            if($user[0]['status'] == 'off'):
+        if(isset($user)):
+            if($user->status == 'off'):
 
                 return ['status' => false, 'message' => 'Este usuário está inativo!'];
-            elseif(password_verify($password, $user[0]['password'])):
-                $this->removeTokensInvalid($user[0]['id']);
+            elseif(password_verify($password, $user->password)):
+                $this->removeTokensInvalid($user->id);
                 $token = $this->generateToken(); 
 
                 $acc_token = new AccessToken();
                 $acc_token->create([
-                    'token'   => $token,
-                    'user_id' => $user[0]['id']
+                    'token' => $token,
+                    'user_id' => $user->id
                 ]);
 
-                array_push($user, $token);
+                $user->token = $token;
 
-                return ['status' => true, 'message' => "Login efetuado com sucesso! Bem vindo {$user[0]['name']}", 'user' => $user];
+                return ['status' => true, 'message' => "Login efetuado com sucesso! Bem vindo {$user->name}", 'user' => $user];
             else:
 
                 return ['status' => false, 'message' => 'Senha inválida!'];
@@ -52,9 +52,7 @@ class User extends Model
         $token = $_SESSION['token'];
 
         $acc_token = new AccessToken();
-        $token_id = $acc_token->where('token', $token);
-
-        $acc_token->delete($token_id[0]['id']);
+        $acc_token->where('token', '=', $token)->delete();
 
         session_destroy();
     }
@@ -73,10 +71,10 @@ class User extends Model
     protected function removeTokensInvalid(int $user_id): void
     {
         $acc_token = new AccessToken();
-        $tokens = $acc_token->where('user_id', $user_id);
+        $tokens = $acc_token->where('user_id', '=', $user_id)->get();
 
         foreach($tokens as $token):
-            $acc_token->delete($token['id']);
+            $acc_token->delete($token->id);
         endforeach;
     }
 }

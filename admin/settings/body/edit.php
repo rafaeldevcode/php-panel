@@ -7,7 +7,7 @@
                     'name'  => 'site_name',
                     'label' => 'Nome do site',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['site_name'] : ''
+                    'value' => isset($settings) ? $settings->site_name : ''
                 ]) ?>
             </div>
 
@@ -17,7 +17,7 @@
                     'name'  => 'site_description',
                     'label' => 'Descrição do site',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['site_description'] : ''
+                    'value' => isset($settings) ? $settings->site_description : ''
                 ]) ?>
             </div>
 
@@ -27,7 +27,7 @@
                     'name'  => 'andress',
                     'label' => 'Endereço da empresa',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['andress'] : ''
+                    'value' => isset($settings) ? $settings->andress : ''
                 ]) ?>
             </div>
 
@@ -37,7 +37,7 @@
                     'name'  => 'phone',
                     'label' => 'Telefone da empresa (adicionar DDD)',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['phone'] : ''
+                    'value' => isset($settings) ? $settings->phone : ''
                 ]) ?>
             </div>
 
@@ -47,7 +47,7 @@
                     'name'  => 'email',
                     'label' => 'Email da empresa',
                     'type'  => 'email',
-                    'value' => isset($settings) ? $settings['email'] : ''
+                    'value' => isset($settings) ? $settings->email : ''
                 ]) ?>
             </div>
 
@@ -57,7 +57,7 @@
                     'name'  => 'profile_linkedin',
                     'label' => 'linkedin da empresa',
                     'type'  => 'url',
-                    'value' => isset($settings) ? $settings['profile_linkedin'] : ''
+                    'value' => isset($settings) ? $settings->profile_linkedin : ''
                 ]) ?>
             </div>
 
@@ -67,7 +67,7 @@
                     'name'  => 'profile_facebook',
                     'label' => 'Facebook da empresa',
                     'type'  => 'url',
-                    'value' => isset($settings) ? $settings['profile_facebook'] : ''
+                    'value' => isset($settings) ? $settings->profile_facebook : ''
                 ]) ?>
             </div>
 
@@ -77,7 +77,7 @@
                     'name'  => 'profile_instagram',
                     'label' => 'Instagram da empresa',
                     'type'  => 'url',
-                    'value' => isset($settings) ? $settings['profile_instagram'] : ''
+                    'value' => isset($settings) ? $settings->profile_instagram : ''
                 ]) ?>
             </div>
 
@@ -87,7 +87,7 @@
                     'name'  => 'whatsapp',
                     'label' => 'Whatsapp da empresa (adicionar DDD)',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['whatsapp'] : ''
+                    'value' => isset($settings) ? $settings->whatsapp : ''
                 ]) ?>
             </div>
 
@@ -97,7 +97,7 @@
                     'name'  => 'whatsapp_message',
                     'label' => 'Menssagem padrão para o whatsapp',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['whatsapp_message'] : ''
+                    'value' => isset($settings) ? $settings->whatsapp_message : ''
                 ]) ?>
             </div>
 
@@ -107,7 +107,7 @@
                     'name'  => 'telegram',
                     'label' => 'Telegram da empresa (Usar o nome de usuário)',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['telegram'] : ''
+                    'value' => isset($settings) ? $settings->telegram : ''
                 ]) ?>
             </div>
 
@@ -117,7 +117,7 @@
                     'name'  => 'telegram_message',
                     'label' => 'Menssagem padrão para o telegram',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['telegram_message'] : ''
+                    'value' => isset($settings) ? $settings->telegram_message : ''
                 ]) ?>
             </div>
 
@@ -127,7 +127,7 @@
                     'name'  => 'copyright',
                     'label' => 'Copyright no rodapé do site',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['copyright'] : ''
+                    'value' => isset($settings) ? $settings->copyright : ''
                 ]) ?>
             </div>
 
@@ -137,7 +137,7 @@
                     'name'  => 'google_analytics',
                     'label' => 'Pixel do google analytics',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['google_analytics'] : ''
+                    'value' => isset($settings) ? $settings->google_analytics : ''
                 ]) ?>
             </div>
 
@@ -147,7 +147,7 @@
                     'name'  => 'facebook_pixel',
                     'label' => 'Pixel do facebook',
                     'type'  => 'text',
-                    'value' => isset($settings) ? $settings['facebook_pixel'] : ''
+                    'value' => isset($settings) ? $settings->facebook_pixel : ''
                 ]) ?>
             </div>
 
@@ -155,23 +155,23 @@
                 <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch.php', [
                     'name'  => 'cookies',
                     'label' => 'Ativar aviso de cookies (Inativo | Ativo)',
-                    'value' => isset($settings) ? $settings['cookies'] : ''
+                    'value' => isset($settings) ? $settings->cookies : ''
                 ]) ?>
             </div>
 
             <div class="col-12">
-                <div class='col-12 col-md-6'>
+                <div class='col-12'>
                     <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch.php', [
                         'name'       => 'preloader',
                         'label'      => 'Ativar preloader (Inativo | Ativo)',
-                        'value'      => isset($settings) ? $settings['preloader'] : '',
+                        'value'      => isset($settings) ? $settings->preloader : 'off',
                         'attributes' => 'onclick="Preloader.habilit(event);"'
                     ]) ?>
 
                     <p class="text-cm-secondary">Preloader é uma animação que é executada até que a página esteja carregada e pronta para ser exibida.</p>
                 </div>
 
-                <div id="box-preloader" class="border border-color-main rounded" style="display: <?php echo !isset($settings) || $settings['preloader'] == 'off' ? 'none' : 'flex' ?>;">
+                <div id="box-preloader" class="border border-color-main rounded" style="display: <?php echo !isset($settings) || $settings->preloader == 'off' ? 'none' : 'flex' ?>;">
                     <div class="p-2">
                         <p class="text-cm-secondary">Escolha uma imagem de animação</p>
                     </div>
@@ -179,7 +179,7 @@
                     <div class="d-flex flex-wrap justify-content-center">
                         <?php foreach (getPreloaders() as $indice => $image): ?>
                             <div class='m-2'>
-                                <input class='d-none' type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings['preloader_image'] ? 'checked' : '' ?>>
+                                <input class='d-none' type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings->preloader_image ? 'checked' : '' ?>>
                                 <label for='<?php echo $indice ?>' class='form-check-label rounded label-image-profile border border-cm-secondary'>
                                     <img class="w-100 rounded" src="<?php asset("/assets/images/preloaders/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
                                 </label>
@@ -194,28 +194,28 @@
                     'name'    => 'site_logo_main',
                     'label'   => 'Logo principal (Cor principal)',
                     'default' => 'assets/images/logo_main.png',
-                    'src'     => (isset($settings) && !empty($settings['site_logo_main'])) ? "assets/images/{$settings['site_logo_main']}" : null
+                    'src'     => (isset($settings) && !empty($settings->site_logo_main)) ? "assets/images/{$settings->site_logo_main}" : null
                 ]) ?>
 
                 <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
                     'name'    => 'site_logo_secondary',
                     'label'   => 'Logo segundário (Na cor branca)',
                     'default' => 'assets/images/logo_secondary.png',
-                    'src'     => (isset($settings) && !empty($settings['site_logo_secondary'])) ? "assets/images/{$settings['site_logo_secondary']}" : null
+                    'src'     => (isset($settings) && !empty($settings->site_logo_secondary)) ? "assets/images/{$settings->site_logo_secondary}" : null
                 ]) ?>
 
                 <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
                     'name'    => 'site_favicon',
                     'label'   => 'Favicon do site',
                     'default' => 'assets/images/favicon.png',
-                    'src'     => (isset($settings) && !empty($settings['site_favicon'])) ? "assets/images/{$settings['site_favicon']}" : null
+                    'src'     => (isset($settings) && !empty($settings->site_favicon)) ? "assets/images/{$settings->site_favicon}" : null
                 ]) ?>
 
                 <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
                     'name'    => 'site_bg_login',
                     'label'   => 'Fundo da tela de login',
                     'default' => 'assets/images/login_bg.jpg',
-                    'src'     => (isset($settings) && !empty($settings['site_bg_login'])) ? "assets/images/{$settings['site_bg_login']}" : null
+                    'src'     => (isset($settings) && !empty($settings->site_bg_login)) ? "assets/images/{$settings->site_bg_login}" : null
                 ]) ?>
             </div>
         </div>

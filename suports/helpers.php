@@ -1,7 +1,6 @@
 <?php
 
 use Src\Models\AccessToken;
-use Src\Models\Client;
 use Src\Models\Setting;
 
 require __DIR__.'/env.php';
@@ -171,20 +170,25 @@ endif;
 
 if (!function_exists('saveImage')):
     /**
-     * @param array $data
+     * @param array|null $data
+     * @param string $image_key
      * @param string|null $old_file
-     * @return string
+     * @return string|null
      */
-    function saveImage(array $data, string|null $old_file): string
+    function saveImage(array|null $data, string $image_key, string|null $old_file): string|null
     {
-        $file_name = bin2hex(random_bytes(25));
-        $extencion = explode('/', $data['type'])[1];
-        $file_path = "settings/{$file_name}.{$extencion}";
-        (!is_null($old_file) && is_file(__DIR__."/../public/assets/images/{$old_file}")) ? unlink(__DIR__."/../public/assets/images/{$old_file}") : '';
+        if(isset($data[$image_key]) && !empty($data[$image_key]['name'])):
+            $file_name = bin2hex(random_bytes(25));
+            $extencion = explode('/', $data[$image_key]['type'])[1];
+            $file_path = "settings/{$file_name}.{$extencion}";
+            (!is_null($old_file) && is_file(__DIR__."/../public/assets/images/{$old_file}")) ? unlink(__DIR__."/../public/assets/images/{$old_file}") : '';
 
-        move_uploaded_file($data['tmp_name'], __DIR__."/../public/assets/images/{$file_path}");
+            move_uploaded_file($data[$image_key]['tmp_name'], __DIR__."/../public/assets/images/{$file_path}");
 
-        return $file_path;
+            return $file_path;
+        endif;
+
+        return null;
     }
 endif;
 
@@ -202,9 +206,9 @@ if (!function_exists('isAuth')):
 
         if($token):
             $acc_token = new AccessToken();
-            $acc_token = $acc_token->where('token', $token);
+            $acc_token = $acc_token->where('token', '=', $token)->last();
     
-            return (isset($acc_token[0]['token']) && $acc_token[0]['token'] == $token) ? true : false;
+            return (isset($acc_token->token) && $acc_token->token == $token) ? true : false;
         endif;
 
         return false;
@@ -250,7 +254,6 @@ if (!function_exists('getSiteSettings')) :
         else:
             $settings = new Setting();
             $settings = $settings->first();
-            $settings = !empty($settings) ? $settings[0] : null;
 
             session(['site_settings' => $settings]);
         endif;

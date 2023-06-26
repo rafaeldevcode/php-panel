@@ -2,175 +2,274 @@
 
 namespace Src\Models;
 
-use Exception;
-use mysqli;
+use PDO;
+use PDOException;
+use stdClass;
 
 class Model
 {
-    protected $connection = null;
     public $table;
+    public $data = null;
+    private $wheres = [];
+    private $connection;
 
     /**
+     * @since 1.0.0
+     * 
      * @return void
      */
     public function __construct()
     {
+        $db_host = env('DB_HOST');
+        $db_user = env('DB_USERNAME');
+        $db_password = env('DB_PASSWORD');
+        $db_name = env('DB_DATABASE_NAME');
+
         try {
-            $this->connection = new mysqli(env('DB_HOST'), env('DB_USERNAME'), env('DB_PASSWORD'), env('DB_DATABASE_NAME'));
-            
-            if ( mysqli_connect_errno()):
-                throw new Exception("Connection faied");   
-            endif;
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());   
-        }			
+            $connection = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->connection = $connection;
+
+        } catch(PDOException $e) {
+            echo "Query error: " . $e->getMessage();
+        }
     }
 
     /**
+     * @since 1.0.0
+     * 
+     * @param string $column
+     * @param string $operator
+     * @param string $value
+     * @return self
+     */
+    public function where(string $column, string $operator, string $value): self
+    {
+        $this->wheres[] = [
+            'column' => $column,
+            'operator' => $operator,
+            'value' => $value
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @since 1.0.0
+     * 
+     * @param int $id
+     * @return self
+     */
+    public function find(int $id = 1): self
+    {
+        $data = $this->where('id', '=', $id)->get();
+
+        if(!empty($data)):
+            $this->data = json_decode(json_encode($data[0]));
+        endif;
+
+        return $this;
+    }
+
+    /**
+     * @since 1.0.0
+     * 
+     * @return int|null
+     */
+    public function count(): int|null
+    {
+        $where_clause = $this->whereClausure();
+
+        $query = "SELECT COUNT(id) as total FROM {$this->table}{$where_clause->clausure}";
+
+        $statement = $this->connection->prepare($query);
+
+        foreach ($where_clause->bindings as $column => $value):
+            $statement->bindValue(":{$column}", $value);
+        endforeach;
+
+        $statement->execute();
+
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if(!empty($data)):
+            return (int)$data[0]['total'];
+        endif;
+
+        return null;
+    }
+
+    /**
+     * @since 1.0.0
+     * 
+     * @return stdClass|null
+     */
+    public function first(): stdClass|null
+    {
+        $where_clause = $this->whereClausure();
+
+        $query = "SELECT * FROM {$this->table}{$where_clause->clausure} LIMIT 1";
+
+        $statement = $this->connection->prepare($query);
+
+        foreach ($where_clause->bindings as $column => $value):
+            $statement->bindValue(":{$column}", $value);
+        endforeach;
+
+        $statement->execute();
+
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if(!empty($data)):
+            $this->data = json_decode(json_encode($data[0]));
+        endif;
+
+        return $this->data;
+    }
+
+    /**
+     * @since 1.0.0
+     * 
+     * @return stdClass|null
+     */
+    public function last(): stdClass|null
+    {
+        $where_clause = $this->whereClausure();
+
+        $query = "SELECT * FROM {$this->table}{$where_clause->clausure} ORDER BY id DESC LIMIT 1";
+
+        $statement = $this->connection->prepare($query);
+
+        foreach ($where_clause->bindings as $column => $value):
+            $statement->bindValue(":{$column}", $value);
+        endforeach;
+
+        $statement->execute();
+
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if(!empty($data)):
+            $this->data = json_decode(json_encode($data[0]));
+        endif;
+
+        return $this->data;
+    }
+
+    /**
+     * @since 1.0.0
+     * 
+     * @param array $data
+     * @return stdClass|bool
+     */
+    public function create(array $data): stdClass|null
+    {
+        $columns = implode(', ', array_keys($data));
+        $bindings = ':' . implode(', :', array_keys($data));
+
+        $query = "INSERT INTO {$this->table} ({$columns}) VALUES ({$bindings})";
+        
+        $statement = $this->connection->prepare($query);
+
+        foreach($data as $indice => $value):
+            $statement->bindValue(":{$indice}", $value);
+        endforeach;
+
+        $statement->execute();
+
+        if($statement->rowCount() > 0):
+            $last_insert_id = $this->connection->lastInsertId();
+            $this->find($last_insert_id);
+
+            return $this->data;
+        endif;
+
+        return false;
+    }
+
+    /**
+     * @since 1.0.0
+     * 
+     * @return array|null
+     */
+    public function get(): array|null
+    {
+        $where_clause = $this->whereClausure();
+
+        $query = "SELECT * FROM {$this->table}{$where_clause->clausure}";
+
+        $statement = $this->connection->prepare($query);
+
+        foreach ($where_clause->bindings as $column => $value):
+            $statement->bindValue(":{$column}", $value);
+        endforeach;
+
+        $statement->execute();
+
+        $this->data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $this->data;
+    }
+
+    /**
+     * @since 1.0.0
+     * 
      * @param array $data
      * @return bool
      */
-    public function  create(array $data): bool
+    public function update(array $data): bool
     {
-        try {
-            $keys = implode(',', array_keys($data));
-            $values = implode("','", array_values($data));
-            $query = "INSERT INTO $this->table ($keys) VALUES ('$values');";
+        $query = '';
+        $where_clause = $this->whereClausure();
 
-            $stmt = $this->executeStatement($query);			
-            $stmt->close();
-
-            return true;
-        } catch(Exception $e) {
-            throw New Exception( $e->getMessage() );
-
-            return false;
-        }
-        return false;
-    }
-
-    /**
-     * @param array $data
-     * @param int $id
-     * @return bool|array
-     */
-    public function  update(array $data, int $id): bool|array
-    {
-        try {
-            $query = '';
-
-            foreach($data as $indice => $value):
-                $query = $query."{$indice}='{$value}',";
-            endforeach;
-
-            $query = rtrim($query, ',');
-
-            $query = "UPDATE $this->table SET $query WHERE id = $id;";
-
-            $stmt = $this->executeStatement($query);			
-            $stmt->close();
-
-            return $this->find($id)[0];
-        } catch(Exception $e) {
-            throw New Exception( $e->getMessage() );
-
-            return false;
-        }
-        return false;
-    }
-
-    /**
-     * @param int $id
-     * @return bool|array
-     */
-    public function  delete(int $id): bool
-    {
-        try {
-            $stmt = $this->executeStatement("DELETE FROM $this->table WHERE id = $id;");			
-            $stmt->close();
-
-            return true;
-        } catch(Exception $e) {
-            throw New Exception( $e->getMessage() );
-
-            return false;
-        }
-        return false;
-    }
-
-    /**
-     * @param int $ID
-     * @return array
-     */
-    public function  find(int $ID): array
-    {
-        $response = self::execute("SELECT * FROM $this->table WHERE id = '$ID';");
-
-        return $response;
-    }
-
-    /**
-     * @param string $column
-     * @param string|int $value
-     * @param string $operator
-     * @return array
-     */
-    public function  where(string $column, $value, string $operator = '='): array
-    {
-        $response = self::execute("SELECT * FROM $this->table WHERE $column $operator '$value';");
-
-        return $response;
-    }
-
-    /**
-     * @param string $column
-     * @param array $values
-     * @return array
-     */
-    public function  whereIn(string $column, array $values): array
-    {
-        $query = "SELECT * FROM $this->table WHERE $column = 0";
-
-        foreach($values as $value):
-            $query .= " OR $column = '$value'";
+        foreach($data as $indice => $value):
+            $query .= "{$indice} = :d_{$indice}, ";
         endforeach;
 
-        $response = self::execute("$query;");
+        $query = rtrim($query, ', ');
 
-        return $response;
+        $query = "UPDATE {$this->table} SET {$query}{$where_clause->clausure}";
+
+        $statement = $this->connection->prepare($query);
+
+        foreach($data as $indice => $value):
+            $statement->bindValue(":d_{$indice}", $value);
+        endforeach;
+
+        foreach ($where_clause->bindings as $column => $value):
+            $statement->bindValue(":{$column}", $value);
+        endforeach;
+
+        return $statement->execute();
     }
 
     /**
-     * @return array
+     * @since 1.0.0
+     * 
+     * @param array $data
+     * @return bool
      */
-    public function first(): array
+    public function delete(): bool
     {
-        $response = self::execute("SELECT * FROM $this->table LIMIT 1;");
+        $where_clause = $this->whereClausure();
 
-        return $response;
-    }
+        $query = "DELETE FROM {$this->table}{$where_clause->clausure}";
 
-    /**
-     * @param string $orderby_column
-     * @param string $orderby
-     * @return array
-     */
-    public function  all(string $orderby_column = 'id', string $orderby = 'asc'): array
-    {
-        $response = self::execute("SELECT * FROM $this->table ORDER BY $orderby_column $orderby;");
+        $statement = $this->connection->prepare($query);
 
-        return $response;
+        foreach ($where_clause->bindings as $column => $value):
+            $statement->bindValue(":{$column}", $value);
+        endforeach;
+
+        return $statement->execute();
     }
 
     /**
      * @param int $limit
      * @param string $order_column
-     * @param array|null $where
-     * @return array
+     * @return stdClass
      */
-    public function  paginate(int $limit, $order_column, array|null $where): array
+    public function paginate(int $limit, string $order_column = 'id'): stdClass
     {
-        $where = !is_null($where) ? implode(' ', $where) : $where;
         $count = ceil(($this->count() / $limit));
         $page = ($count == 0 ? 0 : 1);
 
@@ -181,88 +280,49 @@ class Model
 
         $start = (($page ==  0 ? 1 : $page) * $limit) - $limit;
 
-        $query = is_null($where) 
-            ? "SELECT * FROM $this->table ORDER BY $order_column DESC LIMIT $start, $limit;"
-            : "SELECT * FROM $this->table WHERE $where ORDER BY $order_column LIMIT $start, $limit;";
-            
-        return [
+        $where_clause = $this->whereClausure();
+
+        $query = "SELECT * FROM {$this->table}{$where_clause->clausure} ORDER BY $order_column DESC LIMIT $start, $limit";
+
+        $statement = $this->connection->prepare($query);
+
+        foreach ($where_clause->bindings as $column => $value):
+            $statement->bindValue(":{$column}", $value);
+        endforeach;
+
+        $statement->execute();
+
+        $this->data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return json_decode(json_encode([
             'count'  => $count,
             'page'   => ($count == 0 ? 0 : $page),
             'next'   => ($page == $count ? null : $page+1),
             'prev'   => (($page == 1 || $page == 0) ? null : $page-1),
-            'data'   => $this->execute($query),
+            'data'   => $this->data,
             'search' => isset($_POST['search']) ? $_POST['search'] : null
-        ];
+        ]));
     }
 
     /**
-     * @param string $query
-     * @param string $select
-     * @return array
+     * @since 1.0.0
+     * 
+     * @return stdClass
      */
-    public function filterSafes(string $query, string $select): array
+    private function whereClausure(): stdClass
     {
-        $query = "SELECT $select FROM $this->table $query;";
+        $where_clause = '';
+        $bindings = [];
 
-        $response = self::execute($query);
+        foreach ($this->wheres as $index => $where):
+            $where_clause .= ($index === 0 ? ' WHERE ' : ' AND ');
+            $where_clause .= "{$where['column']} {$where['operator']} :{$where['column']}";
+            $bindings[$where['column']] = $where['value'];
+        endforeach;
 
-        return $response;
-    }
-
-    /**
-     * @param int|null $column
-     * @param int|null $value
-     * @return int
-     */
-    public function  count(string|null $column = null, string|null $value = null): int
-    {
-        if(isset($column) && isset($value)):
-
-            $response = self::execute("SELECT COUNT(id) as total FROM $this->table WHERE $column = '$value';");
-        else:
-
-            $response = self::execute("SELECT COUNT(id) as total FROM $this->table;");
-        endif;
-
-        return empty($response) ? 0 : $response[0]['total'];
-    }
-
-    protected function execute($query = "" , $params = [])
-    {
-        try {
-            $stmt = $this->executeStatement( $query , $params );
-            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);				
-            $stmt->close();
-
-            return $result;
-        } catch(Exception $e) {
-            throw New Exception( $e->getMessage() );
-        }
-        return false;
-    }
-
-    private function executeStatement($query = "" , $params = [])
-    {
-        try {
-            $stmt = $this->connection->prepare( $query );
-
-            if($stmt === false):
-                throw New Exception("Unable to do prepared statement: " . $query);
-            endif;
-
-            if( $params ):
-                $stmt->bind_param($params[0], $params[1]);
-            endif;
-
-            $stmt->execute();
-
-            if($stmt->errno > 0):
-                throw New Exception($stmt->error);
-            endif;
-
-            return $stmt;
-        } catch(Exception $e) {
-            throw New Exception( $e->getMessage() );
-        }	
+        return json_decode(json_encode([
+            'clausure' => $where_clause,
+            'bindings' => $bindings
+        ]));
     }
 }

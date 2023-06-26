@@ -80,13 +80,18 @@
         </div>
     </section>
 
-    <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js')?>"></script>
-    <script type="text/javascript" src="<?php asset('libs/bootstrap/bootstrap.js') ?>"></script>
-    <script type="text/javascript" src="<?php asset('assets/scripts/main.js') ?>"></script>
+    <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js?ver='.APP_VERSION)?>"></script>
+    <script type="text/javascript" src="<?php asset('libs/bootstrap/bootstrap.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Message.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Password.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/ValidateForm.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript">
-        getFields();
-        showPass();
-        hiddenMessage();
+        Message.hidden('[data-message]');
+        Password.show('[data-id-pass]');
+
+        // Validate the form
+        const validate = new ValidateForm();
+        validate.init();
     </script>
 </body>
 </html>

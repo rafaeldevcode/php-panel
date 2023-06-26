@@ -1,6 +1,6 @@
 <section class='p-3 bg-cm-light m-3 rounded shadow'>
     <form method="POST" action="/admin/users/update.php">
-        <input type="hidden" name="id" value="<?php echo $user[0]['id'] ?>">
+        <input type="hidden" name="id" value="<?php echo $user->id ?>">
         <div class='row d-flex justify-content-between'>
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
@@ -8,7 +8,7 @@
                     'name'       => 'name',
                     'label'      => 'Nome do usuário',
                     'type'       => 'text',
-                    'value'      => $user[0]['name'],
+                    'value'      => $user->name,
                     'attributes' => 'required'
                 ]) ?>
             </div>
@@ -19,7 +19,7 @@
                     'name'       => 'email',
                     'label'      => 'Email',
                     'type'       => 'email',
-                    'value'      => $user[0]['email'],
+                    'value'      => $user->email,
                     'attributes' => 'required'
                 ]) ?>
             </div>
@@ -47,7 +47,7 @@
             <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch.php', [
                 'name'  => 'status',
                 'label' => 'Status do usuário (Inativo | Ativo)',
-                'value' => $user[0]['status']
+                'value' => $user->status
             ]) ?>
         </div>
 

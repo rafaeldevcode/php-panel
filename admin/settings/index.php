@@ -27,7 +27,7 @@
                 'title' => 'Configurações'
             ]) ?>
 
-            <?php getHtml(__DIR__."/body/edit.php", ['settings' => !empty($settings) ? $settings[0] : null]) ?>
+            <?php getHtml(__DIR__."/body/edit.php", ['settings' => $settings]) ?>
         </section>
     </section>
 

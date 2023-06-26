@@ -16,10 +16,10 @@ if($login['status']):
     session([
         'message'     => $login['message'],
         'type'        => 'cm-success',
-        'token'       => $login['user'][1],
-        'user_name'   => $login['user'][0]['name'],
-        'user_id'     => $login['user'][0]['id'],
-        'user_avatar' => $login['user'][0]['avatar']
+        'token'       => $login['user']->token,
+        'user_name'   => $login['user']->name,
+        'user_id'     => $login['user']->id,
+        'user_avatar' => $login['user']->avatar
     ]);
 
     return header('Location: /admin/dashboard', true, 302);
