@@ -12,7 +12,10 @@
                 </ul>
             </div>
 
-            <div class='d-flex frex-nowrap align-items-center mb-2'>
+            <div class='d-flex frex-nowrap mb-2'>
+                <button type='button' id='back' title='Voltar a página anterior' class='btn btn-sm btn-color-main me-1 text-cm-light ms-1'>
+                    <i class="bi bi-arrow-bar-left"></i>
+                </button>
                 <span class='bg-color-main rounded d-block d-flex justify-content-center align-items-center px-2 me-1'>
                     <i class='<?php echo $icon ?> text-cm-light fs-2'></i>
                 </span>
@@ -37,10 +40,6 @@
                 <?php if(isset($route_add)): ?>
                     <a href='<?php echo $route_add ?>' title='Adicionar <?php echo $title ?>' class='d-flex align-items-center btn btn-sm btn-cm-primary mx-1 text-cm-light'>Adicionar</a>
                 <?php endif; ?>
-
-                <button type='button' id='back' title='Voltar a página anterior' class='btn btn-sm btn-cm-info text-cm-light ms-1'>
-                    Voltar
-                </button>
             </div>
         </div>
     </div>
