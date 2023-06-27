@@ -54,5 +54,28 @@ if(isset($argv[1])):
 
         echo "Email: {$email} \n";
         echo "Senha: {$password}";
+    elseif($argv[1] == 'change-color-svg'):
+        if(isset($argv[2]) || isset($argv[3])):
+            $old_color = strtolower($argv[2]);
+            $new_color = strtolower($argv[3]);
+            
+            $path = __DIR__.'/public/assets/images/';
+            $images = scandir($path);
+            $images = array_filter($images, function($item){
+                return strpos($item, '.svg') !== false ? true : false;
+            });
+    
+            foreach($images as $image):
+                $svg_content = file_get_contents("{$path}{$image}");
+    
+                $new_svg_content = str_replace($old_color, $new_color, $svg_content);
+                
+                file_put_contents("{$path}{$image}", $new_svg_content);
+            endforeach;
+
+            echo "Colors changed successfully!";
+        else:
+            echo "It is necessary to inform the old color and the new color!";
+        endif;
     endif;
 endif;
