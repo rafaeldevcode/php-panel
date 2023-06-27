@@ -1,6 +1,8 @@
 <footer class='p-4 border-top shadow'>
     <div class='d-flex flex-column flex-lg-row justify-content-between align-items-center'>
         <p class='mb-0 fw-bold text-cm-secondary text-center'><?php echo !is_null(SETTINGS) && !empty(['copyright']) ? SETTINGS['copyright'] : 'Todos os direitos reservados' ?></p>
+    
+        <a class="text-decoration-none fw-bold" href="/politicas-de-privacidade">Políticas de privacidade</a>
     </div>
 </footer>
 
