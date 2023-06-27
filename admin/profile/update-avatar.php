@@ -9,9 +9,9 @@ verifyMethod(500, 'POST');
 
 $user = new User();
     
-$user->update([
+$user->find($_POST['id'])->update([
     'avatar' => $_POST['avatar']
-], $_POST['id']);
+]);
 
 session([
     'message'     => 'Usuário editado com sucesso!',
