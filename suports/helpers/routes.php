@@ -1,0 +1,22 @@
+<?php
+
+if(!function_exists('routes')):
+    /**
+     * @since 1.0.0
+     * 
+     * @return array
+     */
+    function routes(): array
+    {
+        return [
+            '/',
+            '/admin/dashboard',
+            '/admin/users',
+            '/admin/settings',
+            '/admin/profile',
+            '/quem-somos',
+            '/politicas-de-privacidade',
+            '/login'
+        ];
+    }
+endif;

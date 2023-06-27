@@ -1,7 +1,7 @@
 <?php
 
 require __DIR__.'/vendor/autoload.php';
-require __DIR__.'/suports/env.php';
+require __DIR__.'/suports/helpers/env.php';
 
 use Src\Models\Migrations;
 use Src\Migrations\ExecuteMigrations;

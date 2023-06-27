@@ -3,7 +3,7 @@
 
     <nav>
         <ul class='m-0 p-2'>
-            <?php foreach(getMenus() as $menu): ?>
+            <?php foreach(menusAdmin() as $menu): ?>
                 <li class='d-flex flex-row align-items-center rounded item-nav-sidbar position-relative' data-item-menu='<?php echo path() == $menu['path'] ? 'active' : 'inactive' ?>'>
                     <?php if(isset($menu['count']) && $menu['count'] !== 0): ?>
                         <span class="menu-count badge bg-danger position-absolute top-0 start-0 rounded-pill"><?php echo $menu['count'] ?></span>

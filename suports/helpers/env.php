@@ -2,13 +2,15 @@
 
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
+$dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 if (! function_exists('env')):
     /**
      * Gets the value of an environment variable.
      *
+     * @since 1.0.0
+     * 
      * @param  string  $key
      * @return string
      */
