@@ -186,6 +186,9 @@ div[data-message="false"]
 
 // Header
 .header
+    position: sticky
+    top: 0
+    z-index: 1
     min-height: 50px
 
     div
@@ -196,6 +199,8 @@ div[data-message="false"]
 
 // Sidebar
 .profile
+    position: sticky
+    top: 0
     min-height: 50px
 
     &-dropdawn
@@ -254,8 +259,12 @@ div[data-message="false"]
 .sidebar
     min-height: 100vh
 
+    nav
+        position: sticky
+        top: 61px
+
 .sidebar[data-expanded='desactive']
-    animation: toRecalldAside .4s .2s ease-in-out forwards
+    animation: toRecalldAside .4s ease-in-out forwards
 
 .sidebar[data-expanded='active']
     animation: expandedAside .4s ease-in-out forwards

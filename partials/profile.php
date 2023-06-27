@@ -1,7 +1,7 @@
 <div class='d-flex flex-nowrap align-items-center shadow p-2 profile'>
     <div class='user'>
         <a href='/admin/profile' title='Editar perfil de Rafael'>
-            <img class='border border-color-main' src='<?php asset("assets/images/users/{$_SESSION['user_avatar']}") ?>' alt='<?php echo $_SESSION['user_name'] ?>' />
+            <img class='border border-color-main w-100' src='<?php asset("assets/images/users/{$_SESSION['user_avatar']}") ?>' alt='<?php echo $_SESSION['user_name'] ?>' />
         </a>
     </div>
     <div class='btn-group hiddeItem dNone profile-dropdawn'  data-item-active='false'>
