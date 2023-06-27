@@ -24,6 +24,8 @@ class EmailServices
     private $email_to;
 
     /**
+     * @since 1.0.0
+     * 
      * @param string $body
      * @param string $subject
      * @param bool $conatct
@@ -36,7 +38,12 @@ class EmailServices
         $this->email_to = $contact ? env('SMTP_EMAIL_CONTACT') : env('SMTP_EMAIL_PROPOSAL');
     }
 
-    public function send()
+    /**
+     * @since 1.0.0
+     * 
+     * @return void
+     */
+    public function send(): void
     {
         $mail = new PHPMailer(true);
 
