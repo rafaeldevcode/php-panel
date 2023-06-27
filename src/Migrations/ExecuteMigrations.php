@@ -8,14 +8,45 @@ use PDOException;
 
 class ExecuteMigrations
 {
+    /**
+     * @var PDO
+     */
     private $connection = null;
+
+    /**
+     * @var array
+     */
     private $columns = [];
+
+    /**
+     * @var array
+     */
     private $current_column = [];
+
+    /**
+     * @var int
+     */
     private $current_indice = 0;
+
+    /**
+     * @var int
+     */
     private $current_foreign_key = 0;
+
+    /**
+     * @var bool
+     */
     private $timestamps = false;
+
+    /**
+     * @var array
+     */
     private $constraint = [];
-    public $table = 'tet';
+
+    /**
+     * @var string
+     */
+    public $table;
 
     /**
      * @since 1.0.0
@@ -130,6 +161,12 @@ class ExecuteMigrations
         return $this;
     }
 
+    /**
+     * @since 1.0.0
+     * 
+     * @param string $foreign_key
+     * @return self
+     */
     public function foreignKey(string $foreign_key): self
     {
         $this->constraint[] = [
@@ -141,6 +178,12 @@ class ExecuteMigrations
         return $this;
     }
 
+    /**
+     * @since 1.0.0
+     * 
+     * @param string $column_references
+     * @return self
+     */
     public function references(string $column_references): self
     {
         $this->constraint[$this->current_foreign_key]['column_references'] = $column_references;
@@ -148,6 +191,12 @@ class ExecuteMigrations
         return $this;
     }
 
+    /**
+     * @since 1.0.0
+     * 
+     * @param string $table
+     * @return self
+     */
     public function on(string $table): self
     {
         $this->constraint[$this->current_foreign_key]['table'] = $table;
