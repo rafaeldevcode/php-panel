@@ -3,32 +3,40 @@
 require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/suports/env.php';
 
-use Src\Migrations\CreateTables;
+use Src\Models\Migrations;
+use Src\Migrations\ExecuteMigrations;
 use Src\Models\User;
 
 if(isset($argv[1])):
     if($argv[1] == 'migrate'):
-        $dir_migrations = dir(__DIR__.'/src/Migrations/');
-        $create_table = new CreateTables();
+        $executeMigrations = new ExecuteMigrations();
+        $migrations = new Migrations();
+
+        $migrations_exists = $executeMigrations->verifyExistsMigrations();
+        $contents = scandir(__DIR__.'/src/Migrations/');
+        $contents = array_slice($contents, 2, -1);
         $migrates = [];
 
-        while($file = $dir_migrations->read()):
-            if($file !== '.' && $file !== '..' && $file !== 'CreateTables.php'):
-                if(!$create_table->createMigration($file)):
-                    $class = explode('.', $file)[0];
-                    $class = "Src\\Migrations\\".$class;
+        foreach($contents as $file):
+            if(!$migrations_exists || empty($migrations->where('name', '=', $file)->get())):
+                $class = explode('.', $file)[0];
 
-                    echo "Running the '{$class}' migration.\n";
+                require __DIR__."/src/Migrations/{$file}";
+                $class = "Src\\Migrations\\".substr($class, 5);
 
-                    $class = new $class;
-                    $class->create();
+                echo "Running the '{$class}' migration.\n";
 
-                    $create_table->updateMigration($file);
+                $exec = new $class;
+                $exec->init();
 
-                    array_push($migrates, $file);
-                endif;
+                $migrations->create(['name' => $file]);
+
+                array_push($migrates, $file);
+                $migrations_exists = true;
+
+                echo "Migration from {$class} finished!\n\n";
             endif;
-        endwhile;
+        endforeach;
 
         echo empty($migrates) ? "No migration to perform!" : "Migration finished!";
     elseif($argv[1] == 'create-user'):
