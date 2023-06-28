@@ -193,7 +193,7 @@
                 <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
                     'name'    => 'site_logo_main',
                     'label'   => 'Logo principal (Cor principal)',
-                    'default' => 'assets/images/logo_main.png',
+                    'default' => 'assets/images/logo_main.svg',
                     'src'     => (isset($settings) && !empty($settings->site_logo_main)) ? "assets/images/{$settings->site_logo_main}" : null
                 ]) ?>
 
@@ -207,7 +207,7 @@
                 <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
                     'name'    => 'site_favicon',
                     'label'   => 'Favicon do site',
-                    'default' => 'assets/images/favicon.png',
+                    'default' => 'assets/images/favicon.svg',
                     'src'     => (isset($settings) && !empty($settings->site_favicon)) ? "assets/images/{$settings->site_favicon}" : null
                 ]) ?>
 

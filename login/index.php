@@ -18,7 +18,7 @@
     <link rel='stylesheet' href='<?php asset('libs/bootstrap/bootstrap-icons.css') ?>' />
     <link rel='stylesheet' href='<?php asset('assets/css/globals.css') ?>' />
     <meta name='author' content='Rafael Vieira | github.com/rafaeldevcode' />
-    <link rel="shortcut icon" href="<?php asset('assets/images/favicon.png') ?>" type="image/pnh">
+    <link rel="shortcut icon" href="<?php asset('assets/images/favicon.svg') ?>" type="image/pnh">
 
     <title><?php echo !is_null(SETTINGS) && !empty(SETTINGS['site_name']) ? SETTINGS['site_name'] : env('APP_NAME') ?> | Login</title>
 </head>
@@ -44,7 +44,7 @@
 
         <div class='d-flex flex-column justify-content-center align-items-center col-12 col-lg-5 p-2'>
             <div class='col-12 col-sm-6 col-md-7 mb-5'>
-                <img class='w-100' src="<?php !is_null(SETTINGS) && !empty(SETTINGS['site_logo_main']) ? asset('assets/images/'.SETTINGS['site_logo_main'].'') : asset('assets/images/logo_main.png') ?>" alt="Logo <?php echo env('APP_NAME') ?>" />
+                <img class='w-100' src="<?php !is_null(SETTINGS) && !empty(SETTINGS['site_logo_main']) ? asset('assets/images/'.SETTINGS['site_logo_main'].'') : asset('assets/images/logo_main.svg') ?>" alt="Logo <?php echo env('APP_NAME') ?>" />
             </div>
 
             <form class='col-12 col-sm-6 col-md-7' method="POST" action="/login/login.php">

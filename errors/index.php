@@ -7,7 +7,7 @@
         <link rel='stylesheet' href='<?php asset('libs/bootstrap/bootstrap-icons.css') ?>' />
         <link rel='stylesheet' href='<?php asset('assets/css/globals.css') ?>' />
         <meta name='author' content='Rafael Vieira | github.com/rafaeldevcode' />
-        <link rel="shortcut icon" href="<?php asset('assets/images/favicon.png') ?>" type="image/pnh">
+        <link rel="shortcut icon" href="<?php asset('assets/images/favicon.svg') ?>" type="image/pnh">
 
         <title><?php echo $title ?></title>
     </head>
