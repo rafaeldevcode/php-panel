@@ -16,7 +16,7 @@
     if($method == 'read'):
         $user = new User();
         $requests = requests();
-        $users = !isset($requests->search) ? $user->paginate(20) : $user->where('name', 'LIKE', "'%{$requests->search}%'")->paginate(20);
+        $users = !isset($requests->search) ? $user->paginate(20) : $user->where('name', 'LIKE', "%{$requests->search}%")->paginate(20);
         $color = 'cm-secondary';
         $text  = 'Visualizar';
 
