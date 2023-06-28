@@ -14,7 +14,6 @@ if(!function_exists('routes')):
             '/admin/users',
             '/admin/settings',
             '/admin/profile',
-            '/quem-somos',
             '/politicas-de-privacidade',
             '/login'
         ];
