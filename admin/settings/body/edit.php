@@ -155,7 +155,7 @@
                 <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch.php', [
                     'name'  => 'cookies',
                     'label' => 'Ativar aviso de cookies (Inativo | Ativo)',
-                    'value' => isset($settings) ? $settings->cookies : ''
+                    'value' => isset($settings) ? $settings->cookies : 'off'
                 ]) ?>
             </div>
 
