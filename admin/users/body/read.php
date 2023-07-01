@@ -10,7 +10,7 @@
                     <th class='col'>Nome</th>
                     <th class='col' data-row='email'>Email</th>
                     <th class='col'>Status</th>
-                    <th class='col'>Ações</th>
+                    <th class='col text-end'>Ações</th>
                 </tr>
             </thead>
 
@@ -35,7 +35,7 @@
                         <td>
                             <span class="badge bg-cm-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?>"><?php echo (is_null($user->status) || $user->status == 'off') ? 'Inativo' : 'Ativo' ?></span>
                         </td>
-                        <td>
+                        <td class="text-end">
                             <a href="/admin/users/?method=edit&id=<?php echo $user->id ?>" title='Editar usuário <?php echo $user->name ?>' class='btn btn-sm btn-cm-primary text-cm-light fw-bold m-1'>
                                 <i class='bi bi-pencil-square'></i>
                             </a>
