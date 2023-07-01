@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Get or set cookies
  */

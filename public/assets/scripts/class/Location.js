@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Search all cities and states in Brazil
  */

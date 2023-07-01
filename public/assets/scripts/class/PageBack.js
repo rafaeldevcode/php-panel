@@ -1,3 +1,5 @@
+'use strict';
+
 class PageBack{
     /**
      * Back previous page

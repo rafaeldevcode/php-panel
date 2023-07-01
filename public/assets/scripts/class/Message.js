@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Create or hiddens the message
  */
