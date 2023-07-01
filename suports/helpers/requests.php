@@ -113,3 +113,18 @@ if (!function_exists('verifyMethod')):
         endif;
     }
 endif;
+
+if (! function_exists('urlBase')):
+    /**
+     * @since 1.0.0
+     * 
+     * @return string
+     */
+    function urlBase(): string
+    {
+        $protocol = ((isset($_SERVER['HTTPS'])) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
+        $host = $_SERVER['HTTP_HOST'];
+
+        return "{$protocol}://{$host}";
+    }
+endif;
