@@ -32,27 +32,41 @@ endif;
 
 if (!function_exists('saveImage')):
     /**
-     * @since 1.0.0
+     * @since 1.2.0
      * 
-     * @param array|null $data
      * @param string $image_key
      * @param string|null $old_file
+     * @param int|null $indice
      * @return string|null
      */
-    function saveImage(array|null $data, string $image_key, string|null $old_file): string|null
+    function saveImage(string $image_key, string|null $old_file, int|null $indice = null): string|null
     {
-        if(isset($data[$image_key]) && !empty($data[$image_key]['name'])):
-            $file_name = bin2hex(random_bytes(25));
-            $extencion = explode('/', $data[$image_key]['type'])[1];
-            $file_path = "uploads/{$file_name}.{$extencion}";
-            (!is_null($old_file) && is_file(__DIR__."/../public/assets/images/{$old_file}")) ? unlink(__DIR__."/../public/assets/images/{$old_file}") : '';
+        if(!is_null($indice)):
+            $file = ['images' => [
+                'name' => $_FILES['images']['name'][$indice],
+                'type' => $_FILES['images']['type'][$indice],
+                'tmp_name' => $_FILES['images']['tmp_name'][$indice],
+                'error' => $_FILES['images']['error'][$indice],
+                'size' => $_FILES['images']['size'][$indice]
+            ]];
+        else:
+            $file = $_FILES;
+        endif;
 
-            move_uploaded_file($data[$image_key]['tmp_name'], __DIR__."/../public/assets/images/{$file_path}");
+
+        if(isset($file[$image_key]) && !empty($file[$image_key]['name'])):
+            $file_name = bin2hex(random_bytes(25));
+            $extencion = explode('/', $file[$image_key]['type'])[1];
+            $file_path = "uploads/{$file_name}.{$extencion}";
+
+            (!is_null($old_file) && is_file(__DIR__."/../../public/assets/images/{$old_file}")) ? unlink(__DIR__."/../../public/assets/images/{$old_file}") : '';
+
+            move_uploaded_file($file[$image_key]['tmp_name'], __DIR__."/../../public/assets/images/{$file_path}");
 
             return $file_path;
         endif;
 
-        return null;
+        return $old_file;
     }
 endif;
 
