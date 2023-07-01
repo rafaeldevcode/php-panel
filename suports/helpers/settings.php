@@ -44,7 +44,7 @@ if (!function_exists('saveImage')):
         if(isset($data[$image_key]) && !empty($data[$image_key]['name'])):
             $file_name = bin2hex(random_bytes(25));
             $extencion = explode('/', $data[$image_key]['type'])[1];
-            $file_path = "settings/{$file_name}.{$extencion}";
+            $file_path = "uploads/{$file_name}.{$extencion}";
             (!is_null($old_file) && is_file(__DIR__."/../public/assets/images/{$old_file}")) ? unlink(__DIR__."/../public/assets/images/{$old_file}") : '';
 
             move_uploaded_file($data[$image_key]['tmp_name'], __DIR__."/../public/assets/images/{$file_path}");
