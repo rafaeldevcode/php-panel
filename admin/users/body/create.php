@@ -34,7 +34,7 @@
         <div class='col-12 col-md-6'>
             <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch.php', [
                 'name'  => 'status',
-                'label' => 'Status do usuário (Ativo | Inativo)'
+                'label' => 'Status do usuário (Inativo | Ativo)'
             ]) ?>
         </div>
 
