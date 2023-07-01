@@ -348,3 +348,22 @@ if(!function_exists('getOnly')):
         return array_combine($keys, $values);
     }
 endif;
+
+if(!function_exists('normalizeSlug')):
+    /**
+     * @since 1.1.0
+     * 
+     * @param string $title
+     * @param string $slug
+     * @return string
+     */
+    function normalizeSlug(string $title, string $slug): string
+    {
+        $slug = empty($slug) ? $title : $slug;
+        $slug = strtolower($slug);
+        $slug = str_replace(' ', '-', $slug);
+        $slug = preg_replace(["/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ë)/", "/(É|È|Ê|Ë)/", "/(í|ì|î|ï)/", "/(Í|Ì|Î|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/", "/(Ú|Ù|Û|Ü)/", "/(ñ)/", "/(Ñ)/", "/(ç)/", "/(Ç)/"], explode(" ","a A e E i I o O u U n N c C"), $slug);
+
+        return $slug;
+    }
+endif;
