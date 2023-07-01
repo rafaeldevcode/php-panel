@@ -265,7 +265,7 @@ class ExecuteMigrations
     }
 
     /**
-     * @since 1.0.0
+     * @since 1.2.0
      * 
      * @param string $method
      * @param int $lenght
@@ -286,6 +286,10 @@ class ExecuteMigrations
                 return "DATETIME";
             case 'text':
                 return "TEXT({$lenght})";
+            case 'longtext':
+                return "LONGTEXT";
+            case 'boolean':
+                return "BOOLEAN";
             default:
                 throw new Exception("Tipo de coluna inválido: $method");
         endswitch;
