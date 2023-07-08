@@ -23,7 +23,7 @@
 
                 <div class="modal-footer p-2">
                     <?php getHtml(__DIR__.'/form/input-button.php', [
-                        'type'  => 'submit',
+                        'type' => 'submit',
                         'style' => 'color-main',
                         'title' => 'Savar usuário',
                         'value' => 'Salvar'

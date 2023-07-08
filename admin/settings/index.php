@@ -22,8 +22,8 @@
 
             <?php getHtml(__DIR__.'/../../partials/breadcrumps.php', [
                 'color' => 'cm-success',
-                'type'  => 'Editar',
-                'icon'  => 'bi bi-gear-fill',
+                'type' => 'Editar',
+                'icon' => 'bi bi-gear-fill',
                 'title' => 'Configurações'
             ]) ?>
 
@@ -41,10 +41,10 @@
 
         const imageUplod = new ImagesUpload();
 
-        imageUplod.changeAttributes($('#site_logo_main'));
-        imageUplod.changeAttributes($('#site_logo_secondary'));
-        imageUplod.changeAttributes($('#site_favicon'));
-        imageUplod.changeAttributes($('#site_bg_login'));
+        imageUplod.changeAttributes($('#site_logo_main'), $('#count_site_logo_main'));
+        imageUplod.changeAttributes($('#site_logo_secondary'), $('#count_site_logo_secondary'));
+        imageUplod.changeAttributes($('#site_favicon'), $('#count_site_favicon'));
+        imageUplod.changeAttributes($('#site_bg_login'), $('#count_site_bg_login'));
 
         imageUplod.remove();
     </script>

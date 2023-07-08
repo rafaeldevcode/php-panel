@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Search for information from a CNPJ
  */

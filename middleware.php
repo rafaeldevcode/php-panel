@@ -21,10 +21,10 @@
         else:
 
             getHtml(__DIR__.'/errors/index.php', [
-                'error'   => 404,
-                'type'    => 'danger',
+                'error' => 404,
+                'type' => 'danger',
                 'message' => 'Not Found',
-                'title'   => 'Page Not Found'
+                'title' => 'Page Not Found'
             ]);
         endif;
     endif;

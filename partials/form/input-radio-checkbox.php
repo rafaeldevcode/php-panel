@@ -1,12 +1,16 @@
 <?php 
+    $required = '';
+
     if(isset($attributes)):
         if(is_array($attributes)):
             $attr = '';
             foreach($attributes as $indice => $attribute):
                 $attr .= "{$indice}={$attribute} ";
+                $required = $indice == 'required' ? '*' : '';
             endforeach;
         else:
             $attr = $attributes;
+            $required = $attributes == 'required' ? '*' : '';
         endif;
     else:
         $attr = '';
@@ -21,6 +25,7 @@
         <?php endif; ?>
         
         <?php echo $label ?>
+        <span class="text-cm-danger"><?php echo $required ?></span>
     </label>
     <span class='position-absolute left-0 bottom-0 validit'></span>
 </div>

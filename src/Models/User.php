@@ -9,6 +9,8 @@ class User extends Model
     public $table = 'users';
 
     /**
+     * @since 1.0.0
+     * 
      * @param string $email
      * @param string password
      * @return array
@@ -45,6 +47,8 @@ class User extends Model
     }
 
     /**
+     * @since 1.0.0
+     * 
      * @return void
      */
     public function logout(): void
@@ -58,6 +62,8 @@ class User extends Model
     }
 
     /**
+     * @since 1.0.0
+     * 
      * @return string
      */
     protected function generateToken(): string
@@ -66,7 +72,10 @@ class User extends Model
     }
 
     /**
+     * @since 1.1.0
+     * 
      * @param int $user_id
+     * @return void
      */
     protected function removeTokensInvalid(int $user_id): void
     {

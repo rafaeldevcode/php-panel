@@ -14,11 +14,11 @@ $login = $user->login($data['email'], $data['password']);
 
 if($login['status']):
     session([
-        'message'     => $login['message'],
-        'type'        => 'cm-success',
-        'token'       => $login['user']->token,
-        'user_name'   => $login['user']->name,
-        'user_id'     => $login['user']->id,
+        'message' => $login['message'],
+        'type' => 'cm-success',
+        'token' => $login['user']->token,
+        'user_name' => $login['user']->name,
+        'user_id' => $login['user']->id,
         'user_avatar' => $login['user']->avatar
     ]);
 
@@ -27,7 +27,7 @@ else:
 
     session([
         'message' => $login['message'],
-        'type'    => 'cm-danger'
+        'type' => 'cm-danger'
     ]);
 
     return header('Location: /login', true, 302);

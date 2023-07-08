@@ -17,8 +17,8 @@
 
             <?php getHtml(__DIR__.'/../../partials/breadcrumps.php', [
                 'color' => 'cm-secondary',
-                'type'  => 'Visualizar',
-                'icon'  => 'bi bi-speedometer',
+                'type' => 'Visualizar',
+                'icon' => 'bi bi-speedometer',
                 'title' => 'Dashboard'
             ]) ?>
 

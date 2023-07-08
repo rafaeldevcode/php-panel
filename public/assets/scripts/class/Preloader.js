@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Hide or show icons for preloader
  */

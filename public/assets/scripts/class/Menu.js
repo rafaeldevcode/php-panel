@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Open and close menu, client and admin pages
  */

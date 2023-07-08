@@ -55,13 +55,14 @@ class Model
     }
 
     /**
-     * @since 1.0.0
+     * @since 1.1.0
      * 
      * @param int $id
      * @return self
      */
     public function find(int $id = 1): self
     {
+        $this->wheres = [];
         $data = $this->where('id', '=', $id)->get();
 
         if(!empty($data)):
