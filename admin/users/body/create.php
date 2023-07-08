@@ -26,7 +26,18 @@
                     'icon'  => 'bi bi-key-fill',
                     'name'  => 'password',
                     'type'  => 'password',
-                    'label' => 'Digite a nova senha (Deixa em branco caso não queira alterar)'
+                    'label' => 'Senha',
+                    'attributes' => 'required'
+                ]) ?>
+            </div>
+
+            <div class='col-12 col-md-6'>
+                <?php getHtml(__DIR__.'/../../../partials/form/input-pass.php', [
+                    'icon'  => 'bi bi-key-fill',
+                    'name'  => 'repeat_password',
+                    'type'  => 'password',
+                    'label' => 'Repita a sua senha',
+                    'attributes' => 'required',
                 ]) ?>
             </div>
         </div>

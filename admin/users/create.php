@@ -7,15 +7,32 @@ use Src\Models\User;
 
 verifyMethod(500, 'POST');
 
-$_POST['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
+$requests = requests();
 
-$user = new User();
+if($requests->password !== $requests->repeat_password):
+    session([
+        'message' => 'As senhas não conferem, tente novamente!',
+        'type'    => 'cm-danger'
+    ]);
+    
+    return header('Location: /admin/users?method=create', true, 302);
+else:
+    $password = password_hash($requests->password, PASSWORD_BCRYPT);
+    $status = isset($requests->status) ? $requests->status : 'off';
 
-$user->create($_POST);
+    $user = new User();
 
-session([
-    'message' => 'Usuário adicionado com sucesso!',
-    'type'    => 'cm-success'
-]);
+    $user->create([
+        'name' => $requests->name,
+        'email' => $requests->email,
+        'password' => $password,
+        'status' => $status
+    ]);
 
-return header('Location: /admin/users', true, 302);
+    session([
+        'message' => 'Usuário adicionado com sucesso!',
+        'type'    => 'cm-success'
+    ]);
+
+    return header('Location: /admin/users', true, 302);
+endif;
