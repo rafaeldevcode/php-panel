@@ -12,7 +12,7 @@ $requests = requests();
 if($requests->password !== $requests->repeat_password):
     session([
         'message' => 'As senhas não conferem, tente novamente!',
-        'type'    => 'cm-danger'
+        'type' => 'cm-danger'
     ]);
     
     return header('Location: /admin/users?method=create', true, 302);
@@ -31,7 +31,7 @@ else:
 
     session([
         'message' => 'Usuário adicionado com sucesso!',
-        'type'    => 'cm-success'
+        'type' => 'cm-success'
     ]);
 
     return header('Location: /admin/users', true, 302);

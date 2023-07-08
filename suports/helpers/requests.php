@@ -87,7 +87,7 @@ endif;
 
 if (!function_exists('verifyMethod')):
     /**
-     * @since 1.0.0
+     * @since 1..0
      * 
      * @param int $error
      * @param string|null $method
@@ -97,18 +97,18 @@ if (!function_exists('verifyMethod')):
     {
         switch($error):
             case 500:
-                $type    = 'cm-warning';
+                $type = 'cm-warning';
                 $message = "{$_SERVER['REQUEST_METHOD']} method not allowed";
-                $title   = 'Not allowed';
+                $title = 'Not allowed';
                 break;
         endswitch;
 
         if(!isset($method) || (isset($method) && $_SERVER['REQUEST_METHOD'] !== $method)):
             getHtml(__DIR__.'/../errors/index.php', [
-                'error'   => $error,
-                'type'    => $type,
+                'error' => $error,
+                'type' => $type,
                 'message' => $message,
-                'title'   => $title
+                'title' => $title
             ]);
         endif;
     }

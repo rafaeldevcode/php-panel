@@ -15,31 +15,31 @@ if(!empty($requests->password)): // Verificar se o campo senha não esta vazio p
     if($requests->password !== $requests->repeat_password):
         session([
             'message' => 'As senhas não conferem!',
-            'type'    => 'cm-danger'
+            'type' => 'cm-danger'
         ]);
 
         return header("Location: /admin/users?method=edit&id={$requests->id}", true, 302);
     endif;
 
     $user->find($requests->id)->update([
-        'name'     => $requests->name,
-        'email'    => $requests->email,
-        'status'   => $status,
+        'name' => $requests->name,
+        'email' => $requests->email,
+        'status' => $status,
         'password' => password_hash($requests->password, PASSWORD_BCRYPT)
     ]);
 
 else: // Atualizar usuário sem alterar a senha
     
     $user->find($requests->id)->update([
-        'name'   => $requests->name,
-        'email'  => $requests->email,
+        'name' => $requests->name,
+        'email' => $requests->email,
         'status' => $status
     ]);
 endif;
 
 session([
     'message' => 'Usuário editado com sucesso!',
-    'type'    => 'cm-success'
+    'type' => 'cm-success'
 ]);
 
 return header('Location: /admin/users', true, 302);

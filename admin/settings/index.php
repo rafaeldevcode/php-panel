@@ -22,8 +22,8 @@
 
             <?php getHtml(__DIR__.'/../../partials/breadcrumps.php', [
                 'color' => 'cm-success',
-                'type'  => 'Editar',
-                'icon'  => 'bi bi-gear-fill',
+                'type' => 'Editar',
+                'icon' => 'bi bi-gear-fill',
                 'title' => 'Configurações'
             ]) ?>
 

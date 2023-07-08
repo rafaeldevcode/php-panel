@@ -27,22 +27,8 @@
     </body>
     
     <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js')?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/PageBack.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript">
-        $(document).ready(()=>{
-            pageBack();
-        });
-
-        // Voltar para a página anterior
-        function pageBack(){
-            const pageBack = $('#back');
-
-            if(pageBack){
-                pageBack.click((event)=>{
-                    event.preventDefault();
-
-                    history.back();
-                });
-            }
-        }
+        PageBack.init();
     </script>
 </html>

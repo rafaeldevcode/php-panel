@@ -51,10 +51,10 @@
                 <!-- Input email -->
                 <div class="my-4">
                     <?php getHtml(__DIR__.'/../partials/form/input-default.php', [
-                        'icon'       => 'bi bi-envelope-fill',
-                        'name'       => 'email',
-                        'label'      => 'Email',
-                        'type'       => 'email',
+                        'icon' => 'bi bi-envelope-fill',
+                        'name' => 'email',
+                        'label' => 'Email',
+                        'type' => 'email',
                         'attributes' => 'required'
                     ]) ?>
                 </div>
@@ -62,16 +62,16 @@
                 <!-- Input pass -->
                 <div class="my-4">
                     <?php getHtml(__DIR__.'/../partials/form/input-pass.php', [
-                        'icon'       => 'bi bi-key-fill',
-                        'name'       => 'password',
-                        'label'      => 'Senha',
+                        'icon' => 'bi bi-key-fill',
+                        'name' => 'password',
+                        'label' => 'Senha',
                         'attributes' => 'required'
                     ]) ?>
                 </div>
 
                 <!-- Input button -->
                 <?php getHtml(__DIR__.'/../partials/form/input-button.php', [
-                    'type'  => 'submit',
+                    'type' => 'submit',
                     'style' => 'color-main',
                     'title' => 'Realizar login',
                     'value' => 'Logar'

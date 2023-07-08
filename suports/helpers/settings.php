@@ -4,7 +4,7 @@ use Src\Models\Setting;
 
 if (!function_exists('normalizeBreadcrumps')):
     /**
-     * @since 1.0.0
+     * @since 1.1.0
      * 
      * @return array
      */
@@ -20,7 +20,7 @@ if (!function_exists('normalizeBreadcrumps')):
                 $path = "{$path}/{$breadcrump}";
 
                 array_push($breadcrumps_normalize, [
-                    'path'  => $path,
+                    'path' => $path,
                     'title' => $breadcrump
                 ]);
             endif;

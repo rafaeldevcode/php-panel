@@ -3,157 +3,157 @@
         <div class='row d-flex justify-content-between'>
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-link',
-                    'name'  => 'site_name',
+                    'icon' => 'bi bi-link',
+                    'name' => 'site_name',
                     'label' => 'Nome do site',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->site_name : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-card-text',
-                    'name'  => 'site_description',
+                    'icon' => 'bi bi-card-text',
+                    'name' => 'site_description',
                     'label' => 'Descrição do site',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->site_description : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-geo-alt-fill',
-                    'name'  => 'andress',
+                    'icon' => 'bi bi-geo-alt-fill',
+                    'name' => 'andress',
                     'label' => 'Endereço da empresa',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->andress : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-telephone-fill',
-                    'name'  => 'phone',
+                    'icon' => 'bi bi-telephone-fill',
+                    'name' => 'phone',
                     'label' => 'Telefone da empresa (adicionar DDD)',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->phone : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-envelope-fill',
-                    'name'  => 'email',
+                    'icon' => 'bi bi-envelope-fill',
+                    'name' => 'email',
                     'label' => 'Email da empresa',
-                    'type'  => 'email',
+                    'type' => 'email',
                     'value' => isset($settings) ? $settings->email : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-linkedin',
-                    'name'  => 'profile_linkedin',
+                    'icon' => 'bi bi-linkedin',
+                    'name' => 'profile_linkedin',
                     'label' => 'linkedin da empresa',
-                    'type'  => 'url',
+                    'type' => 'url',
                     'value' => isset($settings) ? $settings->profile_linkedin : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-facebook',
-                    'name'  => 'profile_facebook',
+                    'icon' => 'bi bi-facebook',
+                    'name' => 'profile_facebook',
                     'label' => 'Facebook da empresa',
-                    'type'  => 'url',
+                    'type' => 'url',
                     'value' => isset($settings) ? $settings->profile_facebook : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-instagram',
-                    'name'  => 'profile_instagram',
+                    'icon' => 'bi bi-instagram',
+                    'name' => 'profile_instagram',
                     'label' => 'Instagram da empresa',
-                    'type'  => 'url',
+                    'type' => 'url',
                     'value' => isset($settings) ? $settings->profile_instagram : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-whatsapp',
-                    'name'  => 'whatsapp',
+                    'icon' => 'bi bi-whatsapp',
+                    'name' => 'whatsapp',
                     'label' => 'Whatsapp da empresa (adicionar DDD)',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->whatsapp : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-chat-quote-fill',
-                    'name'  => 'whatsapp_message',
+                    'icon' => 'bi bi-chat-quote-fill',
+                    'name' => 'whatsapp_message',
                     'label' => 'Menssagem padrão para o whatsapp',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->whatsapp_message : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-telegram',
-                    'name'  => 'telegram',
+                    'icon' => 'bi bi-telegram',
+                    'name' => 'telegram',
                     'label' => 'Telegram da empresa (Usar o nome de usuário)',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->telegram : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-chat-quote-fill',
-                    'name'  => 'telegram_message',
+                    'icon' => 'bi bi-chat-quote-fill',
+                    'name' => 'telegram_message',
                     'label' => 'Menssagem padrão para o telegram',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->telegram_message : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-c-circle-fill',
-                    'name'  => 'copyright',
+                    'icon' => 'bi bi-c-circle-fill',
+                    'name' => 'copyright',
                     'label' => 'Copyright no rodapé do site',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->copyright : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-google',
-                    'name'  => 'google_analytics',
+                    'icon' => 'bi bi-google',
+                    'name' => 'google_analytics',
                     'label' => 'Pixel do google analytics',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->google_analytics : ''
                 ]) ?>
             </div>
 
             <div class='col-12 col-md-6'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
-                    'icon'  => 'bi bi-facebook',
-                    'name'  => 'facebook_pixel',
+                    'icon' => 'bi bi-facebook',
+                    'name' => 'facebook_pixel',
                     'label' => 'Pixel do facebook',
-                    'type'  => 'text',
+                    'type' => 'text',
                     'value' => isset($settings) ? $settings->facebook_pixel : ''
                 ]) ?>
             </div>
 
             <div class='col-12'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch.php', [
-                    'name'  => 'cookies',
+                    'name' => 'cookies',
                     'label' => 'Ativar aviso de cookies (Inativo | Ativo)',
                     'value' => isset($settings) ? $settings->cookies : 'off'
                 ]) ?>
@@ -162,9 +162,9 @@
             <div class="col-12">
                 <div class='col-12'>
                     <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch.php', [
-                        'name'       => 'preloader',
-                        'label'      => 'Ativar preloader (Inativo | Ativo)',
-                        'value'      => isset($settings) ? $settings->preloader : 'off',
+                        'name' => 'preloader',
+                        'label' => 'Ativar preloader (Inativo | Ativo)',
+                        'value' => isset($settings) ? $settings->preloader : 'off',
                         'attributes' => 'onclick="Preloader.habilit(event);"'
                     ]) ?>
 
@@ -191,31 +191,31 @@
 
             <div class='col-12 d-flex flex-wrap'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
-                    'name'    => 'site_logo_main',
-                    'label'   => 'Logo principal (Cor principal)',
+                    'name' => 'site_logo_main',
+                    'label' => 'Logo principal (Cor principal)',
                     'default' => 'assets/images/logo_main.svg',
-                    'src'     => (isset($settings) && !empty($settings->site_logo_main)) ? "assets/images/{$settings->site_logo_main}" : null
+                    'src' => (isset($settings) && !empty($settings->site_logo_main)) ? "assets/images/{$settings->site_logo_main}" : null
                 ]) ?>
 
                 <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
-                    'name'    => 'site_logo_secondary',
-                    'label'   => 'Logo segundário (Na cor branca)',
+                    'name' => 'site_logo_secondary',
+                    'label' => 'Logo segundário (Na cor branca)',
                     'default' => 'assets/images/logo_secondary.png',
-                    'src'     => (isset($settings) && !empty($settings->site_logo_secondary)) ? "assets/images/{$settings->site_logo_secondary}" : null
+                    'src' => (isset($settings) && !empty($settings->site_logo_secondary)) ? "assets/images/{$settings->site_logo_secondary}" : null
                 ]) ?>
 
                 <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
-                    'name'    => 'site_favicon',
-                    'label'   => 'Favicon do site',
+                    'name' => 'site_favicon',
+                    'label' => 'Favicon do site',
                     'default' => 'assets/images/favicon.svg',
-                    'src'     => (isset($settings) && !empty($settings->site_favicon)) ? "assets/images/{$settings->site_favicon}" : null
+                    'src' => (isset($settings) && !empty($settings->site_favicon)) ? "assets/images/{$settings->site_favicon}" : null
                 ]) ?>
 
                 <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
-                    'name'    => 'site_bg_login',
-                    'label'   => 'Fundo da tela de login',
+                    'name' => 'site_bg_login',
+                    'label' => 'Fundo da tela de login',
                     'default' => 'assets/images/login_bg.jpg',
-                    'src'     => (isset($settings) && !empty($settings->site_bg_login)) ? "assets/images/{$settings->site_bg_login}" : null
+                    'src' => (isset($settings) && !empty($settings->site_bg_login)) ? "assets/images/{$settings->site_bg_login}" : null
                 ]) ?>
             </div>
         </div>
@@ -223,7 +223,7 @@
         <div class='row d-flex justify-content-end'>
             <div class='col-12 col-md-3'>
                 <?php getHtml(__DIR__.'/../../../partials/form/input-button.php', [
-                    'type'  => 'submit',
+                    'type' => 'submit',
                     'style' => 'color-main',
                     'title' => 'Savar configurações',
                     'value' => 'Salvar'

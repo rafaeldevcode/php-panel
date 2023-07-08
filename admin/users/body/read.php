@@ -66,10 +66,10 @@
 
     <?php if(isset($users->page)):
         getHtml(__DIR__.'/../../../partials/pagination.php', [
-            'page'   => $users->page,
-            'count'  => $users->count,
-            'next'   => $users->next,
-            'prev'   => $users->prev,
+            'page' => $users->page,
+            'count' => $users->count,
+            'next' => $users->next,
+            'prev' => $users->prev,
             'search' => $users->search
         ]);
     endif; ?>

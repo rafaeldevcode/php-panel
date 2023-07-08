@@ -2,7 +2,7 @@
 
 if (!function_exists('menusAdmin')):
     /**
-     * @since 1.0.0
+     * @since 1.1.0
      * 
      * @return array
      */
@@ -10,21 +10,21 @@ if (!function_exists('menusAdmin')):
     {
         $menus = [
             'dashboard' => [
-                'path'  => '/admin/dashboard',
+                'path' => '/admin/dashboard',
                 'title' => 'Dashboard' ,
-                'icon'  => 'bi bi-speedometer',
+                'icon' => 'bi bi-speedometer',
                 'count' => null      
             ],
             'users' => [
-                'path'  => '/admin/users',
+                'path' => '/admin/users',
                 'title' => 'Usuários' ,
-                'icon'  => 'bi bi-people-fill',
+                'icon' => 'bi bi-people-fill',
                 'count' => null
             ],
             'settings' => [
-                'path'  => '/admin/settings',
+                'path' => '/admin/settings',
                 'title' => 'Configurações',
-                'icon'  => 'bi bi-gear-fill',
+                'icon' => 'bi bi-gear-fill',
                 'count' => null
             ]
         ];

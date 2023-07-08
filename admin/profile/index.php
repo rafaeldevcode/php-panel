@@ -24,8 +24,8 @@ $user = $user->find($_SESSION['user_id'])->data;
 
             <?php getHtml(__DIR__.'/../../partials/breadcrumps.php', [
                 'color' => 'cm-success',
-                'type'  => 'Editar',
-                'icon'  => 'bi bi-person-bounding-box',
+                'type' => 'Editar',
+                'icon' => 'bi bi-person-bounding-box',
                 'title' => 'Perfil'
             ]) ?>
 
@@ -62,49 +62,49 @@ $user = $user->find($_SESSION['user_id'])->data;
                     <div class='row d-flex justify-content-between'>
                         <div class='col-12 col-md-6'>
                             <?php getHtml(__DIR__.'/../../partials/form/input-default.php', [
-                                'icon'       => 'bi bi-envelope-fill',
-                                'name'       => 'name',
-                                'label'      => 'Nome do usuário',
-                                'type'       => 'bi bi-person-fill',
-                                'value'      => $user->name,
+                                'icon' => 'bi bi-envelope-fill',
+                                'name' => 'name',
+                                'label' => 'Nome do usuário',
+                                'type' => 'bi bi-person-fill',
+                                'value' => $user->name,
                                 'attributes' => 'required'
                             ]) ?>
                         </div>
 
                         <div class='col-12 col-md-6'>
                             <?php getHtml(__DIR__.'/../../partials/form/input-default.php', [
-                                'icon'       => 'bi bi-envelope-fill',
-                                'name'       => 'email',
-                                'label'      => 'Email',
-                                'type'       => 'email',
-                                'value'      => $user->email,
+                                'icon' => 'bi bi-envelope-fill',
+                                'name' => 'email',
+                                'label' => 'Email',
+                                'type' => 'email',
+                                'value' => $user->email,
                                 'attributes' => 'required disabled'
                             ]) ?>
                         </div>
 
                         <div class='col-12 col-md-6'>
                             <?php getHtml(__DIR__.'/../../partials/form/input-pass.php', [
-                                'icon'  => 'bi bi-key-fill',
-                                'name'  => 'current_password',
-                                'type'  => 'password',
+                                'icon' => 'bi bi-key-fill',
+                                'name' => 'current_password',
+                                'type' => 'password',
                                 'label' => 'Senha atual (Deixe em branco caso não queira altera-la)'
                             ]) ?>
                         </div>
 
                         <div class='col-12 col-md-6'>
                             <?php getHtml(__DIR__.'/../../partials/form/input-pass.php', [
-                                'icon'  => 'bi bi-key-fill',
-                                'name'  => 'password',
-                                'type'  => 'password',
+                                'icon' => 'bi bi-key-fill',
+                                'name' => 'password',
+                                'type' => 'password',
                                 'label' => 'Nova senha'
                             ]) ?>
                         </div>
 
                         <div class='col-12 col-md-6'>
                             <?php getHtml(__DIR__.'/../../partials/form/input-pass.php', [
-                                'icon'  => 'bi bi-key-fill',
-                                'name'  => 'repeat_password',
-                                'type'  => 'password',
+                                'icon' => 'bi bi-key-fill',
+                                'name' => 'repeat_password',
+                                'type' => 'password',
                                 'label' => 'Repita sua nova senha'
                             ]) ?>
                         </div>
@@ -113,7 +113,7 @@ $user = $user->find($_SESSION['user_id'])->data;
                     <div class='row d-flex justify-content-end'>
                         <div class='col-12 col-md-3'>
                             <?php getHtml(__DIR__.'/../../partials/form/input-button.php', [
-                                'type'  => 'submit',
+                                'type' => 'submit',
                                 'style' => 'color-main',
                                 'title' => 'Savar usuário',
                                 'value' => 'Salvar'

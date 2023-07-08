@@ -45,12 +45,12 @@
             <?php getHtml(__DIR__.'/../../partials/header.php') ?>
 
             <?php getHtml(__DIR__.'/../../partials/breadcrumps.php', [
-                'color'        => $color,
-                'type'         => $text,
-                'icon'         => 'bi bi-people-fill',
-                'title'        => 'Usuários',
+                'color' => $color,
+                'type' => $text,
+                'icon' => 'bi bi-people-fill',
+                'title' => 'Usuários',
                 'route_delete' => $route_delete,
-                'route_add'    => $route_add,
+                'route_add' => $route_add,
                 'route_search' => '/admin/users'
             ]) ?>
 
