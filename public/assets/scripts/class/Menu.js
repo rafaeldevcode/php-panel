@@ -52,6 +52,8 @@ class Menu{
                         $(item).removeClass('dNone');
                         $(item).attr('data-item-active', 'true');
                     });
+
+                    Cookies.set('open_menu', true, 500000);
                 }else{
                     aside.attr('data-expanded', 'desactive');
         
@@ -64,6 +66,8 @@ class Menu{
                             $(item).addClass('dNone');
                         }, 600);
                     });
+
+                    Cookies.forget('open_menu');
                 }
             }
         });
@@ -99,28 +103,27 @@ class Menu{
         });
     }
 
-    /**
-     * Remove link class from client menu items
-     * 
-     * @since 1.0.0
-     * 
-     * @returns {void}
-     */
-    static removeClassLinksNavbar(){
-        const itemsMenu = $('.navbar-client');
-        const lis = itemsMenu.find('li');
+    static checkIsOpen(){
+        const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        const buttonMenu = $('#checkbox-menu');
+        const aside = $('aside');
+        const items = document.querySelectorAll('div[data-item-active]');
+        const isOpen = Cookies.get('open_menu');
     
-        lis.each((index, element) => {
-            const br = $(element).find('br');
-            const textCenter = $(element).attr('class').indexOf('text-center');
+        console.log(isOpen)
+        if(width > 750){
+            if(isOpen){
+                buttonMenu.click();
+
+                aside.attr('data-expanded', 'active');
+            
+                items.forEach((item)=>{
+                    item.parentNode.querySelector('i').classList.remove('iconManu');
     
-            if(br){
-                br.remove();
+                    $(item).removeClass('dNone');
+                    $(item).attr('data-item-active', 'true');
+                });
             }
-    
-            if(textCenter > -1){
-                $(element).removeClass('text-center');
-            }
-        });
+        }
     }
 }

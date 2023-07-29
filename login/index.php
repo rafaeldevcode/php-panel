@@ -26,7 +26,7 @@
 
     <?php getHtml(__DIR__.'/../partials/message') ?>
 
-    <section class="vh-100 vw-100 d-flex flex-nowrap">
+    <main class="vh-100 vw-100 d-flex flex-nowrap">
         <div class='col-7 position-relative section-image-login'>
             <div class='position-absolute top-0 start-0 image-bg-login' style="background-image: url(<?php !is_null(SETTINGS) && !empty(SETTINGS['site_bg_login']) ? asset('assets/images/'.SETTINGS['site_bg_login'].'') : asset('assets/images/login_bg.jpg') ?>)"></div>
 
@@ -47,7 +47,7 @@
                 <img class='w-100' src="<?php !is_null(SETTINGS) && !empty(SETTINGS['site_logo_main']) ? asset('assets/images/'.SETTINGS['site_logo_main'].'') : asset('assets/images/logo_main.svg') ?>" alt="Logo <?php echo env('APP_NAME') ?>" />
             </div>
 
-            <form class='col-12 col-sm-6 col-md-7' method="POST" action="/login/login">
+            <form class='col-12 col-sm-6 col-md-7' method="POST" action="/login/login.php">
                 <!-- Input email -->
                 <div class="my-4">
                     <?php getHtml(__DIR__.'/../partials/form/input-default', [
@@ -78,7 +78,7 @@
                 ]) ?>
             </form>
         </div>
-    </section>
+    </main>
 
     <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js?ver='.APP_VERSION)?>"></script>
     <script type="text/javascript" src="<?php asset('libs/bootstrap/bootstrap.js?ver='.APP_VERSION) ?>"></script>
