@@ -14,15 +14,15 @@ $user = $user->find($_SESSION['user_id'])->data;
 
 ?>
 
-<?php getHtml(__DIR__.'/../../partials/header-main.php', ['title' => 'Perfil']) ?>
+<?php getHtml(__DIR__.'/../../partials/header-main', ['title' => 'Perfil']) ?>
 
     <section class='d-flex flex-nowrap justify-content-between w-100'>
-        <?php getHtml(__DIR__.'/../../partials/sidebar.php') ?>
+        <?php getHtml(__DIR__.'/../../partials/sidebar') ?>
 
         <section class='w-100'>
-            <?php getHtml(__DIR__.'/../../partials/header.php') ?>
+            <?php getHtml(__DIR__.'/../../partials/header') ?>
 
-            <?php getHtml(__DIR__.'/../../partials/breadcrumps.php', [
+            <?php getHtml(__DIR__.'/../../partials/breadcrumps', [
                 'color' => 'cm-success',
                 'type' => 'Editar',
                 'icon' => 'bi bi-person-bounding-box',
@@ -57,11 +57,11 @@ $user = $user->find($_SESSION['user_id'])->data;
                     </div>
                 </div>
 
-                <form method="POST" action="/admin/profile/update.php">
+                <form method="POST" action="/admin/profile/update">
                     <input type="hidden" name="id" value="<?php echo $user->id ?>">
                     <div class='row d-flex justify-content-between'>
                         <div class='col-12 col-md-6'>
-                            <?php getHtml(__DIR__.'/../../partials/form/input-default.php', [
+                            <?php getHtml(__DIR__.'/../../partials/form/input-default', [
                                 'icon' => 'bi bi-envelope-fill',
                                 'name' => 'name',
                                 'label' => 'Nome do usuário',
@@ -72,7 +72,7 @@ $user = $user->find($_SESSION['user_id'])->data;
                         </div>
 
                         <div class='col-12 col-md-6'>
-                            <?php getHtml(__DIR__.'/../../partials/form/input-default.php', [
+                            <?php getHtml(__DIR__.'/../../partials/form/input-default', [
                                 'icon' => 'bi bi-envelope-fill',
                                 'name' => 'email',
                                 'label' => 'Email',
@@ -83,7 +83,7 @@ $user = $user->find($_SESSION['user_id'])->data;
                         </div>
 
                         <div class='col-12 col-md-6'>
-                            <?php getHtml(__DIR__.'/../../partials/form/input-pass.php', [
+                            <?php getHtml(__DIR__.'/../../partials/form/input-pass', [
                                 'icon' => 'bi bi-key-fill',
                                 'name' => 'current_password',
                                 'type' => 'password',
@@ -92,7 +92,7 @@ $user = $user->find($_SESSION['user_id'])->data;
                         </div>
 
                         <div class='col-12 col-md-6'>
-                            <?php getHtml(__DIR__.'/../../partials/form/input-pass.php', [
+                            <?php getHtml(__DIR__.'/../../partials/form/input-pass', [
                                 'icon' => 'bi bi-key-fill',
                                 'name' => 'password',
                                 'type' => 'password',
@@ -101,7 +101,7 @@ $user = $user->find($_SESSION['user_id'])->data;
                         </div>
 
                         <div class='col-12 col-md-6'>
-                            <?php getHtml(__DIR__.'/../../partials/form/input-pass.php', [
+                            <?php getHtml(__DIR__.'/../../partials/form/input-pass', [
                                 'icon' => 'bi bi-key-fill',
                                 'name' => 'repeat_password',
                                 'type' => 'password',
@@ -112,7 +112,7 @@ $user = $user->find($_SESSION['user_id'])->data;
 
                     <div class='row d-flex justify-content-end'>
                         <div class='col-12 col-md-3'>
-                            <?php getHtml(__DIR__.'/../../partials/form/input-button.php', [
+                            <?php getHtml(__DIR__.'/../../partials/form/input-button', [
                                 'type' => 'submit',
                                 'style' => 'color-main',
                                 'title' => 'Savar usuário',
@@ -125,7 +125,7 @@ $user = $user->find($_SESSION['user_id'])->data;
         </section>
     </section>
 
-    <?php getHtml(__DIR__.'/../../partials/footer.php') ?>
-    <?php getHtml(__DIR__.'/../../partials/modal-avatars.php', ['user_id' => $user->id, 'avatar' => $user->avatar]) ?>
+    <?php getHtml(__DIR__.'/../../partials/footer') ?>
+    <?php getHtml(__DIR__.'/../../partials/modal-avatars', ['user_id' => $user->id, 'avatar' => $user->avatar]) ?>
 </body>
 </html>

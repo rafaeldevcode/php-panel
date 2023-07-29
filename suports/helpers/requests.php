@@ -104,7 +104,7 @@ if (!function_exists('verifyMethod')):
         endswitch;
 
         if(!isset($method) || (isset($method) && $_SERVER['REQUEST_METHOD'] !== $method)):
-            getHtml(__DIR__.'/../errors/index.php', [
+            getHtml(__DIR__.'/../errors/index', [
                 'error' => $error,
                 'type' => $type,
                 'message' => $message,

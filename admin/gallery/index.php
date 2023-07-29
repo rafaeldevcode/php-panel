@@ -17,30 +17,30 @@ $images = !isset($search) ? $gallery->paginate(30) : $gallery->where('name', 'LI
 
 ?>
 
-<?php getHtml(__DIR__.'/../../partials/header-main.php', ['title' => 'Galeria']) ?>
+<?php getHtml(__DIR__.'/../../partials/header-main', ['title' => 'Galeria']) ?>
 
     <section class='d-flex flex-nowrap justify-content-between w-100'>
-        <?php getHtml(__DIR__.'/../../partials/sidebar.php') ?>
+        <?php getHtml(__DIR__.'/../../partials/sidebar') ?>
 
         <section class='w-100'>
-            <?php getHtml(__DIR__.'/../../partials/header.php') ?>
+            <?php getHtml(__DIR__.'/../../partials/header') ?>
 
-            <?php getHtml(__DIR__.'/../../partials/breadcrumps.php', [
+            <?php getHtml(__DIR__.'/../../partials/breadcrumps', [
                 'color' => 'cm-secondary',
                 'type' => 'Visualizar',
                 'icon' => 'bi bi-images',
                 'title' => 'Galeria',
-                'route_delete' => '/admin/gallery/delete.php',
+                'route_delete' => '/admin/gallery/delete',
                 'route_search' => '/admin/gallery'
             ]) ?>
 
-            <?php getHtml(__DIR__."/body/read.php", ['images' => $images, 'search' => $search]) ?>
+            <?php getHtml(__DIR__."/body/read", ['images' => $images, 'search' => $search]) ?>
         </section>
     </section>
 
-    <?php getHtml(__DIR__.'/../../partials/footer.php') ?>
-    <?php getHtml(__DIR__.'/../../partials/modal-delete.php') ?>
-    <?php getHtml(__DIR__.'/../../partials/gallery-preview.php') ?>
+    <?php getHtml(__DIR__.'/../../partials/footer') ?>
+    <?php getHtml(__DIR__.'/../../partials/modal-delete') ?>
+    <?php getHtml(__DIR__.'/../../partials/gallery-preview') ?>
 
     <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
 

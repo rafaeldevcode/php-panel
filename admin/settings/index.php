@@ -12,27 +12,27 @@
     $settings = $settings->first();
 ?>
 
-<?php getHtml(__DIR__.'/../../partials/header-main.php', ['title' => 'Configurações']) ?>
+<?php getHtml(__DIR__.'/../../partials/header-main', ['title' => 'Configurações']) ?>
 
     <section class='d-flex flex-nowrap justify-content-between w-100'>
-        <?php getHtml(__DIR__.'/../../partials/sidebar.php') ?>
+        <?php getHtml(__DIR__.'/../../partials/sidebar') ?>
 
         <section class='w-100'>
-            <?php getHtml(__DIR__.'/../../partials/header.php') ?>
+            <?php getHtml(__DIR__.'/../../partials/header') ?>
 
-            <?php getHtml(__DIR__.'/../../partials/breadcrumps.php', [
+            <?php getHtml(__DIR__.'/../../partials/breadcrumps', [
                 'color' => 'cm-success',
                 'type' => 'Editar',
                 'icon' => 'bi bi-gear-fill',
                 'title' => 'Configurações'
             ]) ?>
 
-            <?php getHtml(__DIR__."/body/edit.php", ['settings' => $settings]) ?>
+            <?php getHtml(__DIR__."/body/edit", ['settings' => $settings]) ?>
         </section>
     </section>
 
-    <?php getHtml(__DIR__.'/../../partials/footer.php') ?>
-    <?php getHtml(__DIR__.'/../../partials/gallery.php') ?>
+    <?php getHtml(__DIR__.'/../../partials/footer') ?>
+    <?php getHtml(__DIR__.'/../../partials/gallery') ?>
 
     <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript">

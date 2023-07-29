@@ -24,7 +24,7 @@
 </head>
 <body>
 
-    <?php getHtml(__DIR__.'/../partials/message.php') ?>
+    <?php getHtml(__DIR__.'/../partials/message') ?>
 
     <section class="vh-100 vw-100 d-flex flex-nowrap">
         <div class='col-7 position-relative section-image-login'>
@@ -47,10 +47,10 @@
                 <img class='w-100' src="<?php !is_null(SETTINGS) && !empty(SETTINGS['site_logo_main']) ? asset('assets/images/'.SETTINGS['site_logo_main'].'') : asset('assets/images/logo_main.svg') ?>" alt="Logo <?php echo env('APP_NAME') ?>" />
             </div>
 
-            <form class='col-12 col-sm-6 col-md-7' method="POST" action="/login/login.php">
+            <form class='col-12 col-sm-6 col-md-7' method="POST" action="/login/login">
                 <!-- Input email -->
                 <div class="my-4">
-                    <?php getHtml(__DIR__.'/../partials/form/input-default.php', [
+                    <?php getHtml(__DIR__.'/../partials/form/input-default', [
                         'icon' => 'bi bi-envelope-fill',
                         'name' => 'email',
                         'label' => 'Email',
@@ -61,7 +61,7 @@
 
                 <!-- Input pass -->
                 <div class="my-4">
-                    <?php getHtml(__DIR__.'/../partials/form/input-pass.php', [
+                    <?php getHtml(__DIR__.'/../partials/form/input-pass', [
                         'icon' => 'bi bi-key-fill',
                         'name' => 'password',
                         'label' => 'Senha',
@@ -70,7 +70,7 @@
                 </div>
 
                 <!-- Input button -->
-                <?php getHtml(__DIR__.'/../partials/form/input-button.php', [
+                <?php getHtml(__DIR__.'/../partials/form/input-button', [
                     'type' => 'submit',
                     'style' => 'color-main',
                     'title' => 'Realizar login',
