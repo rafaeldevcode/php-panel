@@ -1,6 +1,7 @@
 <?php
 
 use Src\Models\Setting;
+use Src\Models\Gallery;
 
 if (!function_exists('normalizeBreadcrumps')):
     /**
@@ -37,36 +38,50 @@ if (!function_exists('saveImage')):
      * @param string $image_key
      * @param string|null $old_file
      * @param int|null $indice
-     * @return string|null
+     * @return stdClass|null
      */
-    function saveImage(string $image_key, string|null $old_file, int|null $indice = null): string|null
+    function saveImage(string $image_key, string|null $old_file, int|null $indice = null): stdClass|null
     {
+        $gallery = new Gallery();
+        
         if(!is_null($indice)):
             $file = ['images' => [
-                'name' => $_FILES['images']['name'][$indice],
-                'type' => $_FILES['images']['type'][$indice],
-                'tmp_name' => $_FILES['images']['tmp_name'][$indice],
-                'error' => $_FILES['images']['error'][$indice],
-                'size' => $_FILES['images']['size'][$indice]
+                'name' => $_FILES[$image_key]['name'][$indice],
+                'type' => $_FILES[$image_key]['type'][$indice],
+                'tmp_name' => $_FILES[$image_key]['tmp_name'][$indice],
+                'error' => $_FILES[$image_key]['error'][$indice],
+                'size' => $_FILES[$image_key]['size'][$indice]
             ]];
         else:
             $file = $_FILES;
         endif;
 
+        if(isset($file['images']) && !empty($file['images']['name'])):
+            $year = date('Y');
+            $month = date('m');
+            createDir(__DIR__."/../../public/assets/images/uploads/{$year}/{$month}/", 0755);
 
-        if(isset($file[$image_key]) && !empty($file[$image_key]['name'])):
             $file_name = bin2hex(random_bytes(25));
-            $extencion = explode('/', $file[$image_key]['type'])[1];
-            $file_path = "uploads/{$file_name}.{$extencion}";
+            $extencion = explode('/', $file['images']['type'])[1];
+            $extencion = str_replace('+xml', '', $extencion);
+            $file_path = "uploads/{$year}/{$month}/{$file_name}.{$extencion}";
 
-            (!is_null($old_file) && is_file(__DIR__."/../../public/assets/images/{$old_file}")) ? unlink(__DIR__."/../../public/assets/images/{$old_file}") : '';
+            $name = str_replace(['.jpeg', '.jpg', '.webp', '.svg', '.svg+xml', '.png'], '', $file['images']['name']);
+            $name = str_replace(['_', '-'], ' ', $name);
 
-            move_uploaded_file($file[$image_key]['tmp_name'], __DIR__."/../../public/assets/images/{$file_path}");
+            $gallery = $gallery->create([
+                'name' => $name,
+                'file' => $file_path,
+                'user_id' => $_SESSION['user_id'],
+                'size' => $file['images']['size']
+            ]);
 
-            return $file_path;
+            move_uploaded_file($file['images']['tmp_name'], __DIR__."/../../public/assets/images/{$file_path}");
+
+            return $gallery;
         endif;
 
-        return $old_file;
+        return null;
     }
 endif;
 
@@ -74,9 +89,9 @@ if (!function_exists('getSiteSettings')) :
     /**
      * @since 1.0.0
      * 
-     * @return array|null
+     * @return stdClass|null
      */
-    function getSiteSettings(): array|null
+    function getSiteSettings(): stdClass|null
     {
         if(!isset($_SESSION)):
             session_start();
@@ -87,11 +102,17 @@ if (!function_exists('getSiteSettings')) :
             $settings = $_SESSION['site_settings'];
         else:
             $settings = new Setting();
+            $gallery = new Gallery();
             $settings = $settings->first();
+
+            $settings->favicon = isset($settings->site_favicon) ? $gallery->find($settings->site_favicon)->data->file : null;
+            $settings->site_logo_main = isset($settings->site_logo_main) ? $gallery->find($settings->site_logo_main)->data->file : null;
+            $settings->site_logo_secondary = isset($settings->site_logo_secondary) ? $gallery->find($settings->site_logo_secondary)->data->file : null;
+            $settings->site_bg_login = isset($settings->site_bg_login) ? $gallery->find($settings->site_bg_login)->data->file : null;
 
             session(['site_settings' => $settings]);
         endif;
-
+        
         return $settings;
     }
 endif;
@@ -379,5 +400,56 @@ if(!function_exists('normalizeSlug')):
         $slug = preg_replace(["/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ë)/", "/(É|È|Ê|Ë)/", "/(í|ì|î|ï)/", "/(Í|Ì|Î|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/", "/(Ú|Ù|Û|Ü)/", "/(ñ)/", "/(Ñ)/", "/(ç)/", "/(Ç)/"], explode(" ","a A e E i I o O u U n N c C"), $slug);
 
         return $slug;
+    }
+endif;
+
+if(!function_exists('createDir')):
+    /**
+     * @since 1.2.0
+     * 
+     * @param string $path
+     * @param int $permission
+     * @return bool
+     */
+    function createDir(string $path, int $permission): bool
+    {
+        $success = false;
+
+        if(!is_dir($path)):
+            if(mkdir($path, $permission, true)):
+                $success = true;
+            else:
+                $success = false;
+            endif;
+        else:
+            $success = true;
+        endif;
+
+        return $success;
+    }
+endif;
+
+if(!function_exists('deleteDir')):
+    /**
+     * @since 1.2.0
+     * 
+     * @param string $path
+     * @return string
+     */
+    function deleteDir(string $path): string
+    {
+        $message = '';
+
+        if(file_exists($path)):
+            if(unlink($path)):
+                $message = 'deleted';
+            else:
+                $message = 'not deleted';
+            endif;
+        else:
+            $message = 'not found';
+        endif;
+
+        return $message;
     }
 endif;

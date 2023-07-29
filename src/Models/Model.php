@@ -188,7 +188,7 @@ class Model
     }
 
     /**
-     * @since 1.0.0
+     * @since 1.2.0
      * 
      * @return array|null
      */
@@ -206,7 +206,7 @@ class Model
 
         $statement->execute();
 
-        $this->data = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $this->data = json_decode(json_encode($statement->fetchAll(PDO::FETCH_ASSOC)));
 
         return $this->data;
     }
@@ -265,6 +265,8 @@ class Model
     }
 
     /**
+     * @since 1.2.0
+     * 
      * @param int $limit
      * @param string $order_column
      * @return stdClass
@@ -273,9 +275,10 @@ class Model
     {
         $count = ceil(($this->count() / $limit));
         $page = ($count == 0 ? 0 : 1);
+        $requests = requests();
 
-        if(isset($_POST['page'])):
-            $page = filter_input(INPUT_POST, 'page', FILTER_VALIDATE_INT);
+        if(isset($requests->page)):
+            $page = filter_var($requests->page, FILTER_VALIDATE_INT);
             $page = !$page ? 1 : $page;
         endif;
 
@@ -293,15 +296,16 @@ class Model
 
         $statement->execute();
 
-        $this->data = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $this->data = json_decode(json_encode($statement->fetchAll(PDO::FETCH_ASSOC)));
 
         return json_decode(json_encode([
-            'count'  => $count,
-            'page'   => ($count == 0 ? 0 : $page),
-            'next'   => ($page == $count ? null : $page+1),
-            'prev'   => (($page == 1 || $page == 0) ? null : $page-1),
-            'data'   => $this->data,
-            'search' => isset($_POST['search']) ? $_POST['search'] : null
+            'count' => $count,
+            'page' => ($count == 0 ? 0 : $page),
+            'next' => ($page == $count ? null : $page+1),
+            'prev' => (($page == 1 || $page == 0) ? null : $page-1),
+            'data' => $this->data,
+            'search' => isset($requests->search) ? $requests->search : null,
+            'total' => $this->count()
         ]));
     }
 

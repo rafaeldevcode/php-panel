@@ -2,7 +2,7 @@
 
 if(!function_exists('routes')):
     /**
-     * @since 1.0.0
+     * @since 1.2.0
      * 
      * @return array
      */
@@ -12,6 +12,7 @@ if(!function_exists('routes')):
             '/',
             '/admin/dashboard',
             '/admin/users',
+            '/admin/gallery',
             '/admin/settings',
             '/admin/profile',
             '/politicas-de-privacidade',

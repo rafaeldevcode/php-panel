@@ -25,4 +25,4 @@
     <?php !is_null(SETTINGS) && !empty(SETTINGS['facebook_pixel']) ? getHtml(__DIR__.'/facebook-pixel.php', ['header' => false, 'pixel' => SETTINGS['facebook_pixel']]) : ''; ?>
 
     <?php getHtml(__DIR__.'/message.php') ?>
-    <?php !is_null(SETTINGS) && SETTINGS['preloader'] == 'on' && getHtml(__DIR__.'/preloader.php') ?>
+    <?php !is_null(SETTINGS) && SETTINGS['preloader'] == 'on' && getHtml(__DIR__.'/preloader.php', ['position' => 'fixed']) ?>

@@ -86,7 +86,7 @@
     <script type="text/javascript" src="<?php asset('assets/scripts/class/Password.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript" src="<?php asset('assets/scripts/class/ValidateForm.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript">
-        Message.hidden('[data-message]');
+        Message.hide('[data-message]');
         Password.show('[data-id-pass]');
 
         // Validate the form

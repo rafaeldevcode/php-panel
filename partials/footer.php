@@ -12,6 +12,7 @@
 <script type="text/javascript" src="<?php asset('libs/slick/slick/slick.js?ver='.APP_VERSION)?>"></script>
 
 <script type="text/javascript" src="<?php asset('assets/scripts/class/PageBack.js?ver='.APP_VERSION) ?>"></script>
+<script type="text/javascript" src="<?php asset('assets/scripts/class/Preloader.js?ver='.APP_VERSION) ?>"></script>
 <script type="text/javascript" src="<?php asset('assets/scripts/class/Menu.js?ver='.APP_VERSION) ?>"></script>
 <script type="text/javascript" src="<?php asset('assets/scripts/class/Message.js?ver='.APP_VERSION) ?>"></script>
 <script type="text/javascript" src="<?php asset('assets/scripts/class/Password.js?ver='.APP_VERSION) ?>"></script>
@@ -19,7 +20,7 @@
 <script type="text/javascript" src="<?php asset('assets/scripts/class/Remove.js?ver='.APP_VERSION) ?>"></script>
 <script type="text/javascript">
     Menu.admin($('#checkbox-menu'));
-    Message.hidden('[data-message]');
+    Message.hide('[data-message]');
     Password.show('[data-id-pass]');
 
     // Validate the form
@@ -32,7 +33,7 @@
 
     PageBack.init();
 
-    document.addEventListener("DOMContentLoaded", function(event) {
-        $('#preloader-section').remove();
+    document.addEventListener("DOMContentLoaded", function() {
+        Preloader.hide();
     });
 </script>

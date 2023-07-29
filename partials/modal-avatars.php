@@ -12,7 +12,7 @@
                     <div class='d-flex flex-wrap justify-content-evenly m-0'>
                         <?php foreach (getAvatars() as $indice => $image): ?>
                             <div class='m-2'>
-                                <input class='d-none' type='radio' name='avatar' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo $image['src'] == $avatar ? 'checked' : '' ?>>
+                            <input data-checked="add-style" class='d-none' type='radio' name='avatar' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo $image['src'] == $avatar ? 'checked' : '' ?>>
                                 <label for='<?php echo $indice ?>' class='form-check-label rounded-circle label-image-profile'>
                                     <img class="w-100 rounded-circle" src="<?php asset("/assets/images/users/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
                                 </label>

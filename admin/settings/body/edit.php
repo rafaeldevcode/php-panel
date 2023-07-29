@@ -179,7 +179,7 @@
                     <div class="d-flex flex-wrap justify-content-center">
                         <?php foreach (getPreloaders() as $indice => $image): ?>
                             <div class='m-2'>
-                                <input class='d-none' type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings->preloader_image ? 'checked' : '' ?>>
+                            <input data-checked="add-style" class='d-none' type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings->preloader_image ? 'checked' : '' ?>>
                                 <label for='<?php echo $indice ?>' class='form-check-label rounded label-image-profile border border-cm-secondary'>
                                     <img class="w-100 rounded" src="<?php asset("/assets/images/preloaders/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
                                 </label>
@@ -190,32 +190,28 @@
             </div>
 
             <div class='col-12 d-flex flex-wrap'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/button-upload.php', [
                     'name' => 'site_logo_main',
                     'label' => 'Logo principal (Cor principal)',
-                    'default' => 'assets/images/logo_main.svg',
-                    'src' => (isset($settings) && !empty($settings->site_logo_main)) ? "assets/images/{$settings->site_logo_main}" : null
+                    'value' => (isset($settings) && !empty($settings->site_logo_main)) ? $settings->site_logo_main : null
                 ]) ?>
 
-                <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/button-upload.php', [
                     'name' => 'site_logo_secondary',
                     'label' => 'Logo segundário (Na cor branca)',
-                    'default' => 'assets/images/logo_secondary.png',
-                    'src' => (isset($settings) && !empty($settings->site_logo_secondary)) ? "assets/images/{$settings->site_logo_secondary}" : null
+                    'value' => (isset($settings) && !empty($settings->site_logo_secondary)) ? $settings->site_logo_secondary : null
                 ]) ?>
 
-                <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/button-upload.php', [
                     'name' => 'site_favicon',
                     'label' => 'Favicon do site',
-                    'default' => 'assets/images/favicon.svg',
-                    'src' => (isset($settings) && !empty($settings->site_favicon)) ? "assets/images/{$settings->site_favicon}" : null
+                    'value' => (isset($settings) && !empty($settings->site_favicon)) ? $settings->site_favicon : null
                 ]) ?>
 
-                <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/button-upload.php', [
                     'name' => 'site_bg_login',
                     'label' => 'Fundo da tela de login',
-                    'default' => 'assets/images/login_bg.jpg',
-                    'src' => (isset($settings) && !empty($settings->site_bg_login)) ? "assets/images/{$settings->site_bg_login}" : null
+                    'value' => (isset($settings) && !empty($settings->site_bg_login)) ? $settings->site_bg_login : null
                 ]) ?>
             </div>
         </div>

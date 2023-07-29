@@ -84,4 +84,4 @@ if (!function_exists('path')):
     }
 endif;
 
-!defined('SETTINGS') && define('SETTINGS', getSiteSettings());
+!defined('SETTINGS') && define('SETTINGS', (array)getSiteSettings());

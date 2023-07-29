@@ -1,8 +1,8 @@
 .env
 /vendor
 composer.lock
-public/assets/images/settings/*
-!public/assets/images/settings/.gitkeep
+public/assets/images/uploads/*
+!public/assets/images/uploads/.gitkeep
 package-lock.json
 node_modules
 *.sqlite

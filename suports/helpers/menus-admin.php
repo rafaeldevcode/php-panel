@@ -2,7 +2,7 @@
 
 if (!function_exists('menusAdmin')):
     /**
-     * @since 1.1.0
+     * @since 1.2.0
      * 
      * @return array
      */
@@ -19,6 +19,12 @@ if (!function_exists('menusAdmin')):
                 'path' => '/admin/users',
                 'title' => 'Usuários' ,
                 'icon' => 'bi bi-people-fill',
+                'count' => null
+            ],
+            'gallery' => [
+                'path' => '/admin/gallery',
+                'title' => 'Galeria',
+                'icon' => 'bi bi-images',
                 'count' => null
             ],
             'settings' => [

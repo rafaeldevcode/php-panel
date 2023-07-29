@@ -32,21 +32,19 @@
     </section>
 
     <?php getHtml(__DIR__.'/../../partials/footer.php') ?>
+    <?php getHtml(__DIR__.'/../../partials/gallery.php') ?>
 
-    <script type="text/javascript" src="<?php asset('assets/scripts/class/Preloader.js?ver='.APP_VERSION) ?>"></script>
-    <script type="text/javascript" src="<?php asset('assets/scripts/class/ImagesUpload.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript">
         $('#phone').mask('+00 (00) 0 0000-0000');
         $('#whatsapp').mask('+00 (00) 0 0000-0000');
 
-        const imageUplod = new ImagesUpload();
+        const gallery = new Gallery();
 
-        imageUplod.changeAttributes($('#site_logo_main'), $('#count_site_logo_main'));
-        imageUplod.changeAttributes($('#site_logo_secondary'), $('#count_site_logo_secondary'));
-        imageUplod.changeAttributes($('#site_favicon'), $('#count_site_favicon'));
-        imageUplod.changeAttributes($('#site_bg_login'), $('#count_site_bg_login'));
-
-        imageUplod.remove();
+        gallery.openModalSelect($('[data-upload=site_logo_main]'));
+        gallery.openModalSelect($('[data-upload=site_logo_secondary]'));
+        gallery.openModalSelect($('[data-upload=site_favicon]'));
+        gallery.openModalSelect($('[data-upload=site_bg_login]'));
     </script>
 </body>
 </html>

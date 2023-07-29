@@ -5,6 +5,8 @@ require __DIR__.'/suports/helpers/env.php';
 
 use Src\Models\Migrations;
 use Src\Migrations\ExecuteMigrations;
+use Src\Models\Gallery;
+use Src\Models\Setting;
 use Src\Models\User;
 
 if(isset($argv[1])):
@@ -39,17 +41,54 @@ if(isset($argv[1])):
         endforeach;
 
         echo empty($migrates) ? "No migration to perform!" : "Migration finished!";
-    elseif($argv[1] == 'create-user'):
+    elseif($argv[1] == 'initial-setup'):
+        $user = new User();
+        $gallery = new Gallery();
+        $settings = new Setting();
+
         $name = 'Administrador';
         $email = 'administrador@example.com';
         $password = '@Admin4431!';
 
-        $user = new User();
-
-        $response = $user->create([
+        $user = $user->create([
             'name'     => $name,
             'email'    => $email,
             'password' => password_hash($password, PASSWORD_BCRYPT)
+        ]);
+
+        $favicon = $gallery->create([
+            'name' => 'favicon',
+            'file' => 'favicon.svg',
+            'user_id' => $user->id,
+            'size' => 0
+        ]);
+
+        $logo_main = $gallery->create([
+            'name' => 'logo main',
+            'file' => 'logo_main.svg',
+            'user_id' => $user->id,
+            'size' => 0
+        ]);
+
+        $logo_secondary = $gallery->create([
+            'name' => 'logo secondary',
+            'file' => 'logo_secondary.png',
+            'user_id' => $user->id,
+            'size' => 0
+        ]);
+
+        $bg_login = $gallery->create([
+            'name' => 'bg login',
+            'file' => 'bg_login.jpg',
+            'user_id' => $user->id,
+            'size' => 0
+        ]);
+
+        $settings->create([
+            'site_logo_main' => $logo_main->id,
+            'site_logo_secondary' => $logo_secondary->id,
+            'site_favicon' => $favicon->id,
+            'site_bg_login' => $bg_login->id
         ]);
 
         echo "Email: {$email} \n";
