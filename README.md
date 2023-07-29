@@ -4,7 +4,7 @@ Project developed with the objective of accelerating web development using PHP w
 
 ----
 
-**Menu**
+**Table of Contents**
 - [ℹ️ Information](#information)
 - [📋 Prerequisites](#prerequisites)
 - [🔧 Installation](#installation)
@@ -118,8 +118,11 @@ Project developed with the objective of accelerating web development using PHP w
 **Version 1.0.0**
 [Launch vision](https://github.com/rafaeldevcode/php-panel/releases/tag/v1.0.0)
 
-**Version 1.1.0 - Curent**
+**Version 1.1.0**
 [Check the details](https://github.com/rafaeldevcode/php-panel/releases/tag/v1.1.0)
+
+**Version 1.2.0 - Curent**
+[Check the details](https://github.com/rafaeldevcode/php-panel/releases/tag/v1.2.0)
 
 ----
 
