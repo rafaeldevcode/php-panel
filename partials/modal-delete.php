@@ -2,7 +2,7 @@
     <div class='modal-dialog'>
         <div class='modal-content border border-cm-danger'>
             <div class='modal-header bg-cm-danger'>
-                <h5 class='modal-title text-cm-light' id='modalDeleteItemLabel'></h5>
+                <h5 class='fs-6 modal-title text-cm-light' id='modalDeleteItemLabel'></h5>
 
                 <button title='Fechar modal' type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Fechar' />
             </div>

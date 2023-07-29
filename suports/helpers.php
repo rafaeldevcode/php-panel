@@ -46,7 +46,7 @@ endif;
 
 if (!function_exists('getHtml')):
     /**
-     * @since 1.0.0
+     * @since 1.2.0
      * 
      * @param string $path
      * @param array $data
@@ -55,6 +55,8 @@ if (!function_exists('getHtml')):
     function getHtml(string $path, array $data = []): void
     {
         extract($data);
+
+        $path = substr($path, -4) == '.php' ? $path : "{$path}.php";
 
         require $path;
     }
@@ -84,4 +86,4 @@ if (!function_exists('path')):
     }
 endif;
 
-!defined('SETTINGS') && define('SETTINGS', getSiteSettings());
+!defined('SETTINGS') && define('SETTINGS', (array)getSiteSettings());

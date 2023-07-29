@@ -47,4 +47,14 @@ class Cookies{
 
         return false;
     }
+
+    /**
+     * @since 1.2.0
+     * 
+     * @param {string} cname 
+     * @returns {void}
+     */
+    static forget(cname){
+        document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
 }

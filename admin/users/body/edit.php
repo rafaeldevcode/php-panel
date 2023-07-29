@@ -1,9 +1,9 @@
-<section class='p-3 bg-cm-light m-3 rounded shadow'>
+<section class='p-3 bg-cm-light m-0 m-sm-3 rounded shadow'>
     <form method="POST" action="/admin/users/update.php">
         <input type="hidden" name="id" value="<?php echo $user->id ?>">
         <div class='row d-flex justify-content-between'>
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-person-fill',
                     'name' => 'name',
                     'label' => 'Nome do usuário',
@@ -14,7 +14,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-envelope-fill',
                     'name' => 'email',
                     'label' => 'Email',
@@ -25,7 +25,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-pass.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-pass', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'password',
                     'type' => 'password',
@@ -34,7 +34,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-pass.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-pass', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'repeat_password',
                     'type' => 'password',
@@ -44,7 +44,7 @@
         </div>
 
         <div class='col-12 col-md-6'>
-            <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch.php', [
+            <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch', [
                 'name' => 'status',
                 'label' => 'Status do usuário (Inativo | Ativo)',
                 'value' => $user->status
@@ -53,7 +53,7 @@
 
         <div class='row d-flex justify-content-end'>
             <div class='col-12 col-md-3'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-button.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-button', [
                     'type' => 'submit',
                     'style' => 'color-main',
                     'title' => 'Savar usuário',

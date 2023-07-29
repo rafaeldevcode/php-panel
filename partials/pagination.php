@@ -19,7 +19,7 @@
             <div class='px-2 me-1 border-top border-2 border-color-main'>
                 <?php echo $page ?>
             </div>
-            <div class='border-top border-2 border-cm-grey'>de <?php echo $count ?> páginas</div>
+            <div class='border-top border-2 border-cm-grey'>de <?php echo $count ?></div>
         </div>
 
         <form action="" method="POST">

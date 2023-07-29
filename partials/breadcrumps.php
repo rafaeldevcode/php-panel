@@ -27,7 +27,7 @@
             <div class='d-flex justify-content-center'>
                 <div class="mx-1">
                     <?php if(isset($route_search)): ?>
-                        <?php getHtml(__DIR__.'/form/input-search.php', ['route' => $route_search]) ?>
+                        <?php getHtml(__DIR__.'/form/input-search', ['route' => $route_search]) ?>
                     <?php endif; ?>
                 </div>
 

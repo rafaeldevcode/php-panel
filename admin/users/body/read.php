@@ -1,4 +1,4 @@
-<section class='px-3 py-4 bg-cm-light m-3 rounded shadow'>
+<section class='px-3 py-4 bg-cm-light m-0 m-sm-3 rounded shadow'>
     <section class='custom-table m-auto cm-browser-height'>
         <table class='table table-hover mb-0'>
             <thead>
@@ -35,7 +35,7 @@
                         <td>
                             <span class="badge bg-cm-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?>"><?php echo (is_null($user->status) || $user->status == 'off') ? 'Inativo' : 'Ativo' ?></span>
                         </td>
-                        <td class="text-end">
+                        <td class="text-end text-nowrap">
                             <a href="/admin/users/?method=edit&id=<?php echo $user->id ?>" title='Editar usuário <?php echo $user->name ?>' class='btn btn-sm btn-cm-primary text-cm-light fw-bold m-1'>
                                 <i class='bi bi-pencil-square'></i>
                             </a>
@@ -65,7 +65,7 @@
     </section>
 
     <?php if(isset($users->page)):
-        getHtml(__DIR__.'/../../../partials/pagination.php', [
+        getHtml(__DIR__.'/../../../partials/pagination', [
             'page' => $users->page,
             'count' => $users->count,
             'next' => $users->next,
@@ -73,5 +73,5 @@
             'search' => $users->search
         ]);
     endif; ?>
-    <?php getHtml(__DIR__.'/../../../partials/modal-delete.php') ?>
+    <?php getHtml(__DIR__.'/../../../partials/modal-delete') ?>
 </section>

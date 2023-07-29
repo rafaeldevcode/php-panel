@@ -21,10 +21,10 @@ class Settings extends ExecuteMigrations
         $this->string('copyright', 100)->nullable();
         $this->string('whatsapp_message', 255)->nullable();
         $this->string('telegram_message', 255)->nullable();
-        $this->string('site_logo_main', 100)->nullable();
-        $this->string('site_logo_secondary', 100)->nullable();
-        $this->string('site_favicon', 100)->nullable();
-        $this->string('site_bg_login', 100)->nullable();
+        $this->integer('site_logo_main')->nullable();
+        $this->integer('site_logo_secondary')->nullable();
+        $this->integer('site_favicon')->nullable();
+        $this->integer('site_bg_login')->nullable();
         $this->char('preloader', 3)->default('off');
         $this->char('cookies', 3)->default('off');
         $this->string('preloader_image', 21)->default('preloader_default.gif');

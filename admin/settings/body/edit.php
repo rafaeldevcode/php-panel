@@ -1,8 +1,8 @@
-<section class='p-3 bg-cm-light m-3 rounded shadow'>
+<section class='p-3 bg-cm-light m-0 m-sm-3 rounded shadow'>
     <form method="POST" action="/admin/settings/update.php" enctype="multipart/form-data">
         <div class='row d-flex justify-content-between'>
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-link',
                     'name' => 'site_name',
                     'label' => 'Nome do site',
@@ -12,7 +12,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-card-text',
                     'name' => 'site_description',
                     'label' => 'Descrição do site',
@@ -22,7 +22,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-geo-alt-fill',
                     'name' => 'andress',
                     'label' => 'Endereço da empresa',
@@ -32,7 +32,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-telephone-fill',
                     'name' => 'phone',
                     'label' => 'Telefone da empresa (adicionar DDD)',
@@ -42,7 +42,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-envelope-fill',
                     'name' => 'email',
                     'label' => 'Email da empresa',
@@ -52,7 +52,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-linkedin',
                     'name' => 'profile_linkedin',
                     'label' => 'linkedin da empresa',
@@ -62,7 +62,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-facebook',
                     'name' => 'profile_facebook',
                     'label' => 'Facebook da empresa',
@@ -72,7 +72,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-instagram',
                     'name' => 'profile_instagram',
                     'label' => 'Instagram da empresa',
@@ -82,7 +82,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-whatsapp',
                     'name' => 'whatsapp',
                     'label' => 'Whatsapp da empresa (adicionar DDD)',
@@ -92,7 +92,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-chat-quote-fill',
                     'name' => 'whatsapp_message',
                     'label' => 'Menssagem padrão para o whatsapp',
@@ -102,7 +102,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-telegram',
                     'name' => 'telegram',
                     'label' => 'Telegram da empresa (Usar o nome de usuário)',
@@ -112,7 +112,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-chat-quote-fill',
                     'name' => 'telegram_message',
                     'label' => 'Menssagem padrão para o telegram',
@@ -122,7 +122,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-c-circle-fill',
                     'name' => 'copyright',
                     'label' => 'Copyright no rodapé do site',
@@ -132,7 +132,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-google',
                     'name' => 'google_analytics',
                     'label' => 'Pixel do google analytics',
@@ -142,7 +142,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
                     'icon' => 'bi bi-facebook',
                     'name' => 'facebook_pixel',
                     'label' => 'Pixel do facebook',
@@ -152,7 +152,7 @@
             </div>
 
             <div class='col-12'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch', [
                     'name' => 'cookies',
                     'label' => 'Ativar aviso de cookies (Inativo | Ativo)',
                     'value' => isset($settings) ? $settings->cookies : 'off'
@@ -161,7 +161,7 @@
 
             <div class="col-12">
                 <div class='col-12'>
-                    <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch.php', [
+                    <?php getHtml(__DIR__.'/../../../partials/form/input-checkbox-switch', [
                         'name' => 'preloader',
                         'label' => 'Ativar preloader (Inativo | Ativo)',
                         'value' => isset($settings) ? $settings->preloader : 'off',
@@ -179,7 +179,7 @@
                     <div class="d-flex flex-wrap justify-content-center">
                         <?php foreach (getPreloaders() as $indice => $image): ?>
                             <div class='m-2'>
-                                <input class='d-none' type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings->preloader_image ? 'checked' : '' ?>>
+                            <input data-checked="add-style" class='d-none' type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings->preloader_image ? 'checked' : '' ?>>
                                 <label for='<?php echo $indice ?>' class='form-check-label rounded label-image-profile border border-cm-secondary'>
                                     <img class="w-100 rounded" src="<?php asset("/assets/images/preloaders/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
                                 </label>
@@ -190,39 +190,35 @@
             </div>
 
             <div class='col-12 d-flex flex-wrap'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/button-upload', [
                     'name' => 'site_logo_main',
                     'label' => 'Logo principal (Cor principal)',
-                    'default' => 'assets/images/logo_main.svg',
-                    'src' => (isset($settings) && !empty($settings->site_logo_main)) ? "assets/images/{$settings->site_logo_main}" : null
+                    'value' => (isset($settings) && !empty($settings->site_logo_main)) ? $settings->site_logo_main : null
                 ]) ?>
 
-                <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/button-upload', [
                     'name' => 'site_logo_secondary',
                     'label' => 'Logo segundário (Na cor branca)',
-                    'default' => 'assets/images/logo_secondary.png',
-                    'src' => (isset($settings) && !empty($settings->site_logo_secondary)) ? "assets/images/{$settings->site_logo_secondary}" : null
+                    'value' => (isset($settings) && !empty($settings->site_logo_secondary)) ? $settings->site_logo_secondary : null
                 ]) ?>
 
-                <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/button-upload', [
                     'name' => 'site_favicon',
                     'label' => 'Favicon do site',
-                    'default' => 'assets/images/favicon.svg',
-                    'src' => (isset($settings) && !empty($settings->site_favicon)) ? "assets/images/{$settings->site_favicon}" : null
+                    'value' => (isset($settings) && !empty($settings->site_favicon)) ? $settings->site_favicon : null
                 ]) ?>
 
-                <?php getHtml(__DIR__.'/../../../partials/form/input-file-image.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/button-upload', [
                     'name' => 'site_bg_login',
                     'label' => 'Fundo da tela de login',
-                    'default' => 'assets/images/login_bg.jpg',
-                    'src' => (isset($settings) && !empty($settings->site_bg_login)) ? "assets/images/{$settings->site_bg_login}" : null
+                    'value' => (isset($settings) && !empty($settings->site_bg_login)) ? $settings->site_bg_login : null
                 ]) ?>
             </div>
         </div>
 
         <div class='row d-flex justify-content-end'>
             <div class='col-12 col-md-3'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-button.php', [
+                <?php getHtml(__DIR__.'/../../../partials/form/input-button', [
                     'type' => 'submit',
                     'style' => 'color-main',
                     'title' => 'Savar configurações',

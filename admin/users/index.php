@@ -36,15 +36,15 @@
     endif;
 ?>
 
-<?php getHtml(__DIR__.'/../../partials/header-main.php', ['title' => 'Usuários']) ?>
+<?php getHtml(__DIR__.'/../../partials/header-main', ['title' => 'Usuários']) ?>
 
     <section class='d-flex flex-nowrap justify-content-between w-100'>
-        <?php getHtml(__DIR__.'/../../partials/sidebar.php') ?>
+        <?php getHtml(__DIR__.'/../../partials/sidebar') ?>
 
         <section class='w-100'>
-            <?php getHtml(__DIR__.'/../../partials/header.php') ?>
+            <?php getHtml(__DIR__.'/../../partials/header') ?>
 
-            <?php getHtml(__DIR__.'/../../partials/breadcrumps.php', [
+            <?php getHtml(__DIR__.'/../../partials/breadcrumps', [
                 'color' => $color,
                 'type' => $text,
                 'icon' => 'bi bi-people-fill',
@@ -54,10 +54,10 @@
                 'route_search' => '/admin/users'
             ]) ?>
 
-            <?php getHtml(__DIR__."/body/{$method}.php", $data) ?>
+            <?php getHtml(__DIR__."/body/{$method}", $data) ?>
         </section>
     </section>
 
-    <?php getHtml(__DIR__.'/../../partials/footer.php') ?>
+    <?php getHtml(__DIR__.'/../../partials/footer') ?>
 </body>
 </html>

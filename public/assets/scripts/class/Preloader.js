@@ -5,6 +5,25 @@
  */
 class Preloader{
     /**
+     * @since 1.2.0
+     *  
+     */
+    static hide(){
+        $('#preloader-section').removeClass('d-flex');
+        $('#preloader-section').hide();
+    }
+
+    /**
+     * @since 1.2.0
+     *  
+     * @returns {void}
+     */
+    static show(){
+        $('#preloader-section').addClass('d-flex');
+        $('#preloader-section').show();
+    }
+    
+    /**
      * @since 1.0.0
      * 
      * @param {object} event 
