@@ -1,4 +1,4 @@
-<section class='p-3 bg-cm-light m-3 rounded shadow'>
+<section class='p-3 bg-cm-light m-0 m-sm-3 rounded shadow'>
     <form method="POST" action="/admin/settings/update.php" enctype="multipart/form-data">
         <div class='row d-flex justify-content-between'>
             <div class='col-12 col-md-6'>

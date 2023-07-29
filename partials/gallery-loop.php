@@ -29,7 +29,7 @@
         </div>
     <?php endif ?>
 
-    <div class="border-top pt-3 d-flex justify-content-between align-items-center flex-column flex-sm-row mt-3 p-3">
+    <div class="border-top pt-3 d-flex justify-content-between align-items-start align-items-sm-center flex-column flex-sm-row mt-3 p-3">
         <div>
             <ul class="m-0 p-0 text-cm-secondary">
                 <li><strong>Total:</strong> <span id="count-images"><?php echo $images->total ?></span> imagens</li>
@@ -37,10 +37,10 @@
             </ul>
         </div>
 
-        <div class="mt-3 mt-sm-0">
+        <div class="mt-3 mt-sm-0 mx-auto mx-sm-0">
             <span class="text-cm-secondary">Máximo de 20 arquivos</span>
 
-            <form class="d-flex flex-row justify-content-end align-items-end">
+            <form class="d-flex flex-row justify-content-center justify-content-sm-end align-items-end">
                 <input type="file" id="input-upload" hidden accept=".svg, .jpg, jpeg, .png, webp" multiple>
 
                 <?php if(isset($close) && $close == true): ?>

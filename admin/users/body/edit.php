@@ -1,4 +1,4 @@
-<section class='p-3 bg-cm-light m-3 rounded shadow'>
+<section class='p-3 bg-cm-light m-0 m-sm-3 rounded shadow'>
     <form method="POST" action="/admin/users/update.php">
         <input type="hidden" name="id" value="<?php echo $user->id ?>">
         <div class='row d-flex justify-content-between'>
