@@ -11,9 +11,20 @@
     <link rel='stylesheet' href='<?php asset('libs/bootstrap/bootstrap-icons.css?ver='.APP_VERSION) ?>' />
     <link rel='stylesheet' href='<?php asset('libs/slick/slick/slick.css?ver='.APP_VERSION) ?>' />
     <link rel='stylesheet' href='<?php asset('libs/slick/slick/slick-theme.css?ver='.APP_VERSION) ?>' />
+
+    <?php if(isset($plugins) && in_array('tinymce', $plugins)): ?>
+        <!-- Tinymce start -->
+        <script type="text/javascript" src="<?php asset('libs/tinymce/tinymce.js?ver='.APP_VERSION) ?>"></script>
+        <link rel='stylesheet' href='<?php asset('libs/tinymce/skins/ui/oxide/skin.min.css?ver='.APP_VERSION) ?>' />
+        <link rel='stylesheet' href='<?php asset('libs/tinymce/skins/ui/oxide/content.min.css?ver='.APP_VERSION) ?>' />
+        <link rel='stylesheet' href='<?php asset('libs/tinymce/skins/content/default/content.css?ver='.APP_VERSION) ?>' />
+        <!-- Tinymce end -->
+    <?php endif ?>
+
     <link rel='stylesheet' href='<?php asset('assets/css/globals.css?ver='.APP_VERSION) ?>' />
-    <meta name='author' content='Rafael Vieira | github.com/rafaeldevcode' />
     <link rel="shortcut icon" href="<?php asset('assets/images/favicon.svg') ?>" type="image/pnh">
+
+    <meta name='author' content='Rafael Vieira | github.com/rafaeldevcode' />
     <meta name="description" content="<?php echo !is_null(SETTINGS) ? SETTINGS['site_description'] : '' ?>">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
