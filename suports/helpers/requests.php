@@ -87,7 +87,7 @@ endif;
 
 if (!function_exists('verifyMethod')):
     /**
-     * @since 1..0
+     * @since 1.1.0
      * 
      * @param int $error
      * @param string|null $method

@@ -45,16 +45,12 @@ $images = !isset($search) ? $gallery->paginate(30) : $gallery->where('name', 'LI
     <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
 
     <script type="text/javascript">
-        const gallery = new Gallery("checkbox", "images[]", true);
+        const gallery = new Gallery("images[]", true);
+        gallery.changeInputType('radio');
         gallery.dbClickPreview();
         gallery.next($('#image-preview'));
         gallery.previous($('#image-preview'));
-
-        $('#upload').click(async (event) => {
-            event.preventDefault();
-
-            await gallery.uploads();
-        });
+        gallery.uploads()
     </script>
 </body>
 </html>

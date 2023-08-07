@@ -35,12 +35,12 @@
     <button id="<?php echo $name ?>" type="button" title="Open modal gallery" class="border-color-main m-2 btn" data-upload="<?php echo $name ?>">
         <img class="w-100" src="<?php asset('assets/images/select-files.png') ?>" alt="Open gallery">
     </button>
-    
-    <div data-upload-selected="<?php echo $name ?>" data-required="<?php echo !empty($required) ? 'required' : '' ?>">
-        <div class="m-2 gallery rounded">
-            <?php if(isset($value)): ?>
-                <input <?php echo !empty($required) ? 'required' : '' ?> value="<?php echo $value ?>" type="text" hidden name="<?php echo $name ?>" data-checked="add-style">
 
+    <div class="d-flex flex-wrap" data-upload-selected="<?php echo $name ?>" data-required="<?php echo !empty($required) ? 'required' : '' ?>">
+        <div class="m-2 gallery rounded">
+            <input <?php echo !empty($required) ? 'required' : '' ?> value="<?php echo isset($value) ? $value : '' ?>" type="text" hidden name="<?php echo $name ?>" data-checked="add-style">
+
+            <?php if(isset($value)): ?>
                 <?php if(!is_null($image)): ?>
                     <div class="position-relative" data-upload-image="selected">
                         <div class="bg-color-main d-flex justify-content-end p-1 w-100 rounded-top">
@@ -55,7 +55,7 @@
             endif ?>
 
             <?php if(!empty($required)): ?>
-                <span class='position-absolute end-0 bottom-0 me-2 mb-3 validit'></span>
+                <span class='position-absolute start-0 top-0 mt-5 validit'></span>
             <?php endif; ?>
         </div>
     </div>
