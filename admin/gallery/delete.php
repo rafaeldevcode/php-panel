@@ -12,7 +12,9 @@ $gallery = new Gallery();
 foreach(requests()->ids as $id):
     $image = $gallery->find($id);
 
-    deleteDir(__DIR__."/../../public/assets/images/{$image->data->file}");
+    isset($image->data) && deleteDir(__DIR__."/../../public/assets/images/{$image->data->file}");
+
+    $image->posts()->detach($id);
 
     $image->delete();
 endforeach;

@@ -40,16 +40,18 @@
                 <div class='col-12'>
                     <?php getHtml(__DIR__.'/../../../partials/form/button-upload', [
                         'name' => 'thumbnail',
-                        'label' => 'Imagen de destaque'
+                        'label' => 'Imagen de destaque',
+                        'type' => 'radio',
                     ]) ?>
                 </div>
             </div>
         </div>
 
-        <div class='col-12 d-flex flex-wrap mt-3'>
+        <div class='col-12 d-flex flex-wrap my-4'>
             <?php getHtml(__DIR__.'/../../../partials/form/button-upload', [
                 'name' => 'collection',
-                'label' => 'Galeria de imagens'
+                'label' => 'Galeria de imagens',
+                'type' => 'checkbox',
             ]) ?>
         </div>
 

@@ -9,7 +9,7 @@ class Posts extends ExecuteMigrations
     public $table = 'posts';
 
     /**
-     * @since 1.0.0
+     * @since 1.3.0
      * 
      * @return void
      */
@@ -22,7 +22,7 @@ class Posts extends ExecuteMigrations
         $this->char('status', 9)->default('published');
         $this->integer('count_views')->default(0);
         $this->integer('user_id');
-        $this->integer('thumbnail');
+        $this->integer('thumbnail')->nullable();
 
         $this->foreignKey('user_id')->references('id')->on('users');
         $this->foreignKey('thumbnail')->references('id')->on('gallery');

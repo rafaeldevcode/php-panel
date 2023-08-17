@@ -30,7 +30,7 @@ elseif($method == 'edit'):
     $color = 'cm-success';
     $text  = 'Editar';
 
-    $data = ['post' => $post->data];
+    $data = ['post' => $post->data, 'images' => $post->images()->data];
 elseif($method == 'create'):
     $color = 'cm-primary';
     $text  = 'Adicionar';
@@ -39,8 +39,8 @@ elseif($method == 'create'):
 endif;
 ?>
 
+<!-- Include header -->
 <?php getHtml(__DIR__.'/../../partials/header-main', ['title' => 'Posts', 'plugins' => ['tinymce']]) ?>
-
     <section class='d-flex flex-nowrap justify-content-between w-100'>
         <?php getHtml(__DIR__.'/../../partials/sidebar') ?>
 
@@ -61,11 +61,12 @@ endif;
         </section>
     </section>
 
+    <!-- Include footer -->
     <?php getHtml(__DIR__.'/../../partials/footer') ?>
+    <!-- Include modal gallery -->
     <?php getHtml(__DIR__.'/../../partials/gallery') ?>
 
     <!-- Tinymce start -->
-
     <script type="text/javascript" src="<?php asset('libs/tinymce/themes/silver/theme.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript" src="<?php asset('libs/tinymce/models/dom/model.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript" src="<?php asset('libs/tinymce/icons/default/icons.js?ver='.APP_VERSION) ?>"></script>
@@ -88,7 +89,6 @@ endif;
     <!-- Tinymce end -->
 
     <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
-    <!-- <script src="https://cdn.tiny.cloud/1/rhm8y8e6sk2q23r5l85ue0mk2k8nqi6i3mmio9de6ypn12r2/tinymce/6/tinymce.min.js"></script> -->
     <script type="text/javascript">
         const gallery = new Gallery();
         gallery.openModalSelect($('[data-upload=thumbnail]'), 'radio');

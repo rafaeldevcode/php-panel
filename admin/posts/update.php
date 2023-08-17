@@ -13,15 +13,21 @@ $post = new Posts;
 
 $slug = normalizeSlug($requests->title, $requests->slug);
 $post_slug = $post->where('slug', '=', $slug)->first();
+$thumbnail = isset($requests->thumbnail) ? $requests->thumbnail : null;
+$collection = isset($requests->collection) ? $requests->collection : null;
 
 if(is_null($post_slug) || $post_slug->id === $requests->id):  
-    $post = $post->find($requests->id)->update([
+    $post = $post->find($requests->id);
+    
+    $post->update([
         'content' => $requests->content,
         'title' => $requests->title,
         'status' => $requests->status,
         'slug' => $slug,
-        'thumbnail' => $requests->thumbnail
+        'thumbnail' => $thumbnail
     ]);
+
+    $post->images()->sync($collection);
     
     session([
         'message' => 'Post editado com sucesso!',
