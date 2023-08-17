@@ -109,7 +109,7 @@ class Menu{
         const aside = $('aside');
         const items = document.querySelectorAll('div[data-item-active]');
         const isOpen = Cookies.get('open_menu');
-
+    
         if(width > 750){
             if(isOpen){
                 buttonMenu.click();
