@@ -110,7 +110,6 @@ class Menu{
         const items = document.querySelectorAll('div[data-item-active]');
         const isOpen = Cookies.get('open_menu');
     
-        console.log(isOpen)
         if(width > 750){
             if(isOpen){
                 buttonMenu.click();
