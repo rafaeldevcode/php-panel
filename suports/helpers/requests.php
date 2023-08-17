@@ -37,7 +37,7 @@ endif;
 
 if (!function_exists('isAuth')):
     /**
-     * @since 1.0.0
+     * @since 1.3.0
      * 
      * @return bool
      */
@@ -51,7 +51,7 @@ if (!function_exists('isAuth')):
 
         if($token):
             $acc_token = new AccessToken();
-            $acc_token = $acc_token->where('token', '=', $token)->last();
+            $acc_token = $acc_token->where('token', '=', $token)->last('user_id');
     
             return (isset($acc_token->token) && $acc_token->token == $token) ? true : false;
         endif;

@@ -2,6 +2,7 @@
 
 namespace Src\Models;
 
+use Exception;
 use PDO;
 use PDOException;
 use stdClass;
@@ -12,6 +13,10 @@ class Model
     public $data = null;
     private $wheres = [];
     private $connection;
+    private $foreign_pivot_key = null;
+    private $related_pivot_key = null;
+    private $related_id = null;
+    private $related_table = null;
 
     /**
      * @since 1.0.0
@@ -129,15 +134,18 @@ class Model
     }
 
     /**
-     * @since 1.0.0
+     * @since 1.3.0
      * 
+     * @param ?string $order_column
      * @return stdClass|null
      */
-    public function last(): stdClass|null
+    public function last(?string $order_column = null): stdClass|null
     {
+        $order_column = isset($order_column) ? $order_column : 'id';
+
         $where_clause = $this->whereClausure();
 
-        $query = "SELECT * FROM {$this->table}{$where_clause->clausure} ORDER BY id DESC LIMIT 1";
+        $query = "SELECT * FROM {$this->table}{$where_clause->clausure} ORDER BY {$order_column} DESC LIMIT 1";
 
         $statement = $this->connection->prepare($query);
 
@@ -157,7 +165,7 @@ class Model
     }
 
     /**
-     * @since 1.0.0
+     * @since 1.3.0
      * 
      * @param array $data
      * @return stdClass|bool
@@ -177,14 +185,15 @@ class Model
 
         $statement->execute();
 
-        if($statement->rowCount() > 0):
-            $last_insert_id = $this->connection->lastInsertId();
+        $last_insert_id = $this->connection->lastInsertId();
+
+        if($statement->rowCount() > 0 && $this->existColumn('id')):
             $this->find($last_insert_id);
 
             return $this->data;
         endif;
 
-        return false;
+        return null;
     }
 
     /**
@@ -206,7 +215,9 @@ class Model
 
         $statement->execute();
 
-        $this->data = json_decode(json_encode($statement->fetchAll(PDO::FETCH_ASSOC)));
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->data = empty($data) ? null : json_decode(json_encode($data));
 
         return $this->data;
     }
@@ -310,6 +321,172 @@ class Model
     }
 
     /**
+     * @since 1.3.0
+     * 
+     * @param string $related
+     * @param string $table
+     * @param string $foreign_pivot_key
+     * @param string $related_pivot_key
+     * @return mixed
+     */
+    public function hasMany(string $related, string $table, string $foreign_pivot_key, string $related_pivot_key)
+    {
+        $related = new $related();
+
+        $id = empty($this->data) ? 0 : $this->data->id;
+
+        $this->setRelatioships($related, $id, $table, $foreign_pivot_key, $related_pivot_key);
+
+        $query = "
+            SELECT {$related->table}. *
+            FROM {$related->table}
+            INNER JOIN {$table} ON {$related->table}.id = {$table}.{$related_pivot_key}
+            WHERE {$table}.{$foreign_pivot_key} = :foreign_pivot_key
+        ";
+        
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue(":foreign_pivot_key", $id, PDO::PARAM_INT);
+        $statement->execute();
+        
+        $related->data = json_decode(json_encode($statement->fetchAll(PDO::FETCH_ASSOC)));
+        
+        return $related;     
+    }
+
+    /**
+     * @since 1.3.0
+     * 
+     * @param array|int|null $attributes
+     * @return bool
+     */
+    public function sync(array|int|null $attributes): bool
+    {
+        if(is_null($attributes)):
+            $attributes = [];
+        endif;
+
+        if(!is_array($attributes)):
+            $attributes = [$attributes];
+        endif;
+
+        $existing = [];
+        $select_query = "SELECT {$this->related_pivot_key} FROM {$this->related_table} WHERE {$this->foreign_pivot_key} = :foreign_pivot_key";
+        $select_statement = $this->connection->prepare($select_query);
+        $select_statement->bindValue(':foreign_pivot_key', $this->related_id  , PDO::PARAM_INT);
+        $select_statement->execute();
+
+        while ($row = $select_statement->fetch(PDO::FETCH_ASSOC)):
+            $existing[] = $row[$this->related_pivot_key];
+        endwhile;
+
+        $new_data = array_diff($attributes, $existing);
+        
+        try {
+            $this->connection->beginTransaction(); // Start transaction
+
+            $insert_query = "INSERT IGNORE INTO {$this->related_table} ({$this->related_pivot_key}, {$this->foreign_pivot_key}) VALUES (:related_pivot_key, :foreign_pivot_key)";
+            $insert_statement = $this->connection->prepare($insert_query);
+        
+            foreach ($new_data as $new_data_id):
+                $insert_statement->bindValue(':related_pivot_key', $new_data_id, PDO::PARAM_INT);
+                $insert_statement->bindValue(':foreign_pivot_key', $this->related_id, PDO::PARAM_INT);
+    
+                if (!$insert_statement->execute()):
+                    throw new Exception("There was an unexpected error during insertion!");
+                endif;
+            endforeach;
+
+            // $not_contains = implode(',', array_fill(0, count($attributes), '?'));
+            $not_contains = implode(',', $attributes);
+            $delete_query = "DELETE FROM {$this->related_table} WHERE {$this->foreign_pivot_key} = :foreign_pivot_key AND {$this->related_pivot_key} NOT IN ({$not_contains})";
+            $delete_statement = $this->connection->prepare($delete_query);
+            $delete_statement->bindValue(':foreign_pivot_key', $this->related_id, PDO::PARAM_INT);
+
+            // foreach ($attributes as $index => $value):
+            //     $delete_statement->bindValue($index + 1, $value, PDO::PARAM_INT);
+            // endforeach;
+
+            $delete_statement->execute();
+    
+            $this->connection->commit(); // Confirm transaction
+    
+            return true;
+    
+        } catch (Exception $e) {
+            $this->connection->rollBack(); // Rollback transaction
+            return false;
+        }
+    }
+
+ /**
+     * @since 1.3.0
+     * 
+     * @param array|int|null $attributes
+     * @return bool
+     */
+    public function attach(array|int|null $attributes): bool
+    {
+        if(!is_array($attributes)):
+            $attributes = [$attributes];
+        endif;
+        
+        try {
+            $this->connection->beginTransaction(); // Start transaction
+
+            $insert_query = "INSERT IGNORE INTO {$this->related_table} ({$this->related_pivot_key}, {$this->foreign_pivot_key}) VALUES (:related_pivot_key, :foreign_pivot_key)";
+            $insert_statement = $this->connection->prepare($insert_query);
+        
+            foreach ($$attributes as $attribute):
+                $insert_statement->bindValue(':related_pivot_key', $attribute, PDO::PARAM_INT);
+                $insert_statement->bindValue(':foreign_pivot_key', $this->related_id, PDO::PARAM_INT);
+    
+                if (!$insert_statement->execute()):
+                    throw new Exception("There was an unexpected error during insertion!");
+                endif;
+            endforeach;
+    
+            $this->connection->commit(); // Confirm transaction
+    
+            return true;
+    
+        } catch (Exception $e) {
+            $this->connection->rollBack(); // Rollback transaction
+            return false;
+        }
+    }
+
+    /**
+     * @since 1.3.0
+     * 
+     * @param array|int|null $attributes
+     * @return bool
+     */
+    public function detach(array|int|null $attributes): bool
+    {
+        if(!is_array($attributes)):
+            $attributes = [$attributes];
+        endif;
+        
+        try {
+            $this->connection->beginTransaction(); // Start transaction
+
+            $delete_query = "DELETE FROM {$this->related_table} WHERE {$this->foreign_pivot_key} = :foreign_pivot_key";
+
+            $delete_statement = $this->connection->prepare($delete_query);
+            $delete_statement->bindValue(':foreign_pivot_key', $this->related_id, PDO::PARAM_INT);
+            $delete_statement->execute();
+
+            $this->connection->commit(); // Confirm transaction
+    
+            return true;
+    
+        } catch (Exception $e) {
+            $this->connection->rollBack(); // Rollback transaction
+            return false;
+        }
+    }
+
+    /**
      * @since 1.0.0
      * 
      * @return stdClass
@@ -329,5 +506,49 @@ class Model
             'clausure' => $where_clause,
             'bindings' => $bindings
         ]));
+    }
+
+    /**
+     * @since 1.3.0
+     * 
+     * @param string $column
+     * @return bool
+     */
+    private function existColumn(string $column): bool
+    {
+        $db_name = env('DB_DATABASE_NAME');
+        $query = "SELECT COUNT(*) AS colExists
+            FROM information_schema.columns
+            WHERE table_schema = :dbname
+                AND table_name = :table
+                AND column_name = :column";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(":dbname", $db_name, PDO::PARAM_STR);
+        $stmt->bindParam(":table", $this->table, PDO::PARAM_STR);
+        $stmt->bindParam(":column", $column, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result['colExists'] > 0 ? true : false;
+    }
+
+    /**
+     * @since 1.3.0
+     * 
+     * @param mixed $related
+     * @param int $related_id
+     * @param string $related_table;
+     * @param string $foreign_pivot_key
+     * @param string $related_pivot_key
+     * @return void
+     */
+    private function setRelatioships(mixed $related, int $related_id, string $related_table, string $foreign_pivot_key, string $related_pivot_key): void
+    {
+        $related->foreign_pivot_key = $foreign_pivot_key;
+        $related->related_pivot_key = $related_pivot_key;
+        $related->related_id = $related_id;
+        $related->related_table = $related_table;
     }
 }

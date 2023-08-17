@@ -5,13 +5,12 @@ class Gallery{
     /**
      * @since 1.2.0
      * 
-     * @param {string} inputName
      * @param {boolean} preloader
      * @returns {void}
      */
-    constructor(inputName = "images", preloader = true){
+    constructor(preloader = true){
         this.inputType = null;
-        this.inputName = inputName;
+        this.inputName = null;
         this.preloader = preloader;
         this.currentClick = null;
         this.selected = [];
@@ -183,6 +182,7 @@ class Gallery{
      */
     changeInputType(inputType) {
         this.inputType = inputType;
+        this.inputName = inputType == 'radio' ? 'images' : 'images[]';
 
         document.querySelectorAll('#gallery > div').forEach((element) => {
             $(element).find('input').attr('type', this.inputType);
@@ -283,11 +283,12 @@ class Gallery{
     selectedFiles(){
         if(this.currentClick !== null){
             // Remove the first image if it is a checkbox and it is the first click
-            let countCurrentImages = $(`[data-upload-selected=${this.currentClick}]`).find('.m-2.gallery.rounded').length;
+            // let countCurrentImages = $(`[data-upload-selected=${this.currentClick}]`).find('.m-2.gallery.rounded').length;
 
             $('#selected').click(() => {
-                const required = $(`[data-upload-selected=${this.currentClick}]`).attr('data-required');
-                (this.inputType == 'radio' || countCurrentImages == 1) && $(`[data-upload-selected=${this.currentClick}]`).html('');
+                const inputName = this.inputType == 'radio' ? this.currentClick : `${this.currentClick}[]`;
+                let required = $(`[data-upload-selected=${this.currentClick}]`).attr('data-required');
+                (this.inputType == 'radio') && $(`[data-upload-selected=${this.currentClick}]`).html('');
 
                 this.selected.forEach((selected) => {
                     const div = $('<div />');
@@ -297,10 +298,12 @@ class Gallery{
                     input.attr({
                         type: 'text',
                         hidden: true,
-                        name: this.currentClick,
-                        value: selected.id,
-                        required: required
+                        name: inputName,
+                        value: selected.id
                     });
+
+                    // Add required in input
+                    if(required && required.length > 0) input.attr('required', required);
 
                     div.append(input);
 
@@ -353,7 +356,8 @@ class Gallery{
                 $('#modalGallery').modal('hide');
                 this.currentClick = null;
                 this.remove();
-                countCurrentImages = null;
+
+                // countCurrentImages = null;
             });
 
             this.selected = [];
