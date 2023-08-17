@@ -12,6 +12,7 @@ if(!function_exists('routes')):
             '/',
             '/admin/dashboard',
             '/admin/users',
+            '/admin/posts',
             '/admin/gallery',
             '/admin/settings',
             '/admin/profile',

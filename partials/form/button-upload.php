@@ -47,7 +47,7 @@
             foreach($images as $image): ?>
                 <div class="m-2 gallery rounded">
                     <input value="<?php echo $image->id ?>" type="text" hidden name="<?php echo $type == 'checkbox' ? "{$name}[]" : $name ?>" data-checked="add-style" <?php echo isset($attr) ? $attr : '' ?>>
-                    
+
                     <div class="position-relative" data-upload-image="selected">
                         <div class="bg-color-main d-flex justify-content-end p-1 w-100 rounded-top">
                             <button type="button" title="Remover imagem" class="border-0 bg-transparent p-0" data-upload-image="remove">
