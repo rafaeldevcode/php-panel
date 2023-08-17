@@ -5,21 +5,18 @@ class Gallery{
     /**
      * @since 1.2.0
      * 
-     * @param {string} inputType
-     * @param {string} inputName
      * @param {boolean} preloader
      * @returns {void}
      */
-    constructor(inputType = "radio", inputName = "images", preloader = true){
-        this.inputType = inputType;
-        this.inputName = inputName;
+    constructor(preloader = true){
+        this.inputType = null;
+        this.inputName = null;
         this.preloader = preloader;
         this.currentClick = null;
         this.selected = [];
         this.currentPosition = 0;
         this.images = null;
 
-        this.changeInputType();
         this.remove();
         this.loadMore();
     }
@@ -124,24 +121,31 @@ class Gallery{
     }
 
     /**
-     * @since 1.2.0
+     * @since 1.3.0
      * 
      * @returns {void}
      */
-    async uploads() {
-        $('#input-upload').click();
-        const count = parseInt($('#count-images').text());
-        const displaying = parseInt($('#displaying-images').text());
-        const response = await this.save($('#input-upload'));
-    
-        this.addImagesInGallery(response, true);
+    uploads() {
+        $('#upload').click(async (event) => {
+            event.preventDefault();
 
-        $('#count-images').text(count+response.length);
-        this.dbClickPreview();
+            $('#input-upload').click();
+            const count = parseInt($('#count-images').text());
+            // const displaying = parseInt($('#displaying-images').text());
+            const response = await this.save($('#input-upload'));
+        
+            this.addImagesInGallery(response, true);
+    
+            $('#count-images').text(count+response.length);
+
+            this.dbClickPreview();
+            this.dbClickSelect();
+            this.selectedFiles();
+        });
     }
 
     /**
-     * @since 1.2.0
+     * @since 1.3.0
      * 
      * @returns {void}
      */
@@ -165,50 +169,56 @@ class Gallery{
             $('#displaying-images').text(displaying+response[0].length);
 
             this.dbClickPreview();
-        });
-    }
-
-    /**
-     * @since 1.2.0
-     * 
-     * @returns {void}
-     */
-    changeInputType() {
-        document.querySelectorAll('#gallery > div').forEach((element) => {
-            $(element).find('input').attr('type', this.inputType);
-            $(element).find('input').attr('name', this.inputName);
-        });
-    }
-
-    /**
-     * @since 1.2.0
-     * 
-     * @param {object} element
-     * @returns {void}
-     */
-    openModalSelect(element) {
-        element.click((event) => {
-            event.preventDefault();
-            this.currentClick = $(event.target).attr('data-upload') 
-                ? $(event.target).attr('data-upload') 
-                : $(event.target).parent().attr('data-upload');
-
-            $('#modalGallery').modal('show');
-
-            $('#upload').click(async (event) => {
-                event.preventDefault();
-    
-                await this.uploads();
-            });
-
             this.dbClickSelect();
-            this.inputType == 'radio' ? this.setSelectedRadioValue() : this.setSelectedCheckboxValues();
             this.selectedFiles();
         });
     }
 
     /**
      * @since 1.2.0
+     * 
+     * @param {string} inputType
+     * @returns {void}
+     */
+    changeInputType(inputType) {
+        this.inputType = inputType;
+        this.inputName = inputType == 'radio' ? 'images' : 'images[]';
+
+        document.querySelectorAll('#gallery > div').forEach((element) => {
+            $(element).find('input').attr('type', this.inputType);
+            $(element).find('input').attr('name', this.inputName);
+        });
+
+        this.inputType == 'radio' ? this.setSelectedRadioValue() : this.setSelectedCheckboxValues();
+    }
+
+    /**
+     * @since 1.3.0
+     * 
+     * @param {object} element
+     * @param {string} inputType
+     * @returns {void}
+     */
+    openModalSelect(element, inputType) {        
+        element.click((event) => {
+            event.preventDefault();
+            $('#modalGallery').modal('show');
+
+            // Add input type 'radio' or 'checkbox'
+            this.changeInputType(inputType);
+
+            this.currentClick = $(event.target).attr('data-upload') 
+                ? $(event.target).attr('data-upload') 
+                : $(event.target).parent().attr('data-upload');
+
+            this.uploads();
+            this.dbClickSelect();
+            this.selectedFiles();
+        });
+    }
+
+    /**
+     * @since 1.3.0
      * 
      * @param {object} response 
      * @returns {void}
@@ -225,7 +235,7 @@ class Gallery{
                 name: 'images',
                 id: `image_${res.id}`,
                 value: res.id,
-                checked: checked
+                checked: false
             });
             input.attr('data-checked', 'add-style');
             input.attr('data-id', res.id);
@@ -252,12 +262,10 @@ class Gallery{
             div.append(label);
     
             $('#gallery').append(div);
-            this.inputType == 'radio' ? this.setSelectedRadioValue() : this.setSelectedCheckboxValues();
-            $(`input#${res.id}`).click();
-        });
 
-        this.dbClickSelect();
-        this.selectedFiles();
+            this.inputType == 'radio' ? this.setSelectedRadioValue() : this.setSelectedCheckboxValues();
+            checked && input.click();
+        });
 
         // Desabilit preloader
         if(this.preloader) Preloader.hide();
@@ -268,82 +276,115 @@ class Gallery{
     }
 
     /**
-     * @since 1.2.0
+     * @since 1.3.0
      * 
      * @returns {void}
      */
     selectedFiles(){
-        $('#selected').click(() => {
-            const required = $(`[data-upload-selected=${this.currentClick}]`).attr('data-required');
-            this.inputType   == 'radio' && $(`[data-upload-selected=${this.currentClick}]`).html('');
+        if(this.currentClick !== null){
+            // Remove the first image if it is a checkbox and it is the first click
+            // let countCurrentImages = $(`[data-upload-selected=${this.currentClick}]`).find('.m-2.gallery.rounded').length;
 
-            this.selected.forEach((selected) => {
-                const div = $('<div />');
-                div.attr('class', 'm-2 gallery rounded');
+            $('#selected').click(() => {
+                const inputName = this.inputType == 'radio' ? this.currentClick : `${this.currentClick}[]`;
+                let required = $(`[data-upload-selected=${this.currentClick}]`).attr('data-required');
+                (this.inputType == 'radio') && $(`[data-upload-selected=${this.currentClick}]`).html('');
 
-                const input = $('<input />');
-                input.attr({
-                    type: 'text',
-                    hidden: true,
-                    name: this.currentClick,
-                    value: selected.id,
-                    required: required
+                this.selected.forEach((selected) => {
+                    const div = $('<div />');
+                    div.attr('class', 'm-2 gallery rounded');
+
+                    const input = $('<input />');
+                    input.attr({
+                        type: 'text',
+                        hidden: true,
+                        name: inputName,
+                        value: selected.id
+                    });
+
+                    // Add required in input
+                    if(required && required.length > 0) input.attr('required', required);
+
+                    div.append(input);
+
+                    const contentImage = $('<div />')
+                    contentImage.attr('class', 'position-relative');
+                    contentImage.attr('data-upload-image', 'selected');
+
+                    const contentRemove = $('<div />');
+                    contentRemove.attr('class', 'bg-color-main rounded-top d-flex justify-content-end p-1 w-100');
+
+                    const button = $('<button />');
+                    button.attr({
+                        type: 'button',
+                        title: 'Remover imagem',
+                        class: 'border-0 bg-transparent p-0'
+                    });
+                    button.attr('data-upload-image', 'remove');
+
+                    const i = $('<i />');
+                    i.attr('class', 'bi bi-trash text-cm-danger');
+
+                    button.append(i);
+                    contentRemove.append(button);
+                    contentImage.append(contentRemove);
+
+                    const img = $('<img />');
+                    img.attr({
+                        class: 'w-100 rounded-bottom',
+                        src: selected.url,
+                        alt: selected.alt
+                    });
+
+                    contentImage.append(img);
+                    div.append(contentImage);
+
+                    if(required == 'required'){
+                        const span = $('<span />');
+                        span.attr('class', 'position-absolute start-0 top-0 mt-5 validit');
+
+                        div.append(span);
+                    }
+
+                    $(`[data-upload-selected=${this.currentClick}]`).append(div);
+                    const validate = new ValidateForm();
+                    validate.init();
+
+                    document.getElementById(`image_${selected.id}`).checked = false;
                 });
 
-                div.append(input);
+                $('#modalGallery').modal('hide');
+                this.currentClick = null;
+                this.remove();
+                // countCurrentImages = null;
+            });
 
-                const contentImage = $('<div />')
-                contentImage.attr('class', 'position-relative');
-                contentImage.attr('data-upload-image', 'selected');
+            this.selected = [];
+        }
+    }
 
-                const contentRemove = $('<div />');
-                contentRemove.attr('class', 'bg-color-main rounded-top d-flex justify-content-end p-1 w-100');
+    /**
+     * @since 1.3.0
+     * 
+     * @returns {Promise}
+     */
+    selectedFilesTinymce(inputType){
+        $('#modalGallery').modal('show');
+        this.changeInputType(inputType);
+        this.uploads();
+        this.dbClickSelect();
 
-                const button = $('<button />');
-                button.attr({
-                    type: 'button',
-                    title: 'Remover imagem',
-                    class: 'border-0 bg-transparent p-0'
-                });
-                button.attr('data-upload-image', 'remove');
-
-                const i = $('<i />');
-                i.attr('class', 'bi bi-trash text-cm-danger');
-
-                button.append(i);
-                contentRemove.append(button);
-                contentImage.append(contentRemove);
-
-                const img = $('<img />');
-                img.attr({
-                    class: 'w-100 rounded-bottom',
-                    src: selected.url,
-                    alt: selected.alt
-                });
-
-                contentImage.append(img);
-                div.append(contentImage);
-
-                if(required == 'required'){
-                    const span = $('<span />');
-                    span.attr('class', 'position-absolute end-0 bottom-0 me-2 mb-3 validit');
-
-                    div.append(span);
-                }
-
-                $(`[data-upload-selected=${this.currentClick}]`).append(div);
-                const validate = new ValidateForm();
-                validate.init();
+        return new Promise((resolve) => {
+            $('#selected').click(() => {
+                resolve(this.selected);
 
                 $('#modalGallery').modal('hide');
             });
-
-            this.remove();
         });
     }
 
     /**
-     * @since 1.2.0
+     * @since 1.3.0
      * 
      * @returns {void}
      */
@@ -361,13 +402,13 @@ class Gallery{
     
                 this.selected = [];
                 this.selected.push(data);
-                this.selected.length > 0 && $('#selected').attr('disabled', false);
+                $('#selected').attr('disabled', false);
             }
         });
     }
 
     /**
-     * @since 1.2.0
+     * @since 1.3.0
      * 
      * @returns {void}
      */
@@ -388,7 +429,7 @@ class Gallery{
                     };
         
                     this.selected.push(data);
-                    this.selected.length > 0 && $('#selected').attr('disabled', false);
+                    $('#selected').attr('disabled', false);
                 });
             }
         });
@@ -401,9 +442,8 @@ class Gallery{
      */
     dbClickSelect() {
         $('label[data-click="double"]').dblclick(() => {
-            this.inputType == 'radio' ? this.setSelectedRadioValue() : this.setSelectedCheckboxValues();
-            
             $('#selected').click();
+            // this.currentClick = null;
         });
     }
 
