@@ -72,7 +72,7 @@ class User extends Model
     }
 
     /**
-     * @since 1.1.0
+     * @since 1.3.0
      * 
      * @param int $user_id
      * @return void
@@ -80,10 +80,6 @@ class User extends Model
     protected function removeTokensInvalid(int $user_id): void
     {
         $acc_token = new AccessToken();
-        $tokens = $acc_token->where('user_id', '=', $user_id)->get();
-
-        foreach($tokens as $token):
-            $acc_token->delete($token->id);
-        endforeach;
+        $acc_token->where('user_id', '=', $user_id)->delete();
     }
 }
