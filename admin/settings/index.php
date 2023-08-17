@@ -41,10 +41,10 @@
 
         const gallery = new Gallery();
 
-        gallery.openModalSelect($('[data-upload=site_logo_main]'));
-        gallery.openModalSelect($('[data-upload=site_logo_secondary]'));
-        gallery.openModalSelect($('[data-upload=site_favicon]'));
-        gallery.openModalSelect($('[data-upload=site_bg_login]'));
+        gallery.openModalSelect($('[data-upload=site_logo_main]'), 'radio');
+        gallery.openModalSelect($('[data-upload=site_logo_secondary]'), 'radio');
+        gallery.openModalSelect($('[data-upload=site_favicon]'), 'radio');
+        gallery.openModalSelect($('[data-upload=site_bg_login]'), 'radio');
     </script>
 </body>
 </html>

@@ -194,28 +194,28 @@
                     'name' => 'site_logo_main',
                     'label' => 'Logo principal (Cor principal)',
                     'value' => (isset($settings) && !empty($settings->site_logo_main)) ? $settings->site_logo_main : null,
-                    'type' => 'checkbox',
+                    'type' => 'radio',
                 ]) ?>
 
                 <?php getHtml(__DIR__.'/../../../partials/form/button-upload', [
                     'name' => 'site_logo_secondary',
                     'label' => 'Logo segundário (Na cor branca)',
                     'value' => (isset($settings) && !empty($settings->site_logo_secondary)) ? $settings->site_logo_secondary : null,
-                    'type' => 'checkbox',
+                    'type' => 'radio',
                 ]) ?>
 
                 <?php getHtml(__DIR__.'/../../../partials/form/button-upload', [
                     'name' => 'site_favicon',
                     'label' => 'Favicon do site',
                     'value' => (isset($settings) && !empty($settings->site_favicon)) ? $settings->site_favicon : null,
-                    'type' => 'checkbox',
+                    'type' => 'radio',
                 ]) ?>
 
                 <?php getHtml(__DIR__.'/../../../partials/form/button-upload', [
                     'name' => 'site_bg_login',
                     'label' => 'Fundo da tela de login',
                     'value' => (isset($settings) && !empty($settings->site_bg_login)) ? $settings->site_bg_login : null,
-                    'type' => 'checkbox',
+                    'type' => 'radio',
                 ]) ?>
             </div>
         </div>
