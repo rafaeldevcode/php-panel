@@ -46,6 +46,7 @@ $images = !isset($search) ? $gallery->paginate(30) : $gallery->where('name', 'LI
 
     <script type="text/javascript">
         const gallery = new Gallery("images[]", true);
+      
         gallery.changeInputType('checkbox');
         gallery.dbClickPreview();
         gallery.next($('#image-preview'));
