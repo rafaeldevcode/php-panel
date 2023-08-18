@@ -19,7 +19,7 @@
                     <tr>
                         <td class='col'>
                             <input
-                                data-id='<?php echo $user->id ?>'
+                                value='<?php echo $user->id ?>'
                                 data-message-delete='Esta ação irá remover todos os usuários selecionados!'
                                 type='checkbox'
                                 data-button="delete-enable"

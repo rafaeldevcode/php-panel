@@ -127,6 +127,9 @@ Project developed with the objective of accelerating web development using PHP w
 **Version 1.3.0 - Curent**
 [Check the details](https://github.com/rafaeldevcode/php-panel/releases/tag/v1.3.0)
 
+**Version 1.3.1 - Curent**
+[Check the details](https://github.com/rafaeldevcode/php-panel/releases/tag/v1.3.1)
+
 ----
 
 ## 🎁 <a id="expressions-of-gratitude">Expressions of gratitude</a>

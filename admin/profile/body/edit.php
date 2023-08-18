@@ -47,7 +47,10 @@
                     'label' => 'Email',
                     'type' => 'email',
                     'value' => $user->email,
-                    'attributes' => 'required disabled'
+                    'attributes' => [
+                        'required' => 'required',
+                        'disabled' => 'disabled'
+                    ]
                 ]) ?>
             </div>
 
