@@ -1,15 +1,14 @@
 <?php 
+    $attr = null;
+
     if(isset($attributes)):
         if(is_array($attributes)):
-            $attr = '';
             foreach($attributes as $indice => $attribute):
                 $attr .= "{$indice}={$attribute} ";
             endforeach;
         else:
             $attr = $attributes;
         endif;
-    else:
-        $attr = '';
     endif;
 ?>
 
