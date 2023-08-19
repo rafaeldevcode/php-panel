@@ -13,6 +13,16 @@ class Gallery extends Model
      */
     public function posts(): Posts
     {
-        return $this->hasMany(Posts::class, 'post_images', 'image_id', 'post_id');
+        return $this->belongsToMany(Posts::class, 'post_images', 'image_id', 'post_id');
+    }
+
+    /**
+     * @since 1.3.0
+     * 
+     * @return Posts
+     */
+    public function postsThumbnail(): Posts
+    {
+        return $this->hasMany(Posts::class, 'posts', 'thumbnail');
     }
 }

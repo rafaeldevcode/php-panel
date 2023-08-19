@@ -13,6 +13,26 @@ class Posts extends Model
      */
     public function images(): Gallery
     {
-        return $this->hasMany(Gallery::class, 'post_images', 'post_id', 'image_id');
+        return $this->belongsToMany(Gallery::class, 'post_images', 'post_id', 'image_id');
+    }
+
+    /**
+     * @since 1.3.1
+     * 
+     * @return Gallery
+     */
+    public function thumbnail(): Gallery
+    {
+        return $this->belongsTo(User::class, 'gallery', 'thumbnail');
+    }
+
+    /**
+     * @since 1.3.1
+     * 
+     * @return User
+     */
+    public function user(): User
+    {
+        return $this->belongsTo(User::class, 'users', 'user_id');
     }
 }
