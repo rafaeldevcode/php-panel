@@ -104,7 +104,7 @@ class Remove{
                     input.attr({
                         hidden: true,
                         name: 'ids[]',
-                        value: $(item).attr('data-id')
+                        value: $(item).val()
                     });
 
                     formSubmit.append(input);
