@@ -6,8 +6,7 @@
             <div class="m-2 gallery">
                 <input 
                     hidden
-                    id="image_<?php echo $image->id ?>" 
-                    data-id='<?php echo $image->id ?>'
+                    id="image_<?php echo $image->id ?>"
                     value='<?php echo $image->id ?>'
                     data-message-delete='Esta ação irá remover todas as imagens selecionados!'
                     type='checkbox'

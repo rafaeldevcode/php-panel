@@ -238,7 +238,6 @@ class Gallery{
                 checked: false
             });
             input.attr('data-checked', 'add-style');
-            input.attr('data-id', res.id);
             input.attr('data-message-delete', 'Esta ação irá remover todas as imagens selecionados!');
             input.attr('data-button', 'delete-enable');
     

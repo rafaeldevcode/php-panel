@@ -26,7 +26,7 @@
 <div class="d-flex flex-column position-relative">
     <label for="<?php echo $name ?>" class="text-cm-secondary ms-2">
         <?php echo $label ?>
-        <span class="text-cm-danger"><?php echo isset($is_required) ? $is_required : '' ?></span>
+        <span class="text-cm-danger"><?php echo $is_required ?></span>
     </label>
 
     <button id="<?php echo $name ?>" type="button" title="Open modal gallery" class="border-color-main m-2 btn" data-upload="<?php echo $name ?>">
@@ -37,7 +37,7 @@
         <!-- Add this snippet only when creating a new record and it is mandatory - start -->
         <?php if(isset($is_required) && !isset($images)): ?>
             <div class="m-2 gallery rounded">
-                <input value="" type="text" hidden name="<?php echo $type == 'checkbox' ? "{$name}[]" : $name ?>" data-checked="add-style" <?php echo isset($attr) ? $attr : '' ?>>
+                <input value="" type="text" hidden name="<?php echo $type == 'checkbox' ? "{$name}[]" : $name ?>" data-checked="add-style" <?php echo $attr ?>>
                 <span class='position-absolute start-0 top-0 mt-5 validit'></span>
             </div>
         <?php endif; ?>
@@ -46,8 +46,8 @@
         <?php if(isset($images)): 
             foreach($images as $image): ?>
                 <div class="m-2 gallery rounded">
-                    <input value="<?php echo $image->id ?>" type="text" hidden name="<?php echo $type == 'checkbox' ? "{$name}[]" : $name ?>" data-checked="add-style" <?php echo isset($attr) ? $attr : '' ?>>
-
+                    <input value="<?php echo $image->id ?>" type="text" hidden name="<?php echo $type == 'checkbox' ? "{$name}[]" : $name ?>" data-checked="add-style" <?php echo $attr ?>>
+                    
                     <div class="position-relative" data-upload-image="selected">
                         <div class="bg-color-main d-flex justify-content-end p-1 w-100 rounded-top">
                             <button type="button" title="Remover imagem" class="border-0 bg-transparent p-0" data-upload-image="remove">
