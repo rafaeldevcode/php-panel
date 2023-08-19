@@ -51,14 +51,39 @@ class User extends Model
      * 
      * @return void
      */
-    public function logout(): void
+    public function logout(?int $user_id = null): void
     {
-        $token = $_SESSION['token'];
-
         $acc_token = new AccessToken();
-        $acc_token->where('token', '=', $token)->delete();
 
-        session_destroy();
+        if(isset($user_id)):
+            $acc_token->where('user_id', '=', $user_id)->delete();
+        else:
+            $token = $_SESSION['token'];
+
+            $acc_token->where('token', '=', $token)->delete();
+
+            session_destroy();
+        endif;
+    }
+
+    /**
+     * @since 1.3.1
+     * 
+     * @return AccessToken
+     */
+    public function token(): AccessToken
+    {
+        return $this->hasMany(AccessToken::class, 'access_token', 'user_id');
+    }
+
+    /**
+     * @since 1.3.1
+     * 
+     * @return Posts
+     */
+    public function posts(): Posts
+    {
+        return $this->hasMany(Posts::class, 'posts', 'user_id');
     }
 
     /**

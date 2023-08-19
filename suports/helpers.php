@@ -6,7 +6,7 @@ require __DIR__.'/helpers/requests.php';
 require __DIR__.'/helpers/menus-admin.php';
 require __DIR__.'/helpers/routes.php';
 
-define('APP_VERSION', '1.4.0');
+define('APP_VERSION', '1.3.1');
 
 if (! function_exists('asset')):
     /**
