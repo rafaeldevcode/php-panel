@@ -51,6 +51,17 @@
                             >
                                 <i class='bi bi-trash-fill'></i>
                             </button>
+                            <form action="/login/logout.php" method="POST" class="m-1 d-inline">
+                                <input type="hidden" name="id" value="<?php echo $user->id ?>">
+                                <button
+                                    type='submit'
+                                    title='Deslogar usuário <?php echo $user->name ?>'
+                                    class='btn btn-sm btn-cm-<?php echo $user->id == $_SESSION['user_id'] ? 'secondary' : 'info' ?> text-cm-light fw-bold'
+                                    <?php echo $user->id == $_SESSION['user_id'] ? 'disabled' : '' ?>
+                                >
+                                    <i class="bi bi-box-arrow-right"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>

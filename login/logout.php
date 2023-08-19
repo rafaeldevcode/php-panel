@@ -11,10 +11,20 @@ if(!isAuth()):
 
     return header('Location: /login', true, 302);
 else:
-    $data = $_POST;
+    $user_id = isset($_POST['id']) ? $_POST['id'] : null;
+    $redirection = '/login';
 
     $user = new User();
-    $user->logout();
+    $user->logout($user_id);
 
-    return header('Location: /login', true, 302);
+    if(isset($user_id)):
+        session([
+            'message' => 'Logout realizado com sucesso!',
+            'type' => 'cm-success'
+        ]);
+
+        $redirection = '/admin/users';
+    endif;
+
+    return header("Location: {$redirection}", true, 302);
 endif;

@@ -329,7 +329,7 @@ class Model
      * @param string $related_pivot_key
      * @return mixed
      */
-    public function hasMany(string $related, string $table, string $foreign_pivot_key, string $related_pivot_key)
+    public function belongsToMany(string $related, string $table, string $foreign_pivot_key, string $related_pivot_key)
     {
         $related = new $related();
 
@@ -351,6 +351,54 @@ class Model
         $related->data = json_decode(json_encode($statement->fetchAll(PDO::FETCH_ASSOC)));
         
         return $related;     
+    }
+
+    /**
+     * @since 1.3.1
+     * 
+     * @param string $related
+     * @param string $table
+     * @param string $foreign_pivot_key
+     * @return mixed
+     */
+    public function hasMany(string $related, string $table, string $foreign_pivot_key)
+    {
+        $related = new $related();
+
+        $id = empty($this->data) ? 0 : $this->data->id;
+
+        $query = "SELECT * FROM {$table} WHERE {$foreign_pivot_key} = :foreign_pivot_key";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(':foreign_pivot_key', $id, PDO::PARAM_INT);
+        $statement->execute();
+        
+        $related->data = json_decode(json_encode($statement->fetchAll(PDO::FETCH_ASSOC)));
+
+        return $related;
+    }
+
+    /**
+     * @since 1.3.1
+     * 
+     * @param string $related
+     * @param string $table
+     * @param string $foreign_pivot_key
+     * @return mixed
+     */
+    public function belongsTo(string $related, string $table, string $foreign_pivot_key)
+    {
+        $related = new $related();
+
+        $id = empty($this->data) ? 0 : $this->data->id;
+
+        $query = "SELECT * FROM {$table} WHERE id = (SELECT {$foreign_pivot_key} FROM {$this->table} WHERE id = :id)";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        
+        $related->data = json_decode(json_encode($statement->fetchAll(PDO::FETCH_ASSOC)));
+
+        return $related;
     }
 
     /**
