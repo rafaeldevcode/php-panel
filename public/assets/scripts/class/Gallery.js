@@ -355,6 +355,7 @@ class Gallery{
                 $('#modalGallery').modal('hide');
                 this.currentClick = null;
                 this.remove();
+
                 // countCurrentImages = null;
             });
 

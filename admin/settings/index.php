@@ -34,6 +34,7 @@
     <?php getHtml(__DIR__.'/../../partials/footer') ?>
     <?php getHtml(__DIR__.'/../../partials/gallery') ?>
 
+    <script type="text/javascript" src="<?php asset('libs/jquery/jquery.mask.min.js?ver='.APP_VERSION)?>"></script>
     <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript">
         $('#phone').mask('+00 (00) 0 0000-0000');
