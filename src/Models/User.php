@@ -77,6 +77,16 @@ class User extends Model
     }
 
     /**
+     * @since 1.3.1
+     * 
+     * @return Posts
+     */
+    public function posts(): Posts
+    {
+        return $this->hasMany(Posts::class, 'posts', 'user_id');
+    }
+
+    /**
      * @since 1.0.0
      * 
      * @return string
