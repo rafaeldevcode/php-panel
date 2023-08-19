@@ -8,6 +8,7 @@ Project developed with the objective of accelerating web development using PHP w
 - [ℹ️ Information](#information)
 - [📋 Prerequisites](#prerequisites)
 - [🔧 Installation](#installation)
+- [🖌️ Styling](#styling)
 - [🖇 Dependencies](#dependencies)
 - [ℹ️ About this project](#about-this-project)
 - [🛠️ Built with](#built-with)
@@ -33,35 +34,35 @@ Project developed with the objective of accelerating web development using PHP w
 
 ## 🔧 <a id="installation">Installation</a>
  - **First step:** Download the project by opening the zip file, or using the command below::
- ```
-    git clone https://github.com/rafaeldevcode/php-panel.git
- ```
+    ```bash
+        git clone https://github.com/rafaeldevcode/php-panel.git
+    ```
 
  - **Second step:** Install PHP dependencies:
- ```
-    composer install
- ```
+    ```bash
+        composer install
+    ```
 
  - **Third step:** Install the JavaScript dependencies (Used only for development environment):
- ```
-    npm install
- ```
+    ```bash
+        npm install
+    ```
  - **Fourth step:** Copy the .env.example file and rename it to .env;
  - **Fifth step:** Add the settings for the database to the .env;
- - **Sixth step:** Run the migrations to create the project's basic tables:
- ```
-    php commands.php migrate
- ```
+ - **Sixth step:** Run this command to perform database migrations:
+    ```bash
+        php commands.php migrate
+    ```
 
- - **Seventh step:** Run the following command to create an admin user:
- ```
-    php commands.php create-user
- ```
+ - **Seventh step:** Run this command to perform initial settings:
+    ```bash
+        php commands.php initial-setup
+    ```
 
  - **Eighth step:** Run the server:
     - If you are going to use the php server;
-      ```
-       php -S localhost:9090 -t public
+      ```bash
+       php -S localhost:9090
       ```   
       
      - If you are going to use xampp or any other application
@@ -69,7 +70,40 @@ Project developed with the objective of accelerating web development using PHP w
         - Add the 'public' in the environment variable 'ASSETS_PATH';
 
 ----
- 
+
+## 🔧 <a id="styling">Styling</a>
+If you want to change the default colors, it's very simple, as we use bootstrap just follow the step by step and change the colors defined in the variables:
+- **Step one:** Go to the [_variables.sass](/public/libs/sass/_variables.sass) file and change the colors;
+- **Step two:** Go to the [styles.scss](/public/libs/sass/style.scss) file and change the colors;
+- **Step three:** Now just run the following command to build the new file with the styles:
+
+    - In case you want to run the construction of styles and scripts for the production environment (In these cases they will be compressed to reduce the size of the files):
+        ```bash
+        npm run prod
+        ```
+
+    - In case you want to run the construction of styles and scripts for the development environment (In these cases they will not be zipped):
+        ```bash
+        npm run dev
+        ```
+
+    - If you want styles to be built as you edit them (At this point it's only if you're using sass or scss for your styling):
+        ```bash
+        npm run watch
+        ```
+
+- **Step Four:** You will certainly also want to change the color of the default images made in svg, this is also very simple, just run this command:
+    ```bash
+    php commands.php change-color-svg [OLD_COLOR] [NEW_COLOR]
+    ```
+    - If you are running this command for the first time then the OLD_COLOR would be **#3695FF**, if not the first time then it will be the last color you defined, the command looks like this:
+        ```bash
+        php commands.php change-color-svg '#3695FF' '#FF0000'
+        ```
+
+    **OBSS:** We do not recommend that you edit the style files inside [libs/sass ](/public/libs/sass/) because if there is an update they will be replaced, we recommend that you create a style file in [public/assets](/public/assets/), and add this path to [webpack.config.js](/webpack.mix.js) to build the file
+----
+
 ## 🖇 <a id="dependencies">Dependencies</a>
 
 ***Production***
