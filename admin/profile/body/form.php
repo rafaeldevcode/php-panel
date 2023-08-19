@@ -30,7 +30,7 @@
         <input type="hidden" name="id" value="<?php echo $user->id ?>">
         <div class='row d-flex justify-content-between'>
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-envelope-fill',
                     'name' => 'name',
                     'label' => 'Nome do usuário',
@@ -41,7 +41,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-default', [
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-envelope-fill',
                     'name' => 'email',
                     'label' => 'Email',
@@ -55,7 +55,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-pass', [
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'current_password',
                     'type' => 'password',
@@ -64,7 +64,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-pass', [
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'password',
                     'type' => 'password',
@@ -73,7 +73,7 @@
             </div>
 
             <div class='col-12 col-md-6'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-pass', [
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'repeat_password',
                     'type' => 'password',
@@ -84,7 +84,7 @@
 
         <div class='row d-flex justify-content-end'>
             <div class='col-12 col-md-3'>
-                <?php getHtml(__DIR__.'/../../../partials/form/input-button', [
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
                     'type' => 'submit',
                     'style' => 'color-main',
                     'title' => 'Savar usuário',
@@ -94,3 +94,5 @@
         </div>
     </form>
 </section>
+
+<?php loadHtml(__DIR__.'/../../../resources/partials/modal-avatars', ['user_id' => $user->id, 'avatar' => $user->avatar]) ?>

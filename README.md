@@ -158,11 +158,14 @@ If you want to change the default colors, it's very simple, as we use bootstrap 
 **Version 1.2.0**
 [Check the details](https://github.com/rafaeldevcode/php-panel/releases/tag/v1.2.0)
 
-**Version 1.3.0 - Curent**
+**Version 1.3.0**
 [Check the details](https://github.com/rafaeldevcode/php-panel/releases/tag/v1.3.0)
 
-**Version 1.3.1 - Curent**
+**Version 1.3.1**
 [Check the details](https://github.com/rafaeldevcode/php-panel/releases/tag/v1.3.1)
+
+**Version 1.4.0 - Latest**
+[Check the details](https://github.com/rafaeldevcode/php-panel/releases/tag/v1.4.0)
 
 ----
 

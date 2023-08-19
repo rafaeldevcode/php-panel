@@ -27,7 +27,7 @@
             <div class='d-flex justify-content-center'>
                 <div class="mx-1">
                     <?php if(isset($route_search)): ?>
-                        <?php getHtml(__DIR__.'/form/input-search', ['route' => $route_search]) ?>
+                        <?php loadHtml(__DIR__.'/form/input-search', ['route' => $route_search]) ?>
                     <?php endif; ?>
                 </div>
 
@@ -46,7 +46,7 @@
 
     <?php if(isset($sub_options)): ?>
         <div class="bg-cm-secondary">
-            <?php getHtml($sub_options) ?>
+            <?php loadHtml($sub_options) ?>
         </div>
     <?php endif; ?>
 </section>

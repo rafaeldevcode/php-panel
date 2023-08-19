@@ -16,7 +16,7 @@ if(!function_exists('routes')):
             '/admin/gallery',
             '/admin/settings',
             '/admin/profile',
-            '/politicas-de-privacidade',
+            '/policies',
             '/login'
         ];
     }

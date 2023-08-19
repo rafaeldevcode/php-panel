@@ -3,9 +3,9 @@
 require __DIR__ .'/../vendor/autoload.php';
 require __DIR__ . '/../suports/helpers.php';
 
-use Src\Models\User;
-
 verifyMethod(500, 'POST');
+
+use Src\Models\User;
 
 $data = $_POST;
 

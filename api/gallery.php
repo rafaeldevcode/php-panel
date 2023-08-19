@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__.'/vendor/autoload.php';
-require __DIR__.'/suports/helpers.php';
+require __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/../suports/helpers.php';
 
 use Src\Models\Gallery;
 

@@ -44,15 +44,15 @@ if (!function_exists('dd')):
     }
 endif;
 
-if (!function_exists('getHtml')):
+if (!function_exists('loadHtml')):
     /**
-     * @since 1.2.0
+     * @since 1.4.0
      * 
      * @param string $path
      * @param array $data
      * @return void
      */
-    function getHtml(string $path, array $data = []): void
+    function loadHtml(string $path, array $data = []): void
     {
         extract($data);
 

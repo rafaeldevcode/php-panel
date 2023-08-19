@@ -1,5 +1,5 @@
 <aside class='bg-cm-secondary sidebar'>
-    <?php getHtml(__DIR__.'/profile') ?>
+    <?php loadHtml(__DIR__.'/profile') ?>
 
     <nav>
         <ul class='m-0 p-2'>

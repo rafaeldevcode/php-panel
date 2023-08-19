@@ -76,7 +76,7 @@
     </section>
 
     <?php if(isset($users->page)):
-        getHtml(__DIR__.'/../../../partials/pagination', [
+        loadHtml(__DIR__.'/../../../resources/partials/pagination', [
             'page' => $users->page,
             'count' => $users->count,
             'next' => $users->next,
@@ -84,5 +84,6 @@
             'search' => $users->search
         ]);
     endif; ?>
-    <?php getHtml(__DIR__.'/../../../partials/modal-delete') ?>
+    
+    <?php loadHtml(__DIR__.'/../../../resources/partials/modal-delete') ?>
 </section>

@@ -2,10 +2,7 @@
     require __DIR__ .'/../vendor/autoload.php';
     require __DIR__ . '/../suports/helpers.php';
 
-    if(isAuth()):
-
-        return header('Location: /admin/dashboard', true, 302);
-    endif;
+    if(autenticate(false)) return header('Location: /admin/dashboard', true, 302);
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +21,7 @@
 </head>
 <body>
 
-    <?php getHtml(__DIR__.'/../partials/message') ?>
+    <?php loadHtml(__DIR__.'/../resources/partials/message') ?>
 
     <main class="vh-100 vw-100 d-flex flex-nowrap">
         <div class='col-7 position-relative section-image-login'>
@@ -50,7 +47,7 @@
             <form class='col-12 col-sm-6 col-md-7' method="POST" action="/login/login.php">
                 <!-- Input email -->
                 <div class="my-4">
-                    <?php getHtml(__DIR__.'/../partials/form/input-default', [
+                    <?php loadHtml(__DIR__.'/../resources/partials/form/input-default', [
                         'icon' => 'bi bi-envelope-fill',
                         'name' => 'email',
                         'label' => 'Email',
@@ -61,7 +58,7 @@
 
                 <!-- Input pass -->
                 <div class="my-4">
-                    <?php getHtml(__DIR__.'/../partials/form/input-pass', [
+                    <?php loadHtml(__DIR__.'/../resources/partials/form/input-pass', [
                         'icon' => 'bi bi-key-fill',
                         'name' => 'password',
                         'label' => 'Senha',
@@ -70,7 +67,7 @@
                 </div>
 
                 <!-- Input button -->
-                <?php getHtml(__DIR__.'/../partials/form/input-button', [
+                <?php loadHtml(__DIR__.'/../resources/partials/form/input-button', [
                     'type' => 'submit',
                     'style' => 'color-main',
                     'title' => 'Realizar login',

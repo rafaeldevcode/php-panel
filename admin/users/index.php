@@ -1,17 +1,12 @@
 <?php
-
     require __DIR__ .'/../../vendor/autoload.php';
     require __DIR__ . '/../../suports/helpers.php';
 
+    autenticate();
+
     use Src\Models\User;
 
-    if(!isAuth()):
-        return header('Location: /login', true, 302);
-    endif;
-
     $method = empty(querys('method')) ? 'read' : querys('method');
-    $route_delete = $method == 'read' ? '/admin/users/delete.php' : null;
-    $route_add = $method == 'create' ? null : '/admin/users?method=create';
 
     if($method == 'read'):
         $user = new User();
@@ -19,6 +14,7 @@
         $users = !isset($requests->search) ? $user->paginate(20) : $user->where('name', 'LIKE', "%{$requests->search}%")->paginate(20);
         $color = 'cm-secondary';
         $text  = 'Visualizar';
+        $body = __DIR__."/body/read";
 
         $data = ['users' => $users];
     elseif($method == 'edit'):
@@ -26,38 +22,25 @@
         $user = $user->find(querys('id'));
         $color = 'cm-success';
         $text  = 'Editar';
+        $body = __DIR__."/body/form";
 
-        $data = ['user' => $user->data];
+        $data = ['user' => $user->data, 'action' => '/admin/users/update.php'];
     elseif($method == 'create'):
         $color = 'cm-primary';
         $text  = 'Adicionar';
+        $body = __DIR__."/body/form";
 
-        $data = [];
+        $data = ['action' => '/admin/users/create.php'];
     endif;
-?>
 
-<?php getHtml(__DIR__.'/../../partials/header-main', ['title' => 'Usuários']) ?>
-
-    <section class='d-flex flex-nowrap justify-content-between w-100'>
-        <?php getHtml(__DIR__.'/../../partials/sidebar') ?>
-
-        <section class='w-100'>
-            <?php getHtml(__DIR__.'/../../partials/header') ?>
-
-            <?php getHtml(__DIR__.'/../../partials/breadcrumps', [
-                'color' => $color,
-                'type' => $text,
-                'icon' => 'bi bi-people-fill',
-                'title' => 'Usuários',
-                'route_delete' => $route_delete,
-                'route_add' => $route_add,
-                'route_search' => '/admin/users'
-            ]) ?>
-
-            <?php getHtml(__DIR__."/body/{$method}", $data) ?>
-        </section>
-    </section>
-
-    <?php getHtml(__DIR__.'/../../partials/footer') ?>
-</body>
-</html>
+    loadHtml(__DIR__.'/../../resources/admin/layout', [
+        'color' => $color,
+        'type' => $text,
+        'icon' => 'bi bi-people-fill',
+        'title' => 'Usuários',
+        'route_delete' => $method == 'read' ? '/admin/users/delete.php' : null,
+        'route_add' => $method == 'create' ? null : '/admin/users?method=create',
+        'route_search' => '/admin/users',
+        'body' => $body,
+        'data' => $data,
+    ]);

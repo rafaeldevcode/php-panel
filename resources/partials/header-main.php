@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <?php !is_null(SETTINGS) && !empty(SETTINGS['google_analytics']) ? getHtml(__DIR__.'/google-analytics', ['header' => true, 'pixel' => SETTINGS['google_analytics']]) : ''; ?>
-    <?php !is_null(SETTINGS) && !empty(SETTINGS['facebook_pixel']) ? getHtml(__DIR__.'/facebook-pixel', ['header' => true, 'pixel' => SETTINGS['facebook_pixel']]) : ''; ?>
+    <?php !is_null(SETTINGS) && !empty(SETTINGS['google_analytics']) ? loadHtml(__DIR__.'/google-analytics', ['header' => true, 'pixel' => SETTINGS['google_analytics']]) : ''; ?>
+    <?php !is_null(SETTINGS) && !empty(SETTINGS['facebook_pixel']) ? loadHtml(__DIR__.'/facebook-pixel', ['header' => true, 'pixel' => SETTINGS['facebook_pixel']]) : ''; ?>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,7 @@
     <title><?php echo !is_null(SETTINGS) && !empty(SETTINGS['site_name']) ? SETTINGS['site_name'] : env('APP_NAME') ?> | <?php echo $title ?></title>
 </head>
 <body>
-    <?php !is_null(SETTINGS) && !empty(SETTINGS['facebook_pixel']) ? getHtml(__DIR__.'/facebook-pixel', ['header' => false, 'pixel' => SETTINGS['facebook_pixel']]) : ''; ?>
+    <?php !is_null(SETTINGS) && !empty(SETTINGS['facebook_pixel']) ? loadHtml(__DIR__.'/facebook-pixel', ['header' => false, 'pixel' => SETTINGS['facebook_pixel']]) : ''; ?>
 
-    <?php getHtml(__DIR__.'/message') ?>
-    <?php !is_null(SETTINGS) && SETTINGS['preloader'] == 'on' && getHtml(__DIR__.'/preloader', ['position' => 'fixed']) ?>
+    <?php loadHtml(__DIR__.'/message') ?>
+    <?php !is_null(SETTINGS) && SETTINGS['preloader'] == 'on' && loadHtml(__DIR__.'/preloader', ['position' => 'fixed']) ?>

@@ -57,7 +57,7 @@
     </section>
 
     <?php if(isset($posts->page)):
-        getHtml(__DIR__.'/../../../partials/pagination', [
+        loadHtml(__DIR__.'/../../../resources/partials/pagination', [
             'page'   => $posts->page,
             'count'  => $posts->count,
             'next'   => $posts->next,
@@ -65,5 +65,5 @@
             'search' => $posts->search
         ]);
     endif; ?>
-    <?php getHtml(__DIR__.'/../../../partials/modal-delete') ?>
+    <?php loadHtml(__DIR__.'/../../../resources/partials/modal-delete') ?>
 </section>
