@@ -21,3 +21,24 @@ if(!function_exists('routes')):
         ];
     }
 endif;
+
+if(!function_exists('route')):
+    /**
+     * @since 1.4.0
+     * 
+     * @param string $path
+     * @param bool $redirection
+     * @return string|void
+     */
+    function route(string $path = '', bool $redirection = false)
+    {
+        $project_path = env('PROJECT_PATH');
+        $path = $project_path . $path;
+
+        if($redirection):
+            return "Location: $path";
+        endif;
+
+        echo $path;
+    }
+endif;

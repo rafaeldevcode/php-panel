@@ -1,22 +1,22 @@
 const Mix = require("laravel-mix");
 
-
 Mix
-   .sass('public/libs/sass/style.scss', 'public/assets/css/style.css')
-   .sass('public/libs/sass/globals.sass', 'public/assets/css/globals.css')
+    .sass('public/libs/sass/style.scss', 'public/assets/css/style.css')
+    .sass('public/libs/sass/globals.sass', 'public/assets/css/globals.css')
 
-   .css('node_modules/bootstrap-icons/font/bootstrap-icons.css', 'public/libs/bootstrap/bootstrap-icons.css')
+    .css('node_modules/bootstrap-icons/font/bootstrap-icons.min.css', 'public/libs/bootstrap-icons/bootstrap-icons.min.css')
+    .copyDirectory('node_modules/bootstrap-icons/font/fonts', '/fonts/vendor/bootstrap-icons')
 
-   .scripts('node_modules/jquery/dist/jquery.min.js', 'public/libs/jquery/jquery.js')
-   .scripts('node_modules/jquery-mask-plugin/dist/jquery.mask.min.js', 'public/libs/jquery/jquery.mask.min.js')
+    .scripts('node_modules/jquery/dist/jquery.min.js', 'public/libs/jquery/jquery.js')
+    .scripts('node_modules/jquery-mask-plugin/dist/jquery.mask.min.js', 'public/libs/jquery/jquery.mask.min.js')
 
-   .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/libs/bootstrap/bootstrap.js')
-   .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js.map', 'public/libs/bootstrap/bootstrap.js.map')
+    .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/libs/bootstrap/bootstrap.js')
+    .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js.map', 'public/libs/bootstrap/bootstrap.js.map')
 
-   .scripts('vendor/tinymce/tinymce/tinymce.min.js', 'public/libs/tinymce/tinymce.js')
-   .scripts('vendor/tinymce/tinymce/themes/silver/theme.min.js', 'public/libs/tinymce/themes/silver/theme.js')
-   .scripts('vendor/tinymce/tinymce/models/dom/model.min.js', 'public/libs/tinymce/models/dom/model.js')
-   .scripts('vendor/tinymce/tinymce/icons/default/icons.min.js', 'public/libs/tinymce/icons/default/icons.js')
+    .scripts('vendor/tinymce/tinymce/tinymce.min.js', 'public/libs/tinymce/tinymce.js')
+    .scripts('vendor/tinymce/tinymce/themes/silver/theme.min.js', 'public/libs/tinymce/themes/silver/theme.js')
+    .scripts('vendor/tinymce/tinymce/models/dom/model.min.js', 'public/libs/tinymce/models/dom/model.js')
+    .scripts('vendor/tinymce/tinymce/icons/default/icons.min.js', 'public/libs/tinymce/icons/default/icons.js')
 
     // Plugins tinynce   
     .scripts('vendor/tinymce/tinymce/plugins/image/plugin.min.js', 'public/libs/tinymce/plugins/image/plugin.min.js')

@@ -19,4 +19,4 @@ session([
     'user_avatar' => $_POST['avatar']
 ]);
 
-return header('Location: /admin/profile', true, 302);
+return header(route('/admin/profile'), true, 302);

@@ -23,4 +23,4 @@ if(isset($user_id)):
     $redirection = '/admin/users';
 endif;
 
-return header("Location: {$redirection}", true, 302);
+return header(route($redirection, true), true, 302);

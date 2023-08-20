@@ -14,7 +14,7 @@
 
         <div class='d-flex align-items-center flex-nowrap'>
             <div class='logo-header w-auto my-auto'>
-                <a href='/admin/dashboard' title='Voltar a página inicial'>
+                <a href='<?php route('/admin/dashboard') ?>' title='Voltar a página inicial'>
                     <img class='h-100' src='<?php !is_null(SETTINGS) && !empty(SETTINGS['site_logo_main']) ? asset('assets/images/'.SETTINGS['site_logo_secondary'].'') : asset('assets/images/logo_secondary.png') ?>' alt="Logo <?php echo env('APP_NAME') ?>" />
                 </a>
             </div>

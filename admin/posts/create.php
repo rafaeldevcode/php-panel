@@ -35,12 +35,12 @@ if(is_null($post->where('slug', '=', $slug)->first())):
         'type'    => 'cm-success'
     ]);
     
-    return header('Location: /admin/posts', true, 302);
+    return header(route('/admin/posts', true), true, 302);
 else:
     session([
         'message' => 'A slug já está sendo utilizada, poo favor tente outra!',
         'type'    => 'cm-danger'
     ]);
     
-    return header('Location: /admin/posts?method=create', true, 302);
+    return header(route('/admin/posts?method=create', true), true, 302);
 endif;

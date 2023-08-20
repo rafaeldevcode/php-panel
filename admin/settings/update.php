@@ -54,4 +54,4 @@ session([
     'type' => 'cm-success'
 ]);
 
-return header('Location: /admin/settings', true, 302);
+return header(route('/admin/settings', true), true, 302);

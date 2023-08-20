@@ -36,13 +36,13 @@
                             <span class="badge bg-cm-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?>"><?php echo (is_null($user->status) || $user->status == 'off') ? 'Inativo' : 'Ativo' ?></span>
                         </td>
                         <td class="text-end text-nowrap">
-                            <a href="/admin/users/?method=edit&id=<?php echo $user->id ?>" title='Editar usuário <?php echo $user->name ?>' class='btn btn-sm btn-cm-primary text-cm-light fw-bold m-1'>
+                            <a href="<?php route("/admin/users/?method=edit&id={$user->id}") ?>" title='Editar usuário <?php echo $user->name ?>' class='btn btn-sm btn-cm-primary text-cm-light fw-bold m-1'>
                                 <i class='bi bi-pencil-square'></i>
                             </a>
 
                             <button
                                 data-button="delete"
-                                data-route='/admin/users/delete.php'
+                                data-route='<?php route('/admin/users/delete.php') ?>'
                                 data-delete-id='<?php echo $user->id ?>'
                                 data-message-delete='Esta ação irá remover o usuário "<?php echo $user->name ?>"!'
                                 type='button'
@@ -51,7 +51,7 @@
                             >
                                 <i class='bi bi-trash-fill'></i>
                             </button>
-                            <form action="/login/logout.php" method="POST" class="m-1 d-inline">
+                            <form action="<?php route('/login/logout.php') ?>" method="POST" class="m-1 d-inline">
                                 <input type="hidden" name="id" value="<?php echo $user->id ?>">
                                 <button
                                     type='submit'

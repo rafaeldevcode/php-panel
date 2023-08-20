@@ -15,7 +15,7 @@ if($requests->password !== $requests->repeat_password):
         'type' => 'cm-danger'
     ]);
     
-    return header('Location: /admin/users?method=create', true, 302);
+    return header(route('/admin/users?method=create', true), true, 302);
 else:
     $password = password_hash($requests->password, PASSWORD_BCRYPT);
     $status = isset($requests->status) ? $requests->status : 'off';
@@ -34,5 +34,5 @@ else:
         'type' => 'cm-success'
     ]);
 
-    return header('Location: /admin/users', true, 302);
+    return header(route('/admin/users', true), true, 302);
 endif;

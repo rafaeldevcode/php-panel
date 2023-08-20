@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel='stylesheet' href='<?php asset('assets/css/style.css?ver='.APP_VERSION) ?>' />
-    <link rel='stylesheet' href='<?php asset('libs/bootstrap/bootstrap-icons.css?ver='.APP_VERSION) ?>' />
+    <link rel='stylesheet' href='<?php asset('libs/bootstrap/bootstrap.min.css?ver='.APP_VERSION) ?>' />
+    <link rel='stylesheet' href='<?php asset('libs/bootstrap-icons/bootstrap-icons.min.css?ver='.APP_VERSION) ?>' />
     <!-- <link rel='stylesheet' href='<?php asset('assets/css/globals.css?ver='.APP_VERSION) ?>' /> -->
 
     <?php if(isset($plugins) && in_array('tinymce', $plugins)): ?>

@@ -1,4 +1,4 @@
-<form action="/admin/filtros" method="POST" class="card cm-card my-3">
+<form action="<?php route('/admin/filtros') ?>" method="POST" class="card cm-card my-3">
     <input type="hidden" name="status" value="on">
     <input type="hidden" name="form_safe" value="<?php echo $model ?>">
     <input type="hidden" name="start_date" value="">

@@ -34,12 +34,12 @@ if(is_null($post_slug) || $post_slug->id === $requests->id):
         'type'    => 'cm-success'
     ]);
     
-    return header('Location: /admin/posts', true, 302);
+    return header(route('/admin/posts', true), true, 302);
 else:
     session([
         'message' => 'A slug já está sendo utilizada, poo favor tente outra!',
         'type'    => 'cm-danger'
     ]);
     
-    return header("Location: /admin/posts?method=edit&id={$requests->id}", true, 302);
+    return header(route("/admin/posts?method=edit&id={$requests->id}", true), true, 302);
 endif;

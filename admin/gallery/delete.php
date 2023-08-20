@@ -24,4 +24,4 @@ session([
     'type' => 'cm-success'
 ]);
 
-return header('Location: /admin/gallery', true, 302);
+return header(route('/admin/gallery', true), true, 302);

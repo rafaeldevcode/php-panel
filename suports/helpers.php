@@ -6,7 +6,7 @@ require __DIR__.'/helpers/requests.php';
 require __DIR__.'/helpers/menus-admin.php';
 require __DIR__.'/helpers/routes.php';
 
-define('APP_VERSION', '1.3.1');
+!defined('APP_VERSION') && define('APP_VERSION', '1.4.0');
 
 if (! function_exists('asset')):
     /**
@@ -21,8 +21,6 @@ if (! function_exists('asset')):
         $host = $_SERVER['HTTP_HOST'];
         $project_path = env('PROJECT_PATH');
         $assets_path = env('ASSETS_PATH');
-        $project_path = !empty($project_path) ? "/{$project_path}" : '';
-        $assets_path = !empty($assets_path) ? "/{$assets_path}" : '';
 
         $url = "{$protocol}://{$host}{$project_path}{$assets_path}/{$path}";
 
@@ -70,6 +68,8 @@ if (!function_exists('path')):
      */
     function path(): string
     {
+        $project_path = env('PROJECT_PATH');
+
         if (($_SERVER['SERVER_NAME'] === 'localhost') ||
             ($_SERVER['SERVER_NAME'] === '127.0.0.1') ||
             ($_SERVER['SERVER_NAME'] === '0.0.0.0') ||
@@ -79,6 +79,8 @@ if (!function_exists('path')):
         else :
             $path = $_SERVER['REQUEST_URI'];
         endif;
+
+        $path = str_replace($project_path, '', $path);
 
         $path = explode('?', $path)[0];
 

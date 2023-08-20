@@ -17,7 +17,7 @@ foreach($requests->ids as $ID):
             'type' => 'cm-danger'
         ]);
     
-        return header('Location: /admin/users', true, 302);
+        return header(route('/admin/users', true), true, 302);
     endif;
 
     $user->find($ID)->delete();
@@ -28,4 +28,4 @@ session([
     'type' => 'cm-success'
 ]);
 
-return header('Location: /admin/users', true, 302);
+return header(route('/admin/users', true), true, 302);

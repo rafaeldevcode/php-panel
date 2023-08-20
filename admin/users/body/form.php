@@ -1,5 +1,5 @@
 <section class='p-3 bg-cm-light m-0 m-sm-3 rounded shadow'>
-    <form method="POST" action="<?php echo $action ?>">
+    <form method="POST" action="<?php route($action) ?>">
         <?php if(isset($user)): ?>
             <input type="hidden" name="id" value="<?php echo $user->id ?>">
         <?php endif ?>

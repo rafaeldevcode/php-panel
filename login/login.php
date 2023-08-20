@@ -22,7 +22,7 @@ if($login['status']):
         'user_avatar' => $login['user']->avatar
     ]);
 
-    return header('Location: /admin/dashboard', true, 302);
+    return header(route('/admin/dashboard', true), true, 302);
 else:
 
     session([
@@ -30,5 +30,5 @@ else:
         'type' => 'cm-danger'
     ]);
 
-    return header('Location: /login', true, 302);
+    return header(route('/login', true), true, 302);
 endif;

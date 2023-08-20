@@ -1,5 +1,5 @@
 <section class='p-3 bg-cm-light m-3 rounded shadow'>
-    <form method="POST" action="/admin/posts/update.php">
+    <form method="POST" action="<?php route($action) ?>">
         <?php if(isset($post)): ?>
             <input type="hidden" name="id" value="<?php echo $post->id ?>">
         <?php endif ?>

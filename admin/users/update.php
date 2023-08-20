@@ -18,7 +18,7 @@ if(!empty($requests->password)): // Verificar se o campo senha não esta vazio p
             'type' => 'cm-danger'
         ]);
 
-        return header("Location: /admin/users?method=edit&id={$requests->id}", true, 302);
+        return header(route("/admin/users?method=edit&id={$requests->id}", true), true, 302);
     endif;
 
     $user->find($requests->id)->update([
@@ -42,4 +42,4 @@ session([
     'type' => 'cm-success'
 ]);
 
-return header('Location: /admin/users', true, 302);
+return header(route('/admin/users', true), true, 302);

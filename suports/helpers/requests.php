@@ -57,7 +57,7 @@ if (!function_exists('autenticate')):
             return (isset($acc_token->token) && $acc_token->token == $token) ? true : false;
         endif;
 
-        return $redirect ? header('Location: /login', true, 302) : false;
+        return $redirect ? header(route('/login', true), true, 302) : false;
     }
 endif;
 
@@ -123,9 +123,10 @@ if (! function_exists('urlBase')):
      */
     function urlBase(): string
     {
+        $project_path = env('PROJECT_PATH');
         $protocol = ((isset($_SERVER['HTTPS'])) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
         $host = $_SERVER['HTTP_HOST'];
 
-        return "{$protocol}://{$host}";
+        return "{$protocol}://{$host}{$project_path}";
     }
 endif;
