@@ -1,31 +1,27 @@
 <?php
+    verifyMethod(500, 'POST');
 
-require __DIR__ .'/../../vendor/autoload.php';
-require __DIR__ . '/../../suports/helpers.php';
+    use Src\Models\User;
 
-use Src\Models\User;
+    $user = new User();
+    $requests = requests();
 
-verifyMethod(500, 'POST');
+    foreach($requests->ids as $ID):
+        if($ID == 1):
+            session([
+                'message' => 'A remoção de usuários foi interrompida, tentiva de remoção de um usuário do sistema!',
+                'type' => 'cm-danger'
+            ]);
+        
+            return header(route('/admin/users', true), true, 302);
+        endif;
 
-$user = new User();
-$requests = requests();
+        $user->find($ID)->delete();
+    endforeach;
 
-foreach($requests->ids as $ID):
-    if($ID == 1):
-        session([
-            'message' => 'A remoção de usuários foi interrompida, tentiva de remoção de um usuário do sistema!',
-            'type' => 'cm-danger'
-        ]);
-    
-        return header('Location: /admin/users', true, 302);
-    endif;
+    session([
+        'message' => 'Usuário(s) removido(s) com sucesso!',
+        'type' => 'cm-success'
+    ]);
 
-    $user->find($ID)->delete();
-endforeach;
-
-session([
-    'message' => 'Usuário(s) removido(s) com sucesso!',
-    'type' => 'cm-success'
-]);
-
-return header('Location: /admin/users', true, 302);
+    return header(route('/admin/users', true), true, 302);

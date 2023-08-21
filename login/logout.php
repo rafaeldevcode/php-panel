@@ -1,16 +1,11 @@
 <?php
+    require __DIR__ .'/../bootstrap/bootstrap.php';
 
-require __DIR__ .'/../vendor/autoload.php';
-require __DIR__ . '/../suports/helpers.php';
+    verifyMethod(500, 'POST');
+    autenticate();
+    
+    use Src\Models\User;
 
-use Src\Models\User;
-
-verifyMethod(500, 'POST');
-
-if(!isAuth()):
-
-    return header('Location: /login', true, 302);
-else:
     $user_id = isset($_POST['id']) ? $_POST['id'] : null;
     $redirection = '/login';
 
@@ -26,5 +21,4 @@ else:
         $redirection = '/admin/users';
     endif;
 
-    return header("Location: {$redirection}", true, 302);
-endif;
+    return header(route($redirection, true), true, 302);

@@ -1,11 +1,7 @@
 <?php 
-    require __DIR__ .'/../vendor/autoload.php';
-    require __DIR__ . '/../suports/helpers.php';
+    require __DIR__ .'/../bootstrap/bootstrap.php';
 
-    if(isAuth()):
-
-        return header('Location: /admin/dashboard', true, 302);
-    endif;
+    if(autenticate(false)) return header(route('/admin/dashboard', true), true, 302);
 ?>
 
 <!DOCTYPE html>
@@ -14,17 +10,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel='stylesheet' href='<?php asset('assets/css/style.css') ?>' />
-    <link rel='stylesheet' href='<?php asset('libs/bootstrap/bootstrap-icons.css') ?>' />
+    <link rel='stylesheet' href='<?php asset('libs/bootstrap/bootstrap.min.css') ?>' />
+    <link rel='stylesheet' href='<?php asset('libs/bootstrap-icons/bootstrap-icons.min.css') ?>' />
     <link rel='stylesheet' href='<?php asset('assets/css/globals.css') ?>' />
     <meta name='author' content='Rafael Vieira | github.com/rafaeldevcode' />
-    <link rel="shortcut icon" href="<?php asset('assets/images/favicon.svg') ?>" type="image/pnh">
+    <link rel="shortcut icon" href="<?php !is_null(SETTINGS) && !empty(SETTINGS['site_favicon']) ? asset('assets/images/'.SETTINGS['site_favicon'].'') : asset('assets/images/favicon.svg') ?>" alt="Logo <?php echo env('APP_NAME') ?>">
 
     <title><?php echo !is_null(SETTINGS) && !empty(SETTINGS['site_name']) ? SETTINGS['site_name'] : env('APP_NAME') ?> | Login</title>
 </head>
 <body>
 
-    <?php getHtml(__DIR__.'/../partials/message') ?>
+    <?php loadHtml(__DIR__.'/../resources/partials/message') ?>
 
     <main class="vh-100 vw-100 d-flex flex-nowrap">
         <div class='col-7 position-relative section-image-login'>
@@ -47,10 +43,10 @@
                 <img class='w-100' src="<?php !is_null(SETTINGS) && !empty(SETTINGS['site_logo_main']) ? asset('assets/images/'.SETTINGS['site_logo_main'].'') : asset('assets/images/logo_main.svg') ?>" alt="Logo <?php echo env('APP_NAME') ?>" />
             </div>
 
-            <form class='col-12 col-sm-6 col-md-7' method="POST" action="/login/login.php">
+            <form class='col-12 col-sm-6 col-md-7' method="POST" action="<?php route('/login/create') ?>">
                 <!-- Input email -->
                 <div class="my-4">
-                    <?php getHtml(__DIR__.'/../partials/form/input-default', [
+                    <?php loadHtml(__DIR__.'/../resources/partials/form/input-default', [
                         'icon' => 'bi bi-envelope-fill',
                         'name' => 'email',
                         'label' => 'Email',
@@ -61,7 +57,7 @@
 
                 <!-- Input pass -->
                 <div class="my-4">
-                    <?php getHtml(__DIR__.'/../partials/form/input-pass', [
+                    <?php loadHtml(__DIR__.'/../resources/partials/form/input-pass', [
                         'icon' => 'bi bi-key-fill',
                         'name' => 'password',
                         'label' => 'Senha',
@@ -70,7 +66,7 @@
                 </div>
 
                 <!-- Input button -->
-                <?php getHtml(__DIR__.'/../partials/form/input-button', [
+                <?php loadHtml(__DIR__.'/../resources/partials/form/input-button', [
                     'type' => 'submit',
                     'style' => 'color-main',
                     'title' => 'Realizar login',

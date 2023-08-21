@@ -1,38 +1,34 @@
 <?php
+    verifyMethod(500, 'POST');
 
-require __DIR__ .'/../../vendor/autoload.php';
-require __DIR__ . '/../../suports/helpers.php';
+    use Src\Models\User;
 
-use Src\Models\User;
+    $requests = requests();
 
-verifyMethod(500, 'POST');
+    if($requests->password !== $requests->repeat_password):
+        session([
+            'message' => 'As senhas não conferem, tente novamente!',
+            'type' => 'cm-danger'
+        ]);
+        
+        return header(route('/admin/users?method=create', true), true, 302);
+    else:
+        $password = password_hash($requests->password, PASSWORD_BCRYPT);
+        $status = isset($requests->status) ? $requests->status : 'off';
 
-$requests = requests();
+        $user = new User();
 
-if($requests->password !== $requests->repeat_password):
-    session([
-        'message' => 'As senhas não conferem, tente novamente!',
-        'type' => 'cm-danger'
-    ]);
-    
-    return header('Location: /admin/users?method=create', true, 302);
-else:
-    $password = password_hash($requests->password, PASSWORD_BCRYPT);
-    $status = isset($requests->status) ? $requests->status : 'off';
+        $user->create([
+            'name' => $requests->name,
+            'email' => $requests->email,
+            'password' => $password,
+            'status' => $status
+        ]);
 
-    $user = new User();
+        session([
+            'message' => 'Usuário adicionado com sucesso!',
+            'type' => 'cm-success'
+        ]);
 
-    $user->create([
-        'name' => $requests->name,
-        'email' => $requests->email,
-        'password' => $password,
-        'status' => $status
-    ]);
-
-    session([
-        'message' => 'Usuário adicionado com sucesso!',
-        'type' => 'cm-success'
-    ]);
-
-    return header('Location: /admin/users', true, 302);
-endif;
+        return header(route('/admin/users', true), true, 302);
+    endif;

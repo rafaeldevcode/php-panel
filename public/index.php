@@ -1,26 +1,24 @@
 <?php
-
-    require __DIR__ .'/vendor/autoload.php';
-    require __DIR__ . '/suports/helpers.php';
+    require __DIR__ .'/../bootstrap/bootstrap.php';
 
     $path = empty(path()) ? '/' : path();
     $routes = routes();
 
-    if(strpos($path, '/admin') !== false && !isAuth()):
+    if(strpos($path, '/admin') !== false && !autenticate()):
         if($path == '/login'):
 
-            getHtml(__DIR__.$path.'/index');
+            loadHtml(__DIR__.getFileName($path));
         else:
 
-            return header('Location: /login', true, 302);
+            return header(route('/login', true), true, 302);
         endif;
     else:
         if(in_array($path, $routes)):
 
-            getHtml(__DIR__.path().'/index');
+            loadHtml(__DIR__.'/..'.getFileName($path));
         else:
 
-            getHtml(__DIR__.'/errors/index', [
+            loadHtml(__DIR__.'/../resources/errors/index', [
                 'error' => 404,
                 'type' => 'danger',
                 'message' => 'Not Found',
