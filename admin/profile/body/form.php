@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <form method="POST" action="<?php route('/admin/profile/update.php') ?>">
+    <form method="POST" action="<?php route('/admin/profile/update') ?>">
         <input type="hidden" name="id" value="<?php echo $user->id ?>">
         <div class='row d-flex justify-content-between'>
             <div class='col-12 col-md-6'>

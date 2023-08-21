@@ -34,7 +34,7 @@
 
                             <button
                                 data-button="delete"
-                                data-route='<?php route('/admin/posts/delete.php') ?>'
+                                data-route='<?php route('/admin/posts/delete') ?>'
                                 data-delete-id='<?php echo $post->id ?>'
                                 data-message-delete='Esta ação irá remover o post "<?php echo $post->title ?>"!'
                                 type='button'

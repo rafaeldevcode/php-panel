@@ -1,7 +1,4 @@
 <?php
-    require __DIR__ .'/../../vendor/autoload.php';
-    require __DIR__ . '/../../suports/helpers.php';
-
     autenticate();
 
     use Src\Models\User;
@@ -24,13 +21,13 @@
         $text  = 'Editar';
         $body = __DIR__."/body/form";
 
-        $data = ['user' => $user->data, 'action' => '/admin/users/update.php'];
+        $data = ['user' => $user->data, 'action' => '/admin/users/update'];
     elseif($method == 'create'):
         $color = 'cm-primary';
         $text  = 'Adicionar';
         $body = __DIR__."/body/form";
 
-        $data = ['action' => '/admin/users/create.php'];
+        $data = ['action' => '/admin/users/create'];
     endif;
 
     loadHtml(__DIR__.'/../../resources/admin/layout', [
@@ -38,7 +35,7 @@
         'type' => $text,
         'icon' => 'bi bi-people-fill',
         'title' => 'Usuários',
-        'route_delete' => $method == 'read' ? '/admin/users/delete.php' : null,
+        'route_delete' => $method == 'read' ? '/admin/users/delete' : null,
         'route_add' => $method == 'create' ? null : '/admin/users?method=create',
         'route_search' => '/admin/users',
         'body' => $body,

@@ -46,7 +46,7 @@ class Gallery{
                         }
             
                         $.ajax({
-                            url: route('/api/gallery.php'),
+                            url: route('/api/gallery/create'),
                             type: 'POST',
                             data: formData,
                             processData: false,
@@ -79,7 +79,7 @@ class Gallery{
             const searchParam = search ? `&search=${search}` : '';
             
             $.ajax({
-                url: route(`/api/gallery.php?page=${page}&count=${count}${searchParam}`),
+                url: route(`/api/gallery?page=${page}&count=${count}${searchParam}`),
                 type: 'GET',
                 processData: false,
                 contentType: false,

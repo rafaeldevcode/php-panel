@@ -1,7 +1,7 @@
 <div class='modal fade' id='avatar' tabIndex='-1' aria-labelledby='avatar-label' aria-hidden='true'>
     <div class='modal-dialog modal-lg'>
         <div class='modal-content border border-color-main'>
-            <form action="<?php route('/admin/profile/update-avatar.php') ?>" method="POST">
+            <form action="<?php route('/admin/profile/update-avatar') ?>" method="POST">
                 <input type="hidden" name="id" value="<?php echo $user_id ?>">
                 <div class='modal-header bg-color-main'>
                     <h5 class='modal-title text-cm-light' id='avatar-label'>Escolha uma imagem</h5>

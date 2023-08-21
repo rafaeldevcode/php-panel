@@ -1,8 +1,4 @@
 <?php
-
-    require __DIR__ .'/../../vendor/autoload.php';
-    require __DIR__ . '/../../suports/helpers.php';
-
     autenticate();
 
     use Src\Models\Gallery;
@@ -28,13 +24,13 @@
         $text  = 'Editar';
         $body = __DIR__."/body/form";
 
-        $data = ['action' => '/admin/posts/update.php', 'post' => $post->data, 'images' => $post->images()->data];
+        $data = ['action' => '/admin/posts/update', 'post' => $post->data, 'images' => $post->images()->data];
     elseif($method == 'create'):
         $color = 'cm-primary';
         $text  = 'Adicionar';
         $body = __DIR__."/body/form";
 
-        $data = ['action' => '/admin/posts/create.php'];
+        $data = ['action' => '/admin/posts/create'];
     endif;
 
     loadHtml(__DIR__.'/../../resources/admin/layout', [
@@ -42,7 +38,7 @@
         'type'         => $text,
         'icon'         => 'bi bi-pin-angle-fill',
         'title'        => 'Posts',
-        'route_delete' => $method == 'read' ? '/admin/posts/delete.php' : null,
+        'route_delete' => $method == 'read' ? '/admin/posts/delete' : null,
         'route_add'    => $method == 'create' ? null : '/admin/posts?method=create',
         'route_search' => '/admin/posts',
         'body' => $body,

@@ -42,7 +42,7 @@
 
                             <button
                                 data-button="delete"
-                                data-route='<?php route('/admin/users/delete.php') ?>'
+                                data-route='<?php route('/admin/users/delete') ?>'
                                 data-delete-id='<?php echo $user->id ?>'
                                 data-message-delete='Esta ação irá remover o usuário "<?php echo $user->name ?>"!'
                                 type='button'
@@ -51,7 +51,7 @@
                             >
                                 <i class='bi bi-trash-fill'></i>
                             </button>
-                            <form action="<?php route('/login/logout.php') ?>" method="POST" class="m-1 d-inline">
+                            <form action="<?php route('/login/logout') ?>" method="POST" class="m-1 d-inline">
                                 <input type="hidden" name="id" value="<?php echo $user->id ?>">
                                 <button
                                     type='submit'

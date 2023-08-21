@@ -1,26 +1,24 @@
 <?php
+    require __DIR__ .'/../bootstrap/bootstrap.php';
 
-require __DIR__ .'/../vendor/autoload.php';
-require __DIR__ . '/../suports/helpers.php';
+    verifyMethod(500, 'POST');
+    autenticate();
+    
+    use Src\Models\User;
 
-autenticate();
-verifyMethod(500, 'POST');
+    $user_id = isset($_POST['id']) ? $_POST['id'] : null;
+    $redirection = '/login';
 
-use Src\Models\User;
+    $user = new User();
+    $user->logout($user_id);
 
-$user_id = isset($_POST['id']) ? $_POST['id'] : null;
-$redirection = '/login';
+    if(isset($user_id)):
+        session([
+            'message' => 'Logout realizado com sucesso!',
+            'type' => 'cm-success'
+        ]);
 
-$user = new User();
-$user->logout($user_id);
+        $redirection = '/admin/users';
+    endif;
 
-if(isset($user_id)):
-    session([
-        'message' => 'Logout realizado com sucesso!',
-        'type' => 'cm-success'
-    ]);
-
-    $redirection = '/admin/users';
-endif;
-
-return header(route($redirection, true), true, 302);
+    return header(route($redirection, true), true, 302);

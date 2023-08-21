@@ -1,27 +1,23 @@
 <?php
+    verifyMethod(500, 'POST');
 
-require __DIR__ .'/../../vendor/autoload.php';
-require __DIR__ . '/../../suports/helpers.php';
+    use Src\Models\Gallery;
 
-use Src\Models\Gallery;
+    $gallery = new Gallery();
 
-verifyMethod(500, 'POST');
+    foreach(requests()->ids as $id):
+        $image = $gallery->find($id);
 
-$gallery = new Gallery();
+        isset($image->data) && deleteDir(__DIR__."/../../public/assets/images/{$image->data->file}");
 
-foreach(requests()->ids as $id):
-    $image = $gallery->find($id);
+        $image->posts()->detach($id);
 
-    isset($image->data) && deleteDir(__DIR__."/../../public/assets/images/{$image->data->file}");
+        $image->delete();
+    endforeach;
 
-    $image->posts()->detach($id);
+    session([
+        'message' => 'Image(s) removida(s) com sucesso!',
+        'type' => 'cm-success'
+    ]);
 
-    $image->delete();
-endforeach;
-
-session([
-    'message' => 'Image(s) removida(s) com sucesso!',
-    'type' => 'cm-success'
-]);
-
-return header(route('/admin/gallery', true), true, 302);
+    return header(route('/admin/gallery', true), true, 302);

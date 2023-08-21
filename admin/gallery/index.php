@@ -1,10 +1,4 @@
 <?php
-
-    require __DIR__ .'/../../vendor/autoload.php';
-    require __DIR__ . '/../../suports/helpers.php';
-
-    autenticate();
-
     use Src\Models\Gallery;
 
     $gallery = new Gallery();
@@ -18,7 +12,7 @@
         'type' => 'Visualizar',
         'icon' => 'bi bi-images',
         'title' => 'Galeria',
-        'route_delete' => '/admin/gallery/delete.php',
+        'route_delete' => '/admin/gallery/delete',
         'route_search' => '/admin/gallery',
         'body' => __DIR__."/body/read",
         'data' => ['images' => $images, 'search' => $search]

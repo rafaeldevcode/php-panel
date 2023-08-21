@@ -105,7 +105,7 @@ if (!function_exists('verifyMethod')):
         endswitch;
 
         if(!isset($method) || (isset($method) && $_SERVER['REQUEST_METHOD'] !== $method)):
-            loadHtml(__DIR__.'/../resources/errors/index', [
+            loadHtml(__DIR__.'/../../resources/errors/index', [
                 'error' => $error,
                 'type' => $type,
                 'message' => $message,

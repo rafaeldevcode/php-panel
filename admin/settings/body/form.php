@@ -1,5 +1,5 @@
 <section class='p-3 bg-cm-light m-0 m-sm-3 rounded shadow'>
-    <form method="POST" action="<?php route('/admin/settings/update.php') ?>" enctype="multipart/form-data">
+    <form method="POST" action="<?php route('/admin/settings/update') ?>" enctype="multipart/form-data">
         <div class='row d-flex justify-content-between'>
             <div class='col-12 col-md-6'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [

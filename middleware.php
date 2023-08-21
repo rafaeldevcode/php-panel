@@ -1,5 +1,4 @@
 <?php
-
     require __DIR__ .'/bootstrap/bootstrap.php';
 
     $path = empty(path()) ? '/' : path();
@@ -8,7 +7,7 @@
     if(strpos($path, '/admin') !== false && !autenticate()):
         if($path == '/login'):
 
-            loadHtml(__DIR__.$path.'/index');
+            loadHtml(__DIR__.getFileName($path));
         else:
 
             return header(route('/login', true), true, 302);
@@ -16,7 +15,7 @@
     else:
         if(in_array($path, $routes)):
 
-            loadHtml(__DIR__.path().'/index');
+            loadHtml(__DIR__.getFileName($path));
         else:
 
             loadHtml(__DIR__.'/resources/errors/index', [
