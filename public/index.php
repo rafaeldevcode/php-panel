@@ -1,5 +1,5 @@
 <?php
-    require __DIR__ .'/bootstrap/bootstrap.php';
+    require __DIR__ .'/../bootstrap/bootstrap.php';
 
     $path = empty(path()) ? '/' : path();
     $routes = routes();
@@ -15,10 +15,10 @@
     else:
         if(in_array($path, $routes)):
 
-            loadHtml(__DIR__.getFileName($path));
+            loadHtml(__DIR__.'/..'.getFileName($path));
         else:
 
-            loadHtml(__DIR__.'/resources/errors/index', [
+            loadHtml(__DIR__.'/../resources/errors/index', [
                 'error' => 404,
                 'type' => 'danger',
                 'message' => 'Not Found',

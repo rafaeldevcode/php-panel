@@ -1,4 +1,4 @@
 # Redirects for middleware.php
 RewriteEngine on
-RewriteCond $1 !^(.*)(middleware\.php|logout\.php|login\.php|post\.php|update\.php|create\.php|delete\.php|register\.php|gallery\.php|\.css|\.js|\.png|\.gif|\.jpg|\.jpeg|\.svg|\.webp|\.map|\.TTF|\.woff|\.woff2|\.ttf)
-RewriteRule ^(.*)$ /middleware.php/$1 [L]
+RewriteCond $1 !^(.*)(public\/index\.php|\.css|\.js|\.png|\.gif|\.jpg|\.jpeg|\.svg|\.webp|\.map|\.TTF|\.woff|\.woff2|\.ttf)
+RewriteRule ^(.*)$ /public/index.php/$1 [L]
