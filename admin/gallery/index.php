@@ -1,57 +1,37 @@
 <?php
+    use Src\Models\Gallery;
 
-require __DIR__ .'/../../vendor/autoload.php';
-require __DIR__ . '/../../suports/helpers.php';
+    $gallery = new Gallery();
 
-if(!isAuth()):
-    return header('Location: /login', true, 302);
-endif;
+    $requests = requests();
+    $search = isset($requests->search) ? $requests->search : null;
+    $images = !isset($search) ? $gallery->paginate(30) : $gallery->where('name', 'LIKE', "%{$search}%")->paginate(30);
 
-use Src\Models\Gallery;
+    loadHtml(__DIR__.'/../../resources/admin/layout', [
+        'color' => 'cm-secondary',
+        'type' => 'Visualizar',
+        'icon' => 'bi bi-images',
+        'title' => 'Galeria',
+        'route_delete' => '/admin/gallery/delete',
+        'route_search' => '/admin/gallery',
+        'body' => __DIR__."/body/read",
+        'data' => ['images' => $images, 'search' => $search]
+    ]);
 
-$gallery = new Gallery();
+    function loadInFooter(): void
+    {
+        loadHtml(__DIR__.'/../../resources/partials/modal-delete');
+        loadHtml(__DIR__.'/../../resources/partials/gallery-preview') ?>
 
-$requests = requests();
-$search = isset($requests->search) ? $requests->search : null;
-$images = !isset($search) ? $gallery->paginate(30) : $gallery->where('name', 'LIKE', "%{$search}%")->paginate(30);
+        <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
 
-?>
-
-<?php getHtml(__DIR__.'/../../partials/header-main', ['title' => 'Galeria']) ?>
-
-    <section class='d-flex flex-nowrap justify-content-between w-100'>
-        <?php getHtml(__DIR__.'/../../partials/sidebar') ?>
-
-        <section class='w-100'>
-            <?php getHtml(__DIR__.'/../../partials/header') ?>
-
-            <?php getHtml(__DIR__.'/../../partials/breadcrumps', [
-                'color' => 'cm-secondary',
-                'type' => 'Visualizar',
-                'icon' => 'bi bi-images',
-                'title' => 'Galeria',
-                'route_delete' => '/admin/gallery/delete.php',
-                'route_search' => '/admin/gallery'
-            ]) ?>
-
-            <?php getHtml(__DIR__."/body/read", ['images' => $images, 'search' => $search]) ?>
-        </section>
-    </section>
-
-    <?php getHtml(__DIR__.'/../../partials/footer') ?>
-    <?php getHtml(__DIR__.'/../../partials/modal-delete') ?>
-    <?php getHtml(__DIR__.'/../../partials/gallery-preview') ?>
-
-    <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
-
-    <script type="text/javascript">
-        const gallery = new Gallery("images[]", true);
-      
-        gallery.changeInputType('checkbox');
-        gallery.dbClickPreview();
-        gallery.next($('#image-preview'));
-        gallery.previous($('#image-preview'));
-        gallery.uploads()
-    </script>
-</body>
-</html>
+        <script type="text/javascript">
+            const gallery = new Gallery("images[]", true);
+        
+            gallery.changeInputType('checkbox');
+            gallery.dbClickPreview();
+            gallery.next($('#image-preview'));
+            gallery.previous($('#image-preview'));
+            gallery.uploads()
+        </script>
+    <?php }

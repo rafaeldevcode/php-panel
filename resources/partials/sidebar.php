@@ -1,5 +1,5 @@
 <aside class='bg-cm-secondary sidebar'>
-    <?php getHtml(__DIR__.'/profile') ?>
+    <?php loadHtml(__DIR__.'/profile') ?>
 
     <nav>
         <ul class='m-0 p-2'>
@@ -10,7 +10,7 @@
                     <?php endif; ?>
 
                     <div class='nav-icon text-color-main text-center w-100'>
-                        <a <?php echo !isset( $menu['submenus'] ) ? 'href="'.$menu['path'].'"' : '' ?> title="<?php echo $menu['title'] ?>" class='text-decoration-none d-block fw-bold text-cm-light'>
+                        <a href="<?php echo !isset( $menu['submenus'] ) ? route($menu['path']) : '' ?>" title="<?php echo $menu['title'] ?>" class='text-decoration-none d-block fw-bold text-cm-light'>
                             <div class='d-flex align-items-center w-100'>
                                 <i class='<?php echo $menu['icon'] ?> fs-5 iconManu'></i>
                                 <div class='ms-2 hiddeItem dNone' data-item-active='false'>
@@ -24,7 +24,7 @@
                         <ul class="m-0 p-1 position-absolute bottom-0 end-0 submenu bg-cm-secondary rounded list-unstyled list-unstyled">
                             <?php foreach($menu['submenus'] as $submenu): ?>
                                 <li class="submenu_li rounded">
-                                    <a class="text-cm-light fw-bold text-decoration-none d-block rounded" href="<?php echo $submenu['path'] ?>" title="<?php echo $submenu['title'] ?>">
+                                    <a class="text-cm-light fw-bold text-decoration-none d-block rounded" href="<?php route($submenu['path']) ?>" title="<?php echo $submenu['title'] ?>">
                                         <?php echo $submenu['title'] ?>
                                     </a>
                                 </li>
@@ -36,7 +36,7 @@
 
             <li class='d-flex flex-row align-items-center rounded item-nav-sidbar-logout' data-item-menu='inactive'>
                 <div class='nav-icon text-color-main text-center w-100'>
-                    <form action="/login/logout.php" class='d-block fw-bold' method="POST">
+                    <form action="<?php route('/login/logout') ?>" class='d-block fw-bold' method="POST">
                         <button type="submit" title="Fazer logout" class='d-flex align-items-center w-100 text-cm-light'>
                             <i class='bi bi-box-arrow-right fs-5 iconManu'></i>
                             <div class='ms-2 hiddeItem dNone' data-item-active='false'>

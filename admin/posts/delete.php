@@ -1,22 +1,18 @@
 <?php
+    verifyMethod(500, 'POST');
+    
+    use Src\Models\Posts;
 
-require __DIR__ .'/../../vendor/autoload.php';
-require __DIR__ . '/../../suports/helpers.php';
+    $post = new Posts;
+    $requests = requests();
 
-use Src\Models\Posts;
+    foreach($requests->ids as $ID):
+        $post->find($ID)->delete();
+    endforeach;
 
-verifyMethod(500, 'POST');
+    session([
+        'message' => 'Post(s) removido(s) com sucesso!',
+        'type'    => 'cm-success'
+    ]);
 
-$post = new Posts;
-$requests = requests();
-
-foreach($requests->ids as $ID):
-    $post->find($ID)->delete();
-endforeach;
-
-session([
-    'message' => 'Post(s) removido(s) com sucesso!',
-    'type'    => 'cm-success'
-]);
-
-return header('Location: /admin/posts', true, 302);
+    return header(route('/admin/posts', true), true, 302);

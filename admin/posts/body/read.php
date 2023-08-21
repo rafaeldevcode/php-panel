@@ -28,13 +28,13 @@
                             <span class="badge bg-cm-<?php echo (is_null($post->status) || $post->status == 'off') ? 'danger' : 'primary' ?>"><?php echo (is_null($post->status) || $post->status == 'off') ? 'Inativo' : 'Ativo' ?></span>
                         </td>
                         <td class="text-end text-nowrap">
-                            <a href="/admin/posts/?method=edit&id=<?php echo $post->id ?>" title='Editar post <?php echo $post->title ?>' class='btn btn-sm btn-cm-primary text-cm-light fw-bold m-1'>
+                            <a href="<?php route("/admin/posts/?method=edit&id={$post->id}") ?>" title='Editar post <?php echo $post->title ?>' class='btn btn-sm btn-cm-primary text-cm-light fw-bold m-1'>
                                 <i class='bi bi-pencil-square'></i>
                             </a>
 
                             <button
                                 data-button="delete"
-                                data-route='/admin/posts/delete.php'
+                                data-route='<?php route('/admin/posts/delete') ?>'
                                 data-delete-id='<?php echo $post->id ?>'
                                 data-message-delete='Esta ação irá remover o post "<?php echo $post->title ?>"!'
                                 type='button'
@@ -57,7 +57,7 @@
     </section>
 
     <?php if(isset($posts->page)):
-        getHtml(__DIR__.'/../../../partials/pagination', [
+        loadHtml(__DIR__.'/../../../resources/partials/pagination', [
             'page'   => $posts->page,
             'count'  => $posts->count,
             'next'   => $posts->next,
@@ -65,5 +65,5 @@
             'search' => $posts->search
         ]);
     endif; ?>
-    <?php getHtml(__DIR__.'/../../../partials/modal-delete') ?>
+    <?php loadHtml(__DIR__.'/../../../resources/partials/modal-delete') ?>
 </section>

@@ -6,7 +6,7 @@
                     <li class='me-2'><span class='badge bg-<?php echo $color ?> rounded-fill'><?php echo $type ?></span></li>
                     <?php foreach(normalizeBreadcrumps() as $breadcrump): ?>
                         <li class='mx-2'>
-                            <a class='text-cm-secondary text-decoration-none badge bg-cm-grey rounded-pill px-3' href='<?php echo $breadcrump['path'] ?>'><?php echo $breadcrump['title'] ?></a>
+                            <a class='text-cm-secondary text-decoration-none badge bg-cm-grey rounded-pill px-3' href='<?php route($breadcrump['path']) ?>'><?php echo $breadcrump['title'] ?></a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -27,18 +27,18 @@
             <div class='d-flex justify-content-center'>
                 <div class="mx-1">
                     <?php if(isset($route_search)): ?>
-                        <?php getHtml(__DIR__.'/form/input-search', ['route' => $route_search]) ?>
+                        <?php loadHtml(__DIR__.'/form/input-search', ['route' => $route_search]) ?>
                     <?php endif; ?>
                 </div>
 
                 <?php if(isset($route_delete)): ?>
-                    <button data-button="delete-several" id='deleteAll' type='button' title='Remover vários(a) <?php echo $title ?>' class='btn btn-sm btn-cm-danger mx-1 disabled text-cm-light' data-route='<?php echo $route_delete ?>'>
+                    <button data-button="delete-several" id='deleteAll' type='button' title='Remover vários(a) <?php echo $title ?>' class='btn btn-sm btn-cm-danger mx-1 disabled text-cm-light' data-route='<?php route($route_delete) ?>'>
                         Remover
                     </button>
                 <?php endif; ?>
 
                 <?php if(isset($route_add)): ?>
-                    <a href='<?php echo $route_add ?>' title='Adicionar <?php echo $title ?>' class='d-flex align-items-center btn btn-sm btn-cm-primary mx-1 text-cm-light'>Adicionar</a>
+                    <a href='<?php route($route_add) ?>' title='Adicionar <?php echo $title ?>' class='d-flex align-items-center btn btn-sm btn-cm-primary mx-1 text-cm-light'>Adicionar</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -46,7 +46,7 @@
 
     <?php if(isset($sub_options)): ?>
         <div class="bg-cm-secondary">
-            <?php getHtml($sub_options) ?>
+            <?php loadHtml($sub_options) ?>
         </div>
     <?php endif; ?>
 </section>

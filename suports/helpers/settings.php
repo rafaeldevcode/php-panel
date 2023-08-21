@@ -105,7 +105,7 @@ if (!function_exists('getSiteSettings')) :
             $gallery = new Gallery();
             $settings = $settings->first();
 
-            $settings->favicon = isset($settings->site_favicon) ? $gallery->find($settings->site_favicon)->data->file : null;
+            $settings->site_favicon = isset($settings->site_favicon) ? $gallery->find($settings->site_favicon)->data->file : null;
             $settings->site_logo_main = isset($settings->site_logo_main) ? $gallery->find($settings->site_logo_main)->data->file : null;
             $settings->site_logo_secondary = isset($settings->site_logo_secondary) ? $gallery->find($settings->site_logo_secondary)->data->file : null;
             $settings->site_bg_login = isset($settings->site_bg_login) ? $gallery->find($settings->site_bg_login)->data->file : null;

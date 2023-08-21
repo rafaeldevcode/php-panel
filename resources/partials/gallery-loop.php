@@ -1,5 +1,5 @@
 <div>
-    <?php getHtml(__DIR__.'/preloader', ['position' => 'absolute']) ?>
+    <?php loadHtml(__DIR__.'/preloader', ['position' => 'absolute']) ?>
 
     <div class="d-flex flex-wrap justify-content-center" id="gallery">
         <?php foreach ($images->data as $image): ?>
@@ -41,7 +41,7 @@
             <span class="text-cm-secondary">Máximo de 20 arquivos</span>
 
             <form class="d-flex flex-row justify-content-center justify-content-sm-end align-items-end">
-                <input type="file" id="input-upload" hidden accept=".svg, .jpg, jpeg, .png, webp" multiple>
+                <input type="file" id="input-upload" hidden accept=".svg, .jpg, .jpeg, .png, .webp" multiple>
 
                 <?php if(isset($close) && $close == true): ?>
                     <button title='Fechar modal' type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fechar</button>

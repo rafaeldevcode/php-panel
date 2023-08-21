@@ -35,13 +35,14 @@ if (!function_exists('session')):
     }
 endif;
 
-if (!function_exists('isAuth')):
+if (!function_exists('autenticate')):
     /**
-     * @since 1.3.0
+     * @since 1.4.0
      * 
+     * @param ?bool $redirect
      * @return bool
      */
-    function isAuth(): bool
+    function autenticate(?bool $redirect = null): bool
     {
         if(!isset($_SESSION)):
             session_start();
@@ -56,7 +57,7 @@ if (!function_exists('isAuth')):
             return (isset($acc_token->token) && $acc_token->token == $token) ? true : false;
         endif;
 
-        return false;
+        return $redirect ? header(route('/login', true), true, 302) : false;
     }
 endif;
 
@@ -104,7 +105,7 @@ if (!function_exists('verifyMethod')):
         endswitch;
 
         if(!isset($method) || (isset($method) && $_SERVER['REQUEST_METHOD'] !== $method)):
-            getHtml(__DIR__.'/../errors/index', [
+            loadHtml(__DIR__.'/../../resources/errors/index', [
                 'error' => $error,
                 'type' => $type,
                 'message' => $message,
@@ -122,9 +123,10 @@ if (! function_exists('urlBase')):
      */
     function urlBase(): string
     {
+        $project_path = env('PROJECT_PATH');
         $protocol = ((isset($_SERVER['HTTPS'])) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
         $host = $_SERVER['HTTP_HOST'];
 
-        return "{$protocol}://{$host}";
+        return "{$protocol}://{$host}{$project_path}";
     }
 endif;
