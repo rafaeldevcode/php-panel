@@ -1,4 +1,4 @@
-# Redirects for middleware.php
+# Redirects for index in public
 RewriteEngine on
-RewriteCond $1 !^(.*)(public\/index\.php|\.css|\.js|\.png|\.gif|\.jpg|\.jpeg|\.svg|\.webp|\.map|\.TTF|\.woff|\.woff2|\.ttf)
+RewriteCond $1 !^(.*)(public\/index\.php|\.css|\.js|\.png|\.gif|\.jpg|\.jpeg|\.svg|\.webp|\.map|\.TTF|\.woff2?|\.ttf)
 RewriteRule ^(.*)$ /public/index.php/$1 [L]
