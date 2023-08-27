@@ -15,7 +15,7 @@
         'data' => ['settings' => $settings],
     ]);
 
-    function loadInFooter()
+    function loadInFooter(): void
     {
         loadHtml(__DIR__.'/../../resources/partials/gallery') ?>
 

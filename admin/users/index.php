@@ -41,3 +41,8 @@
         'body' => $body,
         'data' => $data,
     ]);
+
+    function loadInFooter(): void
+    {
+        loadHtml(__DIR__.'/../../resources/partials/modal-delete');
+    }

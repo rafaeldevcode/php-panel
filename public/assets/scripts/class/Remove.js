@@ -13,12 +13,14 @@ class Remove{
 
     /**
      * Start deletion process
-     * 
+     *
      * @since 1.0.0
-     * 
+     *
      * @returns {void}
      */
     init(){
+        this.disableEnableButton();
+
         this.buttons.forEach((button) => {
             $(button).click((event) => {
                 this.removeItem(event);
@@ -40,10 +42,10 @@ class Remove{
 
     /**
      * Open modal to confirm item deletion
-     * 
+     *
      * @since 1.0.0
-     * 
-     * @param {object} event 
+     *
+     * @param {object} event
      * @returns {void}
      */
     removeItem(event){
@@ -68,7 +70,7 @@ class Remove{
         formSubmit.attr('method', 'POST');
         formSubmit.append(input);
 
-        $('#modalDeleteItem').modal('show');
+        Modal.open('delete');
 
         $('[data-submit="button"]').click(() => {
             formSubmit.submit();
@@ -77,10 +79,10 @@ class Remove{
 
     /**
      * Open modal to confirm the deletion of several items
-     * 
+     *
      * @since 1.0.0
-     * 
-     * @param {object} event 
+     *
+     * @param {object} event
      * @returns {void}
      */
     removeAllItems(event){
@@ -91,7 +93,7 @@ class Remove{
         const itemsDelete = document.querySelectorAll('[data-button="delete-enable"]');
         const message = $(itemsDelete[0]).attr('data-message-delete');
         const formSubmit = $('[data-submit="delete"]');
-    
+
         this.removeInputs(formSubmit.find('input'));
 
         formSubmit.attr('action', route);
@@ -112,7 +114,7 @@ class Remove{
         });
 
         modalLabel.text(message);
-        $('#modalDeleteItem').modal('show');
+        Modal.open('delete');
 
         $('[data-submit="button"]').click(() => {
             formSubmit.submit();
@@ -121,76 +123,78 @@ class Remove{
 
     /**
      * Select several items
-     * 
+     *
      * @param {object}
      * @returns {void}
      */
     selectSeveral(event){
         this.disableEnableButton();
-    
+
         const input = event.target;
         const inputs = document.querySelectorAll('[data-button="delete-enable"]');
         const btnDeleteAll = $('#deleteAll');
-    
+
         if(input.checked){
             inputs.forEach((input)=>{
                 input.checked = true;
             });
-    
-            btnDeleteAll.removeClass('disabled');
+
+            btnDeleteAll.attr('disabled', false);
         }else{
             inputs.forEach((input)=>{
                 input.checked = false;
             });
-    
-            btnDeleteAll.addClass('disabled');
+
+            btnDeleteAll.attr('disabled', true);
         }
     }
 
     /**
      * Disable or enable delete button
-     * 
+     *
      * @since 1.0.0
-     * 
+     *
      * @returns {void}
      */
     disableEnableButton(){
         const inputs = document.querySelectorAll('[data-button="delete-enable"]');
         const btnDeleteAll = $('#deleteAll');
         const checkeds = [];
-    
+
         inputs.forEach((input)=>{
             checkeds.push(input.checked);
         })
-    
+
         if(this.inArray(true, checkeds)){
-            btnDeleteAll.removeClass('disabled');
+            btnDeleteAll.attr('disabled', false);
         }else{
-            btnDeleteAll.addClass('disabled');
+            btnDeleteAll.attr('disabled', true);
         };
     }
 
     /**
      * Remove inputs from modal that has already been closed
-     * 
+     *
      * @since 1.0.0
-     * 
-     * @param {object} inputs 
+     *
+     * @param {object} inputs
      * @returns {void}
      */
     removeInputs(inputs){
         for (let i = 0; i < inputs.length; i++) {
-            inputs[i].remove();
+            if($(inputs[i]).attr('name') !== '_token'){
+                inputs[i].remove();
+            }
         }
     }
 
     /**
      * Check if an item exists in an array
-     * 
+     *
      * @since 1.0.0
-     * 
-     * @param {string} value 
-     * @param {array} array 
+     *
+     * @param {string} value
+     * @param {array} array
      * @returns {boolean}
      */
     inArray(value, array) {

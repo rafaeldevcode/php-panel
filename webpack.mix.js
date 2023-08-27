@@ -5,7 +5,7 @@ Mix
     .sass('public/libs/sass/globals.sass', 'public/assets/css/globals.css')
 
     .css('node_modules/bootstrap-icons/font/bootstrap-icons.min.css', 'public/libs/bootstrap-icons/bootstrap-icons.min.css')
-    .copyDirectory('node_modules/bootstrap-icons/font/fonts', '/public/fonts/vendor/bootstrap-icons')
+    .copyDirectory('node_modules/bootstrap-icons/font/fonts', 'public/fonts/vendor/bootstrap-icons')
 
     .scripts('node_modules/jquery/dist/jquery.min.js', 'public/libs/jquery/jquery.js')
     .scripts('node_modules/jquery-mask-plugin/dist/jquery.mask.min.js', 'public/libs/jquery/jquery.mask.min.js')

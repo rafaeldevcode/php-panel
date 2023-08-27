@@ -27,6 +27,9 @@ input[type=number]
    -moz-appearance: textfield
    appearance: textfield
 
+[disabled]
+    opacity: 0.5
+
 body
     margin: 0 !important
 
@@ -209,9 +212,10 @@ div[data-message="false"]
 .item-nav-sidbar
     transition: all .4s
     cursor: pointer
+    border: 1px solid transparent
 
     &:hover
-        background: $color-main
+        border: 1px solid $color-main
 
         .submenu
             display: block
@@ -432,7 +436,7 @@ input[type="checkbox"]
         height: 150px
         object-fit: contain
     
-.galery-image-preview
+.gallery-image-preview
     max-width: 100%
     max-height: 500px
     object-fit: contain
@@ -446,6 +450,25 @@ input[type="checkbox"]
 
     &-image
         width: 100px
+
+// Popup animation
+[data-modal]
+    background: #00000000
+
+    [data-modal-body]
+        transform: scale(0)
+
+[data-modal-content="true"]
+    animation: openPopupBackgroud .6s linear forwards
+
+    [data-modal-body]
+        animation: openPopupScale .3s .6s ease-in-out forwards
+
+[data-modal-content="false"]
+    animation: openPopupBackgroud .6s .3s linear reverse
+
+    [data-modal-body]
+        animation: openPopupScale .3s ease-in-out reverse
 
 @import  ./_mediaqueries
 @import ./_keyframes

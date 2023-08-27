@@ -1,35 +1,36 @@
-<div class='modal fade' id='avatar' tabIndex='-1' aria-labelledby='avatar-label' aria-hidden='true'>
-    <div class='modal-dialog modal-lg'>
-        <div class='modal-content border border-color-main'>
-            <form action="<?php route('/admin/profile/update-avatar') ?>" method="POST">
-                <input type="hidden" name="id" value="<?php echo $user_id ?>">
-                <div class='modal-header bg-color-main'>
-                    <h5 class='modal-title text-cm-light' id='avatar-label'>Escolha uma imagem</h5>
-                    <button title='Fechar modal' type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Fechar'></button>
-                </div>
+<div data-modal="avatar" class="z-[99999] fixed top-0 left-0 w-full h-full items-center justify-center hidden z-50">
+    <div class='bg-white max-w-[800px] border border-color-main rounded'>
+        <form action="<?php route('/admin/profile/update-avatar') ?>" method="POST">
+            <input type="hidden" name="id" value="<?php echo $user_id ?>">
+            <div class='modal-header bg-color-main relative'>
+                <button data-modal-close="popup" type="button" title="Fechar modal" class="absolute top-0 right-2 text-white w-[30px] opacity-50">
+                    <i class="bi bi-x text-2xl"></i>
+                </button>
 
-                <div class='modal-body'>
-                    <div class='d-flex flex-wrap justify-content-evenly m-0'>
-                        <?php foreach (getAvatars() as $indice => $image): ?>
-                            <div class='m-2'>
-                            <input data-checked="add-style" class='d-none' type='radio' name='avatar' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo $image['src'] == $avatar ? 'checked' : '' ?>>
-                                <label for='<?php echo $indice ?>' class='form-check-label rounded-circle label-image-profile'>
-                                    <img class="w-100 rounded-circle" src="<?php asset("/assets/images/users/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
-                                </label>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
+                <h2 class="bg-color-main font-bold text-white px-2 py-4 rounded-t text-gray-900" id="modalDeleteItemLabel">Escolha uma imagem</h2>
+            </div>
 
-                <div class="modal-footer p-2">
-                    <?php loadHtml(__DIR__.'/form/input-button', [
-                        'type' => 'submit',
-                        'style' => 'color-main',
-                        'title' => 'Savar usuário',
-                        'value' => 'Salvar'
-                    ]) ?>
+            <div>
+                <div class='flex flex-wrap justify-evenly m-0'>
+                    <?php foreach (getAvatars() as $indice => $image): ?>
+                        <div class='m-2'>
+                            <input data-checked="add-style" hidden type='radio' name='avatar' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo $image['src'] == $avatar ? 'checked' : '' ?>>
+                            <label for='<?php echo $indice ?>' class='rounded-full label-image-profile block'>
+                                <img class="w-full rounded-full" src="<?php asset("/assets/images/users/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="flex justify-end p-2">
+                <?php loadHtml(__DIR__.'/form/input-button', [
+                    'type' => 'submit',
+                    'style' => 'color-main',
+                    'title' => 'Savar usuário',
+                    'value' => 'Salvar'
+                ]) ?>
+            </div>
+        </form>
     </div>
 </div>

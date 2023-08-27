@@ -1,34 +1,34 @@
-<div class='modal fade' id='modalGalleryPreview' tabIndex='-1' aria-labelledby='modalGalleryPreviewLabel' aria-hidden='true'>
-    <div class='modal-dialog modal-fullscreen'>
-        <div class='position-relative modal-content border border-color-main'>
-            <div class='modal-header bg-color-main'>
-                <h5 class='modal-title text-cm-light' id='modalGalleryPreviewLabel'>Visualizar imagens</h5>
+<div data-modal="preview" class="z-[99999] fixed top-0 left-0 w-screen max-w-[none] h-full items-center justify-center hidden z-50">
+    <div class="flex justify-between flex-col bg-cm-light rounded p-8 relative w-full h-[100%]" data-modal-body="popup">
+        <div class='bg-color-main rounded-t p-6'>
+            <h5 class='modal-title text-white font-bold' id='modalGalleryPreviewLabel'>Visualizar imagens</h5>
 
-                <button title='Fechar modal' type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Fechar' />
+            <button data-modal-close="popup" type="button" title="Fechar modal" class="absolute top-0 right-2 text-gray-500 hover:text-gray-800 w-[20px] opacity-50">
+                <i class="bi bi-x text-2xl"></i>
+            </button>
+        </div>
+
+        <div class='flex flex-col justify-center p-1'>
+            <div class="w-full h-full flex justify-center items-center">
+                <img id="image-preview" class="gallery-image-preview" src="#" alt="">
+            </div>
+        </div>
+
+        <div class="flex justify-between p-0">
+            <button id="previous" class="border rounded-l border-grey-700 px-2 py-3 h-full bg-transparent rounded-bottom" type="button" title="Imagem anterior">
+                <i class="bi bi-arrow-left-short text-gray-800"></i>
+            </button>
+
+            <div class="text-start">
+                <ul class="m-0 p-0">
+                    <li class="text-gray-800"><b>Nome: </b><span id="name"></span></li>
+                    <li class="text-gray-800"><b>Link: </b><span id="url"></span></li>
+                </ul>
             </div>
 
-            <div class='modal-body d-flex flex-column justify-content-center p-0'>
-                <div class="w-100 h-100 d-flex justify-content-center align-items-center">
-                    <img id="image-preview" class="galery-image-preview" src="#" alt="">
-                </div>
-            </div>
-
-            <div class="modal-footer d-flex justify-content-between p-0">
-                <button id="previous" class="border-top-0 border-bottom-0 border-start-0 m-0 border-end-1 border-secondary px-2 py-3 h-100 bg-transparent rounded-bottom" type="button" title="Imagem anterior">
-                    <i class="bi bi-arrow-left-short"></i>
-                </button>
-
-                <div class="text-start">
-                    <ul class="m-0 p-0">
-                        <li class="text-cm-secondary"><b>Nome: </b><span id="name"></span></li>
-                        <li class="text-cm-secondary"><b>Link: </b><span id="url"></span></li>
-                    </ul>
-                </div>
-
-                <button id="next" class="border-top-0 border-bottom-0 border-start-1 m-0 border-end-0 border-secondary px-2 py-3 h-100 bg-transparent rounded-bottom" type="button" title="Próxima imagem">
-                    <i class="bi bi-arrow-right-short"></i>
-                </button>
-            </div>
+            <button id="next" class="border rounded-r m-0 border-grey-700 px-2 py-3 h-full bg-transparent rounded-bottom" type="button" title="Próxima imagem">
+                <i class="bi bi-arrow-right-short text-gray-800"></i>
+            </button>
         </div>
     </div>
 </div>

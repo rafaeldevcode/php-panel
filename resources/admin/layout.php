@@ -1,9 +1,9 @@
 <?php loadHtml(__DIR__.'/../../resources/partials/header-main', ['title' => $title, 'plugins' => isset($plugins) ? $plugins : []]) ?>
 
-    <section class='d-flex flex-nowrap justify-content-between w-100'>
+    <section class='flex flex-nowrap justify-between w-full'>
         <?php loadHtml(__DIR__.'/../../resources/partials/sidebar') ?>
 
-        <section class='w-100'>
+        <section class='w-full'>
             <?php loadHtml(__DIR__.'/../../resources/partials/header') ?>
 
             <?php loadHtml(__DIR__.'/../../resources/partials/breadcrumps', [

@@ -1,16 +1,16 @@
-<section class='p-3 bg-cm-light m-3 rounded shadow'>
+<section class='p-3 bg-cm-light m-0 sm:m-3 rounded shadow-lg'>
     <form method="POST" action="<?php route($action) ?>">
         <?php if(isset($post)): ?>
             <input type="hidden" name="id" value="<?php echo $post->id ?>">
         <?php endif ?>
         
-        <div class='row d-flex justify-content-between flex-column-reverse flex-lg-row'>
-            <div class="col-12 col-lg-9 mt-4">
+        <div class='flex justify-between flex-col-reverse lg:flex-row'>
+            <div class="w-full lg:w-9/12 mt-4">
                 <textarea id="tinymce" name="content"><?php echo isset($post) ? $post->content : null ?></textarea>
             </div>
 
-            <div class="col-12 col-lg-3">
-                <div class='col-12'>
+            <div class="w-full lg:w-3/12 px-4">
+                <div class='w-full'>
                     <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                         'icon' => 'bi bi-hash',
                         'name' => 'title',
@@ -21,7 +21,7 @@
                     ]) ?>
                 </div>
 
-                <div class='col-12 py-1'>
+                <div class='w-full pt-1'>
                     <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                         'icon' => 'bi bi-link',
                         'name' => 'slug',
@@ -31,7 +31,7 @@
                     ]) ?>
                 </div>
 
-                <div class='col-12'>
+                <div class='w-full'>
                     <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-select', [
                         'icon' => 'bi bi-hash',
                         'name' => 'status',
@@ -44,7 +44,7 @@
                     ]) ?>
                 </div>
 
-                <div class='col-12'>
+                <div class='w-full'>
                     <?php loadHtml(__DIR__.'/../../../resources/partials/form/button-upload', [
                         'name' => 'thumbnail',
                         'label' => 'Imagen de destaque',
@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <div class='col-12 d-flex flex-wrap my-4'>
+        <div class='w-full flex flex-wrap my-4'>
             <?php loadHtml(__DIR__.'/../../../resources/partials/form/button-upload', [
                 'name' => 'collection',
                 'label' => 'Galeria de imagens',
@@ -64,15 +64,13 @@
             ]) ?>
         </div>
 
-        <div class='row d-flex justify-content-end'>
-            <div class='col-12 col-md-3'>
-                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
-                    'type'  => 'submit',
-                    'style' => 'color-main',
-                    'title' => 'Savar banner',
-                    'value' => 'Salvar'
-                ]) ?>
-            </div>
+        <div class='flex justify-end'>
+            <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
+                'type'  => 'submit',
+                'style' => 'color-main',
+                'title' => 'Savar banner',
+                'value' => 'Salvar'
+            ]) ?>
         </div>
     </form>
 </section>

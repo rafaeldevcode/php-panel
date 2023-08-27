@@ -48,7 +48,8 @@
 
     function loadInFooter(): void
     {
-        loadHtml(__DIR__.'/../../resources/partials/gallery') ?>
+        loadHtml(__DIR__.'/../../resources/partials/gallery');
+        loadHtml(__DIR__.'/../../resources/partials/modal-delete') ?>
 
         <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
         <script type="text/javascript">

@@ -15,16 +15,29 @@
     endif;
 ?>
 
-<div class='d-flex flex-column position-relative my-4'>
-    <?php if(isset($icon)): ?>
-        <i class='<?php echo $icon ?> position-absolute m-2'></i>
-    <?php endif; ?>
+<div class="my-4">
+    <label class="relative block">
+        <span class="sr-only">
+            <?php echo $label.$is_required ?>
+        </span>
 
-    <input class='form-control ps-4 py-2 validit-custom' type='password' name="<?php echo $name ?>" id="<?php echo $name ?>" value="<?php echo isset($value) ? $value : '' ?>" <?php echo $attr ?>>
-    <button type='button' data-id-pass="show-pass" title='Exibir senha' class='btn btn-sm btn-show-pass position-absolute end-0 h-100'><i class='bi bi-eye-fill'></i></button>
-    <label class='position-absolute ms-4 my-2 px-2' for="<?php echo $name ?>">
-        <?php echo isset($label) ? $label : '' ?>
-        <span class="text-cm-danger"><?php echo $is_required ?></span>
+        <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+            <?php if(isset($icon)): ?>
+                <i class='<?php echo $icon ?> absolute mr-2 my-2 ml-1 text-cm-secondary'></i>
+            <?php endif; ?>
+        </span>
+
+        <input 
+            class="placeholder:italic placeholder:text-cm-secondary block bg-white w-full border border-cm-secondary rounded py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-color-main focus:ring-color-main focus:ring-1 sm:text-sm" 
+            placeholder="<?php echo $label.$is_required ?>" 
+            type="password" 
+            name="<?php echo $name ?>"
+            id="<?php echo $name ?>"
+            <?php echo $attr ?>
+        />
+
+        <button type='button' data-id-pass="show-pass" title='Exibir senha' class='btn-color-main btn-show-pass px-1 rounded-r absolute top-0 right-0 h-full'><i class='bi bi-eye-fill'></i></button>
+
+        <span class='absolute end-0 bottom-0 validit'></span>
     </label>
-    <span class='position-absolute end-0 bottom-0 validit'></span>
 </div>

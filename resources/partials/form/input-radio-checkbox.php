@@ -15,15 +15,23 @@
     endif;
 ?>
 
-<div class="me-3 mt-3">
-    <input data-input-radio="<?php echo $name ?>" hidden class="form-check-input mt-0 input-radio-cm" <?php echo $attr ?> name="<?php echo $name ?>"  id="<?php echo $for ?>" type="<?php echo $type ?>" value="<?php echo $value ?>">
-    <label for="<?php echo $for ?>" class="border rounded py-1 px-2 border-2 pointer border-color-main bg-cm-light">
-        <?php if(isset($icon)): ?>
-            <i class='<?php echo $icon ?>'></i>
-        <?php endif; ?>
+<div class="mr-3 mt-3 relative">
+    <div class="flex items-center pl-4 border border-cm-secondary rounded">
+        <input 
+            id="<?php echo $name ?>" 
+            type="<?php echo $type ?>" 
+            value="<?php echo $value ?>"
+            name="<?php echo $name ?>" 
+            class="w-4 h-4"
+            data-input-radio="<?php echo $name ?>"
+            <?php echo $attr ?>
+        >
         
-        <?php echo $label ?>
-        <span class="text-cm-danger"><?php echo $is_required ?></span>
-    </label>
-    <span class='position-absolute left-0 bottom-0 validit'></span>
+        <label for="<?php echo $name ?>" class="w-full py-4 ml-2 text-sm font-medium text-cm-secondary">
+            <?php echo $label.$is_required ?>
+        </label>
+    </div>
+    
+    <span class='absolute right-0 bottom-0 validit'></span>
 </div>
+
