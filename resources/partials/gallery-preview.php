@@ -1,5 +1,5 @@
 <div data-modal="preview" class="z-[99999] fixed top-0 left-0 w-screen max-w-[none] h-full items-center justify-center hidden z-50">
-    <div class="flex justify-between flex-col bg-cm-light rounded p-8 relative w-full h-[100%]" data-modal-body="popup">
+    <div class="flex justify-between flex-col bg-light rounded p-8 relative w-full h-[100%]" data-modal-body="popup">
         <div class='bg-color-main rounded-t p-6'>
             <h5 class='modal-title text-white font-bold' id='modalGalleryPreviewLabel'>Visualizar imagens</h5>
 

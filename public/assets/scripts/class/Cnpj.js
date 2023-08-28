@@ -37,7 +37,7 @@ class Cnpj{
                     dataType: 'jsonp',
                     success: function(response){
                         if(response.status == 'ERROR'){
-                            Message.create(response.message, 'cm-danger');
+                            Message.create(response.message, 'danger');
                         }else{
                             $('#name_company').val(response.nome);
                             $('#street_company').val(response.logradouro);
@@ -58,11 +58,11 @@ class Cnpj{
                     },
                     error: function(error) {
                         console.error(error);
-                        Message.create('Houve um erro inesperado ao realizar a consulta!', 'cm-danger');
+                        Message.create('Houve um erro inesperado ao realizar a consulta!', 'danger');
                     },
                 });
             }else{
-                Message.create('O campo CNPJ está incompleto!', 'cm-danger');
+                Message.create('O campo CNPJ está incompleto!', 'danger');
             }
         });
     }

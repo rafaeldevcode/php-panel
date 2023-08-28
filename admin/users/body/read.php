@@ -1,4 +1,4 @@
-<section class='p-3 bg-cm-light m-0 sm:m-3 rounded shadow-lg'>
+<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
     <section class='custom-table m-auto cm-browser-height'>
         <div class="relative overflow-x-auto rounded border">
             <table class="w-full text-sm text-left text-gray-500">
@@ -60,12 +60,12 @@
                                 <?php echo $user->email ?>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="rounded text-xs text-cm-light px-2 py-1 bg-cm-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?>">
+                                <span class="rounded text-xs text-light px-2 py-1 bg-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?>">
                                     <?php echo (is_null($user->status) || $user->status == 'off') ? 'Inativo' : 'Ativo' ?>
                                 </span>
                             </td>
                             <td class="flex items-center justify-end px-6 py-4 space-x-2 right">
-                                <a href="<?php route("/admin/users/?method=edit&id={$user->id}") ?>" title='Editar usuário <?php echo $user->name ?>' class='text-xs p-2 rounded btn-primary text-cm-light fw-bold'>
+                                <a href="<?php route("/admin/users/?method=edit&id={$user->id}") ?>" title='Editar usuário <?php echo $user->name ?>' class='text-xs p-2 rounded btn-primary text-light fw-bold'>
                                     <i class='bi bi-pencil-square'></i>
                                 </a>
 
@@ -76,7 +76,7 @@
                                     data-message-delete='Esta ação irá remover o usuário "<?php echo $user->name ?>"!'
                                     type='button'
                                     title='Remover usuário <?php echo $user->name ?>'
-                                    class='p-2 text-xs rounded btn-danger text-cm-light fw-bold'
+                                    class='p-2 text-xs rounded btn-danger text-light fw-bold'
                                 >
                                     <i class='bi bi-trash-fill'></i>
                                 </button>
@@ -86,7 +86,7 @@
                                     <button
                                         type='submit'
                                         title='Deslogar usuário <?php echo $user->name ?>'
-                                        class='p-2 text-xs rounded pointer btn-<?php echo $user->id == $_SESSION['user_id'] ? 'secondary' : 'info' ?> text-cm-light'
+                                        class='p-2 text-xs rounded pointer btn-<?php echo $user->id == $_SESSION['user_id'] ? 'secondary' : 'info' ?> text-light'
                                         <?php echo $user->id == $_SESSION['user_id'] ? 'disabled' : '' ?>
                                     >
                                         <i class="bi bi-box-arrow-right"></i>

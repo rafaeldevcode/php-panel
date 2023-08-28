@@ -14,7 +14,7 @@
                     data-checked="add-style"
                 >
 
-                <label class="block rounded pointer border border-cm-secondary p-1" data-click="double" for="image_<?php echo $image->id ?>">
+                <label class="block rounded pointer border border-secondary p-1" data-click="double" for="image_<?php echo $image->id ?>">
                     <img class="rounded" src="<?php asset("assets/images/{$image->file}") ?>" alt="<?php echo $image->name ?>">
                 </label>
             </div>
@@ -23,22 +23,22 @@
 
     <?php if(!is_null($images->next)): ?>
         <div class="flex mt-3 justify-center">
-            <button data-search="<?php echo isset($search) ? $search : '' ?>" data-next-page="<?php echo $images->next ?>" class="btn btn-sm btn-color-main text-cm-light font-bold" type="button" title="Load more images">
+            <button data-search="<?php echo isset($search) ? $search : '' ?>" data-next-page="<?php echo $images->next ?>" class="btn btn-sm btn-color-main text-light font-bold" type="button" title="Load more images">
                 Carregar mais
             </button>
         </div>
     <?php endif ?>
 
-    <div class="border-cm-secondary border-t-2 pt-3 flex justify-between items-start sm:align-items-center flex-col sm:flex-row mt-3 p-3">
+    <div class="border-secondary border-t-2 pt-3 flex justify-between items-start sm:align-items-center flex-col sm:flex-row mt-3 p-3">
         <div>
-            <ul class="m-0 p-0 text-cm-secondary">
+            <ul class="m-0 p-0 text-secondary">
                 <li><strong>Total:</strong> <span id="count-images"><?php echo $images->total ?></span> imagens</li>
                 <li><strong>Exibindo:</strong> <span id="displaying-images"><?php echo count($images->data) ?></span> imagens</li>
             </ul>
         </div>
 
         <div class="mt-3 sm:mt-0 mx-auto sm:mx-0">
-            <span class="text-cm-secondary">Máximo de 20 arquivos</span>
+            <span class="text-secondary">Máximo de 20 arquivos</span>
 
             <form class="flex flex-row justify-center sm:justify-end items-end space-x-2">
                 <input type="file" id="input-upload" hidden accept=".svg, .jpg, .jpeg, .png, .webp" multiple>
@@ -48,14 +48,14 @@
                 <?php endif ?>
 
                 <div class="d-flex flex-column">
-                    <button title="Realiar upload" type="button" class="btn btn-info text-cm-light font-bold" id="upload">
+                    <button title="Realiar upload" type="button" class="btn btn-info text-light font-bold" id="upload">
                         <?php echo isset($text_button) ? $text_button : '' ?>
                         <i class="bi bi-upload"></i>
                     </button>
                 </div>
 
                 <?php if(isset($use) && $use == true): ?>
-                    <button disabled title='Remover usuário' type='button' class='btn btn-color-main text-cm-light' id="selected">Usar</button>
+                    <button disabled title='Remover usuário' type='button' class='btn btn-color-main text-light' id="selected">Usar</button>
                 <?php endif;?>
             </form>
         </div>

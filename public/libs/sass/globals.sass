@@ -14,7 +14,7 @@
     height: 5px
 
 ::-webkit-scrollbar-track
-    background: $cm-light
+    background: $light
 
 ::-webkit-scrollbar-thumb
     background: $color-main
@@ -33,11 +33,11 @@ input[type=number]
 body
     margin: 0 !important
 
-.cm-list-number
+.list-number
     li
         list-style: decimal
 
-.cm-list
+.list
     li
         list-style: circle
 
@@ -82,12 +82,12 @@ label
         @include inputsValid
 
 span[data-valid="false"]
-    color: $cm-danger
+    color: $danger
     animation: showError .4s linear forwards
     z-index: 1
 
 span[data-valid="true"]
-    color: $cm-success
+    color: $success
     animation: showSuccess .4s linear forwards
     z-index: 1
 
@@ -229,7 +229,7 @@ div[data-message="false"]
     transition: all .4s
 
     &:hover
-        background: $cm-danger
+        background: $danger
 
     div
         form
@@ -339,43 +339,43 @@ input[type="checkbox"]
     @include pagesCustom('/assets/images/not_found.svg')
 
     &-mirror
-        @include pageCustomMirror($cm-danger)
+        @include pageCustomMirror($danger)
 
 .custom-403
     @include pagesCustom('/assets/images/not_found.svg')
 
     &-mirror
-        @include pageCustomMirror($cm-danger)
+        @include pageCustomMirror($danger)
 
 .custom-404
     @include pagesCustom('/assets/images/not_found.svg')
 
     &-mirror
-        @include pageCustomMirror($cm-danger)
+        @include pageCustomMirror($danger)
 
 .custom-419
     @include pagesCustom('/assets/images/not_found.svg')
 
     &-mirror
-        @include pageCustomMirror($cm-danger)
+        @include pageCustomMirror($danger)
 
 .custom-429
     @include pagesCustom('/assets/images/not_found.svg')
 
     &-mirror
-        @include pageCustomMirror($cm-danger)
+        @include pageCustomMirror($danger)
 
 .custom-500
     @include pagesCustom('/assets/images/server_error.svg')
 
     &-mirror
-        @include pageCustomMirror($cm-warning)
+        @include pageCustomMirror($warning)
 
 .custom-503
     @include pagesCustom('/assets/images/not_found.svg')
 
     &-mirror
-        @include pageCustomMirror($cm-danger)
+        @include pageCustomMirror($danger)
 
 .custom-maintenance
     @include pagesCustom('/assets/images/maintenance.svg')

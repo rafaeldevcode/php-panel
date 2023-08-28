@@ -47,7 +47,7 @@
 
     session([
         'message' => 'Configurações atualizadas com sucesso!',
-        'type' => 'cm-success'
+        'type' => 'success'
     ]);
 
     return header(route('/admin/settings', true), true, 302);

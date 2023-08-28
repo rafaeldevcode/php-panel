@@ -35,15 +35,14 @@ module.exports = {
         extend: {
             colors: {
                 "color-main": "#3695FF",
-                "cm-primary": "#0062FF",
-                "cm-secondary": "#6C757D",
-                "cm-success": "#008000",
-                "cm-info": '#0DCAF0',
-                "cm-warning": "#FFFF00",
-                "cm-danger": "#FF0000",
-                "cm-light": '#FFFFFF',
-                "cm-dark": '#000000',
-                "cm-grey": '#F4F4F4',
+                "primary": "#0062FF",
+                "secondary": "#6C757D",
+                "success": "#008000",
+                "info": '#0DCAF0',
+                "warning": "#FFFF00",
+                "danger": "#FF0000",
+                "light": '#FFFFFF',
+                "dark": '#000000',
             },
             boxShadow: {
                 input: "0px 7px 20px rgba(0, 0, 0, 0.03)",

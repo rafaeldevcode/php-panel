@@ -4,7 +4,7 @@
             <i class="bi bi-x text-2xl"></i>
         </button>
 
-        <h2 class="bg-cm-danger font-bold text-white p-2 rounded text-center text-gray-900" id="modalDeleteItemLabel"></h2>
+        <h2 class="bg-danger font-bold text-white p-2 rounded text-center text-gray-900" id="modalDeleteItemLabel"></h2>
 
         <form data-submit="delete" class="mt-8">
             <div class="flex justify-end space-x-2">

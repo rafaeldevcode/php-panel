@@ -19,7 +19,7 @@
         </div>
 
         <div class='absolute top-0 right-0 m-3'>
-            <span class='text-cm-light bg-cm-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?> rounded px-2 py-1 font-bold'>
+            <span class='text-light bg-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?> rounded px-2 py-1 font-bold'>
                 <i class='bi bi-circle-fill'></i>
                 <?php echo (is_null($user->status) || $user->status == 'off') ? 'Inativo' : 'Ativo' ?>
             </span>

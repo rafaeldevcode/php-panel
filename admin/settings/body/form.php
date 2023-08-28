@@ -1,4 +1,4 @@
-<section class='p-3 bg-cm-light m-0 sm:m-3 rounded shadow-lg'>
+<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
     <form method="POST" action="<?php route('/admin/settings/update') ?>" enctype="multipart/form-data">
         <div class='flex flex-wrap justify-between'>
             <div class='w-full md:w-6/12 px-4'>
@@ -168,19 +168,19 @@
                         'attributes' => 'onclick="Preloader.habilit(event);"'
                     ]) ?>
 
-                    <p class="text-cm-secondary">Preloader é uma animação que é executada até que a página esteja carregada e pronta para ser exibida.</p>
+                    <p class="text-secondary">Preloader é uma animação que é executada até que a página esteja carregada e pronta para ser exibida.</p>
                 </div>
 
                 <div id="box-preloader" class="border border-color-main rounded" style="display: <?php echo !isset($settings) || $settings->preloader == 'off' ? 'none' : 'flex' ?>;">
                     <div class="p-2">
-                        <p class="text-cm-secondary">Escolha uma imagem de animação</p>
+                        <p class="text-secondary">Escolha uma imagem de animação</p>
                     </div>
 
                     <div class="flex flex-wrap justify-center">
                         <?php foreach (getPreloaders() as $indice => $image): ?>
                             <div class='m-2'>
                                 <input data-checked="add-style" hidden type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings->preloader_image ? 'checked' : '' ?>>
-                                <label for='<?php echo $indice ?>' class='block rounded label-image-profile border border-cm-secondary'>
+                                <label for='<?php echo $indice ?>' class='block rounded label-image-profile border border-secondary'>
                                     <img class="w-full rounded" src="<?php asset("/assets/images/preloaders/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
                                 </label>
                             </div>

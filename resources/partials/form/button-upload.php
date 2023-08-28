@@ -24,9 +24,9 @@
 ?>
 
 <div class="flex flex-col relative">
-    <label for="<?php echo $name ?>" class="text-cm-secondary ml-2">
+    <label for="<?php echo $name ?>" class="text-secondary ml-2">
         <?php echo $label ?>
-        <span class="text-cm-danger"><?php echo $is_required ?></span>
+        <span class="text-danger"><?php echo $is_required ?></span>
     </label>
 
     <button id="<?php echo $name ?>" type="button" title="Open modal gallery" class="border rounded p-2 border-color-main m-2" data-upload="<?php echo $name ?>">
@@ -51,7 +51,7 @@
                     <div class="relative" data-upload-image="selected">
                         <div class="bg-color-main flex justify-end p-1 w-full rounded-t">
                             <button type="button" title="Remover imagem" class="border-0 bg-transparent p-0" data-upload-image="remove">
-                                <i class="bi bi-trash text-cm-danger"></i>
+                                <i class="bi bi-trash text-danger"></i>
                             </button>
                         </div>
 

@@ -1,4 +1,4 @@
-<section class='p-3 bg-cm-light m-0 sm:m-3 rounded shadow-lg'>
+<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
     <form class="p-3">
         <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-checkbox-switch', [
             'name' => 'select_several',

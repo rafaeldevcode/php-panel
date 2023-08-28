@@ -11,7 +11,7 @@
         if($requests->password !== $requests->repeat_password || !password_verify($requests->current_password, $current_pass)):
             session([
                 'message' => 'As senhas não conferem!',
-                'type' => 'cm-danger'
+                'type' => 'danger'
             ]);
 
             return header(route('/admin/profile', true), true, 302);
@@ -24,7 +24,7 @@
 
         session([
             'message' => 'Usuário editado com sucesso!',
-            'type' => 'cm-success'
+            'type' => 'success'
         ]);
 
         return header(route('/admin/profile', true), true, 302);
@@ -35,7 +35,7 @@
 
         session([
             'message' => 'Usuário editado com sucesso!',
-            'type' => 'cm-success'
+            'type' => 'success'
         ]);
 
         return header(route('/admin/profile', true), true, 302);

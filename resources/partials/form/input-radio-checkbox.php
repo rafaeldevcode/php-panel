@@ -16,7 +16,7 @@
 ?>
 
 <div class="mr-3 mt-3 relative">
-    <div class="flex items-center pl-4 border border-cm-secondary rounded">
+    <div class="flex items-center pl-4 border border-secondary rounded">
         <input 
             id="<?php echo $name ?>" 
             type="<?php echo $type ?>" 
@@ -27,7 +27,7 @@
             <?php echo $attr ?>
         >
         
-        <label for="<?php echo $name ?>" class="w-full py-4 ml-2 text-sm font-medium text-cm-secondary">
+        <label for="<?php echo $name ?>" class="w-full py-4 ml-2 text-sm font-medium text-secondary">
             <?php echo $label.$is_required ?>
         </label>
     </div>
