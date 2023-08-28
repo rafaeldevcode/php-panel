@@ -45,7 +45,7 @@
 
             <form class='w-full sm:w-6/12 md:w-7/12' method="POST" action="<?php route('/login/create') ?>">
                 <!-- Input email -->
-                <div class="my-4">
+                <div class="mt-6">
                     <?php loadHtml(__DIR__.'/../resources/partials/form/input-default', [
                         'icon' => 'bi bi-envelope-fill',
                         'name' => 'email',
@@ -56,7 +56,7 @@
                 </div>
 
                 <!-- Input pass -->
-                <div class="my-4">
+                <div class="mt-6">
                     <?php loadHtml(__DIR__.'/../resources/partials/form/input-pass', [
                         'icon' => 'bi bi-key-fill',
                         'name' => 'password',
