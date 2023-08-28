@@ -35,14 +35,14 @@ class Message{
      */
     static create(textMessage, typeMessage){
         const alert = $('<div />');
-        alert.attr('class', `d-flex flex-row position-fixed end-0 top-0 m-2 p-0 shadow border border-${typeMessage} border-2 rounded bg-cm-light`);
+        alert.attr('class', `d-flex flex-row position-fixed end-0 top-0 m-2 p-0 shadow border border-${typeMessage} border-2 rounded bg-light`);
         alert.attr('data-message', 'true');
 
         const divIcon = $('<div />');
         divIcon.attr('class', `d-flex align-items-center bg-${typeMessage} py-1 px-2`);
 
         const icon = $('<i />');
-        icon.attr('class', `bi ${this.getIcon(typeMessage)} text-cm-light fs-5`);
+        icon.attr('class', `bi ${this.getIcon(typeMessage)} text-light fs-5`);
 
         const message = $('<p />');
         message.attr('class', `d-flex align-items-center m-0 px-2 text-${typeMessage}`);
@@ -59,16 +59,16 @@ class Message{
     static getIcon(typeMessage){
         let classIcon;
         switch (typeMessage ) {
-            case 'cm-danger':
+            case 'danger':
                 classIcon = 'bi-dash-circle-fill';
                 break;
-            case 'cm-success':
+            case 'success':
                 classIcon = 'bi-check-circle-fill';
                 break;
-            case 'cm-warning':
+            case 'warning':
                 classIcon = 'bi bi-exclamation-circle-fill';
                 break;
-            case 'cm-secondary':
+            case 'secondary':
                 classIcon = 'bi bi-question-circle-fill';
             default:
                 classIcon = 'bi bi-question-circle-fill';

@@ -6,7 +6,7 @@
     </div>
     
     <div class='hiddeItem dNone profile-dropdawn'  data-item-active='false'>
-        <a href='<?php route('/admin/profile') ?>' title='Ver e editar perfil' class='profile-dropdawn-btn w-full text-cm-light font-bold' aria-expanded='false'>
+        <a href='<?php route('/admin/profile') ?>' title='Ver e editar perfil' class='profile-dropdawn-btn w-full text-light font-bold' aria-expanded='false'>
             <?php echo explode(' ', $_SESSION['user_name'])[0] ?>
         </a>
 

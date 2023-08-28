@@ -26,14 +26,14 @@
         
         session([
             'message' => 'Post adicionado com sucesso!',
-            'type'    => 'cm-success'
+            'type'    => 'success'
         ]);
         
         return header(route('/admin/posts', true), true, 302);
     else:
         session([
             'message' => 'A slug já está sendo utilizada, poo favor tente outra!',
-            'type'    => 'cm-danger'
+            'type'    => 'danger'
         ]);
         
         return header(route('/admin/posts?method=create', true), true, 302);

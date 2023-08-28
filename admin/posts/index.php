@@ -10,7 +10,7 @@
         $post = new Posts();
         $requests = requests();
         $posts = !isset($requests->search) ? $post->paginate(20) : $post->where('titles', 'LIKE', "%{$requests->search}%")->paginate(20);
-        $color = 'cm-secondary';
+        $color = 'secondary';
         $text  = 'Visualizar';
         $body = __DIR__."/body/read";
 
@@ -20,13 +20,13 @@
         $galery = new Gallery();
 
         $post = $post->find(querys('id'));
-        $color = 'cm-success';
+        $color = 'success';
         $text  = 'Editar';
         $body = __DIR__."/body/form";
 
         $data = ['action' => '/admin/posts/update', 'post' => $post->data, 'images' => $post->images()->data];
     elseif($method == 'create'):
-        $color = 'cm-primary';
+        $color = 'primary';
         $text  = 'Adicionar';
         $body = __DIR__."/body/form";
 

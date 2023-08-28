@@ -1,7 +1,7 @@
 const Mix = require("laravel-mix");
 
 Mix
-    .sass('public/libs/sass/style.scss', 'public/assets/css/style.css')
+    .sass('public/libs/sass/style.scss', 'public/libs/bootstrap/bootstrap.min.css')
     .sass('public/libs/sass/globals.sass', 'public/assets/css/globals.css')
 
     .css('node_modules/bootstrap-icons/font/bootstrap-icons.min.css', 'public/libs/bootstrap-icons/bootstrap-icons.min.css')

@@ -1,4 +1,4 @@
-<section class='w-full border-t-2 border-cm-secondary'>
+<section class='w-full border-t-2 border-secondary'>
     <div class='pt-2 flex justify-between'>
         <form action="" method="POST">
             <?php if(!is_null($prev)): ?>
@@ -19,7 +19,7 @@
             <div class='px-2 me-1 border-t-2 border-color-main'>
                 <?php echo $page ?>
             </div>
-            <div class='border-t-2 border-cm-grey'>de <?php echo $count ?></div>
+            <div class='border-t-2 border-secondary'>de <?php echo $count ?></div>
         </div>
 
         <form action="" method="POST">

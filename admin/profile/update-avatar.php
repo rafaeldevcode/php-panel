@@ -11,7 +11,7 @@
 
     session([
         'message' => 'Usuário editado com sucesso!',
-        'type' => 'cm-success',
+        'type' => 'success',
         'user_avatar' => $_POST['avatar']
     ]);
 

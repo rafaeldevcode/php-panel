@@ -62,7 +62,7 @@ class Gallery{
                             }
                         });
                     }else{
-                        Message.create('A quantidade máxima de arquivos permitidos para upload é de 20!', 'cm-danger');
+                        Message.create('A quantidade máxima de arquivos permitidos para upload é de 20!', 'danger');
                     }
                 }
             });
@@ -256,7 +256,7 @@ class Gallery{
 
             const label = $('<label />');
             label.attr({
-                class: 'form-check-label rounded block pointer border border-cm-secondary p-1',
+                class: 'form-check-label rounded block pointer border border-secondary p-1',
                 for: `image_${res.id}`
             });
             label.attr('data-click', 'double');
@@ -331,7 +331,7 @@ class Gallery{
                     button.attr('data-upload-image', 'remove');
 
                     const i = $('<i />');
-                    i.attr('class', 'bi bi-trash text-cm-danger');
+                    i.attr('class', 'bi bi-trash text-danger');
 
                     button.append(i);
                     contentRemove.append(button);

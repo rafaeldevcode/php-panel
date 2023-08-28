@@ -9,7 +9,7 @@
         $user = new User();
         $requests = requests();
         $users = !isset($requests->search) ? $user->paginate(20) : $user->where('name', 'LIKE', "%{$requests->search}%")->paginate(20);
-        $color = 'cm-secondary';
+        $color = 'secondary';
         $text  = 'Visualizar';
         $body = __DIR__."/body/read";
 
@@ -17,13 +17,13 @@
     elseif($method == 'edit'):
         $user = new User();
         $user = $user->find(querys('id'));
-        $color = 'cm-success';
+        $color = 'success';
         $text  = 'Editar';
         $body = __DIR__."/body/form";
 
         $data = ['user' => $user->data, 'action' => '/admin/users/update'];
     elseif($method == 'create'):
-        $color = 'cm-primary';
+        $color = 'primary';
         $text  = 'Adicionar';
         $body = __DIR__."/body/form";
 
