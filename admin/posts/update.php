@@ -16,6 +16,7 @@
         
         $post->update([
             'content' => $requests->content,
+            'excerpt' => getExcerpt($requests->content),
             'title' => $requests->title,
             'status' => $requests->status,
             'slug' => $slug,

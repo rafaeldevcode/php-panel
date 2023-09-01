@@ -15,6 +15,7 @@
     if(is_null($post->where('slug', '=', $slug)->first())):  
         $new_post = $post->create([
             'content' => $requests->content,
+            'excerpt' => getExcerpt($requests->content),
             'title' => $requests->title,
             'status' => $requests->status,
             'slug' => $slug,

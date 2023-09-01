@@ -51,6 +51,10 @@
                                 </span>
                             </td>
                             <td class="flex items-center justify-end px-6 py-4 space-x-2 right">
+                                <a target="_blank" rel="noopener" href="<?php route("/blog/{$post->slug}") ?>" title='Visualizar post <?php echo $post->title ?>' class='text-xs p-2 rounded btn-info text-light fw-bold'>
+                                    <i class="bi bi-eye-fill"></i>
+                                </a>
+
                                 <a href="<?php route("/admin/posts/?method=edit&id={$post->id}") ?>" title='Editar post <?php echo $post->title ?>' class='text-xs p-2 rounded btn-primary text-light fw-bold'>
                                     <i class='bi bi-pencil-square'></i>
                                 </a>

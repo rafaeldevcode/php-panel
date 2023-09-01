@@ -403,6 +403,27 @@ if(!function_exists('normalizeSlug')):
     }
 endif;
 
+if(!function_exists('getExcerpt')):
+    /**
+     * @since 1.9.1
+     *
+     * @param ?string $content
+     * @return ?string
+     */
+    function getExcerpt(?string $content): ?string
+    {
+        if(is_null($content)) return $content;
+
+        $paragraphs = strip_tags($content, '<p>');
+        $paragraph = preg_split('/<p[^>]*>/', $paragraphs);
+        $paragraph = explode('</p>', $paragraph[1]);
+
+        $excerpt = strlen($paragraph[0]) > 200 ? substr($paragraph[0], 0, 200).'...' : $paragraph[0];
+
+        return html_entity_decode($excerpt);
+    }
+endif;
+
 if(!function_exists('createDir')):
     /**
      * @since 1.2.0

@@ -19,6 +19,7 @@ class Posts extends ExecuteMigrations
         $this->string('title', 255);
         $this->string('slug', 255)->unique();
         $this->longtext('content')->nullable();
+        $this->text('excerpt')->nullable();
         $this->char('status', 9)->default('published');
         $this->integer('count_views')->default(0);
         $this->integer('user_id');
