@@ -1,6 +1,6 @@
 'use strict';
 
-const projectPath = 'panel';
+const projectPath = '';
 
 /**
  * @since 1.4.0
