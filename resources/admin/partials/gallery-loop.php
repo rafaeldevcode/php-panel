@@ -1,5 +1,5 @@
-<div>
-    <?php loadHtml(__DIR__.'/preloader', ['position' => 'absolute']) ?>
+<div class="relative">
+    <?php loadHtml(__DIR__.'/../../partials/preloader', ['position' => 'absolute']) ?>
 
     <div class="flex flex-wrap justify-center" id="gallery">
         <?php foreach ($images->data as $image): ?>
@@ -44,7 +44,7 @@
                 <input type="file" id="input-upload" hidden accept=".svg, .jpg, .jpeg, .png, .webp" multiple>
 
                 <?php if(isset($close) && $close == true): ?>
-                    <button title='Fechar modal' type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fechar</button>
+                    <button title='Fechar modal' type='button' class='btn btn-secondary' data-modal-close="popup">Fechar</button>
                 <?php endif ?>
 
                 <div class="d-flex flex-column">
@@ -55,7 +55,7 @@
                 </div>
 
                 <?php if(isset($use) && $use == true): ?>
-                    <button disabled title='Remover usuário' type='button' class='btn btn-color-main text-light' id="selected">Usar</button>
+                    <button disabled title='Selecionar imagem' type='button' class='btn btn-color-main text-light' id="selected">Selecionar</button>
                 <?php endif;?>
             </form>
         </div>

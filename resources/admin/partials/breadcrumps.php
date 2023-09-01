@@ -30,7 +30,7 @@
             <div class='flex justify-center'>
                 <div class="mx-1">
                     <?php if(isset($route_search)): ?>
-                        <?php loadHtml(__DIR__.'/form/input-search', ['route' => $route_search]) ?>
+                        <?php loadHtml(__DIR__.'/../../partials/form/input-search', ['route' => $route_search]) ?>
                     <?php endif; ?>
                 </div>
 

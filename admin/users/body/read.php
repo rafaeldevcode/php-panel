@@ -107,7 +107,7 @@
     </section>
 
     <?php if(isset($users->page)):
-        loadHtml(__DIR__.'/../../../resources/partials/pagination', [
+        loadHtml(__DIR__.'/../../../resources/admin/partials/pagination', [
             'page' => $users->page,
             'count' => $users->count,
             'next' => $users->next,

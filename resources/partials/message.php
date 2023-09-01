@@ -4,14 +4,15 @@
     endif;
 
     if(isset($_SESSION['message'])): ?>
-        <div class='flex flex-row items-center fixed end-0 top-0 m-2 p-0 shadow-lg border border-<?php echo $_SESSION['type'] ?>  border-2 rounded bg-light' data-message='true'>
-            <div class="bg-<?php echo $_SESSION['type'] ?> py-1 px-2">
-                <i class="bi <?php echo $_SESSION['type'] == 'danger' ? 'bi-dash-circle-fill' : 'bi-check-circle-fill' ?> text-light fs-5"></i>
+        <div class="fixed top-0 right-0 rounded p-4 z-[99999] text-white font-bold max-w-[400px]" data-message="content">
+            <div class="rounded shadow-lg p-4 flex items-center relative my-1 bg-<?php echo $_SESSION['type'] ?>" data-message="true">
+                <i class="<?php echo getIconMessage($_SESSION['type']) ?> text-xl"></i>
+                <p class="ml-4 text-sm"><?php echo $_SESSION['message'] ?></p>
+                <i class="bi bi-x absolute top-0 right-1 opacity-75 pointer" data-message="hide"></i>
             </div>
-                
-            <p class='m-0 px-2 text-<?php echo $_SESSION['type'] ?>'><?php echo $_SESSION['message'] ?></p>
         </div>
     <?php endif;
 
     unset($_SESSION['message']);
-    unset($_SESSION['type']); ?>
+    unset($_SESSION['type']); 
+?>

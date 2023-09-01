@@ -38,6 +38,8 @@
     document.addEventListener("DOMContentLoaded", function() {
         Preloader.hide();
     });
+
+    Modal.init();
 </script>
 
 <?php if(isset($plugins) && in_array('tinymce', $plugins)): ?>

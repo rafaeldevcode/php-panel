@@ -33,6 +33,7 @@
             type="<?php echo $type ?>" 
             name="<?php echo $name ?>"
             id="<?php echo $name ?>"
+            value="<?php echo isset($value) ? $value : '' ?>"
             <?php echo $attr ?>
         />
 

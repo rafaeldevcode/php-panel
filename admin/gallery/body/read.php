@@ -9,7 +9,7 @@
         ]) ?>
     </form>
 
-    <?php loadHtml(__DIR__.'/../../../resources/partials/gallery-loop', [
+    <?php loadHtml(__DIR__.'/../../../resources/admin/partials/gallery-loop', [
         'images' => $images,
         'search' => $search,
         'text_button' => 'Uploads'

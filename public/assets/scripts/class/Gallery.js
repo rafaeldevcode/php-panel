@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Remove or add image preview when uploading
  */
@@ -8,7 +10,7 @@ class Gallery{
      * @param {boolean} preloader
      * @returns {void}
      */
-    constructor(preloader = true){
+    constructor(preloader = true) {
         this.inputType = null;
         this.inputName = null;
         this.preloader = preloader;
@@ -19,6 +21,9 @@ class Gallery{
 
         this.remove();
         this.loadMore();
+        this.uploads();
+        this.dbClickSelect();
+        this.selectedFiles();
     }
 
     /**
@@ -36,13 +41,10 @@ class Gallery{
 
                 const file = event.target;
                 const countFile = file.files.length;
-                const token = $('input[name="_token"]').val();
 
                 if(file && countFile > 0){
                     if(countFile <= 20){
                         const formData = new FormData();
-
-                        formData.append('_token', token);
 
                         for (let i = 0; i < file.files.length; i++) {
                             formData.append('images[]', file.files[i]);
@@ -55,6 +57,7 @@ class Gallery{
                             processData: false,
                             contentType: false,
                             success: function(response) {
+                                console.log(response)
                                 resolve(response);
                             },
                             error: function(xhr, status, error) {
@@ -82,7 +85,7 @@ class Gallery{
             const searchParam = search ? `&search=${search}` : '';
 
             $.ajax({
-                url: route(`/api/gallery/get?page=${page}&count=${count}${searchParam}`),
+                url: route(`/api/gallery?page=${page}&count=${count}${searchParam}`),
                 type: 'GET',
                 processData: false,
                 contentType: false,
@@ -129,12 +132,11 @@ class Gallery{
      * @returns {void}
      */
     uploads() {
-        $('#upload').click(async (event) => {
+        $('#upload').on('click', async (event) => {
             event.preventDefault();
 
             $('#input-upload').click();
             const count = parseInt($('#count-images').text());
-            // const displaying = parseInt($('#displaying-images').text());
             const response = await this.save($('#input-upload'));
 
             this.addImagesInGallery(response, true);
@@ -221,10 +223,6 @@ class Gallery{
             this.currentClick = $(event.target).attr('data-upload')
                 ? $(event.target).attr('data-upload')
                 : $(event.target).parent().attr('data-upload');
-
-            this.uploads();
-            this.dbClickSelect();
-            this.selectedFiles();
         });
     }
 
@@ -289,11 +287,8 @@ class Gallery{
      * @returns {void}
      */
     selectedFiles(){
-        if(this.currentClick !== null){
-            // Remove the first image if it is a checkbox and it is the first click
-            // let countCurrentImages = $(`[data-upload-selected=${this.currentClick}]`).find('.m-2.gallery.rounded').length;
-
-            $('#selected').click(() => {
+        $('#selected').click(() => {
+            if(this.currentClick !== null){
                 const inputName = this.inputType == 'radio' ? this.currentClick : `${this.currentClick}[]`;
                 let required = $(`[data-upload-selected=${this.currentClick}]`).attr('data-required');
                 (this.inputType == 'radio') && $(`[data-upload-selected=${this.currentClick}]`).html('');
@@ -360,16 +355,15 @@ class Gallery{
 
                     document.getElementById(`image_${selected.id}`).checked = false;
                 });
+            }
 
-                Modal.close('gallery');
-                this.currentClick = null;
-                this.remove();
+            Modal.close('gallery');
+            this.currentClick = null;
+            this.remove();
 
-                // countCurrentImages = null;
-            });
-
-            this.selected = [];
-        }
+            // Disable select button
+            $('#selected').attr('disabled', true)
+        });
     }
 
     /**
@@ -380,11 +374,10 @@ class Gallery{
     selectedFilesTinymce(inputType){
         Modal.open('gallery');
         this.changeInputType(inputType);
-        this.uploads();
-        this.dbClickSelect();
+        this.currentClick = null;
 
         return new Promise((resolve) => {
-            $('#selected').click(() => {
+            $('#selected').on('click', () => {
                 resolve(this.selected);
 
                 Modal.close('gallery');
@@ -452,7 +445,6 @@ class Gallery{
     dbClickSelect() {
         $('label[data-click="double"]').dblclick(() => {
             $('#selected').click();
-            // this.currentClick = null;
         });
     }
 

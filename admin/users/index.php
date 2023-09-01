@@ -44,5 +44,5 @@
 
     function loadInFooter(): void
     {
-        loadHtml(__DIR__.'/../../resources/partials/modal-delete');
+        loadHtml(__DIR__.'/../../resources/admin/partials/modal-delete');
     }

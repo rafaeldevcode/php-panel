@@ -11,7 +11,7 @@
     $thumbnail = isset($requests->thumbnail) ? $requests->thumbnail : null;
     $collection = isset($requests->collection) ? $requests->collection : null;
 
-    if(is_null($post_slug) || $post_slug->id === $requests->id):  
+    if(is_null($post_slug) || $post_slug->id == $requests->id):  
         $post = $post->find($requests->id);
         
         $post->update([

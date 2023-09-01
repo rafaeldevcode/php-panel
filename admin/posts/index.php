@@ -48,8 +48,8 @@
 
     function loadInFooter(): void
     {
-        loadHtml(__DIR__.'/../../resources/partials/gallery');
-        loadHtml(__DIR__.'/../../resources/partials/modal-delete') ?>
+        loadHtml(__DIR__.'/../../resources/admin/partials/gallery');
+        loadHtml(__DIR__.'/../../resources/admin/partials/modal-delete') ?>
 
         <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
         <script type="text/javascript">
@@ -69,7 +69,9 @@
                         (async () => {
                             const images = await gallery.selectedFilesTinymce('radio');
 
-                            callback(images[0].url, { alt: images[0].alt, width: '100%', height: 'auto' }); 
+                            if(images.length > 0) {
+                                callback(images[0].url, { alt: images[0].alt, width: '100%', height: 'auto' }); 
+                            }
                         })();
                     }
                 }

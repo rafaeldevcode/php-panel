@@ -6,11 +6,11 @@
             <img class='border border-color-main w-full absolute bottom-0 left-0' src='<?php asset('/assets/images/users/'.$user->avatar) ?>' alt='<?php echo $user->name ?>'/>
 
             <button
-                class='absolute bottom-0 left-0 w-full h-full bg-white profile-user-btn'
-                data-toggle="modal"
+                class='absolute bottom-0 left-0 w-full h-full bg-white profile-user-btn font-bold text-color-main'
+                data-toggle="avatar"
                 title="Abrir modal com imagens de perfil"
             >
-                <span class='text-color-main font-bold'>Alterar</span>
+                Alterar
             </button>
         </div>
 
@@ -94,4 +94,4 @@
     </form>
 </section>
 
-<?php loadHtml(__DIR__.'/../../../resources/partials/modal-avatars', ['user_id' => $user->id, 'avatar' => $user->avatar]) ?>
+<?php loadHtml(__DIR__.'/../../../resources/admin/partials/modal-avatars', ['user_id' => $user->id, 'avatar' => $user->avatar]) ?>
