@@ -10,7 +10,7 @@
         $post = new Posts();
         $requests = requests();
         $posts = !isset($requests->search) ? $post->paginate(20) : $post->where('titles', 'LIKE', "%{$requests->search}%")->paginate(20);
-        $color = 'cm-secondary';
+        $color = 'secondary';
         $text  = 'Visualizar';
         $body = __DIR__."/body/read";
 
@@ -20,13 +20,13 @@
         $galery = new Gallery();
 
         $post = $post->find(querys('id'));
-        $color = 'cm-success';
+        $color = 'success';
         $text  = 'Editar';
         $body = __DIR__."/body/form";
 
         $data = ['action' => '/admin/posts/update', 'post' => $post->data, 'images' => $post->images()->data];
     elseif($method == 'create'):
-        $color = 'cm-primary';
+        $color = 'primary';
         $text  = 'Adicionar';
         $body = __DIR__."/body/form";
 
@@ -48,7 +48,8 @@
 
     function loadInFooter(): void
     {
-        loadHtml(__DIR__.'/../../resources/partials/gallery') ?>
+        loadHtml(__DIR__.'/../../resources/admin/partials/gallery');
+        loadHtml(__DIR__.'/../../resources/admin/partials/modal-delete') ?>
 
         <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
         <script type="text/javascript">
@@ -68,7 +69,9 @@
                         (async () => {
                             const images = await gallery.selectedFilesTinymce('radio');
 
-                            callback(images[0].url, { alt: images[0].alt, width: '100%', height: 'auto' }); 
+                            if(images.length > 0) {
+                                callback(images[0].url, { alt: images[0].alt, width: '100%', height: 'auto' }); 
+                            }
                         })();
                     }
                 }

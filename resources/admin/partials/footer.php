@@ -1,8 +1,8 @@
-<footer class='p-4 border-top shadow'>
-    <div class='d-flex flex-column flex-lg-row justify-content-between align-items-center'>
-        <p class='mb-0 fw-bold text-cm-secondary text-center'><?php echo !is_null(SETTINGS) && !empty(['copyright']) ? SETTINGS['copyright'] : 'Todos os direitos reservados' ?></p>
+<footer class='p-4 border-t shadow-lg'>
+    <div class='flex flex-col lg:flex-row justify-between items-center'>
+        <p class='font-bold text-secondary text-center'><?php echo !is_null(SETTINGS) && !empty(['copyright']) ? SETTINGS['copyright'] : 'Todos os direitos reservados' ?></p>
     
-        <a class="text-decoration-none fw-bold" href="<?php route('/policies') ?>">Políticas de privacidade</a>
+        <a title="Políticas de privacidade" class="font-bold text-secondary" href="<?php route('/policies') ?>">Políticas de privacidade</a>
     </div>
 </footer>
 
@@ -10,6 +10,7 @@
 <script type="text/javascript" src="<?php asset('libs/bootstrap/bootstrap.js?ver='.APP_VERSION) ?>"></script>
 <script type="text/javascript" src="<?php asset('assets/scripts/main.js?ver='.APP_VERSION) ?>"></script>
 
+<script type="text/javascript" src="<?php asset('assets/scripts/class/Modal.js?ver='.APP_VERSION) ?>"></script>
 <script type="text/javascript" src="<?php asset('assets/scripts/class/Cookies.js?ver='.APP_VERSION) ?>"></script>
 <script type="text/javascript" src="<?php asset('assets/scripts/class/PageBack.js?ver='.APP_VERSION) ?>"></script>
 <script type="text/javascript" src="<?php asset('assets/scripts/class/Preloader.js?ver='.APP_VERSION) ?>"></script>
@@ -37,6 +38,8 @@
     document.addEventListener("DOMContentLoaded", function() {
         Preloader.hide();
     });
+
+    Modal.init();
 </script>
 
 <?php if(isset($plugins) && in_array('tinymce', $plugins)): ?>

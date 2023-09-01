@@ -15,6 +15,7 @@
     if(is_null($post->where('slug', '=', $slug)->first())):  
         $new_post = $post->create([
             'content' => $requests->content,
+            'excerpt' => getExcerpt($requests->content),
             'title' => $requests->title,
             'status' => $requests->status,
             'slug' => $slug,
@@ -26,14 +27,14 @@
         
         session([
             'message' => 'Post adicionado com sucesso!',
-            'type'    => 'cm-success'
+            'type'    => 'success'
         ]);
         
         return header(route('/admin/posts', true), true, 302);
     else:
         session([
             'message' => 'A slug já está sendo utilizada, poo favor tente outra!',
-            'type'    => 'cm-danger'
+            'type'    => 'danger'
         ]);
         
         return header(route('/admin/posts?method=create', true), true, 302);

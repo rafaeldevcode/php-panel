@@ -11,7 +11,7 @@
         if($requests->password !== $requests->repeat_password):
             session([
                 'message' => 'As senhas não conferem!',
-                'type' => 'cm-danger'
+                'type' => 'danger'
             ]);
 
             return header(route("/admin/users?method=edit&id={$requests->id}", true), true, 302);
@@ -35,7 +35,7 @@
 
     session([
         'message' => 'Usuário editado com sucesso!',
-        'type' => 'cm-success'
+        'type' => 'success'
     ]);
 
     return header(route('/admin/users', true), true, 302);

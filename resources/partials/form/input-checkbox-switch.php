@@ -21,11 +21,18 @@
     endif; 
 ?>
 
-<div class='form-check form-switch'>
-    <input class='form-check-input' type='checkbox' id='<?php echo $name ?>' name='<?php echo $name ?>' <?php echo $checked ?> <?php echo $attr ?>>
-    <label class='form-check-label' for='<?php echo $name ?>'>
-        <?php echo $label ?>
-        <span class="text-cm-danger"><?php echo $is_required?></span>
-    </label>
-    <span class='position-absolute end-0 bottom-0 validit'></span>
-</div>
+<label class="relative inline-flex items-center mb-4 pointer">
+    <input 
+        type="checkbox" 
+        class="sr-only peer" 
+        id='<?php echo $name ?>' 
+        name='<?php echo $name ?>' 
+        <?php echo $checked ?> 
+        <?php echo $attr ?>
+    >
+    
+    <div class="w-11 h-6 bg-secondary rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-secondary after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-color-main"></div>
+    <span class="ml-3 text-sm font-medium text-secondary"><?php echo $label.$is_required ?></span>
+
+    <span class='absolute right-0 bottom-0 validit'></span>
+</label>

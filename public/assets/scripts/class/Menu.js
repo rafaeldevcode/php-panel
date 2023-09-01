@@ -30,6 +30,7 @@ class Menu{
                     divBtn.addClass('divClosed');
                     divBtn.attr('data-divbtn-closed', 'active');
         
+                    Cookies.set('open_menu', true, 500000);
                 }else{
                     menu.removeClass('menuMobileOppen');
                     divBtn.attr('data-divbtn-closed', 'desactive');
@@ -40,6 +41,8 @@ class Menu{
                         aside.attr('data-expanded', 'mobile-desactive');
                         divBtn.removeClass('divClosed');
                     }, 200);
+
+                    Cookies.forget('open_menu');
                 }
             }else{
         
@@ -47,7 +50,7 @@ class Menu{
                     aside.attr('data-expanded', 'active');
         
                     items.forEach((item)=>{
-                        item.parentNode.querySelector('i').classList.remove('iconManu');
+                        $(item).parent().find('i').removeClass('iconManu');
         
                         $(item).removeClass('dNone');
                         $(item).attr('data-item-active', 'true');
@@ -61,7 +64,7 @@ class Menu{
                         $(item).attr('data-item-active', 'false');
         
                         setTimeout(()=>{
-                            item.parentNode.querySelector('i').classList.add('iconManu');
+                            $(item).parent().find('i').addClass('iconManu');
         
                             $(item).addClass('dNone');
                         }, 600);
@@ -117,7 +120,7 @@ class Menu{
                 aside.attr('data-expanded', 'active');
             
                 items.forEach((item)=>{
-                    item.parentNode.querySelector('i').classList.remove('iconManu');
+                    $(item).parent().find('i').removeClass('iconManu');
     
                     $(item).removeClass('dNone');
                     $(item).attr('data-item-active', 'true');

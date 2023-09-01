@@ -15,7 +15,7 @@
     if(isset($user_id)):
         session([
             'message' => 'Logout realizado com sucesso!',
-            'type' => 'cm-success'
+            'type' => 'success'
         ]);
 
         $redirection = '/admin/users';

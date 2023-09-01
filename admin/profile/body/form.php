@@ -1,25 +1,25 @@
-<section class='p-3 bg-cm-light m-0 m-sm-3 rounded shadow'>
-    <div class='position-relative'>
-        <div class='position-relative profile-bg' style="background-image: url(<?php !is_null(SETTINGS) && !empty(SETTINGS['site_bg_login']) ? asset('assets/images/'.SETTINGS['site_bg_login'].'') : asset('assets/images/login_bg.jpg') ?>)"></div>
+<section class='p-3 bg-white m-0 sm:m-3 rounded shadow-lg'>
+    <div class='relative'>
+        <div class='relative profile-bg' style="background-image: url(<?php !is_null(SETTINGS) && !empty(SETTINGS['site_bg_login']) ? asset('assets/images/'.SETTINGS['site_bg_login'].'') : asset('assets/images/login_bg.jpg') ?>)"></div>
 
-        <div class='mx-auto position-relative profile-user'>
-            <img class='border border-color-main w-100 position-absolute bottom-0 left-0' src='<?php asset('/assets/images/users/'.$user->avatar) ?>' alt='<?php echo $user->name ?>'/>
+        <div class='mx-auto relative profile-user'>
+            <img class='border border-color-main w-full absolute bottom-0 left-0' src='<?php asset('/assets/images/users/'.$user->avatar) ?>' alt='<?php echo $user->name ?>'/>
 
             <button
-                class='position-absolute bottom-0 left-0 w-100 h-100 bg-cm-light profile-user-btn'
-                data-bs-toggle="modal"
-                data-bs-target="#avatar"
+                class='absolute bottom-0 left-0 w-full h-full bg-white profile-user-btn font-bold text-color-main'
+                data-toggle="avatar"
+                title="Abrir modal com imagens de perfil"
             >
-                <span class='text-color-main fw-bold'>Alterar</span>
+                Alterar
             </button>
         </div>
 
-        <div class='position-absolute top-0 start-0 m-3 text-color-main'>
-            <p class='p-0 m-0 display-4 fw-bold'><?php echo $user->name ?></p>
+        <div class='absolute top-0 left-0 m-3 text-color-main'>
+            <p class='p-0 m-0 text-3xl font-bold'><?php echo $user->name ?></p>
         </div>
 
-        <div class='position-absolute top-0 end-0 m-3'>
-            <span class='text-cm-light bg-cm-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?> badge badge-sm fw-bold'>
+        <div class='absolute top-0 right-0 m-3'>
+            <span class='text-light bg-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?> rounded px-2 py-1 font-bold'>
                 <i class='bi bi-circle-fill'></i>
                 <?php echo (is_null($user->status) || $user->status == 'off') ? 'Inativo' : 'Ativo' ?>
             </span>
@@ -28,10 +28,11 @@
 
     <form method="POST" action="<?php route('/admin/profile/update') ?>">
         <input type="hidden" name="id" value="<?php echo $user->id ?>">
-        <div class='row d-flex justify-content-between'>
-            <div class='col-12 col-md-6'>
+
+        <div class='flex justify-between flex-wrap'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
-                    'icon' => 'bi bi-envelope-fill',
+                    'icon' => 'bi bi-person-fill',
                     'name' => 'name',
                     'label' => 'Nome do usuário',
                     'type' => 'bi bi-person-fill',
@@ -40,7 +41,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-envelope-fill',
                     'name' => 'email',
@@ -54,7 +55,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'current_password',
@@ -63,7 +64,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'password',
@@ -72,7 +73,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'repeat_password',
@@ -82,17 +83,15 @@
             </div>
         </div>
 
-        <div class='row d-flex justify-content-end'>
-            <div class='col-12 col-md-3'>
-                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
-                    'type' => 'submit',
-                    'style' => 'color-main',
-                    'title' => 'Savar usuário',
-                    'value' => 'Salvar'
-                ]) ?>
-            </div>
+        <div class='flex justify-end'>
+            <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
+                'type' => 'submit',
+                'style' => 'color-main',
+                'title' => 'Savar usuário',
+                'value' => 'Salvar'
+            ]) ?>
         </div>
     </form>
 </section>
 
-<?php loadHtml(__DIR__.'/../../../resources/partials/modal-avatars', ['user_id' => $user->id, 'avatar' => $user->avatar]) ?>
+<?php loadHtml(__DIR__.'/../../../resources/admin/partials/modal-avatars', ['user_id' => $user->id, 'avatar' => $user->avatar]) ?>

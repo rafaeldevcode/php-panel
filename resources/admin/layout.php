@@ -1,12 +1,12 @@
-<?php loadHtml(__DIR__.'/../../resources/partials/header-main', ['title' => $title, 'plugins' => isset($plugins) ? $plugins : []]) ?>
+<?php loadHtml(__DIR__.'/partials/head', ['title' => $title, 'plugins' => isset($plugins) ? $plugins : []]) ?>
 
-    <section class='d-flex flex-nowrap justify-content-between w-100'>
-        <?php loadHtml(__DIR__.'/../../resources/partials/sidebar') ?>
+    <section class='flex flex-nowrap justify-between w-full'>
+        <?php loadHtml(__DIR__.'/partials/sidebar') ?>
 
-        <section class='w-100'>
-            <?php loadHtml(__DIR__.'/../../resources/partials/header') ?>
+        <section class='w-full'>
+            <?php loadHtml(__DIR__.'/partials/header') ?>
 
-            <?php loadHtml(__DIR__.'/../../resources/partials/breadcrumps', [
+            <?php loadHtml(__DIR__.'/partials/breadcrumps', [
                 'color' => $color,
                 'type' => $type,
                 'icon' => $icon,
@@ -20,7 +20,7 @@
         </section>
     </section>
 
-    <?php loadHtml(__DIR__.'/../../resources/partials/footer', ['plugins' => isset($plugins) ? $plugins : []]) ?>
+    <?php loadHtml(__DIR__.'/partials/footer', ['plugins' => isset($plugins) ? $plugins : []]) ?>
 
     <?php if(function_exists('loadInFooter')) loadInFooter(); ?>
 </body>

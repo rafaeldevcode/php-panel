@@ -8,7 +8,7 @@
     $images = !isset($search) ? $gallery->paginate(30) : $gallery->where('name', 'LIKE', "%{$search}%")->paginate(30);
 
     loadHtml(__DIR__.'/../../resources/admin/layout', [
-        'color' => 'cm-secondary',
+        'color' => 'secondary',
         'type' => 'Visualizar',
         'icon' => 'bi bi-images',
         'title' => 'Galeria',
@@ -20,18 +20,17 @@
 
     function loadInFooter(): void
     {
-        loadHtml(__DIR__.'/../../resources/partials/modal-delete');
-        loadHtml(__DIR__.'/../../resources/partials/gallery-preview') ?>
+        loadHtml(__DIR__.'/../../resources/admin/partials/modal-delete');
+        loadHtml(__DIR__.'/../../resources/admin/partials/gallery-preview') ?>
 
         <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
 
         <script type="text/javascript">
-            const gallery = new Gallery("images[]", true);
+            const gallery = new Gallery();
         
             gallery.changeInputType('checkbox');
             gallery.dbClickPreview();
             gallery.next($('#image-preview'));
             gallery.previous($('#image-preview'));
-            gallery.uploads()
         </script>
     <?php }

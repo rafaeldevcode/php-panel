@@ -8,7 +8,7 @@
     if($requests->password !== $requests->repeat_password):
         session([
             'message' => 'As senhas não conferem, tente novamente!',
-            'type' => 'cm-danger'
+            'type' => 'danger'
         ]);
         
         return header(route('/admin/users?method=create', true), true, 302);
@@ -27,7 +27,7 @@
 
         session([
             'message' => 'Usuário adicionado com sucesso!',
-            'type' => 'cm-success'
+            'type' => 'success'
         ]);
 
         return header(route('/admin/users', true), true, 302);

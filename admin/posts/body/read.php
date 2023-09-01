@@ -1,63 +1,92 @@
-<section class='px-3 py-4 bg-cm-light m-3 rounded shadow'>
+<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
     <section class='custom-table m-auto cm-browser-height'>
-        <table class='table table-hover mb-0'>
-            <thead>
-                <tr class="bg-color-main text-cm-light">
-                    <th class='col'>
-                        <input type='checkbox' data-button="select-several" />
-                    </th>
-                    <th class='col'>Nome</th>
-                    <th class='col'>Status</th>
-                    <th class='col text-end'>Ações</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <?php foreach($posts->data as $post): ?>
+        <div class="relative overflow-x-auto rounded border">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-color-main">
                     <tr>
-                        <td class='col'>
-                            <input
-                                data-id='<?php echo $post->id ?>'
-                                data-message-delete='Esta ação irá remover todos os posts selecionados!'
-                                type='checkbox'
-                                data-button="delete-enable"
-                            />
-                        </td>
-                        <td><?php echo $post->title ?></td>
-                        <td>
-                            <span class="badge bg-cm-<?php echo (is_null($post->status) || $post->status == 'off') ? 'danger' : 'primary' ?>"><?php echo (is_null($post->status) || $post->status == 'off') ? 'Inativo' : 'Ativo' ?></span>
-                        </td>
-                        <td class="text-end text-nowrap">
-                            <a href="<?php route("/admin/posts/?method=edit&id={$post->id}") ?>" title='Editar post <?php echo $post->title ?>' class='btn btn-sm btn-cm-primary text-cm-light fw-bold m-1'>
-                                <i class='bi bi-pencil-square'></i>
-                            </a>
-
-                            <button
-                                data-button="delete"
-                                data-route='<?php route('/admin/posts/delete') ?>'
-                                data-delete-id='<?php echo $post->id ?>'
-                                data-message-delete='Esta ação irá remover o post "<?php echo $post->title ?>"!'
-                                type='button'
-                                title='Remover post <?php echo $post->title ?>'
-                                class='btn btn-sm btn-cm-danger text-cm-light fw-bold m-1'
-                            >
-                                <i class='bi bi-trash-fill'></i>
-                            </button>
-                        </td>
+                        <th scope="col" class="p-4">
+                            <div class="flex items-center">
+                                <input 
+                                    data-button="select-several"
+                                    id="checkbox-all-search" 
+                                    type="checkbox" 
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                >
+                                <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nome
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right">
+                            Ações
+                        </th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach($posts->data as $post): ?>
+                        <tr class="bg-white border-b hover:bg-gray-50">
+                            <td class="w-4 p-4">
+                                <div class="flex items-center">
+                                    <input 
+                                        value='<?php echo $post->id ?>' 
+                                        data-message-delete='Esta ação irá remover todos os posts selecionados!'
+                                        type='checkbox'
+                                        data-button="delete-enable"
+                                        id="checkbox-table-search-<?php echo $post->id ?>" 
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                    >
+                                    <label for="checkbox-table-search-<?php echo $post->id ?>" class="sr-only">checkbox</label>
+                                </div>
+                            </td>
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                <?php echo $post->title ?>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="rounded text-xs text-light px-2 py-1 bg-<?php echo (is_null($post->status) || $post->status == 'off') ? 'danger' : 'primary' ?>">
+                                    <?php echo (is_null($post->status) || $post->status == 'off') ? 'Inativo' : 'Ativo' ?>
+                                </span>
+                            </td>
+                            <td class="flex items-center justify-end px-6 py-4 space-x-2 right">
+                                <a target="_blank" rel="noopener" href="<?php route("/blog/{$post->slug}") ?>" title='Visualizar post <?php echo $post->title ?>' class='text-xs p-2 rounded btn-info text-light fw-bold'>
+                                    <i class="bi bi-eye-fill"></i>
+                                </a>
+
+                                <a href="<?php route("/admin/posts/?method=edit&id={$post->id}") ?>" title='Editar post <?php echo $post->title ?>' class='text-xs p-2 rounded btn-primary text-light fw-bold'>
+                                    <i class='bi bi-pencil-square'></i>
+                                </a>
+
+                                <button
+                                    data-button="delete"
+                                    data-route='<?php route('/admin/posts/delete') ?>'
+                                    data-delete-id='<?php echo $post->id ?>'
+                                    data-message-delete='Esta ação irá remover o post "<?php echo $post->title ?>"!'
+                                    type='button'
+                                    title='Remover post <?php echo $post->title ?>'
+                                    class='p-2 text-xs rounded btn-danger text-light fw-bold'
+                                >
+                                    <i class='bi bi-trash-fill'></i>
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
 
         <?php if(count($posts->data) == 0): ?>
-            <div class="p-2 empty-collections d-flex justify-content-center align-items-center">
-                <img class="h-100" src="<?php asset('assets/images/empty.svg') ?>" alt="Teste">
+            <div class="p-2 empty-collections flex justify-center items-center">
+                <img class="h-full" src="<?php asset('assets/images/empty.svg') ?>" alt="Nenhum dado encontrado">
             </div>
         <?php endif; ?>
     </section>
 
     <?php if(isset($posts->page)):
-        loadHtml(__DIR__.'/../../../resources/partials/pagination', [
+        loadHtml(__DIR__.'/../../../resources/admin/partials/pagination', [
             'page'   => $posts->page,
             'count'  => $posts->count,
             'next'   => $posts->next,
@@ -65,5 +94,4 @@
             'search' => $posts->search
         ]);
     endif; ?>
-    <?php loadHtml(__DIR__.'/../../../resources/partials/modal-delete') ?>
 </section>
