@@ -17,7 +17,7 @@
 
     session([
         'message' => 'Image(s) removida(s) com sucesso!',
-        'type' => 'cm-success'
+        'type' => 'success'
     ]);
 
     return header(route('/admin/gallery', true), true, 302);

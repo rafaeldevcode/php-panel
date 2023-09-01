@@ -7,7 +7,7 @@
     $settings = $settings->first();
 
     loadHtml(__DIR__.'/../../resources/admin/layout', [
-        'color' => 'cm-success',
+        'color' => 'success',
         'type' => 'Editar',
         'icon' => 'bi bi-gear-fill',
         'title' => 'Configurações',
@@ -15,9 +15,9 @@
         'data' => ['settings' => $settings],
     ]);
 
-    function loadInFooter()
+    function loadInFooter(): void
     {
-        loadHtml(__DIR__.'/../../resources/partials/gallery') ?>
+        loadHtml(__DIR__.'/../../resources/admin/partials/gallery') ?>
 
         <script type="text/javascript" src="<?php asset('libs/jquery/jquery.mask.min.js?ver='.APP_VERSION)?>"></script>
         <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>

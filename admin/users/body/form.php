@@ -1,11 +1,11 @@
-<section class='p-3 bg-cm-light m-0 m-sm-3 rounded shadow'>
+<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
     <form method="POST" action="<?php route($action) ?>">
         <?php if(isset($user)): ?>
             <input type="hidden" name="id" value="<?php echo $user->id ?>">
         <?php endif ?>
 
-        <div class='row d-flex justify-content-between'>
-            <div class='col-12 col-md-6'>
+        <div class='flex justify-between flex-wrap'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-person-fill',
                     'name' => 'name',
@@ -16,7 +16,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-envelope-fill',
                     'name' => 'email',
@@ -27,7 +27,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'password',
@@ -36,7 +36,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'repeat_password',
@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class='col-12 col-md-6'>
+        <div class='w-full md:w-6/12 px-4'>
             <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-checkbox-switch', [
                 'name' => 'status',
                 'label' => 'Status do usuário (Inativo | Ativo)',
@@ -54,15 +54,13 @@
             ]) ?>
         </div>
 
-        <div class='row d-flex justify-content-end'>
-            <div class='col-12 col-md-3'>
-                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
-                    'type' => 'submit',
-                    'style' => 'color-main',
-                    'title' => 'Savar usuário',
-                    'value' => 'Salvar'
-                ]) ?>
-            </div>
+        <div class='flex justify-end'>
+            <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
+                'type' => 'submit',
+                'style' => 'color-main',
+                'title' => 'Savar usuário',
+                'value' => 'Salvar'
+            ]) ?>
         </div>
     </form>
 </section>

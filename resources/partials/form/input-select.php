@@ -15,19 +15,29 @@
     endif;
 ?>
 
-<div class='d-flex flex-column position-relative my-4'>
-    <?php if(isset($icon)): ?>
-        <i class='<?php echo $icon ?> position-absolute m-2'></i>
-    <?php endif; ?>
-
-    <select class='form-select ps-4 focus-shadown-none' name='<?php echo $name ?>' id='<?php echo $name ?>' <?php echo $attr ?>>
-        <?php foreach($array as $indice => $item): ?>
-            <option value='<?php echo $indice ?>' <?php echo isset($value) && $indice == $value ? 'selected' : '' ?>><?php echo $item ?></option>
-        <?php endforeach; ?>
-    </select>
-    <label class='position-absolute ms-4 my-2 px-2 input-transform-translate' for='permission'>
-        <?php echo $label ?>
-        <span class="text-cm-danger"><?php echo $is_required ?></span>
+<div class='flex flex-col my-4'>
+    <label for="<?php echo $name ?>" class="block mb-2 text-sm font-bold text-secondary">
+        <?php echo $label.$is_required ?>
     </label>
-    <span class='position-absolute end-0 bottom-0 validit'></span>
+
+    <div class="relative">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+            <?php if(isset($icon)): ?>
+                <i class='<?php echo $icon ?> absolute mr-2 my-2 ml-1 text-secondary'></i>
+            <?php endif; ?>
+        </span>
+
+        <select 
+            id="<?php echo $name ?>"
+            name="<?php echo $name ?>"
+            <?php echo $attr ?>
+            class="ps-8 shadow-sm italic border border-secondary text-secondary text-sm rounded focus:ring-color-main focus:ring-1 focus:border-color-main block w-full py-2"
+        >
+            <?php foreach($array as $indice => $item): ?>
+                <option value='<?php echo $indice ?>' <?php echo isset($value) && $indice == $value ? 'selected' : '' ?>><?php echo $item ?></option>
+            <?php endforeach ?>
+        </select>
+
+        <span class='absolute right-0 bottom-0 validit'></span>
+    </div>
 </div>

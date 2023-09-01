@@ -11,7 +11,7 @@
     $thumbnail = isset($requests->thumbnail) ? $requests->thumbnail : null;
     $collection = isset($requests->collection) ? $requests->collection : null;
 
-    if(is_null($post_slug) || $post_slug->id === $requests->id):  
+    if(is_null($post_slug) || $post_slug->id == $requests->id):  
         $post = $post->find($requests->id);
         
         $post->update([
@@ -26,14 +26,14 @@
         
         session([
             'message' => 'Post editado com sucesso!',
-            'type'    => 'cm-success'
+            'type'    => 'success'
         ]);
         
         return header(route('/admin/posts', true), true, 302);
     else:
         session([
             'message' => 'A slug já está sendo utilizada, poo favor tente outra!',
-            'type'    => 'cm-danger'
+            'type'    => 'danger'
         ]);
         
         return header(route("/admin/posts?method=edit&id={$requests->id}", true), true, 302);

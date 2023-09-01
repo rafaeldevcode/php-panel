@@ -15,15 +15,18 @@
     endif;
 ?>
 
-<div class='d-flex flex-column position-relative my-4'>
+<div class='flex flex-col relative my-4'>
     <?php if(isset($icon)): ?>
-        <i class='<?php echo $icon ?> position-absolute m-2'></i>
+        <i class='<?php echo $icon ?> absolute m-2 text-secondary'></i>
     <?php endif; ?>
 
-    <textarea class='form-control ps-4 py-2 validit-custom' name='<?php echo $name ?>' id='<?php echo $name ?>' <?php echo $attr ?>><?php echo isset($value) ? $value : '' ?></textarea>
-    <label class='position-absolute ms-4 my-2 px-2' for='<?php echo $name ?>'>
-        <?php echo isset($label) ? $label : '' ?>
-        <span class="text-cm-danger"><?php echo $is_required ?></span>
-    </label>
-    <span class='position-absolute end-0 bottom-0 validit'></span>
+    <textarea 
+        id="<?php echo $name ?>" 
+        rows="4"
+        <?php echo $attr ?>
+        class="pl-8 placeholder:italic placeholder:text-secondary block p-2 w-full text-sm text-secondary rounded border border-secondary shadow-sm focus:outline-none focus:border-color-main focus:ring-color-main focus:ring-1" 
+        placeholder="<?php echo $label.$is_required ?>"
+    ><?php echo isset($value) ? $value : '' ?></textarea>
+        
+    <span class='absolute right-0 bottom-0 validit'></span>
 </div>

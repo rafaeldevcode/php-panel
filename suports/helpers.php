@@ -6,7 +6,7 @@ require __DIR__.'/helpers/requests.php';
 require __DIR__.'/helpers/menus-admin.php';
 require __DIR__.'/helpers/routes.php';
 
-!defined('APP_VERSION') && define('APP_VERSION', '1.4.0');
+!defined('APP_VERSION') && define('APP_VERSION', '1.32.0');
 
 if (! function_exists('asset')):
     /**
@@ -85,6 +85,38 @@ if (!function_exists('path')):
         $path = explode('?', $path)[0];
 
         return rtrim($path, '/');
+    }
+endif;
+
+if (!function_exists('getIconMessage')):
+    /**
+     * @since 1.5.0
+     * 
+     * @param ?string $type
+     * @return string
+     */
+    function getIconMessage(?string $type): string
+    {
+        $icon = 'bi bi-question-circle-fill';
+
+        switch ($type ) :
+            case 'danger':
+                $icon = 'bi bi-dash-circle-fill';
+                break;
+            case 'success':
+                $icon = 'by bi-check-circle-fill';
+                break;
+            case 'warning':
+                $icon = 'bi bi-exclamation-circle-fill';
+                break;
+            case 'secondary':
+                $icon = 'bi bi-question-circle-fill';
+            case 'info':
+                $icon = 'bi bi-info-circle-fill';
+                break;
+        endswitch;
+
+        return $icon;
     }
 endif;
 

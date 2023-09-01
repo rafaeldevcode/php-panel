@@ -13,7 +13,7 @@
     if($login['status']):
         session([
             'message' => $login['message'],
-            'type' => 'cm-success',
+            'type' => 'success',
             'token' => $login['user']->token,
             'user_name' => $login['user']->name,
             'user_id' => $login['user']->id,
@@ -25,7 +25,7 @@
 
         session([
             'message' => $login['message'],
-            'type' => 'cm-danger'
+            'type' => 'danger'
         ]);
 
         return header(route('/login', true), true, 302);

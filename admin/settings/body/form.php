@@ -1,7 +1,7 @@
-<section class='p-3 bg-cm-light m-0 m-sm-3 rounded shadow'>
+<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
     <form method="POST" action="<?php route('/admin/settings/update') ?>" enctype="multipart/form-data">
-        <div class='row d-flex justify-content-between'>
-            <div class='col-12 col-md-6'>
+        <div class='flex flex-wrap justify-between'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-link',
                     'name' => 'site_name',
@@ -11,7 +11,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-card-text',
                     'name' => 'site_description',
@@ -21,7 +21,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-geo-alt-fill',
                     'name' => 'andress',
@@ -31,7 +31,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-telephone-fill',
                     'name' => 'phone',
@@ -41,7 +41,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-envelope-fill',
                     'name' => 'email',
@@ -51,7 +51,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-linkedin',
                     'name' => 'profile_linkedin',
@@ -61,7 +61,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-facebook',
                     'name' => 'profile_facebook',
@@ -71,7 +71,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-instagram',
                     'name' => 'profile_instagram',
@@ -81,7 +81,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-whatsapp',
                     'name' => 'whatsapp',
@@ -91,7 +91,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-chat-quote-fill',
                     'name' => 'whatsapp_message',
@@ -101,7 +101,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-telegram',
                     'name' => 'telegram',
@@ -111,7 +111,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-chat-quote-fill',
                     'name' => 'telegram_message',
@@ -121,7 +121,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-c-circle-fill',
                     'name' => 'copyright',
@@ -131,7 +131,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-google',
                     'name' => 'google_analytics',
@@ -141,7 +141,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12 col-md-6'>
+            <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-facebook',
                     'name' => 'facebook_pixel',
@@ -151,7 +151,7 @@
                 ]) ?>
             </div>
 
-            <div class='col-12'>
+            <div class='w-full'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-checkbox-switch', [
                     'name' => 'cookies',
                     'label' => 'Ativar aviso de cookies (Inativo | Ativo)',
@@ -159,8 +159,8 @@
                 ]) ?>
             </div>
 
-            <div class="col-12">
-                <div class='col-12'>
+            <div class="w-full">
+                <div class='w-full'>
                     <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-checkbox-switch', [
                         'name' => 'preloader',
                         'label' => 'Ativar preloader (Inativo | Ativo)',
@@ -168,20 +168,20 @@
                         'attributes' => 'onclick="Preloader.habilit(event);"'
                     ]) ?>
 
-                    <p class="text-cm-secondary">Preloader é uma animação que é executada até que a página esteja carregada e pronta para ser exibida.</p>
+                    <p class="text-secondary">Preloader é uma animação que é executada até que a página esteja carregada e pronta para ser exibida.</p>
                 </div>
 
                 <div id="box-preloader" class="border border-color-main rounded" style="display: <?php echo !isset($settings) || $settings->preloader == 'off' ? 'none' : 'flex' ?>;">
                     <div class="p-2">
-                        <p class="text-cm-secondary">Escolha uma imagem de animação</p>
+                        <p class="text-secondary">Escolha uma imagem de animação</p>
                     </div>
 
-                    <div class="d-flex flex-wrap justify-content-center">
+                    <div class="flex flex-wrap justify-center">
                         <?php foreach (getPreloaders() as $indice => $image): ?>
                             <div class='m-2'>
-                            <input data-checked="add-style" class='d-none' type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings->preloader_image ? 'checked' : '' ?>>
-                                <label for='<?php echo $indice ?>' class='form-check-label rounded label-image-profile border border-cm-secondary'>
-                                    <img class="w-100 rounded" src="<?php asset("/assets/images/preloaders/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
+                                <input data-checked="add-style" hidden type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings->preloader_image ? 'checked' : '' ?>>
+                                <label for='<?php echo $indice ?>' class='block rounded label-image-profile border border-secondary'>
+                                    <img class="w-full rounded" src="<?php asset("/assets/images/preloaders/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
                                 </label>
                             </div>
                         <?php endforeach; ?>
@@ -189,7 +189,7 @@
                 </div>
             </div>
 
-            <div class='col-12 d-flex flex-wrap'>
+            <div class='w-full flex flex-wrap mt-6'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/button-upload', [
                     'name' => 'site_logo_main',
                     'label' => 'Logo principal (Cor principal)',
@@ -220,15 +220,13 @@
             </div>
         </div>
 
-        <div class='row d-flex justify-content-end'>
-            <div class='col-12 col-md-3'>
-                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
-                    'type' => 'submit',
-                    'style' => 'color-main',
-                    'title' => 'Savar configurações',
-                    'value' => 'Salvar'
-                ]) ?>
-            </div>
+        <div class='flex justify-end'>
+            <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
+                'type' => 'submit',
+                'style' => 'color-main',
+                'title' => 'Savar configurações',
+                'value' => 'Salvar'
+            ]) ?>
         </div>
     </form>
 </section>

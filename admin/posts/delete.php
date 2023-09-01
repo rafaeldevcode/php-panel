@@ -12,7 +12,7 @@
 
     session([
         'message' => 'Post(s) removido(s) com sucesso!',
-        'type'    => 'cm-success'
+        'type'    => 'success'
     ]);
 
     return header(route('/admin/posts', true), true, 302);
