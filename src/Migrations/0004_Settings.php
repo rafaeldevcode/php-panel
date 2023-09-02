@@ -29,7 +29,10 @@ class Settings extends ExecuteMigrations
         $this->char('cookies', 3)->default('off');
         $this->string('preloader_image', 21)->default('preloader_default.gif');
         $this->string('facebook_pixel', 20)->nullable();
-        $this->string('google_analytics', 20)->nullable();
+        $this->string('tiktok_pixel', 25)->nullable();
+        $this->string('tagmanager_pixel', 20)->nullable();
+        $this->string('googleads_pixel', 20)->nullable();
+        $this->string('google_analytics_pixel', 20)->nullable();
         $this->string('profile_facebook', 100)->nullable();
         $this->string('profile_instagram', 100)->nullable();
         $this->string('profile_linkedin', 100)->nullable();
