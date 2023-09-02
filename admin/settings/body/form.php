@@ -133,21 +133,51 @@
 
             <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
-                    'icon' => 'bi bi-google',
-                    'name' => 'google_analytics',
-                    'label' => 'Pixel do google analytics',
-                    'type' => 'text',
-                    'value' => isset($settings) ? $settings->google_analytics : ''
-                ]) ?>
-            </div>
-
-            <div class='w-full md:w-6/12 px-4'>
-                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-facebook',
                     'name' => 'facebook_pixel',
                     'label' => 'Pixel do facebook',
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->facebook_pixel : ''
+                ]) ?>
+            </div>
+
+            <div class='w-full md:w-6/12 px-4'>
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
+                    'icon' => 'bi bi-tiktok',
+                    'name' => 'tiktok_pixel',
+                    'label' => 'Pixel do tiktok',
+                    'type' => 'text',
+                    'value' => isset($settings) ? $settings->tiktok_pixel : ''
+                ]) ?>
+            </div>
+
+            <div class='w-full md:w-6/12 px-4'>
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
+                    'icon' => 'bi bi-google',
+                    'name' => 'google_analytics_pixel',
+                    'label' => 'Pixel do google analytics',
+                    'type' => 'text',
+                    'value' => isset($settings) ? $settings->google_analytics_pixel : ''
+                ]) ?>
+            </div>
+
+            <div class='w-full md:w-6/12 px-4'>
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
+                    'icon' => 'bi bi-google',
+                    'name' => 'googleads_pixel',
+                    'label' => 'Pixel do google ads',
+                    'type' => 'text',
+                    'value' => isset($settings) ? $settings->googleads_pixel : ''
+                ]) ?>
+            </div>
+
+            <div class='w-full md:w-6/12 px-4'>
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
+                    'icon' => 'bi bi-google',
+                    'name' => 'tagmanager_pixel',
+                    'label' => 'Pixel do google tagmanager',
+                    'type' => 'text',
+                    'value' => isset($settings) ? $settings->tagmanager_pixel : ''
                 ]) ?>
             </div>
 
