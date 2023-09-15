@@ -1,6 +1,4 @@
 <?php
-    autenticate();
-
     use Src\Models\User;
 
     $method = empty(querys('method')) ? 'read' : querys('method');

@@ -1,6 +1,4 @@
 <?php
-    autenticate();
-
     use Src\Models\Gallery;
     use Src\Models\Posts;
 

@@ -1,6 +1,4 @@
 <?php 
-    autenticate();
-
     use Src\Models\Setting;
 
     $settings = new Setting();
