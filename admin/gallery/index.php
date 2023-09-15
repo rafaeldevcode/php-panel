@@ -30,7 +30,5 @@
         
             gallery.changeInputType('checkbox');
             gallery.dbClickPreview();
-            gallery.next($('#image-preview'));
-            gallery.previous($('#image-preview'));
         </script>
     <?php }

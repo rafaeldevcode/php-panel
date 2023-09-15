@@ -469,6 +469,9 @@ class Gallery{
             $('#url').text(image.attr('src'));
 
             Modal.open('preview');
+
+            gallery.next($('#image-preview'));
+            gallery.previous($('#image-preview'));
         });
     }
 
