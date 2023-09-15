@@ -3,8 +3,6 @@
 
     header('Content-Type: application/json');
 
-    $url_base = urlBase();
-
     if($_SERVER['REQUEST_METHOD'] == 'GET'):
         $data = ['success' => false, 'message' => 'Method Not Allowed'];
     else:
@@ -17,7 +15,7 @@
 
                     array_push($data, [
                         'status' => true,
-                        'file_path' => "{$url_base}/public/assets/images/{$image->file}",
+                        'file_path' => asset("assets/images/{$image->file}", true),
                         'id' => $image->id,
                         'name' => $image->name
                     ]);
@@ -28,7 +26,7 @@
 
             array_push($data, [
                 'status' => true,
-                'file_path' => "{$url_base}/public/assets/images/{$image->file}",
+                'file_path' => asset("assets/images/{$image->file}", true),
                 'id' => $image->id,
                 'name' => $image->name
             ]);

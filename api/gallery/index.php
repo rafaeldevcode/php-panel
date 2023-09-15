@@ -5,8 +5,6 @@
 
     header('Content-Type: application/json');
 
-    $url_base = urlBase();
-
     if($_SERVER['REQUEST_METHOD'] == 'GET'):
         $requests = requests();
         $data = [[], []];
@@ -15,7 +13,7 @@
 
         foreach($images->data as $image):
             array_push($data[0], [
-                'file_path' => "{$url_base}/public/assets/images/{$image->file}",
+                'file_path' => asset("assets/images/{$image->file}", true),
                 'id' => $image->id,
                 'name' => $image->name
             ]);
