@@ -18,7 +18,7 @@
         <!-- Tinymce end -->
     <?php endif ?>
 
-    <link rel='stylesheet' href='<?php asset('libs/tailwind/style.css?ver='.APP_VERSION) ?>' />
+    <link rel='stylesheet' href='<?php asset('libs/tailwind/admin/style.css?ver='.APP_VERSION) ?>' />
     <link rel='stylesheet' href='<?php asset('assets/css/globals.css?ver='.APP_VERSION) ?>' />
     
     <link rel="shortcut icon" href="<?php !is_null(SETTINGS) && !empty(SETTINGS['site_favicon']) ? asset('assets/images/'.SETTINGS['site_favicon'].'') : asset('assets/images/favicon.svg') ?>" alt="Logo <?php echo env('APP_NAME') ?>">

@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel='stylesheet' href='<?php asset('libs/tailwind/style.css') ?>' />
-        <link rel='stylesheet' href='<?php asset('libs/bootstrap-icons/bootstrap-icons.min.css') ?>' />
-        <link rel='stylesheet' href='<?php asset('assets/css/globals.css') ?>' />
+        <link rel='stylesheet' href='<?php asset('libs/tailwind/admin/style.css?ver='.APP_VERSION) ?>' />
+        <link rel='stylesheet' href='<?php asset('libs/bootstrap-icons/bootstrap-icons.min.css?ver='.APP_VERSION) ?>' />
+        <link rel='stylesheet' href='<?php asset('assets/css/globals.css?ver='.APP_VERSION) ?>' />
         <meta name='author' content='Rafael Vieira | github.com/rafaeldevcode' />
         <link rel="shortcut icon" href="<?php asset('assets/images/favicon.svg') ?>" type="image/pnh">
 
@@ -26,7 +26,7 @@
         </main>
     </body>
     
-    <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js')?>"></script>
+    <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript" src="<?php asset('assets/scripts/class/PageBack.js?ver='.APP_VERSION) ?>"></script>
     <script type="text/javascript">
         PageBack.init();
