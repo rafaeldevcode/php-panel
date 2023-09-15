@@ -21,6 +21,7 @@
         'profile_linkedin' => $requests->profile_linkedin,
         'profile_facebook' => $requests->profile_facebook,
         'profile_instagram' => $requests->profile_instagram,
+        'profile_twitter' => $requests->profile_twitter,
         'google_analytics_pixel' => $requests->google_analytics_pixel,
         'copyright' => $requests->copyright,
         'telegram_message' => $requests->telegram_message,
