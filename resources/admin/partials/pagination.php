@@ -9,7 +9,7 @@
                 <input type="hidden" name="search" value="<?php echo $search ?>">
             <?php endif; ?>
 
-            <button type="submit" title='Página anterior' class='btn btn-secondary' <?php echo is_null($next) ? 'disabled' : '' ?>>
+            <button type="submit" title='Página anterior' class='btn btn-secondary' <?php echo is_null($prev) ? 'disabled' : '' ?>>
                 <i class='bi bi-arrow-left-short'></i>
                 Anterior
             </button>
