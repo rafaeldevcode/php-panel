@@ -9,7 +9,7 @@
     if($method == 'read'):
         $post = new Posts();
         $requests = requests();
-        $posts = !isset($requests->search) ? $post->paginate(20) : $post->where('titles', 'LIKE', "%{$requests->search}%")->paginate(20);
+        $posts = !isset($requests->search) ? $post->paginate(20) : $post->where('title', 'LIKE', "%{$requests->search}%")->paginate(20);
         $color = 'secondary';
         $text  = 'Visualizar';
         $body = __DIR__."/body/read";

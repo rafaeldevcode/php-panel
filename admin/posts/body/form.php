@@ -64,7 +64,7 @@
             ]) ?>
         </div>
 
-        <div class='flex justify-end'>
+        <div class='flex justify-end mt-10'>
             <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
                 'type'  => 'submit',
                 'style' => 'color-main',
