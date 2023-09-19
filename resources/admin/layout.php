@@ -7,7 +7,7 @@
             <?php loadHtml(__DIR__.'/partials/header') ?>
 
             <?php loadHtml(__DIR__.'/partials/breadcrumps', [
-                'color' => $color,
+                'background' => $background,
                 'type' => $type,
                 'icon' => $icon,
                 'title' => $title,

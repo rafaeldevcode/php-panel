@@ -5,7 +5,7 @@
     $user = $user->find($_SESSION['user_id'])->data;
 
     loadHtml(__DIR__.'/../../resources/admin/layout', [
-        'color' => 'success',
+        'background' => 'bg-success',
         'type' => 'Editar',
         'icon' => 'bi bi-person-bounding-box',
         'title' => 'Perfil',

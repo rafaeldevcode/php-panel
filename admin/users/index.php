@@ -7,7 +7,7 @@
         $user = new User();
         $requests = requests();
         $users = !isset($requests->search) ? $user->paginate(20) : $user->where('name', 'LIKE', "%{$requests->search}%")->paginate(20);
-        $color = 'secondary';
+        $background = 'bg-secondary';
         $text  = 'Visualizar';
         $body = __DIR__."/body/read";
 
@@ -15,13 +15,13 @@
     elseif($method == 'edit'):
         $user = new User();
         $user = $user->find(querys('id'));
-        $color = 'success';
+        $background = 'bg-success';
         $text  = 'Editar';
         $body = __DIR__."/body/form";
 
         $data = ['user' => $user->data, 'action' => '/admin/users/update'];
     elseif($method == 'create'):
-        $color = 'primary';
+        $background = 'bg-primary';
         $text  = 'Adicionar';
         $body = __DIR__."/body/form";
 
@@ -29,7 +29,7 @@
     endif;
 
     loadHtml(__DIR__.'/../../resources/admin/layout', [
-        'color' => $color,
+        'background' => $background,
         'type' => $text,
         'icon' => 'bi bi-people-fill',
         'title' => 'Usuários',

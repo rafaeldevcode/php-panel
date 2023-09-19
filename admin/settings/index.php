@@ -5,7 +5,7 @@
     $settings = $settings->first();
 
     loadHtml(__DIR__.'/../../resources/admin/layout', [
-        'color' => 'success',
+        'background' => 'bg-success',
         'type' => 'Editar',
         'icon' => 'bi bi-gear-fill',
         'title' => 'Configurações',
