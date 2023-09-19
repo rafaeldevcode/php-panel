@@ -57,7 +57,7 @@
 
                 <!-- Input pass -->
                 <div class="mt-6">
-                    <?php loadHtml(__DIR__.'/../resources/partials/form/input-pass', [
+                    <?php loadHtml(__DIR__.'/../resources/partials/form/input-default', [
                         'icon' => 'bi bi-key-fill',
                         'name' => 'password',
                         'label' => 'Senha',
