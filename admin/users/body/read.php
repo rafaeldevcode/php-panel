@@ -86,8 +86,8 @@
                                     <button
                                         type='submit'
                                         title='Deslogar usuário <?php echo $user->name ?>'
-                                        class='p-2 text-xs rounded pointer btn-<?php echo $user->id == $_SESSION['user_id'] ? 'secondary' : 'info' ?> text-light'
-                                        <?php echo $user->id == $_SESSION['user_id'] ? 'disabled' : '' ?>
+                                        class='p-2 text-xs rounded pointer btn-<?php echo (!in_array($user->id, $ids) || $user->id === $_SESSION['user_id']) ? 'secondary' : 'info' ?> text-light'
+                                        <?php echo (!in_array($user->id, $ids) || $user->id === $_SESSION['user_id']) ? 'disabled' : '' ?>
                                     >
                                         <i class="bi bi-box-arrow-right"></i>
                                     </button>

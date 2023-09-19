@@ -11,7 +11,7 @@
         $text  = 'Visualizar';
         $body = __DIR__."/body/read";
 
-        $data = ['users' => $users];
+        $data = ['users' => $users, 'ids' => extractIdsLoggedUsers()];
     elseif($method == 'edit'):
         $user = new User();
         $user = $user->find(querys('id'));

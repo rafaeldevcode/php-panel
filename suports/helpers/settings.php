@@ -1,5 +1,6 @@
 <?php
 
+use Src\Models\AccessToken;
 use Src\Models\Setting;
 use Src\Models\Gallery;
 
@@ -473,5 +474,25 @@ if(!function_exists('deleteDir')):
         endif;
 
         return $message;
+    }
+endif;
+
+if(!function_exists('extractIdsLoggedUsers')):
+    /**
+     * @since 1.6.0
+     * 
+     * @return array
+     */
+    function extractIdsLoggedUsers(): array
+    {
+        $tokens = new AccessToken();
+        $tokens = $tokens->get();
+        $ids = [];
+
+        foreach($tokens as $token):
+            array_push($ids, $token->user_id);
+        endforeach;
+        
+        return $ids;
     }
 endif;

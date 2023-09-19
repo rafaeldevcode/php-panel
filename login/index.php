@@ -61,6 +61,7 @@
                         'icon' => 'bi bi-key-fill',
                         'name' => 'password',
                         'label' => 'Senha',
+                        'type' => 'password',
                         'attributes' => 'required'
                     ]) ?>
                 </div>
