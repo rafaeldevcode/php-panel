@@ -34,8 +34,8 @@
 
     PageBack.init();
 
-    document.addEventListener("DOMContentLoaded", function() {
-        Preloader.hide();
+    document.addEventListener("DOMContentLoaded", () => {
+        Preloader.hide('body');
     });
 
     Modal.init();
