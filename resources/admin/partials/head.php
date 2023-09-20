@@ -30,6 +30,3 @@
 </head>
 <body>
     <?php !is_null(SETTINGS) && !empty(SETTINGS['facebook_pixel']) ? loadHtml(__DIR__.'/../../partials/facebook-pixel', ['header' => false, 'pixel' => SETTINGS['facebook_pixel']]) : ''; ?>
-
-    <?php loadHtml(__DIR__.'/../../partials/message') ?>
-    <?php !is_null(SETTINGS) && SETTINGS['preloader'] == 'on' && loadHtml(__DIR__.'/../../partials/preloader', ['position' => 'fixed']) ?>

@@ -1,5 +1,5 @@
 <div class="relative">
-    <?php loadHtml(__DIR__.'/../../partials/preloader', ['position' => 'absolute']) ?>
+    <?php loadHtml(__DIR__.'/../../partials/preloader', ['position' => 'absolute', 'type' => 'gallery']) ?>
 
     <div class="flex flex-wrap justify-center" id="gallery">
         <?php foreach ($images->data as $image): ?>

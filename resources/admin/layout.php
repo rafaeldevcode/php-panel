@@ -20,7 +20,14 @@
         </section>
     </section>
 
+    <!-- Include footer -->
     <?php loadHtml(__DIR__.'/partials/footer') ?>
+
+    <!-- Include flash message -->
+    <?php loadHtml(__DIR__.'/../partials/message') ?>
+
+    <!-- Include Preloader -->
+    <?php !is_null(SETTINGS) && SETTINGS['preloader'] == 'on' && loadHtml(__DIR__.'/../partials/preloader', ['position' => 'fixed', 'type' => 'body']) ?>
 
     <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js?ver='.APP_VERSION)?>"></script>
     <script type="text/javascript" src="<?php asset('assets/scripts/main.js?ver='.APP_VERSION) ?>"></script>

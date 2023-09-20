@@ -11,7 +11,7 @@ class Preloader{
      * @returns {void}
      */
     static hide(type){
-        $(`[data-preloader="${type}"]`).removeClass('d-flex');
+        $(`[data-preloader="${type}"]`).removeClass('flex');
         $(`[data-preloader="${type}"]`).hide();
     }
 
@@ -22,7 +22,7 @@ class Preloader{
      * @returns {void}
      */
     static show(type){
-        $(`[data-preloader="${type}"]`).addClass('d-flex');
+        $(`[data-preloader="${type}"]`).addClass('flex');
         $(`[data-preloader="${type}"]`).show();
     }
     
