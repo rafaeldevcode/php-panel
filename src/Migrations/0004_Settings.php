@@ -35,6 +35,7 @@ class Settings extends ExecuteMigrations
         $this->string('google_analytics_pixel', 20)->nullable();
         $this->string('profile_facebook', 100)->nullable();
         $this->string('profile_instagram', 100)->nullable();
+        $this->string('profile_twitter', 100)->nullable();
         $this->string('profile_linkedin', 100)->nullable();
         $this->string('telegram', 20)->nullable();
         $this->string('whatsapp', 20)->nullable();

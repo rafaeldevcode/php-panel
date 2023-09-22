@@ -5,11 +5,9 @@
 module.exports = {
     content: [
         "./public/libs/tailwind/import.css",
-        "./resources/**/*.php",
-        "./admin/**/*.php",
+        "./resources/errors/*.php",
+        "./resources/partials/**/*.php",
         "./policies/*.php",
-        "./login/*.php",
-        "./index.php",
     ],
     theme: {
         screens: {

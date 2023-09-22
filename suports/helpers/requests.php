@@ -100,17 +100,12 @@ if (!function_exists('verifyMethod')):
             case 500:
                 $type = 'warning';
                 $message = "{$_SERVER['REQUEST_METHOD']} method not allowed";
-                $title = 'Not allowed';
                 break;
         endswitch;
 
         if(!isset($method) || (isset($method) && $_SERVER['REQUEST_METHOD'] !== $method)):
-            loadHtml(__DIR__.'/../../resources/errors/index', [
-                'error' => $error,
-                'type' => $type,
-                'message' => $message,
-                'title' => $title
-            ]);
+
+            abort($error, $message, $type);
         endif;
     }
 endif;
@@ -128,5 +123,26 @@ if (! function_exists('urlBase')):
         $host = $_SERVER['HTTP_HOST'];
 
         return "{$protocol}://{$host}{$project_path}";
+    }
+endif;
+
+if (! function_exists('abort')):
+    /**
+     * @since 1.6.0
+     * 
+     * @param int $error_code
+     * @param string $message
+     * @param string $type
+     * @return string
+     */
+    function abort(int $error_code, string $message, string $type): void
+    {
+        loadHtml(__DIR__.'/../../resources/errors/index', [
+            'error' => $error_code,
+            'type' => $type,
+            'message' => $message,
+            'title' => $message
+        ]);
+        exit;
     }
 endif;

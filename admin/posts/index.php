@@ -1,6 +1,4 @@
 <?php
-    autenticate();
-
     use Src\Models\Gallery;
     use Src\Models\Posts;
 
@@ -9,8 +7,8 @@
     if($method == 'read'):
         $post = new Posts();
         $requests = requests();
-        $posts = !isset($requests->search) ? $post->paginate(20) : $post->where('titles', 'LIKE', "%{$requests->search}%")->paginate(20);
-        $color = 'secondary';
+        $posts = !isset($requests->search) ? $post->paginate(20) : $post->where('title', 'LIKE', "%{$requests->search}%")->paginate(20);
+        $background = 'bg-secondary';
         $text  = 'Visualizar';
         $body = __DIR__."/body/read";
 
@@ -20,13 +18,13 @@
         $galery = new Gallery();
 
         $post = $post->find(querys('id'));
-        $color = 'success';
+        $background = 'bg-success';
         $text  = 'Editar';
         $body = __DIR__."/body/form";
 
         $data = ['action' => '/admin/posts/update', 'post' => $post->data, 'images' => $post->images()->data];
     elseif($method == 'create'):
-        $color = 'primary';
+        $background = 'bg-primary';
         $text  = 'Adicionar';
         $body = __DIR__."/body/form";
 
@@ -34,7 +32,7 @@
     endif;
 
     loadHtml(__DIR__.'/../../resources/admin/layout', [
-        'color'        => $color,
+        'background'        => $background,
         'type'         => $text,
         'icon'         => 'bi bi-pin-angle-fill',
         'title'        => 'Posts',

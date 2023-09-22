@@ -83,6 +83,16 @@
 
             <div class='w-full md:w-6/12 px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
+                    'icon' => 'bi bi-twitter',
+                    'name' => 'profile_twitter',
+                    'label' => 'Twitter da empresa',
+                    'type' => 'url',
+                    'value' => isset($settings) ? $settings->profile_twitter : ''
+                ]) ?>
+            </div>
+
+            <div class='w-full md:w-6/12 px-4'>
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-whatsapp',
                     'name' => 'whatsapp',
                     'label' => 'Whatsapp da empresa (adicionar DDD)',

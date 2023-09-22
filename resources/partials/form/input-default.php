@@ -37,6 +37,12 @@
             <?php echo $attr ?>
         />
 
+        <?php if($type === 'password'): ?>
+            <button type='button' data-id-pass="show-pass" title='Exibir senha' class='btn-color-main btn-show-pass px-1 rounded-r absolute top-0 right-0 h-full'>
+                <i class='bi bi-eye-fill'></i>
+            </button>
+        <?php endif; ?>
+
         <span class='absolute right-0 bottom-0 validit'></span>
     </label>
 </div>

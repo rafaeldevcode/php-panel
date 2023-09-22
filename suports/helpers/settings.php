@@ -1,5 +1,6 @@
 <?php
 
+use Src\Models\AccessToken;
 use Src\Models\Setting;
 use Src\Models\Gallery;
 
@@ -408,9 +409,10 @@ if(!function_exists('getExcerpt')):
      * @since 1.9.1
      *
      * @param ?string $content
+     * @param int $length
      * @return ?string
      */
-    function getExcerpt(?string $content): ?string
+    function getExcerpt(?string $content, int $lenght = 200): ?string
     {
         if(is_null($content)) return $content;
 
@@ -418,7 +420,7 @@ if(!function_exists('getExcerpt')):
         $paragraph = preg_split('/<p[^>]*>/', $paragraphs);
         $paragraph = explode('</p>', $paragraph[1]);
 
-        $excerpt = strlen($paragraph[0]) > 200 ? substr($paragraph[0], 0, 200).'...' : $paragraph[0];
+        $excerpt = strlen($paragraph[0]) > $lenght ? substr($paragraph[0], 0, $lenght).'...' : $paragraph[0];
 
         return html_entity_decode($excerpt);
     }
@@ -472,5 +474,25 @@ if(!function_exists('deleteDir')):
         endif;
 
         return $message;
+    }
+endif;
+
+if(!function_exists('extractIdsLoggedUsers')):
+    /**
+     * @since 1.6.0
+     * 
+     * @return array
+     */
+    function extractIdsLoggedUsers(): array
+    {
+        $tokens = new AccessToken();
+        $tokens = $tokens->get();
+        $ids = [];
+
+        foreach($tokens as $token):
+            array_push($ids, $token->user_id);
+        endforeach;
+        
+        return $ids;
     }
 endif;

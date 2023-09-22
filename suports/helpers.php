@@ -13,9 +13,10 @@ if (! function_exists('asset')):
      * @since 1.0.0
      * 
      * @param string $route
-     * @return void
+     * @param bool $return
+     * @return ?string
      */
-    function asset(string $path): void
+    function asset(string $path, bool $return = false): ?string
     {
         $protocol = ((isset($_SERVER['HTTPS'])) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
         $host = $_SERVER['HTTP_HOST'];
@@ -24,7 +25,12 @@ if (! function_exists('asset')):
 
         $url = "{$protocol}://{$host}{$project_path}{$assets_path}/{$path}";
 
-        echo $url;
+        if($return): 
+            return $url;
+        else:
+            echo $url;
+            return null;
+        endif;
     }
 endif;
 

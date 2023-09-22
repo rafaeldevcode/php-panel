@@ -7,7 +7,7 @@
             <?php loadHtml(__DIR__.'/partials/header') ?>
 
             <?php loadHtml(__DIR__.'/partials/breadcrumps', [
-                'color' => $color,
+                'background' => $background,
                 'type' => $type,
                 'icon' => $icon,
                 'title' => $title,
@@ -20,7 +20,73 @@
         </section>
     </section>
 
-    <?php loadHtml(__DIR__.'/partials/footer', ['plugins' => isset($plugins) ? $plugins : []]) ?>
+    <!-- Include footer -->
+    <?php loadHtml(__DIR__.'/partials/footer') ?>
+
+    <!-- Include flash message -->
+    <?php loadHtml(__DIR__.'/../partials/message') ?>
+
+    <!-- Include Preloader -->
+    <?php !is_null(SETTINGS) && SETTINGS['preloader'] == 'on' && loadHtml(__DIR__.'/../partials/preloader', ['position' => 'fixed', 'type' => 'body']) ?>
+
+    <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js?ver='.APP_VERSION)?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/main.js?ver='.APP_VERSION) ?>"></script>
+
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Modal.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Cookies.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/PageBack.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Preloader.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Menu.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Message.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Password.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/ValidateForm.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Remove.js?ver='.APP_VERSION) ?>"></script>
+    <script type="text/javascript">
+        Menu.checkIsOpen();
+        Menu.admin($('#checkbox-menu'));
+        Message.hide('[data-message]');
+        Password.show('[data-id-pass]');
+
+        // Validate the form
+        const validate = new ValidateForm();
+        validate.init();
+
+        // Delete item(s)
+        const remove = new Remove();
+        remove.init();
+
+        PageBack.init();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            Preloader.hide('body');
+        });
+
+        Modal.init();
+    </script>
+
+    <?php if(isset($plugins) && in_array('tinymce', $plugins)): ?>
+        <!-- Tinymce start -->
+        <script type="text/javascript" src="<?php asset('libs/tinymce/themes/silver/theme.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/models/dom/model.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/icons/default/icons.js?ver='.APP_VERSION) ?>"></script>
+
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/image/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/codesample/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/emoticons/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/emoticons/js/emojis.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/charmap/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/autolink/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/anchor/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/wordcount/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/visualblocks/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/table/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/searchreplace/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/media/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/lists/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/link/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/code/plugin.min.js?ver='.APP_VERSION) ?>"></script>
+        <!-- Tinymce end -->
+    <?php endif ?>
 
     <?php if(function_exists('loadInFooter')) loadInFooter(); ?>
 </body>

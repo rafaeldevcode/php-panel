@@ -17,12 +17,7 @@
 
             loadHtml(__DIR__.'/..'.getFileName($path));
         else:
-
-            loadHtml(__DIR__.'/../resources/errors/index', [
-                'error' => 404,
-                'type' => 'danger',
-                'message' => 'Not Found',
-                'title' => 'Page Not Found'
-            ]);
+            
+            abort(404, 'Not Found', 'danger');
         endif;
     endif;

@@ -8,7 +8,7 @@
     $images = !isset($search) ? $gallery->paginate(30) : $gallery->where('name', 'LIKE', "%{$search}%")->paginate(30);
 
     loadHtml(__DIR__.'/../../resources/admin/layout', [
-        'color' => 'secondary',
+        'background' => 'bg-secondary',
         'type' => 'Visualizar',
         'icon' => 'bi bi-images',
         'title' => 'Galeria',
@@ -30,7 +30,5 @@
         
             gallery.changeInputType('checkbox');
             gallery.dbClickPreview();
-            gallery.next($('#image-preview'));
-            gallery.previous($('#image-preview'));
         </script>
     <?php }

@@ -18,7 +18,7 @@
         <!-- Tinymce end -->
     <?php endif ?>
 
-    <link rel='stylesheet' href='<?php asset('libs/tailwind/style.css?ver='.APP_VERSION) ?>' />
+    <link rel='stylesheet' href='<?php asset('libs/tailwind/admin/style.css?ver='.APP_VERSION) ?>' />
     <link rel='stylesheet' href='<?php asset('assets/css/globals.css?ver='.APP_VERSION) ?>' />
     
     <link rel="shortcut icon" href="<?php !is_null(SETTINGS) && !empty(SETTINGS['site_favicon']) ? asset('assets/images/'.SETTINGS['site_favicon'].'') : asset('assets/images/favicon.svg') ?>" alt="Logo <?php echo env('APP_NAME') ?>">
@@ -30,6 +30,3 @@
 </head>
 <body>
     <?php !is_null(SETTINGS) && !empty(SETTINGS['facebook_pixel']) ? loadHtml(__DIR__.'/../../partials/facebook-pixel', ['header' => false, 'pixel' => SETTINGS['facebook_pixel']]) : ''; ?>
-
-    <?php loadHtml(__DIR__.'/../../partials/message') ?>
-    <?php !is_null(SETTINGS) && SETTINGS['preloader'] == 'on' && loadHtml(__DIR__.'/../../partials/preloader', ['position' => 'fixed']) ?>

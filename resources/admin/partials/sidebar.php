@@ -6,7 +6,7 @@
             <?php foreach(menusAdmin() as $menu): ?>
                 <li class='flex flex-row items-center rounded item-nav-sidbar relative' data-item-menu='<?php echo path() == $menu['path'] ? 'active' : 'inactive' ?>'>
                     <?php if(isset($menu['count']) && $menu['count'] !== 0): ?>
-                        <span class="menu-count badge bg-danger absolute top-0 start-0 rounded-full"><?php echo $menu['count'] ?></span>
+                        <span class="menu-count badge bg-danger absolute top-0 right-0 px-1 py-0 text-xs block rounded-full text-white font-bold"><?php echo $menu['count'] ?></span>
                     <?php endif; ?>
 
                     <div class='nav-icon text-color-main text-center w-full'>

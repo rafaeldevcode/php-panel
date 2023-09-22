@@ -21,11 +21,12 @@
     <?php endif; ?>
 
     <textarea 
-        id="<?php echo $name ?>" 
         rows="4"
         <?php echo $attr ?>
-        class="pl-8 placeholder:italic placeholder:text-secondary block p-2 w-full text-sm text-secondary rounded border border-secondary shadow-sm focus:outline-none focus:border-color-main focus:ring-color-main focus:ring-1" 
+        id="<?php echo $name ?>" 
+        name="<?php echo $name ?>" 
         placeholder="<?php echo $label.$is_required ?>"
+        class="pl-8 placeholder:italic placeholder:text-secondary block p-2 w-full text-sm text-secondary rounded border border-secondary shadow-sm focus:outline-none focus:border-color-main focus:ring-color-main focus:ring-1" 
     ><?php echo isset($value) ? $value : '' ?></textarea>
         
     <span class='absolute right-0 bottom-0 validit'></span>

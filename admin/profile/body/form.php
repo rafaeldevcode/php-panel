@@ -56,7 +56,7 @@
             </div>
 
             <div class='w-full md:w-6/12 px-4'>
-                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'current_password',
                     'type' => 'password',
@@ -65,7 +65,7 @@
             </div>
 
             <div class='w-full md:w-6/12 px-4'>
-                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'password',
                     'type' => 'password',
@@ -74,7 +74,7 @@
             </div>
 
             <div class='w-full md:w-6/12 px-4'>
-                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-pass', [
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-key-fill',
                     'name' => 'repeat_password',
                     'type' => 'password',

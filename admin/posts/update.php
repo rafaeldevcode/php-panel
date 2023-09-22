@@ -33,7 +33,7 @@
         return header(route('/admin/posts', true), true, 302);
     else:
         session([
-            'message' => 'A slug já está sendo utilizada, poo favor tente outra!',
+            'message' => 'A slug já está sendo utilizada, por favor tente outra!',
             'type'    => 'danger'
         ]);
         
