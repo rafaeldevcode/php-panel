@@ -1,10 +1,10 @@
 <section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
-    <section class='custom-table m-auto cm-browser-height'>
-        <div class="relative overflow-x-auto rounded border">
-            <table class="w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-color-main">
+    <section>
+        <div class="relative overflow-x-auto max-w-[2000px] mx-auto mb-4 rounded border">
+            <table class="w-full text-xs text-left">
+                <thead class="text-white uppercase bg-color-main">
                     <tr>
-                        <th scope="col" class="p-4">
+                        <th scope="col" class="p-2">
                             <div class="flex items-center">
                                 <input 
                                     data-button="select-several"
@@ -15,13 +15,13 @@
                                 <label for="checkbox-all-search" class="sr-only">checkbox</label>
                             </div>
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="p-2">
                             Nome
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="p-2">
                             Status
                         </th>
-                        <th scope="col" class="px-6 py-3 text-right">
+                        <th scope="col" class="p-2 text-right">
                             Ações
                         </th>
                     </tr>
@@ -29,7 +29,7 @@
                 <tbody>
                     <?php foreach($posts->data as $post): ?>
                         <tr class="bg-white border-b hover:bg-gray-50">
-                            <td class="w-4 p-4">
+                            <td class="w-4 p-2">
                                 <div class="flex items-center">
                                     <input 
                                         value='<?php echo $post->id ?>' 
@@ -42,15 +42,15 @@
                                     <label for="checkbox-table-search-<?php echo $post->id ?>" class="sr-only">checkbox</label>
                                 </div>
                             </td>
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <td scope="row" class="p-2 font-medium text-gray-900 whitespace-nowrap">
                                 <?php echo $post->title ?>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="p-2">
                                 <span class="rounded text-xs text-light px-2 py-1 bg-<?php echo (is_null($post->status) || $post->status == 'off') ? 'danger' : 'primary' ?>">
                                     <?php echo (is_null($post->status) || $post->status == 'off') ? 'Inativo' : 'Ativo' ?>
                                 </span>
                             </td>
-                            <td class="flex items-center justify-end px-6 py-4 space-x-2 right">
+                            <td class="flex items-center justify-end p-2 space-x-2 right">
                                 <a target="_blank" rel="noopener" href="<?php route("/blog/{$post->slug}") ?>" title='Visualizar post <?php echo $post->title ?>' class='text-xs p-2 rounded btn-info text-light fw-bold'>
                                     <i class="bi bi-eye-fill"></i>
                                 </a>

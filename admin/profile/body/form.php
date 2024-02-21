@@ -83,7 +83,7 @@
             </div>
         </div>
 
-        <div class='flex justify-end'>
+        <div class='flex justify-end px-4'>
             <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
                 'type' => 'submit',
                 'style' => 'color-main',

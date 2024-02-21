@@ -1,4 +1,4 @@
-<div class='flex flex-nowrap items-center shadow lg p-2 profile shadow-xl'>
+<div class='flex flex-nowrap items-center shadow-md p-2 profile shadow-xl'>
     <div class='user'>
         <a href='<?php route('/admin/profile') ?>' title='Editar perfil de Rafael'>
             <img class='border border-color-main w-full' src='<?php asset("assets/images/users/{$_SESSION['user_avatar']}") ?>' alt='<?php echo $_SESSION['user_name'] ?>' />
