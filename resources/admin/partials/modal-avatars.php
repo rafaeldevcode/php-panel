@@ -15,7 +15,7 @@
                     <?php foreach (getAvatars() as $indice => $image): ?>
                         <div class='m-2'>
                             <input data-checked="add-style" hidden type='radio' name='avatar' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo $image['src'] == $avatar ? 'checked' : '' ?>>
-                            <label for='<?php echo $indice ?>' class='rounded-full label-image-profile block'>
+                            <label for='<?php echo $indice ?>' class='rounded-full block cursor-pointer w-[80px] h-[80px]'>
                                 <img class="w-full rounded-full" src="<?php asset("/assets/images/users/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
                             </label>
                         </div>

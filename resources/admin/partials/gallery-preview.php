@@ -10,7 +10,7 @@
 
         <div class='flex flex-col justify-center p-1'>
             <div class="w-full h-full flex justify-center items-center">
-                <img id="image-preview" class="gallery-image-preview" src="#" alt="">
+                <img id="image-preview" class="max-w-full max-h-[500px] object-contain" src="#" alt="">
             </div>
         </div>
 

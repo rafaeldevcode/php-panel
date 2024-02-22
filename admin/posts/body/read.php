@@ -79,7 +79,7 @@
 
 
         <?php if(count($posts->data) == 0): ?>
-            <div class="p-2 empty-collections flex justify-center items-center">
+            <div class="p-2 h-[300px] flex justify-center items-center">
                 <img class="h-full" src="<?php asset('assets/images/empty.svg') ?>" alt="Nenhum dado encontrado">
             </div>
         <?php endif; ?>

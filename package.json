@@ -10,8 +10,8 @@
       "hot": "mix watch --hot",
       "prod": "npm run production",
       "production": "mix --production",
-      "build-css-admin": "npx tailwindcss -i ./public/libs/tailwind/import.css -o ./public/libs/tailwind/admin/style.css --watch",
-      "build-css-client": "npx tailwindcss -i ./public/libs/tailwind/import.css -o ./public/libs/tailwind/client/style.css --watch"
+      "build-admin": "npx tailwindcss -i ./public/libs/tailwind/import.css -o ./public/libs/tailwind/admin/style.css --watch",
+      "build-client": "npx tailwindcss -i ./public/libs/tailwind/import.css -o ./public/libs/tailwind/client/style.css --watch"
   },
   "devDependencies": {
       "bootstrap": "^5.1.3",

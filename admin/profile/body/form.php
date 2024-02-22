@@ -2,11 +2,11 @@
     <div class='relative'>
         <div class='relative profile-bg' style="background-image: url(<?php !is_null(SETTINGS) && !empty(SETTINGS['site_bg_login']) ? asset('assets/images/'.SETTINGS['site_bg_login'].'') : asset('assets/images/login_bg.jpg') ?>)"></div>
 
-        <div class='mx-auto relative profile-user'>
-            <img class='border border-color-main w-full absolute bottom-0 left-0' src='<?php asset('/assets/images/users/'.$user->avatar) ?>' alt='<?php echo $user->name ?>'/>
+        <div class='mx-auto relative w-[100px] h-[100px] mt-[-50px]'>
+            <img class='border border-color-main w-full absolute bottom-0 left-0 rounded-full' src='<?php asset('/assets/images/users/'.$user->avatar) ?>' alt='<?php echo $user->name ?>'/>
 
             <button
-                class='absolute bottom-0 left-0 w-full h-full bg-white profile-user-btn font-bold text-color-main'
+                class='absolute bottom-0 left-0 w-full h-full bg-white font-bold text-color-main rounded-full opacity-0 ease-linear duration-300 hover:opacity-100'
                 data-toggle="avatar"
                 title="Abrir modal com imagens de perfil"
             >

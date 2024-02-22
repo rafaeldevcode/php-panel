@@ -50,13 +50,6 @@ body
 .bg-warning
     background: $warning
 
-.pointer
-    cursor: pointer !important
-
-.zindex-100
-    position: relative
-    z-index: 100
-
 // Login panel
 .image-bg-login
     min-width: 100%
@@ -100,12 +93,6 @@ span[data-valid="true"]
     animation: showSuccess .4s linear forwards
     z-index: 1
 
-.input-transform-translate
-    transform: translate(-30px, -30px)
-
-.no-transform-translate
-    transform: translate(0px, 0px) !important
-
 .validit
     font-size: .8rem
     z-index: -1
@@ -113,57 +100,17 @@ span[data-valid="true"]
     i
         font-size: .8rem
 
-.btn-show-pass:focus
-    box-shadow: none
-
 // Animação da mensagem ao validar usuário e senha
-div[data-message="true"]
+[data-message="true"]
     animation: 1s showMessage ease-out
     z-index: 100
 
-div[data-message="false"]
+[data-message="false"]
     animation: 1s hiddeMessage ease-out forwards
-
-// Header
-.header
-    position: sticky
-    top: 0
-    z-index: 3
-    min-height: 50px
-
-    div
-        height: 45px
-
-.logo-header
-    height: 40px
-
-// Sidebar
-.profile
-    position: sticky
-    top: 0
-    min-height: 50px
-
-    &-dropdawn
-        z-index: 1
-
-        &-btn:focus
-            box-shadow: none
-
-.user
-    width: 45px
-    height: 45px
-
-    img
-        border-radius: 50%
 
 // Sandwiche menu
 .menu
     &_label
-        cursor: pointer
-        height: 18px
-        width: 25px
-        color: transparent
-
         span
             height: 3px
             width: 100%
@@ -196,57 +143,17 @@ div[data-message="false"]
             top: 11px
 
 // Sidebar menu
-.sidebar
-    min-height: 100vh
-
-    nav
-        position: sticky
-        top: 61px
-
-.sidebar[data-expanded='desactive']
+[data-expanded='desactive']
     animation: toRecalldAside .4s ease-in-out forwards
 
-.sidebar[data-expanded='active']
+[data-expanded='active']
     animation: expandedAside .4s ease-in-out forwards
 
-.hiddeItem
-    opacity: 0
-
-.dNone
-    display: none
-
-.iconManu
-    width: 100%
-
 .item-nav-sidbar
-    transition: all .4s
-    cursor: pointer
-    border: 1px solid transparent
-
     &:hover
-        border: 1px solid $color-main
-
         .submenu
             display: block
             opacity: 1
-
-    div
-        a
-            padding: .5rem
-
-.item-nav-sidbar-logout
-    transition: all .4s
-
-    &:hover
-        background: $danger
-
-    div
-        form
-            padding: .5rem
-
-            button
-                border: none
-                background: transparent
 
 [data-item-menu="active"]
     background: $color-main
@@ -297,29 +204,7 @@ div[data-item-active='true']
         height: 100%
         background: linear-gradient(0deg, #0000003c 50%, rgba(0,0,0,1) 100%)
 
-.profile-user
-    width: 100px
-    height: 100px
-    margin-top: -50px
-
-    &-btn
-        border: none
-        border-radius: 50%
-        opacity: 0
-        transition: all .4s
-
-        &:hover
-            opacity: 1
-
-    img
-        border-radius: 50%
-
 // Modal de imagens do perfil
-.label-image-profile
-    cursor: pointer
-    width: 80px
-    height: 80px
-
 [data-checked="add-style"]
     &:checked ~ label
         border: 2px solid $color-main
@@ -328,20 +213,6 @@ div[data-item-active='true']
 
 input[type="checkbox"]
     cursor: pointer
-
-// Estilo para os inputs images
-.section-input
-    width: 100%
-    max-width: 300px
-
-    &-label
-        cursor: pointer
-
-    &-span
-        margin-top: -28px
-
-    &-image
-        max-width: 100%
 
 // Server error and not found pages custom
 .custom-401
@@ -404,37 +275,6 @@ input[type="checkbox"]
     white-space: nowrap
     width: 220px
     overflow-x: scroll
-
-// Custom styles
-.input-custom
-    border-radius: 3px
-    cursor: pointer
-
-    &:focus
-        outline: none
-        box-shadow: none
-
-// Definir scroll para a tabelas
-.cm-browser-height
-    min-height: 350px
-
-.empty-collections
-    height: 300px
-
-.custom-table
-    display: block
-    max-width: 1300px
-    overflow-x: scroll
-
-    th
-        font-size: .85rem
-
-    td
-        font-size: .85rem
-
-// Gallery
-#modalGallery
-    z-index: 99999
 
 .gallery
     width: 150px

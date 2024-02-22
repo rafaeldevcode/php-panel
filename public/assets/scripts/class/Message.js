@@ -67,7 +67,7 @@ class Message{
         message.text(textMessage);
 
         const iconClose = $('<i />');
-        iconClose.attr('class', 'bi bi-x absolute top-0 right-1 opacity-75 pointer');
+        iconClose.attr('class', 'bi bi-x absolute top-0 right-1 opacity-75 cursor-pointer');
         iconClose.attr('data-message', 'hide');
 
         alert.append(icon);
