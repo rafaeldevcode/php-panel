@@ -64,11 +64,11 @@
             ]) ?>
         </div>
 
-        <div class='flex justify-end mt-10'>
+        <div class='flex justify-end mt-10 px-4'>
             <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
                 'type'  => 'submit',
                 'style' => 'color-main',
-                'title' => 'Savar banner',
+                'title' => 'Savar post',
                 'value' => 'Salvar'
             ]) ?>
         </div>

@@ -14,8 +14,8 @@
                     data-checked="add-style"
                 >
 
-                <label class="block rounded pointer border border-secondary p-1" data-click="double" for="image_<?php echo $image->id ?>">
-                    <img class="rounded" src="<?php asset("assets/images/{$image->file}") ?>" alt="<?php echo $image->name ?>">
+                <label class="block rounded cursor-pointer w-[150px] h-[150px] border border-secondary p-1" data-click="double" for="image_<?php echo $image->id ?>">
+                    <img class="rounded w-full h-full object-contain" src="<?php asset("assets/images/{$image->file}") ?>" alt="<?php echo $image->name ?>">
                 </label>
             </div>
         <?php endforeach; ?>

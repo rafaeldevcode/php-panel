@@ -191,7 +191,23 @@
                 ]) ?>
             </div>
 
-            <div class='w-full'>
+            <div class='w-full px-4'>
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-checkbox-switch', [
+                    'name' => 'maintenance',
+                    'label' => 'Ativar modo de manutenção (Inativo | Ativo)',
+                    'value' => isset($settings) ? $settings->maintenance : 'off'
+                ]) ?>
+            </div>
+
+            <div class='w-full px-4'>
+                <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-checkbox-switch', [
+                    'name' => 'construction',
+                    'label' => 'Ativar modo de construção (Inativo | Ativo)',
+                    'value' => isset($settings) ? $settings->construction : 'off'
+                ]) ?>
+            </div>
+
+            <div class='w-full px-4'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-checkbox-switch', [
                     'name' => 'cookies',
                     'label' => 'Ativar aviso de cookies (Inativo | Ativo)',
@@ -199,7 +215,7 @@
                 ]) ?>
             </div>
 
-            <div class="w-full">
+            <div class="w-full px-4">
                 <div class='w-full'>
                     <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-checkbox-switch', [
                         'name' => 'preloader',
@@ -220,7 +236,7 @@
                         <?php foreach (getPreloaders() as $indice => $image): ?>
                             <div class='m-2'>
                                 <input data-checked="add-style" hidden type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings->preloader_image ? 'checked' : '' ?>>
-                                <label for='<?php echo $indice ?>' class='block rounded label-image-profile border border-secondary'>
+                                <label for='<?php echo $indice ?>' class='block rounded cursor-pointer w-[80px] h-[80px] border border-secondary'>
                                     <img class="w-full rounded" src="<?php asset("/assets/images/preloaders/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
                                 </label>
                             </div>
@@ -229,7 +245,7 @@
                 </div>
             </div>
 
-            <div class='w-full flex flex-wrap mt-6'>
+            <div class='w-full flex flex-wrap mt-6 px-3'>
                 <?php loadHtml(__DIR__.'/../../../resources/partials/form/button-upload', [
                     'name' => 'site_logo_main',
                     'label' => 'Logo principal (Cor principal)',
@@ -260,7 +276,7 @@
             </div>
         </div>
 
-        <div class='flex justify-end'>
+        <div class='flex justify-end px-4'>
             <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
                 'type' => 'submit',
                 'style' => 'color-main',

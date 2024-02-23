@@ -15,7 +15,9 @@
     endif;
 ?>
 
-<div class="my-4">
+<div class="my-3">
+    <label class="text-secondary text-sm font-bold" for="<?php echo $name ?>"><?php echo $label ?><span class="text-danger"><?php echo $is_required ?></span></label>
+
     <label class="relative block">
         <span class="sr-only">
             <?php echo $label.$is_required ?>
@@ -38,7 +40,7 @@
         />
 
         <?php if($type === 'password'): ?>
-            <button type='button' data-id-pass="show-pass" title='Exibir senha' class='btn-color-main btn-show-pass px-1 rounded-r absolute top-0 right-0 h-full'>
+            <button type='button' data-id-pass="show-pass" title='Exibir senha' class='btn-color-main px-1 rounded-r absolute top-0 right-0 h-full'>
                 <i class='bi bi-eye-fill'></i>
             </button>
         <?php endif; ?>

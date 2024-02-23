@@ -257,7 +257,7 @@ class Gallery{
 
             const label = $('<label />');
             label.attr({
-                class: 'form-check-label rounded block pointer border border-secondary p-1',
+                class: 'form-check-label rounded block cursor-pointer border border-secondary p-1',
                 for: `image_${res.id}`
             });
             label.attr('data-click', 'double');
@@ -298,7 +298,7 @@ class Gallery{
 
                 this.selected.forEach((selected) => {
                     const div = $('<div />');
-                    div.attr('class', 'm-2 gallery rounded');
+                    div.attr('class', 'm-2 w-[150px] h-[150px] rounded');
 
                     const input = $('<input />');
                     input.attr({
@@ -337,7 +337,7 @@ class Gallery{
 
                     const img = $('<img />');
                     img.attr({
-                        class: 'w-full rounded-b',
+                        class: 'rounded-b w-full h-full object-contain',
                         src: selected.url,
                         alt: selected.alt
                     });

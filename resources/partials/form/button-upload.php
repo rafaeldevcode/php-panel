@@ -36,7 +36,7 @@
     <div class="flex flex-wrap" data-upload-selected="<?php echo $name ?>" data-required="<?php echo isset($is_required) ? 'required' : '' ?>">
         <!-- Add this snippet only when creating a new record and it is mandatory - start -->
         <?php if(isset($is_required) && !isset($images)): ?>
-            <div class="m-2 gallery rounded">
+            <div class="m-2 w-[150px] h-[150px] rounded">
                 <input value="" type="text" hidden name="<?php echo $type == 'checkbox' ? "{$name}[]" : $name ?>" data-checked="add-style" <?php echo $attr ?>>
                 <span class='absolute left-0 top-0 mt-5 validit'></span>
             </div>
@@ -45,7 +45,7 @@
 
         <?php if(isset($images)): 
             foreach($images as $image): ?>
-                <div class="m-2 gallery rounded">
+                <div class="m-2 w-[150px] h-[150px] rounded">
                     <input value="<?php echo $image->id ?>" type="text" hidden name="<?php echo $type == 'checkbox' ? "{$name}[]" : $name ?>" data-checked="add-style" <?php echo $attr ?>>
                     
                     <div class="relative" data-upload-image="selected">
@@ -55,7 +55,7 @@
                             </button>
                         </div>
 
-                        <img class="w-full rounded-b" src="<?php asset("assets/images/{$image->file}") ?>" alt="<?php echo $image->name ?>">
+                        <img class="rounded-b w-full h-full object-contain" src="<?php asset("assets/images/{$image->file}") ?>" alt="<?php echo $image->name ?>">
                     </div>
 
                     <?php if(isset($is_required)): ?>
