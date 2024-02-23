@@ -75,7 +75,7 @@
     <script type="text/javascript">
         Menu.checkIsOpen();
         Menu.admin($('#checkbox-menu'));
-        Message.hide('[data-message]');
+        Message.hide('[data-message="true"]');
         Password.show('[data-id-pass]');
 
         // Validate the form
