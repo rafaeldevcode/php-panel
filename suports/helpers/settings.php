@@ -420,7 +420,7 @@ if(!function_exists('getExcerpt')):
         $paragraph = preg_split('/<p[^>]*>/', $paragraphs);
         $paragraph = explode('</p>', $paragraph[1]);
 
-        $excerpt = strlen($paragraph[0]) > $lenght ? substr($paragraph[0], 0, $lenght).'...' : $paragraph[0];
+        $excerpt = strlen($paragraph[0]) > $lenght ? mb_substr($paragraph[0], 0, $lenght).'...' : $paragraph[0];
 
         return html_entity_decode($excerpt);
     }
