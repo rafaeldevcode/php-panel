@@ -49,8 +49,8 @@
                                 </div>
                             </td>
                             <td scope='row'>
-                                <div class='user'>
-                                    <img class='w-100' src='<?php asset("assets/images/users/{$user->avatar}") ?>' alt='<?php echo $user->name ?>'>
+                                <div class='user w-[45px] h-[45px]'>
+                                    <img class='w-full' src='<?php asset("assets/images/users/{$user->avatar}") ?>' alt='<?php echo $user->name ?>'>
                                 </div>
                             </td>
                             <td scope="row" class="p-2 whitespace-nowrap">
