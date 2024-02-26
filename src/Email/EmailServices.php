@@ -8,29 +8,10 @@ use PHPMailer\PHPMailer\Exception;
 
 class EmailServices
 {
-    /**
-     * @var string $name
-     */
     private $body;
-
-    /**
-     * @var string $subject
-     */
     private $subject;
-
-    /**
-     * @var string $contact
-     */
     private $email_to;
 
-    /**
-     * @since 1.1.0
-     * 
-     * @param string $body
-     * @param string $subject
-     * @param bool $conatct
-     * @return void
-     */
     public function __construct(string $body, string $subject, bool $contact = false)
     {
         $this->body = $body;
@@ -38,11 +19,6 @@ class EmailServices
         $this->email_to = $contact ? env('SMTP_EMAIL_CONTACT') : env('SMTP_EMAIL_PROPOSAL');
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     public function send(): void
     {
         $mail = new PHPMailer(true);

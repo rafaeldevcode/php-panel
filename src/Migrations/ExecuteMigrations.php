@@ -8,51 +8,15 @@ use PDOException;
 
 class ExecuteMigrations
 {
-    /**
-     * @var PDO
-     */
     private $connection = null;
-
-    /**
-     * @var array
-     */
     private $columns = [];
-
-    /**
-     * @var array
-     */
     private $current_column = [];
-
-    /**
-     * @var int
-     */
     private $current_indice = 0;
-
-    /**
-     * @var int
-     */
     private $current_foreign_key = 0;
-
-    /**
-     * @var bool
-     */
     private $timestamps = false;
-
-    /**
-     * @var array
-     */
     private $constraint = [];
-
-    /**
-     * @var string
-     */
     public $table;
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     public function __construct()
     {
         $db_host = env('DB_HOST');
@@ -70,13 +34,6 @@ class ExecuteMigrations
         }
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param string $method
-     * @param array $arguments
-     * @return self
-     */
     public function __call(string $method, array $arguments): self
     {
         if(isset($arguments[0])):
@@ -99,11 +56,6 @@ class ExecuteMigrations
         return $this;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return self
-     */
     public function nullable(): self
     {
         if(empty($this->columns[$this->current_indice]['default'])):
@@ -113,12 +65,6 @@ class ExecuteMigrations
         return $this;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param string $value
-     * @return self
-     */
     public function default(string $value): self
     {
         if($this->columns[$this->current_indice]['nullable'] == ' NOT NULL'):
@@ -128,45 +74,24 @@ class ExecuteMigrations
         return $this;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return self
-     */
     public function unique(): self
     {
         $this->columns[$this->current_indice]['unique'] = " UNIQUE";
         return $this;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return self
-     */
     public function timestamps(): self
     {
         $this->timestamps = true;
         return $this;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return self
-     */
     public function primaryKey(): self
     {
         $this->columns[$this->current_indice]['primary_key'] = " AUTO_INCREMENT PRIMARY KEY";
         return $this;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param string $foreign_key
-     * @return self
-     */
     public function foreignKey(string $foreign_key): self
     {
         $this->constraint[] = [
@@ -178,12 +103,6 @@ class ExecuteMigrations
         return $this;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param string $column_references
-     * @return self
-     */
     public function references(string $column_references): self
     {
         $this->constraint[$this->current_foreign_key]['column_references'] = $column_references;
@@ -191,12 +110,6 @@ class ExecuteMigrations
         return $this;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param string $table
-     * @return self
-     */
     public function on(string $table): self
     {
         $this->constraint[$this->current_foreign_key]['table'] = $table;
@@ -204,11 +117,6 @@ class ExecuteMigrations
         return $this;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     public function create(): void
     {
         $query = "CREATE TABLE IF NOT EXISTS $this->table";
@@ -247,11 +155,6 @@ class ExecuteMigrations
         endif;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     public function verifyExistsMigrations(): bool
     {
         $table_name = 'migrations';
@@ -264,13 +167,6 @@ class ExecuteMigrations
         return $statement->rowCount() > 0 ? true : false;
     }
 
-    /**
-     * @since 1.2.0
-     * 
-     * @param string $method
-     * @param int $lenght
-     * @return string
-     */
     private function getColumnType(string $method, int $lenght = 255): string
     {
         switch($method):

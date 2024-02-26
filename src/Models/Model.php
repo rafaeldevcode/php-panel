@@ -19,11 +19,6 @@ class Model
     private $related_id = null;
     private $related_table = null;
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     public function __construct()
     {
         $db_host = env('DB_HOST');
@@ -41,14 +36,6 @@ class Model
         }
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param string $column
-     * @param string $operator
-     * @param ?string $value
-     * @return self
-     */
     public function where(string $column, string $operator, ?string $value): self
     {
         $this->wheres[] = [
@@ -60,14 +47,6 @@ class Model
         return $this;
     }
 
-        /**
-     * @since 1.7.0
-     * 
-     * @param string $column
-     * @param string $operator
-     * @param string $value
-     * @return self
-     */
     public function orWhere(string $column, string $operator, string $value): self
     {
         $this->orWheres[] = [
@@ -79,12 +58,6 @@ class Model
         return $this;
     }
 
-    /**
-     * @since 1.1.0
-     * 
-     * @param int $id
-     * @return self
-     */
     public function find(int $id = 1): self
     {
         $this->wheres = [];
@@ -97,11 +70,6 @@ class Model
         return $this;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return int|null
-     */
     public function count(): int|null
     {
         $where_clause = $this->whereClausure();
@@ -125,12 +93,6 @@ class Model
         return null;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param ?array $columns
-     * @return stdClass|null
-     */
     public function first(?array $columns = null): stdClass|null
     {
         $columns = ! is_null($columns) ? implode(', ', $columns) : '*';
@@ -156,13 +118,6 @@ class Model
         return $this->data;
     }
 
-    /**
-     * @since 1.3.0
-     * 
-     * @param ?string $order_column
-     * @param ?array $columns
-     * @return stdClass|null
-     */
     public function last(?string $order_column = null, ?array $columns = null): stdClass|null
     {
         $columns = ! is_null($columns) ? implode(', ', $columns) : '*';
@@ -190,12 +145,6 @@ class Model
         return $this->data;
     }
 
-    /**
-     * @since 1.3.0
-     * 
-     * @param array $data
-     * @return stdClass|bool
-     */
     public function create(array $data): stdClass|null
     {
         $columns = implode(', ', array_keys($data));
@@ -222,12 +171,6 @@ class Model
         return null;
     }
 
-    /**
-     * @since 1.2.0
-     * 
-     * @param ?array $columns
-     * @return array|null
-     */
     public function get(?array $columns = null): array|null
     {
         $columns = ! is_null($columns) ? implode(', ', $columns) : '*';
@@ -251,12 +194,6 @@ class Model
         return $this->data;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param array $data
-     * @return bool
-     */
     public function update(array $data): bool
     {
         $query = '';
@@ -283,12 +220,6 @@ class Model
         return $statement->execute();
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param array $data
-     * @return bool
-     */
     public function delete(): bool
     {
         $where_clause = $this->whereClausure();
@@ -304,13 +235,6 @@ class Model
         return $statement->execute();
     }
 
-    /**
-     * @since 1.2.0
-     * 
-     * @param int $limit
-     * @param string $order_column
-     * @return stdClass
-     */
     public function paginate(int $limit, string $order_column = 'id'): stdClass
     {
         $count = ceil(($this->count() / $limit));
@@ -349,15 +273,6 @@ class Model
         ]));
     }
 
-    /**
-     * @since 1.3.0
-     * 
-     * @param string $related
-     * @param string $table
-     * @param string $foreign_pivot_key
-     * @param string $related_pivot_key
-     * @return mixed
-     */
     public function belongsToMany(string $related, string $table, string $foreign_pivot_key, string $related_pivot_key)
     {
         $related = new $related();
@@ -382,14 +297,6 @@ class Model
         return $related;     
     }
 
-    /**
-     * @since 1.3.1
-     * 
-     * @param string $related
-     * @param string $table
-     * @param string $foreign_pivot_key
-     * @return mixed
-     */
     public function hasMany(string $related, string $table, string $foreign_pivot_key)
     {
         $related = new $related();
@@ -406,14 +313,6 @@ class Model
         return $related;
     }
 
-    /**
-     * @since 1.3.1
-     * 
-     * @param string $related
-     * @param string $table
-     * @param string $foreign_pivot_key
-     * @return mixed
-     */
     public function belongsTo(string $related, string $table, string $foreign_pivot_key)
     {
         $related = new $related();
@@ -430,12 +329,6 @@ class Model
         return $related;
     }
 
-    /**
-     * @since 1.3.0
-     * 
-     * @param array|int|null $attributes
-     * @return bool
-     */
     public function sync(array|int|null $attributes): bool
     {
         if(is_null($attributes)):
@@ -495,12 +388,6 @@ class Model
         }
     }
 
- /**
-     * @since 1.3.0
-     * 
-     * @param array|int|null $attributes
-     * @return bool
-     */
     public function attach(array|int|null $attributes): bool
     {
         if(!is_array($attributes)):
@@ -532,12 +419,6 @@ class Model
         }
     }
 
-    /**
-     * @since 1.3.0
-     * 
-     * @param array|int|null $attributes
-     * @return bool
-     */
     public function detach(array|int|null $attributes): bool
     {
         if(!is_array($attributes)):
@@ -563,11 +444,6 @@ class Model
         }
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return stdClass
-     */
     private function whereClausure(): stdClass
     {
         $where_clause = '';
@@ -591,12 +467,6 @@ class Model
         ]));
     }
 
-    /**
-     * @since 1.3.0
-     * 
-     * @param string $column
-     * @return bool
-     */
     private function existColumn(string $column): bool
     {
         $db_name = env('DB_DATABASE_NAME');
@@ -617,16 +487,6 @@ class Model
         return $result['colExists'] > 0 ? true : false;
     }
 
-    /**
-     * @since 1.3.0
-     * 
-     * @param mixed $related
-     * @param int $related_id
-     * @param string $related_table;
-     * @param string $foreign_pivot_key
-     * @param string $related_pivot_key
-     * @return void
-     */
     private function setRelatioships(mixed $related, int $related_id, string $related_table, string $foreign_pivot_key, string $related_pivot_key): void
     {
         $related->foreign_pivot_key = $foreign_pivot_key;

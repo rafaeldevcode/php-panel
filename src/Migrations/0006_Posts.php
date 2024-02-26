@@ -8,11 +8,6 @@ class Posts extends ExecuteMigrations
 {
     public $table = 'posts';
 
-    /**
-     * @since 1.3.0
-     * 
-     * @return void
-     */
     public function init()
     {
         $this->integer('id')->primaryKey();

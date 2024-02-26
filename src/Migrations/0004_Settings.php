@@ -8,11 +8,6 @@ class Settings extends ExecuteMigrations
 {
     public $table = 'settings';
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     public function init()
     {
         $this->integer('id')->primaryKey();

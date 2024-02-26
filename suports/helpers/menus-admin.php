@@ -1,11 +1,6 @@
 <?php
 
 if (!function_exists('menusAdmin')):
-    /**
-     * @since 1.2.0
-     * 
-     * @return array
-     */
     function menusAdmin(): array
     {
         $menus = [
