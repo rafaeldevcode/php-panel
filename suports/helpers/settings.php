@@ -5,11 +5,6 @@ use Src\Models\Setting;
 use Src\Models\Gallery;
 
 if (!function_exists('normalizeBreadcrumps')):
-    /**
-     * @since 1.1.0
-     * 
-     * @return array
-     */
     function normalizeBreadcrumps(): array
     {
         $breadcrumps_normalize = [];
@@ -33,14 +28,6 @@ if (!function_exists('normalizeBreadcrumps')):
 endif;
 
 if (!function_exists('saveImage')):
-    /**
-     * @since 1.2.0
-     * 
-     * @param string $image_key
-     * @param string|null $old_file
-     * @param int|null $indice
-     * @return stdClass|null
-     */
     function saveImage(string $image_key, string|null $old_file, int|null $indice = null): stdClass|null
     {
         $gallery = new Gallery();
@@ -87,11 +74,6 @@ if (!function_exists('saveImage')):
 endif;
 
 if (!function_exists('getSiteSettings')) :
-    /**
-     * @since 1.0.0
-     * 
-     * @return stdClass|null
-     */
     function getSiteSettings(): stdClass|null
     {
         if(!isset($_SESSION)):
@@ -119,13 +101,6 @@ if (!function_exists('getSiteSettings')) :
 endif;
 
 if (!function_exists('getDates')) :
-    /**
-     * @since 1.0.0
-     * 
-     * @param string $start_date
-     * @param string $end_date
-     * @return array
-     */
     function getDates(string $start_date, string $end_date): array
     {
         if(empty($start_date) && empty($end_date)):
@@ -147,11 +122,6 @@ if (!function_exists('getDates')) :
 endif;
 
 if (!function_exists('getStates')) :
-    /**
-     * @since 1.0.0
-     * 
-     * @return array
-     */
     function getStates(): array
     {
         return [
@@ -188,11 +158,6 @@ if (!function_exists('getStates')) :
 endif;
 
 if (!function_exists('getAvatars')):
-    /**
-     * @since 1.0.0
-     * 
-     * @return array
-     */
     function getAvatars(): array
     {
         return [
@@ -297,11 +262,6 @@ if (!function_exists('getAvatars')):
 endif;
 
 if (!function_exists('getPreloaders')):
-    /**
-     * @since 1.0.0
-     * 
-     * @return array
-     */
     function getPreloaders(): array
     {
         return [
@@ -354,14 +314,6 @@ if (!function_exists('getPreloaders')):
 endif;
 
 if(!function_exists('getOnly')):
-    /**
-     * @since 1.0.0
-     * 
-     * @param array $only
-     * @param array $data
-     * @param bool $contains
-     * @return array
-     */
     function getOnly(array $only, array $data, bool $contains = true): array
     {
         $keys = [];
@@ -386,32 +338,37 @@ if(!function_exists('getOnly')):
 endif;
 
 if(!function_exists('normalizeSlug')):
-    /**
-     * @since 1.1.0
-     * 
-     * @param string $title
-     * @param string $slug
-     * @return string
-     */
-    function normalizeSlug(string $title, string $slug): string
+    function normalizeSlug(string $slug): string
     {
-        $slug = empty($slug) ? $title : $slug;
+        $slug = preg_replace("/[áàãâä]/u", "a", $slug);
+        $slug = preg_replace("/[ÁÀÃÂÄ]/u", "A", $slug);
+        $slug = preg_replace("/[éèêë]/u", "e", $slug);
+        $slug = preg_replace("/[ÉÈÊË]/u", "E", $slug);
+        $slug = preg_replace("/[íìîï]/u", "i", $slug);
+        $slug = preg_replace("/[ÍÌÎÏ]/u", "I", $slug);
+        $slug = preg_replace("/[óòõôö]/u", "o", $slug);
+        $slug = preg_replace("/[ÓÒÕÔÖ]/u", "O", $slug);
+        $slug = preg_replace("/[úùûü]/u", "u", $slug);
+        $slug = preg_replace("/[ÚÙÛÜ]/u", "U", $slug);
+        $slug = preg_replace("/[ñ]/u", "n", $slug);
+        $slug = preg_replace("/[Ñ]/u", "N", $slug);
+        $slug = preg_replace("/[ç]/u", "c", $slug);
+        $slug = preg_replace("/[Ç]/u", "C", $slug);
+        $slug = preg_replace("/[&]/u", "e", $slug);
+
         $slug = strtolower($slug);
-        $slug = str_replace([' ', '.', ',', '&'], '-', $slug);
-        $slug = preg_replace(["/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ë)/", "/(É|È|Ê|Ë)/", "/(í|ì|î|ï)/", "/(Í|Ì|Î|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/", "/(Ú|Ù|Û|Ü)/", "/(ñ)/", "/(Ñ)/", "/(ç)/", "/(Ç)/", "/(\$)/"], explode(" ","a A e E i I o O u U n N c C s"), $slug);
+
+        $slug = preg_replace("/[^a-zA-Z0-9]+/", "-", $slug);
+
+        $slug = preg_replace("/-+/", "-", $slug);
+
+        $slug = trim($slug, '-');
 
         return $slug;
     }
 endif;
 
 if(!function_exists('getExcerpt')):
-    /**
-     * @since 1.9.1
-     *
-     * @param ?string $content
-     * @param int $length
-     * @return ?string
-     */
     function getExcerpt(?string $content, int $lenght = 200): ?string
     {
         if(is_null($content)) return $content;
@@ -420,20 +377,13 @@ if(!function_exists('getExcerpt')):
         $paragraph = preg_split('/<p[^>]*>/', $paragraphs);
         $paragraph = explode('</p>', $paragraph[1]);
 
-        $excerpt = strlen($paragraph[0]) > $lenght ? substr($paragraph[0], 0, $lenght).'...' : $paragraph[0];
+        $excerpt = strlen($paragraph[0]) > $lenght ? mb_substr($paragraph[0], 0, $lenght).'...' : $paragraph[0];
 
         return html_entity_decode($excerpt);
     }
 endif;
 
 if(!function_exists('createDir')):
-    /**
-     * @since 1.2.0
-     * 
-     * @param string $path
-     * @param int $permission
-     * @return bool
-     */
     function createDir(string $path, int $permission): bool
     {
         $success = false;
@@ -453,12 +403,6 @@ if(!function_exists('createDir')):
 endif;
 
 if(!function_exists('deleteDir')):
-    /**
-     * @since 1.2.0
-     * 
-     * @param string $path
-     * @return string
-     */
     function deleteDir(string $path): string
     {
         $message = '';
@@ -478,11 +422,6 @@ if(!function_exists('deleteDir')):
 endif;
 
 if(!function_exists('extractIdsLoggedUsers')):
-    /**
-     * @since 1.6.0
-     * 
-     * @return array
-     */
     function extractIdsLoggedUsers(): array
     {
         $tokens = new AccessToken();

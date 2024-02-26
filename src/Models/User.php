@@ -8,13 +8,6 @@ class User extends Model
 {
     public $table = 'users';
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param string $email
-     * @param string password
-     * @return array
-     */
     public function login(string $email, string $password): array
     {
         $user = $this->where('email', '=', $email)->first();
@@ -46,11 +39,6 @@ class User extends Model
         endif;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     public function logout(?int $user_id = null): void
     {
         $acc_token = new AccessToken();
@@ -66,42 +54,21 @@ class User extends Model
         endif;
     }
 
-    /**
-     * @since 1.3.1
-     * 
-     * @return AccessToken
-     */
     public function token(): AccessToken
     {
         return $this->hasMany(AccessToken::class, 'access_token', 'user_id');
     }
 
-    /**
-     * @since 1.3.1
-     * 
-     * @return Posts
-     */
     public function posts(): Posts
     {
         return $this->hasMany(Posts::class, 'posts', 'user_id');
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return string
-     */
     protected function generateToken(): string
     {
         return bin2hex(random_bytes(30));
     }
 
-    /**
-     * @since 1.3.0
-     * 
-     * @param int $user_id
-     * @return void
-     */
     protected function removeTokensInvalid(int $user_id): void
     {
         $acc_token = new AccessToken();

@@ -3,11 +3,6 @@
 use Src\Models\AccessToken;
 
 if (! function_exists('requests')):
-    /**
-     * @since 1.0.0
-     * 
-     * @return stdClass|array
-     */
     function requests(): stdClass|array
     {
         $data = $_POST+$_GET;
@@ -17,12 +12,6 @@ if (! function_exists('requests')):
 endif;
 
 if (!function_exists('session')):
-    /**
-     * @since 1.0.0
-     * 
-     * @param array $data
-     * @return void
-     */
     function session(array $data): void
     {
         if(!isset($_SESSION)):
@@ -36,12 +25,6 @@ if (!function_exists('session')):
 endif;
 
 if (!function_exists('autenticate')):
-    /**
-     * @since 1.4.0
-     * 
-     * @param ?bool $redirect
-     * @return bool
-     */
     function autenticate(?bool $redirect = null): bool
     {
         if(!isset($_SESSION)):
@@ -62,12 +45,6 @@ if (!function_exists('autenticate')):
 endif;
 
 if (!function_exists('querys')):
-    /**
-     * @since 1.0.0
-     * 
-     * @param string $query
-     * @return string
-     */
     function querys(string $query = ''): string
     {
         if (empty($query)) :
@@ -87,13 +64,6 @@ if (!function_exists('querys')):
 endif;
 
 if (!function_exists('verifyMethod')):
-    /**
-     * @since 1.1.0
-     * 
-     * @param int $error
-     * @param string|null $method
-     * @return void
-     */
     function verifyMethod(int $error, string|null $method = null): void
     {
         switch($error):
@@ -111,11 +81,6 @@ if (!function_exists('verifyMethod')):
 endif;
 
 if (! function_exists('urlBase')):
-    /**
-     * @since 1.1.0
-     * 
-     * @return string
-     */
     function urlBase(): string
     {
         $project_path = env('PROJECT_PATH');
@@ -127,14 +92,6 @@ if (! function_exists('urlBase')):
 endif;
 
 if (! function_exists('abort')):
-    /**
-     * @since 1.6.0
-     * 
-     * @param int $error_code
-     * @param string $message
-     * @param string $type
-     * @return string
-     */
     function abort(int $error_code, string $message, string $type): void
     {
         loadHtml(__DIR__.'/../../resources/errors/index', [

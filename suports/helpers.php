@@ -9,13 +9,6 @@ require __DIR__.'/helpers/routes.php';
 !defined('APP_VERSION') && define('APP_VERSION', '1.5.0');
 
 if (! function_exists('asset')):
-    /**
-     * @since 1.0.0
-     * 
-     * @param string $route
-     * @param bool $return
-     * @return ?string
-     */
     function asset(string $path, bool $return = false): ?string
     {
         $protocol = ((isset($_SERVER['HTTPS'])) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
@@ -35,11 +28,6 @@ if (! function_exists('asset')):
 endif;
 
 if (!function_exists('dd')):
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     function dd(): void
     {
         echo '<pre>';
@@ -49,13 +37,6 @@ if (!function_exists('dd')):
 endif;
 
 if (!function_exists('loadHtml')):
-    /**
-     * @since 1.4.0
-     * 
-     * @param string $path
-     * @param array $data
-     * @return void
-     */
     function loadHtml(string $path, array $data = []): void
     {
         extract($data);
@@ -67,11 +48,6 @@ if (!function_exists('loadHtml')):
 endif;
 
 if (!function_exists('path')):
-    /**
-     * @since 1.0.0
-     * 
-     * @return string
-     */
     function path(): string
     {
         $project_path = env('PROJECT_PATH');
@@ -95,12 +71,6 @@ if (!function_exists('path')):
 endif;
 
 if (!function_exists('getIconMessage')):
-    /**
-     * @since 1.5.0
-     * 
-     * @param ?string $type
-     * @return string
-     */
     function getIconMessage(?string $type): string
     {
         $icon = 'bi bi-question-circle-fill';
@@ -127,14 +97,6 @@ if (!function_exists('getIconMessage')):
 endif;
 
 if (!function_exists('redirectIfTotalEqualsZero')):
-    /**
-     * @since 1.7.0
-     * 
-     * @param string $class
-     * @param string $route
-     * @param string $message
-     * @return bool
-     */
     function redirectIfTotalEqualsZero(string $class, string $route, string $message): bool
     {
         $class = new $class;
@@ -154,14 +116,6 @@ if (!function_exists('redirectIfTotalEqualsZero')):
 endif;
 
 if (!function_exists('getArraySelect')):
-    /**
-     * @since 1.7.0
-     * 
-     * @param array $object
-     * @param string $key
-     * @param string $value
-     * @return array
-     */
     function getArraySelect(array $object, string $key, string $value): array
     {
         $data = [];

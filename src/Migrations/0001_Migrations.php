@@ -8,11 +8,6 @@ class Migrations extends ExecuteMigrations
 {
     public $table = 'migrations';
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     public function init()
     {
         $this->integer('id')->primaryKey();

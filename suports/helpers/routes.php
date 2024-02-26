@@ -1,11 +1,6 @@
 <?php
 
 if(!function_exists('routes')):
-    /**
-     * @since 1.2.0
-     * 
-     * @return array
-     */
     function routes(): array
     {
         return [
@@ -37,13 +32,6 @@ if(!function_exists('routes')):
 endif;
 
 if(!function_exists('route')):
-    /**
-     * @since 1.4.0
-     * 
-     * @param string $path
-     * @param bool $redirection
-     * @return string|void
-     */
     function route(string $path = '', bool $redirection = false)
     {
         $project_path = env('PROJECT_PATH');
@@ -58,11 +46,6 @@ if(!function_exists('route')):
 endif;
 
 if(!function_exists('getFileName')):
-    /**
-     * @since 1.4.0
-     * @param string $path
-     * @return string
-     */
     function getFileName(string $path): string 
     {
         $method_posts = ['update', 'delete', 'create', 'update-avatar', 'logout'];

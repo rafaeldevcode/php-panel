@@ -8,11 +8,6 @@ class Gallery extends ExecuteMigrations
 {
     public $table = 'gallery';
 
-    /**
-     * @since 1.2.0
-     * 
-     * @return void
-     */
     public function init()
     {
         $this->integer('id')->primaryKey();
