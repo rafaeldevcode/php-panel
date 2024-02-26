@@ -389,16 +389,34 @@ if(!function_exists('normalizeSlug')):
     /**
      * @since 1.1.0
      * 
-     * @param string $title
      * @param string $slug
      * @return string
      */
-    function normalizeSlug(string $title, string $slug): string
+    function normalizeSlug(string $slug): string
     {
-        $slug = empty($slug) ? $title : $slug;
+        $slug = preg_replace("/[áàãâä]/u", "a", $slug);
+        $slug = preg_replace("/[ÁÀÃÂÄ]/u", "A", $slug);
+        $slug = preg_replace("/[éèêë]/u", "e", $slug);
+        $slug = preg_replace("/[ÉÈÊË]/u", "E", $slug);
+        $slug = preg_replace("/[íìîï]/u", "i", $slug);
+        $slug = preg_replace("/[ÍÌÎÏ]/u", "I", $slug);
+        $slug = preg_replace("/[óòõôö]/u", "o", $slug);
+        $slug = preg_replace("/[ÓÒÕÔÖ]/u", "O", $slug);
+        $slug = preg_replace("/[úùûü]/u", "u", $slug);
+        $slug = preg_replace("/[ÚÙÛÜ]/u", "U", $slug);
+        $slug = preg_replace("/[ñ]/u", "n", $slug);
+        $slug = preg_replace("/[Ñ]/u", "N", $slug);
+        $slug = preg_replace("/[ç]/u", "c", $slug);
+        $slug = preg_replace("/[Ç]/u", "C", $slug);
+        $slug = preg_replace("/[&]/u", "e", $slug);
+
         $slug = strtolower($slug);
-        $slug = str_replace([' ', '.', ',', '&'], '-', $slug);
-        $slug = preg_replace(["/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ë)/", "/(É|È|Ê|Ë)/", "/(í|ì|î|ï)/", "/(Í|Ì|Î|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/", "/(Ú|Ù|Û|Ü)/", "/(ñ)/", "/(Ñ)/", "/(ç)/", "/(Ç)/", "/(\$)/"], explode(" ","a A e E i I o O u U n N c C s"), $slug);
+
+        $slug = preg_replace("/[^a-zA-Z0-9]+/", "-", $slug);
+
+        $slug = preg_replace("/-+/", "-", $slug);
+
+        $slug = trim($slug, '-');
 
         return $slug;
     }
