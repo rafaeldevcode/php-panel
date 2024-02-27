@@ -158,28 +158,18 @@ span[data-valid="true"]
 [data-item-menu="active"]
     background: $color-main
 
-div[data-item-active='false']
+[data-item-active='false']
     animation: hiddeItem .2s linear forwards
 
-div[data-item-active='true']
+[data-item-active='true']
     display: block
     animation: showItem .2s .4s linear forwards
 
-.submenu
-    width: 130px
-    transform: translateX(100%)
-    z-index: 100
-    display: none
-    opacity: 0
-    transition: all .4s
-
-    &_li
-        a
-            padding: .4rem
-            transition: all .4s
-
-            &:hover
-                background: $color-main
+.mainmenu
+    &:hover
+        .submenu
+            display: block
+            opacity: 1
 
 [data-submenu="true"]
     display: none

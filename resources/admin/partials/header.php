@@ -2,7 +2,7 @@
     <div class='flex justify-between items-center w-full'>
         <div class='flex items-center'>
             <form id='menu' class='menu'>
-                <input class='hidden menu_input' type='checkbox' id='checkbox-menu'>
+                <input class='hidden menu-input' type='checkbox' id='checkbox-menu'>
 
                 <label class='relative block ml-2 menu_label cursor-pointer h-[18px] w-[25px] text-transparent' for="checkbox-menu">
                     <span class='absolute block rounded bg-light'>.</span>

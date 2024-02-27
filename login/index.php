@@ -21,7 +21,7 @@
     <?php loadHtml(__DIR__ . '/../resources/partials/message') ?>
 
     <main class="h-full w-full flex flex-nowrap">
-        <div class='w-7/12 relative section-image-login'>
+        <div class='w-7/12 relative hidden lg:block'>
             <div class='absolute top-0 left-0 image-bg-login' style="background-image: url(<?php !is_null(SETTINGS) && !empty(SETTINGS['site_bg_login']) ? asset('assets/images/' . SETTINGS['site_bg_login'] . '') : asset('assets/images/login_bg.jpg') ?>)"></div>
 
             <div class='absolute bottom-0 left-0 m-2 flex flex-nowrap'>
