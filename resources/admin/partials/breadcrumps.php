@@ -1,5 +1,5 @@
-<section class='p-3'>
-    <div class='border-b flex justify-between flex-col md:flex-row items-start md:items-end'>
+<section class='p-3 bg-white mx-0 sm:mx-3 my-3 rounded shadow-sm'>
+    <div class='flex justify-between flex-col md:flex-row items-start md:items-end'>
         <div>
             <div class="breadcrumps-overflow">
                 <ul class='p-0 flex flex-nowrap text-secondary'>
@@ -7,7 +7,7 @@
 
                     <?php foreach (normalizeBreadcrumps() as $breadcrump) { ?>
                         <li class='mx-2'>
-                            <a title="Breadcrumps item" class='text-secondary bg-gray-200 rounded-full text-xs py-1 px-3 block font-bold' href='<?php route($breadcrump['path']) ?>'><?php echo $breadcrump['title'] ?></a>
+                            <a title="Breadcrumps item" class='text-secondary bg-gray-200 rounded-full text-xs py-1 px-3 block font-bold hover:bg-color-main hover:text-white ease-in duration-300' href='<?php route($breadcrump['path']) ?>'><?php echo $breadcrump['title'] ?></a>
                         </li>
                     <?php } ?>
                 </ul>

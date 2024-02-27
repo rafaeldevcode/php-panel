@@ -1,4 +1,4 @@
-<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
+<section class='p-3 bg-light mx-0 sm:mx-3 my-3 rounded shadow-sm'>
     <form method="POST" action="<?php route('/admin/settings/update') ?>" enctype="multipart/form-data">
         <div class='flex flex-wrap justify-between'>
             <div class='w-full md:w-6/12 px-4'>

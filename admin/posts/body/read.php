@@ -1,4 +1,4 @@
-<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
+<section class='p-3 bg-light mx-0 sm:mx-3 my-3 rounded shadow-sm'>
     <section>
         <div class="relative overflow-x-auto max-w-[2000px] mx-auto mb-4 rounded border">
             <table class="w-full text-xs text-left">

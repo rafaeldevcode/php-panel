@@ -1,4 +1,4 @@
-<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
+<section class='p-3 bg-light mx-0 sm:mx-3 my-3 rounded shadow-sm'>
     <form method="POST" action="<?php route($action) ?>">
         <?php if (isset($post)) { ?>
             <input type="hidden" name="id" value="<?php echo $post->id ?>">

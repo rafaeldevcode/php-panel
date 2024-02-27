@@ -1,4 +1,4 @@
-<section class='p-3 bg-white m-0 sm:m-3 rounded shadow-lg'>
+<section class='p-3 bg-white m-0 sm:m-3 rounded shadow-sm'>
     <div class='relative'>
         <div class='relative profile-bg' style="background-image: url(<?php !is_null(SETTINGS) && !empty(SETTINGS['site_bg_login']) ? asset('assets/images/' . SETTINGS['site_bg_login'] . '') : asset('assets/images/login_bg.jpg') ?>)"></div>
 

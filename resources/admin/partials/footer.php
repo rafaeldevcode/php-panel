@@ -1,4 +1,4 @@
-<footer class='p-4 border-t shadow-lg'>
+<footer class='p-4 border-t shadow-sm bg-white'>
     <div class="flex justify-between items-center flex-col md:flex-row">
         <div class='h-[30px] w-auto my-auto'>
             <a href='<?php route('/admin/dashboard') ?>' title='Voltar a página inicial'>
