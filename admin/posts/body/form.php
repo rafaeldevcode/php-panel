@@ -1,8 +1,8 @@
 <section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
     <form method="POST" action="<?php route($action) ?>">
-        <?php if(isset($post)): ?>
+        <?php if (isset($post)) { ?>
             <input type="hidden" name="id" value="<?php echo $post->id ?>">
-        <?php endif ?>
+        <?php } ?>
         
         <div class='flex justify-between flex-col-reverse lg:flex-row'>
             <div class="w-full lg:w-9/12 mt-4">
@@ -11,41 +11,41 @@
 
             <div class="w-full lg:w-3/12 px-4">
                 <div class='w-full'>
-                    <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
+                    <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                         'icon' => 'bi bi-hash',
                         'name' => 'title',
                         'label' => 'Título',
                         'type' => 'text',
                         'attributes' => 'required',
-                        'value' => isset($post) ? $post->title : null
+                        'value' => isset($post) ? $post->title : null,
                     ]) ?>
                 </div>
 
                 <div class='w-full pt-1'>
-                    <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-default', [
+                    <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                         'icon' => 'bi bi-link',
                         'name' => 'slug',
                         'label' => 'Slug (Sem espaços e aacentos)',
                         'type' => 'text',
-                        'value' => isset($post) ? $post->slug : null
+                        'value' => isset($post) ? $post->slug : null,
                     ]) ?>
                 </div>
 
                 <div class='w-full'>
-                    <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-select', [
+                    <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-select', [
                         'icon' => 'bi bi-hash',
                         'name' => 'status',
                         'label' => 'Status',
                         'value' => isset($post) ? $post->status : null,
                         'array' => [
                             'published' => 'Publicado',
-                            'draft' => 'Rascunho'
-                        ]
+                            'draft' => 'Rascunho',
+                        ],
                     ]) ?>
                 </div>
 
                 <div class='w-full'>
-                    <?php loadHtml(__DIR__.'/../../../resources/partials/form/button-upload', [
+                    <?php loadHtml(__DIR__ . '/../../../resources/partials/form/button-upload', [
                         'name' => 'thumbnail',
                         'label' => 'Imagen de destaque',
                         'value' => isset($post) ? $post->thumbnail : null,
@@ -56,7 +56,7 @@
         </div>
 
         <div class='w-full flex flex-wrap my-4'>
-            <?php loadHtml(__DIR__.'/../../../resources/partials/form/button-upload', [
+            <?php loadHtml(__DIR__ . '/../../../resources/partials/form/button-upload', [
                 'name' => 'collection',
                 'label' => 'Galeria de imagens',
                 'images' => isset($post) ? $images : null,
@@ -64,12 +64,12 @@
             ]) ?>
         </div>
 
-        <div class='flex justify-end mt-10'>
-            <?php loadHtml(__DIR__.'/../../../resources/partials/form/input-button', [
-                'type'  => 'submit',
+        <div class='flex justify-end mt-10 px-4'>
+            <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-button', [
+                'type' => 'submit',
                 'style' => 'color-main',
-                'title' => 'Savar banner',
-                'value' => 'Salvar'
+                'title' => 'Savar post',
+                'value' => 'Salvar',
             ]) ?>
         </div>
     </form>

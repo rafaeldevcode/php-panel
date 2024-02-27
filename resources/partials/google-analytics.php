@@ -1,4 +1,4 @@
-<?php if($header): ?>
+<?php if ($header) { ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $pixel ?>"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -6,6 +6,6 @@
         gtag('js', new Date());
         gtag('config', '<?php echo $pixel ?>');
     </script>
-<?php else: ?>
+<?php } else { ?>
 
-<?php endif; ?>
+<?php } ?>

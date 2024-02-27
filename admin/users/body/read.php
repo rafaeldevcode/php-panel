@@ -2,7 +2,7 @@
     <section>
         <div class="relative overflow-x-auto max-w-[2000px] mx-auto mb-4 rounded border">
             <table class="w-full text-xs text-left">
-                <thead class="text-gray-700 uppercase bg-color-main">
+                <thead class="text-white uppercase bg-color-main">
                     <tr>
                         <th scope="col" class="p-2">
                             <div class="flex items-center">
@@ -33,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($users->data as $user): ?>
+                    <?php foreach ($users->data as $user) { ?>
                         <tr class="bg-white border-b hover:bg-gray-100 text-gray-900">
                             <td class="w-4 p-2">
                                 <div class="flex items-center">
@@ -49,8 +49,8 @@
                                 </div>
                             </td>
                             <td scope='row'>
-                                <div class='user'>
-                                    <img class='w-100' src='<?php asset("assets/images/users/{$user->avatar}") ?>' alt='<?php echo $user->name ?>'>
+                                <div class='user w-[45px] h-[45px]'>
+                                    <img class='w-full' src='<?php asset("assets/images/users/{$user->avatar}") ?>' alt='<?php echo $user->name ?>'>
                                 </div>
                             </td>
                             <td scope="row" class="p-2 whitespace-nowrap">
@@ -86,7 +86,7 @@
                                     <button
                                         type='submit'
                                         title='Deslogar usuário <?php echo $user->name ?>'
-                                        class='p-2 text-xs rounded pointer btn-<?php echo (!in_array($user->id, $ids) || $user->id === $_SESSION['user_id']) ? 'secondary' : 'info' ?> text-light'
+                                        class='p-2 text-xs rounded cursor-pointer btn-<?php echo (!in_array($user->id, $ids) || $user->id === $_SESSION['user_id']) ? 'secondary' : 'info' ?> text-light'
                                         <?php echo (!in_array($user->id, $ids) || $user->id === $_SESSION['user_id']) ? 'disabled' : '' ?>
                                     >
                                         <i class="bi bi-box-arrow-right"></i>
@@ -94,25 +94,25 @@
                                 </form>
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
 
-        <?php if(count($users->data) == 0): ?>
-            <div class="p-2 empty-collections flex justify-center items-center">
+        <?php if (count($users->data) == 0) { ?>
+            <div class="p-2 h-[300px] flex justify-center items-center">
                 <img class="h-full" src="<?php asset('assets/images/empty.svg') ?>" alt="Nenhum dado encontrado">
             </div>
-        <?php endif; ?>
+        <?php } ?>
     </section>
 
-    <?php if(isset($users->page)):
-        loadHtml(__DIR__.'/../../../resources/admin/partials/pagination', [
+    <?php if (isset($users->page)) {
+        loadHtml(__DIR__ . '/../../../resources/admin/partials/pagination', [
             'page' => $users->page,
             'count' => $users->count,
             'next' => $users->next,
             'prev' => $users->prev,
-            'search' => $users->search
+            'search' => $users->search,
         ]);
-    endif; ?>
+    } ?>
 </section>

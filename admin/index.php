@@ -1,1 +1,3 @@
-<?php return header(route('/admin/dashboard', true), true, 302);
+<?php
+
+return header(route('/admin/dashboard', true), true, 302);

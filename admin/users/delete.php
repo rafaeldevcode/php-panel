@@ -1,27 +1,28 @@
 <?php
-    verifyMethod(500, 'POST');
 
-    use Src\Models\User;
+verifyMethod(500, 'POST');
 
-    $user = new User();
-    $requests = requests();
+use Src\Models\User;
 
-    foreach($requests->ids as $ID):
-        if($ID == 1):
-            session([
-                'message' => 'A remoção de usuários foi interrompida, tentiva de remoção de um usuário do sistema!',
-                'type' => 'danger'
-            ]);
-        
-            return header(route('/admin/users', true), true, 302);
-        endif;
+$user = new User();
+$requests = requests();
 
-        $user->find($ID)->delete();
-    endforeach;
+foreach ($requests->ids as $ID) {
+    if ($ID == 1) {
+        session([
+            'message' => 'A remoção de usuários foi interrompida, tentiva de remoção de um usuário do sistema!',
+            'type' => 'danger',
+        ]);
 
-    session([
-        'message' => 'Usuário(s) removido(s) com sucesso!',
-        'type' => 'success'
-    ]);
+        return header(route('/admin/users', true), true, 302);
+    };
 
-    return header(route('/admin/users', true), true, 302);
+    $user->find($ID)->delete();
+};
+
+session([
+    'message' => 'Usuário(s) removido(s) com sucesso!',
+    'type' => 'success',
+]);
+
+return header(route('/admin/users', true), true, 302);

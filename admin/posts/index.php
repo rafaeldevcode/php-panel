@@ -1,55 +1,55 @@
 <?php
-    use Src\Models\Gallery;
-    use Src\Models\Posts;
+use Src\Models\Gallery;
+use Src\Models\Posts;
 
-    $method = empty(querys('method')) ? 'read' : querys('method');
+$method = empty(querys('method')) ? 'read' : querys('method');
 
-    if($method == 'read'):
-        $post = new Posts();
-        $requests = requests();
-        $posts = !isset($requests->search) ? $post->paginate(20) : $post->where('title', 'LIKE', "%{$requests->search}%")->paginate(20);
-        $background = 'bg-secondary';
-        $text  = 'Visualizar';
-        $body = __DIR__."/body/read";
+if ($method == 'read') {
+    $post = new Posts();
+    $requests = requests();
+    $posts = !isset($requests->search) ? $post->paginate(20) : $post->where('title', 'LIKE', "%{$requests->search}%")->paginate(20);
+    $background = 'bg-secondary';
+    $text = 'Visualizar';
+    $body = __DIR__ . '/body/read';
 
-        $data = ['posts' => $posts];
-    elseif($method == 'edit'):
-        $post = new Posts();
-        $galery = new Gallery();
+    $data = ['posts' => $posts];
+} elseif ($method == 'edit') {
+    $post = new Posts();
+    $galery = new Gallery();
 
-        $post = $post->find(querys('id'));
-        $background = 'bg-success';
-        $text  = 'Editar';
-        $body = __DIR__."/body/form";
+    $post = $post->find(querys('id'));
+    $background = 'bg-success';
+    $text = 'Editar';
+    $body = __DIR__ . '/body/form';
 
-        $data = ['action' => '/admin/posts/update', 'post' => $post->data, 'images' => $post->images()->data];
-    elseif($method == 'create'):
-        $background = 'bg-primary';
-        $text  = 'Adicionar';
-        $body = __DIR__."/body/form";
+    $data = ['action' => '/admin/posts/update', 'post' => $post->data, 'images' => $post->images()->data];
+} elseif ($method == 'create') {
+    $background = 'bg-primary';
+    $text = 'Adicionar';
+    $body = __DIR__ . '/body/form';
 
-        $data = ['action' => '/admin/posts/create'];
-    endif;
+    $data = ['action' => '/admin/posts/create'];
+};
 
-    loadHtml(__DIR__.'/../../resources/admin/layout', [
-        'background'        => $background,
-        'type'         => $text,
-        'icon'         => 'bi bi-pin-angle-fill',
-        'title'        => 'Posts',
-        'route_delete' => $method == 'read' ? '/admin/posts/delete' : null,
-        'route_add'    => $method == 'create' ? null : '/admin/posts?method=create',
-        'route_search' => '/admin/posts',
-        'body' => $body,
-        'data' => $data,
-        'plugins' => ['tinymce']
-    ]);
+loadHtml(__DIR__ . '/../../resources/admin/layout', [
+    'background' => $background,
+    'type' => $text,
+    'icon' => 'bi bi-pin-angle-fill',
+    'title' => 'Posts',
+    'route_delete' => $method == 'read' ? '/admin/posts/delete' : null,
+    'route_add' => $method == 'create' ? null : '/admin/posts?method=create',
+    'route_search' => '/admin/posts',
+    'body' => $body,
+    'data' => $data,
+    'plugins' => ['tinymce'],
+]);
 
-    function loadInFooter(): void
-    {
-        loadHtml(__DIR__.'/../../resources/admin/partials/gallery');
-        loadHtml(__DIR__.'/../../resources/admin/partials/modal-delete') ?>
+function loadInFooter(): void
+{
+    loadHtml(__DIR__ . '/../../resources/admin/partials/gallery');
+    loadHtml(__DIR__ . '/../../resources/admin/partials/modal-delete') ?>
 
-        <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver='.APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver=' . APP_VERSION) ?>"></script>
         <script type="text/javascript">
             const gallery = new Gallery();
             gallery.openModalSelect($('[data-upload=thumbnail]'), 'radio');

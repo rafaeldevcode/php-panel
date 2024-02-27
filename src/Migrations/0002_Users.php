@@ -2,17 +2,10 @@
 
 namespace Src\Migrations;
 
-use Src\Migrations\ExecuteMigrations;
-
 class Users extends ExecuteMigrations
 {
     public $table = 'users';
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     public function init()
     {
         $this->integer('id')->primaryKey();

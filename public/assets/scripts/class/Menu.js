@@ -50,9 +50,9 @@ class Menu{
                     aside.attr('data-expanded', 'active');
         
                     items.forEach((item)=>{
-                        $(item).parent().find('i').removeClass('iconManu');
+                        $(item).parent().find('i').removeClass('w-full');
         
-                        $(item).removeClass('dNone');
+                        $(item).removeClass('hidden');
                         $(item).attr('data-item-active', 'true');
                     });
 
@@ -64,9 +64,9 @@ class Menu{
                         $(item).attr('data-item-active', 'false');
         
                         setTimeout(()=>{
-                            $(item).parent().find('i').addClass('iconManu');
+                            $(item).parent().find('i').addClass('w-full');
         
-                            $(item).addClass('dNone');
+                            $(item).addClass('hidden');
                         }, 600);
                     });
 
@@ -120,9 +120,9 @@ class Menu{
                 aside.attr('data-expanded', 'active');
             
                 items.forEach((item)=>{
-                    $(item).parent().find('i').removeClass('iconManu');
+                    $(item).parent().find('i').removeClass('w-full');
     
-                    $(item).removeClass('dNone');
+                    $(item).removeClass('hidden');
                     $(item).attr('data-item-active', 'true');
                 });
             }

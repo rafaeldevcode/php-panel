@@ -4,12 +4,6 @@ namespace Src\Email;
 
 class BodyEmail
 {
-    /**
-     * @since 1.0.0
-     * 
-     * @param array $data
-     * @return string
-     */
     public static function contact(array $data): string
     {
         $message = "<ul>

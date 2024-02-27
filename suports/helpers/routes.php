@@ -1,11 +1,6 @@
 <?php
 
-if(!function_exists('routes')):
-    /**
-     * @since 1.2.0
-     * 
-     * @return array
-     */
+if (!function_exists('routes')) {
     function routes(): array
     {
         return [
@@ -34,46 +29,34 @@ if(!function_exists('routes')):
             '/api/gallery/create',
         ];
     }
-endif;
+};
 
-if(!function_exists('route')):
-    /**
-     * @since 1.4.0
-     * 
-     * @param string $path
-     * @param bool $redirection
-     * @return string|void
-     */
+if (!function_exists('route')) {
     function route(string $path = '', bool $redirection = false)
     {
         $project_path = env('PROJECT_PATH');
         $path = $project_path . $path;
 
-        if($redirection):
+        if ($redirection) {
             return "Location: $path";
-        endif;
+        };
 
         echo $path;
     }
-endif;
+};
 
-if(!function_exists('getFileName')):
-    /**
-     * @since 1.4.0
-     * @param string $path
-     * @return string
-     */
-    function getFileName(string $path): string 
+if (!function_exists('getFileName')) {
+    function getFileName(string $path): string
     {
         $method_posts = ['update', 'delete', 'create', 'update-avatar', 'logout'];
         $array = explode('/', $path);
         $count = count($array);
-        $file = $array[$count-1];
+        $file = $array[$count - 1];
         $file = in_array($file, $method_posts) ? $file : 'index';
 
-        if(in_array($file, $method_posts)): 
-            unset($array[$count-1]);
-        endif;
+        if (in_array($file, $method_posts)) {
+            unset($array[$count - 1]);
+        }
 
         array_push($array, $file);
 
@@ -81,4 +64,4 @@ if(!function_exists('getFileName')):
 
         return $path;
     }
-endif;
+};

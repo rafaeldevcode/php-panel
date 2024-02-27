@@ -5,23 +5,15 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
-if (! function_exists('env')):
-    /**
-     * Gets the value of an environment variable.
-     *
-     * @since 1.0.0
-     * 
-     * @param  string  $key
-     * @return string
-     */
+if (!function_exists('env')) {
     function env($key): string
     {
-        if(isset($_ENV[$key])):
+        if (isset($_ENV[$key])) {
             $env = $_ENV[$key];
-        else:
+        } else {
             $env = '';
-        endif;
+        };
 
         return $env;
     }
-endif;
+};

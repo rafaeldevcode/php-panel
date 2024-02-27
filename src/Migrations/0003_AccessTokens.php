@@ -2,17 +2,10 @@
 
 namespace Src\Migrations;
 
-use Src\Migrations\ExecuteMigrations;
-
 class AccessTokens extends ExecuteMigrations
 {
     public $table = 'access_token';
 
-    /**
-     * @since 1.0.0
-     * 
-     * @return void
-     */
     public function init()
     {
         $this->integer('id')->primaryKey();

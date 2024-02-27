@@ -1,27 +1,27 @@
-<?php 
-    $is_required = null;
-    $attr = null;
+<?php
+$is_required = null;
+$attr = null;
 
-    if(isset($attributes)):
-        if(is_array($attributes)):
-            foreach($attributes as $indice => $attribute):
-                $attr .= "{$indice}={$attribute} ";
-                $is_required = $indice == 'required' ? '*' : null;
-            endforeach;
-        else:
-            $attr = $attributes;
-            $is_required = $attributes == 'required' ? '*' : null;
-        endif;
-    endif;
+if (isset($attributes)) {
+    if (is_array($attributes)) {
+        foreach ($attributes as $indice => $attribute) {
+            $attr .= "{$indice}={$attribute} ";
+            $is_required = $indice == 'required' ? '*' : null;
+        };
+    } else {
+        $attr = $attributes;
+        $is_required = $attributes == 'required' ? '*' : null;
+    };
+};
 
-    $checked = (!isset($value) || $value == 'off') ? '' : 'checked';
-    
-    if(isset($invert_value) && $invert_value):
-        $checked = $checked == 'checked' ? '' : 'checked';
-    endif; 
+$checked = (!isset($value) || $value == 'off') ? '' : 'checked';
+
+if (isset($invert_value) && $invert_value) {
+    $checked = $checked == 'checked' ? '' : 'checked';
+};
 ?>
 
-<label class="relative inline-flex items-center my-3 pointer">
+<label class="relative inline-flex items-center my-3 cursor-pointer">
     <input 
         type="checkbox" 
         class="sr-only peer" 
