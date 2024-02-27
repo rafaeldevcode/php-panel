@@ -20,10 +20,10 @@ $images = $gallery->paginate(30);
             </div>
 
             <div class='modal-body d-flex flex-column justify-content-center p-0'>
-                <?php loadHtml(__DIR__.'/gallery-loop', [
+                <?php loadHtml(__DIR__ . '/gallery-loop', [
                     'images' => $images,
                     'close' => true,
-                    'use' => true
+                    'use' => true,
                 ]) ?>
             </div>
         </div>

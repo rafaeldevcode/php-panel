@@ -1,4 +1,4 @@
-<?php if($header) { ?>
+<?php if ($header) { ?>
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

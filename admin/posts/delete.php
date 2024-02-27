@@ -1,16 +1,19 @@
 <?php
-    verifyMethod(500, 'POST');
-    
-    use Src\Models\Posts;
 
-    $post = new Posts;
-    $requests = requests();
+verifyMethod(500, 'POST');
 
-    foreach ($requests->ids as $ID) $post->find($ID)->delete();
+use Src\Models\Posts;
 
-    session([
-        'message' => 'Post(s) removido(s) com sucesso!',
-        'type'    => 'success'
-    ]);
+$post = new Posts();
+$requests = requests();
 
-    return header(route('/admin/posts', true), true, 302);
+foreach ($requests->ids as $ID) {
+    $post->find($ID)->delete();
+}
+
+session([
+    'message' => 'Post(s) removido(s) com sucesso!',
+    'type' => 'success',
+]);
+
+return header(route('/admin/posts', true), true, 302);

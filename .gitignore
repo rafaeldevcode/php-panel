@@ -9,3 +9,4 @@ node_modules
 env.json
 .htaccess
 tailwind.config.js
+.php-cs-fixer.cache

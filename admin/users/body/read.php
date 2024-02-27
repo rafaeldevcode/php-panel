@@ -107,12 +107,12 @@
     </section>
 
     <?php if (isset($users->page)) {
-        loadHtml(__DIR__.'/../../../resources/admin/partials/pagination', [
+        loadHtml(__DIR__ . '/../../../resources/admin/partials/pagination', [
             'page' => $users->page,
             'count' => $users->count,
             'next' => $users->next,
             'prev' => $users->prev,
-            'search' => $users->search
+            'search' => $users->search,
         ]);
     } ?>
 </section>

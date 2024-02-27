@@ -2,10 +2,10 @@
 
 use Src\Models\AccessToken;
 
-if (! function_exists('requests')) {
+if (!function_exists('requests')) {
     function requests(): stdClass|array
     {
-        $data = $_POST+$_GET;
+        $data = $_POST + $_GET;
 
         return json_decode(json_encode($data));
     }
@@ -36,7 +36,7 @@ if (!function_exists('autenticate')) {
         if ($token) {
             $acc_token = new AccessToken();
             $acc_token = $acc_token->where('token', '=', $token)->last('user_id');
-    
+
             return (isset($acc_token->token) && $acc_token->token == $token) ? true : false;
         };
 
@@ -51,14 +51,14 @@ if (!function_exists('querys')) {
             $get_parametro = isset($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '';
         } else {
             $get_parametro = isset($_GET[$query]) ? $_GET[$query] : '';
-        
+
             $get_parametro = isset($_GET[$query]) ? $_GET[$query] : '';
-        
+
             if (empty($get_parametro)) {
                 $get_parametro = isset($_GET[strtoupper($query)]) ? $_GET[strtoupper($query)] : '';
             };
         };
-        
+
         return $get_parametro;
     }
 };
@@ -70,17 +70,17 @@ if (!function_exists('verifyMethod')) {
             case 500:
                 $type = 'warning';
                 $message = "{$_SERVER['REQUEST_METHOD']} method not allowed";
+
                 break;
-            };
+        };
 
         if (!isset($method) || (isset($method) && $_SERVER['REQUEST_METHOD'] !== $method)) {
-
             abort($error, $message, $type);
         };
     }
 };
 
-if (! function_exists('urlBase')) {
+if (!function_exists('urlBase')) {
     function urlBase(): string
     {
         $project_path = env('PROJECT_PATH');
@@ -91,14 +91,14 @@ if (! function_exists('urlBase')) {
     }
 };
 
-if (! function_exists('abort')) {
+if (!function_exists('abort')) {
     function abort(int $error_code, string $message, string $type): void
     {
-        loadHtml(__DIR__.'/../../resources/errors/index', [
+        loadHtml(__DIR__ . '/../../resources/errors/index', [
             'error' => $error_code,
             'type' => $type,
             'message' => $message,
-            'title' => $message
+            'title' => $message,
         ]);
         exit;
     }

@@ -1,5 +1,5 @@
 <aside class='bg-secondary min-h-screen'>
-    <?php loadHtml(__DIR__.'/profile') ?>
+    <?php loadHtml(__DIR__ . '/profile') ?>
 
     <nav class="sticky top-[61px]">
         <ul class='m-0 p-2'>
@@ -10,7 +10,7 @@
                     <?php } ?>
 
                     <div class='nav-icon text-color-main text-center w-full'>
-                        <a href="<?php echo !isset( $menu['submenus'] ) ? route($menu['path']) : '' ?>" title="<?php echo $menu['title'] ?>" class='block font-bold text-light p-2'>
+                        <a href="<?php echo !isset($menu['submenus']) ? route($menu['path']) : '' ?>" title="<?php echo $menu['title'] ?>" class='block font-bold text-light p-2'>
                             <div class='flex items-center w-full'>
                                 <i class='<?php echo $menu['icon'] ?> text-lg w-full'></i>
                                 <div class='ml-2 opacity-0 hidden' data-item-active='false'>

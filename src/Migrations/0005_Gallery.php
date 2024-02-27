@@ -2,8 +2,6 @@
 
 namespace Src\Migrations;
 
-use Src\Migrations\ExecuteMigrations;
-
 class Gallery extends ExecuteMigrations
 {
     public $table = 'gallery';

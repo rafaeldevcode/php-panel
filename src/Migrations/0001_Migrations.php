@@ -2,8 +2,6 @@
 
 namespace Src\Migrations;
 
-use Src\Migrations\ExecuteMigrations;
-
 class Migrations extends ExecuteMigrations
 {
     public $table = 'migrations';

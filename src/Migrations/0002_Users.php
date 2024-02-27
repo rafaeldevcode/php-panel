@@ -2,8 +2,6 @@
 
 namespace Src\Migrations;
 
-use Src\Migrations\ExecuteMigrations;
-
 class Users extends ExecuteMigrations
 {
     public $table = 'users';

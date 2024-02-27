@@ -46,15 +46,17 @@ if (!function_exists('route')) {
 };
 
 if (!function_exists('getFileName')) {
-    function getFileName(string $path): string 
+    function getFileName(string $path): string
     {
         $method_posts = ['update', 'delete', 'create', 'update-avatar', 'logout'];
         $array = explode('/', $path);
         $count = count($array);
-        $file = $array[$count-1];
+        $file = $array[$count - 1];
         $file = in_array($file, $method_posts) ? $file : 'index';
 
-        if (in_array($file, $method_posts)) unset($array[$count-1]);
+        if (in_array($file, $method_posts)) {
+            unset($array[$count - 1]);
+        }
 
         array_push($array, $file);
 

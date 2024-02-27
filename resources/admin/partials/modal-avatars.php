@@ -24,11 +24,11 @@
             </div>
 
             <div class="flex justify-end p-2">
-                <?php loadHtml(__DIR__.'/../../partials/form/input-button', [
+                <?php loadHtml(__DIR__ . '/../../partials/form/input-button', [
                     'type' => 'submit',
                     'style' => 'color-main',
                     'title' => 'Savar usuário',
-                    'value' => 'Salvar'
+                    'value' => 'Salvar',
                 ]) ?>
             </div>
         </form>

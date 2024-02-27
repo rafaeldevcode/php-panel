@@ -2,8 +2,6 @@
 
 namespace Src\Migrations;
 
-use Src\Migrations\ExecuteMigrations;
-
 class AccessTokens extends ExecuteMigrations
 {
     public $table = 'access_token';

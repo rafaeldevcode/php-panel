@@ -1,18 +1,18 @@
-<?php 
-    $is_required = null;
-    $attr = null;
+<?php
+$is_required = null;
+$attr = null;
 
-    if (isset($attributes)) {
-        if(is_array($attributes)) {
-            foreach ($attributes as $indice => $attribute) {
-                $attr .= "{$indice}={$attribute} ";
-                $is_required = $indice == 'required' ? '*' : null;
-            };
-        } else {
-            $attr = $attributes;
-            $is_required = $attributes == 'required' ? '*' : null;
+if (isset($attributes)) {
+    if (is_array($attributes)) {
+        foreach ($attributes as $indice => $attribute) {
+            $attr .= "{$indice}={$attribute} ";
+            $is_required = $indice == 'required' ? '*' : null;
         };
+    } else {
+        $attr = $attributes;
+        $is_required = $attributes == 'required' ? '*' : null;
     };
+};
 ?>
 
 <div class="mr-3 mt-3 relative">
@@ -28,7 +28,7 @@
         >
         
         <label for="<?php echo $name ?>" class="w-full py-4 ml-2 text-sm font-medium text-secondary">
-            <?php echo $label.$is_required ?>
+            <?php echo $label . $is_required ?>
         </label>
     </div>
     
