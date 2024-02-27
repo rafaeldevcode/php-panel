@@ -2,8 +2,6 @@
 
 namespace Src\Migrations;
 
-use Src\Migrations\ExecuteMigrations;
-
 class Settings extends ExecuteMigrations
 {
     public $table = 'settings';

@@ -28,9 +28,8 @@ class ExecuteMigrations
             $connection = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->connection = $connection;
-
         } catch(PDOException $e) {
-            echo "Query error: " . $e->getMessage();
+            echo 'Query error: ' . $e->getMessage();
         }
     }
 
@@ -45,12 +44,12 @@ class ExecuteMigrations
                 'nullable' => ' NOT NULL',
                 'default' => '',
                 'primary_key' => '',
-                'unique' => ''
+                'unique' => '',
             ];
 
             $this->columns[] = $this->current_column;
 
-            $this->current_indice = count($this->columns)-1;
+            $this->current_indice = count($this->columns) - 1;
         };
 
         return $this;
@@ -76,29 +75,32 @@ class ExecuteMigrations
 
     public function unique(): self
     {
-        $this->columns[$this->current_indice]['unique'] = " UNIQUE";
+        $this->columns[$this->current_indice]['unique'] = ' UNIQUE';
+
         return $this;
     }
 
     public function timestamps(): self
     {
         $this->timestamps = true;
+
         return $this;
     }
 
     public function primaryKey(): self
     {
-        $this->columns[$this->current_indice]['primary_key'] = " AUTO_INCREMENT PRIMARY KEY";
+        $this->columns[$this->current_indice]['primary_key'] = ' AUTO_INCREMENT PRIMARY KEY';
+
         return $this;
     }
 
     public function foreignKey(string $foreign_key): self
     {
         $this->constraint[] = [
-            'foreign_key' => $foreign_key
+            'foreign_key' => $foreign_key,
         ];
 
-        $this->current_foreign_key = count($this->constraint)-1;
+        $this->current_foreign_key = count($this->constraint) - 1;
 
         return $this;
     }
@@ -122,7 +124,9 @@ class ExecuteMigrations
         $query = "CREATE TABLE IF NOT EXISTS $this->table";
         $count_column = count($this->columns);
 
-        if ($count_column > 0) $query .= " (";
+        if ($count_column > 0) {
+            $query .= ' (';
+        }
 
         foreach ($this->columns as $column) {
             $column_name = $column['column_name'];
@@ -136,10 +140,12 @@ class ExecuteMigrations
         };
 
         if ($this->timestamps) {
-            $query .= "`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP";
+            $query .= '`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP';
         };
 
-        if ($count_column > 0) $query .= ")";
+        if ($count_column > 0) {
+            $query .= ')';
+        }
         $query = str_replace(', )', ')', $query);
 
         $this->connection->exec($query);
@@ -148,7 +154,7 @@ class ExecuteMigrations
             foreach ($this->constraint as $key) {
                 $query = "ALTER TABLE {$this->table} ADD KEY `fk_{$key['table']}_{$this->table}` (`{$key['foreign_key']}`)";
                 $this->connection->exec($query);
-                
+
                 $query = "ALTER TABLE {$this->table} ADD CONSTRAINT `fk_{$key['table']}_{$this->table}` FOREIGN KEY (`{$key['foreign_key']}`) REFERENCES `{$key['table']}` (`{$key['column_references']}`)";
                 $this->connection->exec($query);
             };
@@ -159,7 +165,7 @@ class ExecuteMigrations
     {
         $table_name = 'migrations';
 
-        $query = "SHOW TABLES LIKE :table_name";
+        $query = 'SHOW TABLES LIKE :table_name';
         $statement = $this->connection->prepare($query);
         $statement->bindValue(':table_name', $table_name, PDO::PARAM_STR);
         $statement->execute();
@@ -177,19 +183,19 @@ class ExecuteMigrations
             case 'char':
                 return "CHAR({$lenght})";
             case 'date':
-                return "DATE";
+                return 'DATE';
             case 'datetime':
-                return "DATETIME";
+                return 'DATETIME';
             case 'text':
                 return "TEXT({$lenght})";
             case 'longtext':
-                return "LONGTEXT";
+                return 'LONGTEXT';
             case 'boolean':
-                return "BOOLEAN";
+                return 'BOOLEAN';
             case 'decimal':
-                return "DECIMAL";
+                return 'DECIMAL';
             case 'double':
-                return "DOUBLE";
+                return 'DOUBLE';
             default:
                 throw new Exception("Tipo de coluna inválido: $method");
         };

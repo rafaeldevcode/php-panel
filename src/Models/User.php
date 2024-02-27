@@ -2,8 +2,6 @@
 
 namespace Src\Models;
 
-use Src\Models\AccessToken;
-
 class User extends Model
 {
     public $table = 'users';
@@ -14,28 +12,25 @@ class User extends Model
 
         if (isset($user)) {
             if ($user->status == 'off') {
-
                 return ['status' => false, 'message' => 'Este usuário está inativo!'];
             } elseif (password_verify($password, $user->password)) {
                 $this->removeTokensInvalid($user->id);
-                $token = $this->generateToken(); 
+                $token = $this->generateToken();
 
                 $acc_token = new AccessToken();
                 $acc_token->create([
                     'token' => $token,
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
                 ]);
 
                 $user->token = $token;
 
                 return ['status' => true, 'message' => "Login efetuado com sucesso! Bem vindo {$user->name}", 'user' => $user];
             } else {
-
                 return ['status' => false, 'message' => 'Senha inválida!'];
             };
         } else {
-
-            return ['status' => false, 'message' => "Usuário não cadastrado no sistema!"];
+            return ['status' => false, 'message' => 'Usuário não cadastrado no sistema!'];
         };
     }
 

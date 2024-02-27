@@ -1,23 +1,24 @@
 <?php
-    verifyMethod(500, 'POST');
 
-    use Src\Models\Gallery;
+verifyMethod(500, 'POST');
 
-    $gallery = new Gallery();
+use Src\Models\Gallery;
 
-    foreach (requests()->ids as $id) {
-        $image = $gallery->find($id);
+$gallery = new Gallery();
 
-        isset($image->data) && deleteDir(__DIR__."/../../public/assets/images/{$image->data->file}");
+foreach (requests()->ids as $id) {
+    $image = $gallery->find($id);
 
-        $image->posts()->detach($id);
+    isset($image->data) && deleteDir(__DIR__ . "/../../public/assets/images/{$image->data->file}");
 
-        $image->delete();
-    };
+    $image->posts()->detach($id);
 
-    session([
-        'message' => 'Image(s) removida(s) com sucesso!',
-        'type' => 'success'
-    ]);
+    $image->delete();
+};
 
-    return header(route('/admin/gallery', true), true, 302);
+session([
+    'message' => 'Image(s) removida(s) com sucesso!',
+    'type' => 'success',
+]);
+
+return header(route('/admin/gallery', true), true, 302);

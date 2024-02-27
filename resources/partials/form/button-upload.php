@@ -1,26 +1,26 @@
 <?php
 
-    use Src\Models\Gallery;
+use Src\Models\Gallery;
 
-    $is_required = null;
-    $attr = null;
+$is_required = null;
+$attr = null;
 
-    if (isset($attributes)) {
-        if (is_array($attributes)) {
-            foreach ($attributes as $indice => $attribute) {
-                $attr .= "{$indice}={$attribute} ";
-                $is_required = $indice == 'required' ? '*' : null;
-            };
-        } else {
-            $attr = $attributes;
-            $is_required = $attributes == 'required' ? '*' : null;
+if (isset($attributes)) {
+    if (is_array($attributes)) {
+        foreach ($attributes as $indice => $attribute) {
+            $attr .= "{$indice}={$attribute} ";
+            $is_required = $indice == 'required' ? '*' : null;
         };
+    } else {
+        $attr = $attributes;
+        $is_required = $attributes == 'required' ? '*' : null;
     };
+};
 
-    if (isset($value)) {
-        $gallery = new Gallery();
-        $images = [$gallery->find($value)->data];
-    }
+if (isset($value)) {
+    $gallery = new Gallery();
+    $images = [$gallery->find($value)->data];
+}
 ?>
 
 <div class="flex flex-col relative">

@@ -1,24 +1,24 @@
-<?php 
-    $is_required = null;
-    $attr = null;
+<?php
+$is_required = null;
+$attr = null;
 
-    if (isset($attributes)) {
-        if (is_array($attributes)) {
-            foreach ($attributes as $indice => $attribute) {
-                $attr .= "{$indice}={$attribute} ";
-                $is_required = $indice == 'required' ? '*' : null;
-            };
-        } else {
-            $attr = $attributes;
-            $is_required = $attributes == 'required' ? '*' : null;
+if (isset($attributes)) {
+    if (is_array($attributes)) {
+        foreach ($attributes as $indice => $attribute) {
+            $attr .= "{$indice}={$attribute} ";
+            $is_required = $indice == 'required' ? '*' : null;
         };
+    } else {
+        $attr = $attributes;
+        $is_required = $attributes == 'required' ? '*' : null;
     };
+};
 
-    $checked = (!isset($value) || $value == 'off') ? '' : 'checked';
-    
-    if (isset($invert_value) && $invert_value) {
-        $checked = $checked == 'checked' ? '' : 'checked';
-    }; 
+$checked = (!isset($value) || $value == 'off') ? '' : 'checked';
+
+if (isset($invert_value) && $invert_value) {
+    $checked = $checked == 'checked' ? '' : 'checked';
+};
 ?>
 
 <label class="relative inline-flex items-center my-3 cursor-pointer">

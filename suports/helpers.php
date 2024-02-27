@@ -1,14 +1,14 @@
 <?php
 
-require __DIR__.'/helpers/env.php';
-require __DIR__.'/helpers/settings.php';
-require __DIR__.'/helpers/requests.php';
-require __DIR__.'/helpers/menus-admin.php';
-require __DIR__.'/helpers/routes.php';
+require __DIR__ . '/helpers/env.php';
+require __DIR__ . '/helpers/settings.php';
+require __DIR__ . '/helpers/requests.php';
+require __DIR__ . '/helpers/menus-admin.php';
+require __DIR__ . '/helpers/routes.php';
 
 !defined('APP_VERSION') && define('APP_VERSION', '1.5.0');
 
-if (! function_exists('asset')) {
+if (!function_exists('asset')) {
     function asset(string $path, bool $return = false): ?string
     {
         $protocol = ((isset($_SERVER['HTTPS'])) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
@@ -22,6 +22,7 @@ if (! function_exists('asset')) {
             return $url;
         } else {
             echo $url;
+
             return null;
         };
     }
@@ -31,7 +32,7 @@ if (!function_exists('dd')) {
     function dd(): void
     {
         echo '<pre>';
-        array_map(function($x) {var_dump($x);}, func_get_args());
+        array_map(function ($x) {var_dump($x);}, func_get_args());
         die;
     }
 };
@@ -78,17 +79,22 @@ if (!function_exists('getIconMessage')) {
         switch ($type) {
             case 'danger':
                 $icon = 'bi bi-dash-circle-fill';
+
                 break;
             case 'success':
                 $icon = 'by bi-check-circle-fill';
+
                 break;
             case 'warning':
                 $icon = 'bi bi-exclamation-circle-fill';
+
                 break;
             case 'secondary':
                 $icon = 'bi bi-question-circle-fill';
+                // no break
             case 'info':
                 $icon = 'bi bi-info-circle-fill';
+
                 break;
         };
 
@@ -99,15 +105,16 @@ if (!function_exists('getIconMessage')) {
 if (!function_exists('redirectIfTotalEqualsZero')) {
     function redirectIfTotalEqualsZero(string $class, string $route, string $message): bool
     {
-        $class = new $class;
-        
+        $class = new $class();
+
         if ($class->count() == 0) {
             session([
                 'message' => $message,
-                'type' => 'info'
+                'type' => 'info',
             ]);
 
             header(route($route, true), true, 302);
+
             return true;
         };
 
@@ -121,7 +128,7 @@ if (!function_exists('getArraySelect')) {
         $data = [];
 
         foreach ($object as $object) {
-            $data = $data+[$object->{$key} => $object->{$value}];
+            $data = $data + [$object->{$key} => $object->{$value}];
         };
 
         return $data;

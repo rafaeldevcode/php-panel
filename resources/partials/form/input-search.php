@@ -1,15 +1,15 @@
-<?php 
-    $attr = null;
+<?php
+$attr = null;
 
-    if (isset($attributes)) {
-        if (is_array($attributes)) {
-            foreach ($attributes as $indice => $attribute) {
-                $attr .= "{$indice}={$attribute} ";
-            };
-        } else {
-            $attr = $attributes;
+if (isset($attributes)) {
+    if (is_array($attributes)) {
+        foreach ($attributes as $indice => $attribute) {
+            $attr .= "{$indice}={$attribute} ";
         };
+    } else {
+        $attr = $attributes;
     };
+};
 ?>
 
 <form action='?' method='POST' class='input-group'>

@@ -86,12 +86,12 @@
     </section>
 
     <?php if (isset($posts->page)) {
-        loadHtml(__DIR__.'/../../../resources/admin/partials/pagination', [
-            'page'   => $posts->page,
-            'count'  => $posts->count,
-            'next'   => $posts->next,
-            'prev'   => $posts->prev,
-            'search' => $posts->search
+        loadHtml(__DIR__ . '/../../../resources/admin/partials/pagination', [
+            'page' => $posts->page,
+            'count' => $posts->count,
+            'next' => $posts->next,
+            'prev' => $posts->prev,
+            'search' => $posts->search,
         ]);
     } ?>
 </section>

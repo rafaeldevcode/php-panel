@@ -2,8 +2,6 @@
 
 namespace Src\Migrations;
 
-use Src\Migrations\ExecuteMigrations;
-
 class PostImages extends ExecuteMigrations
 {
     public $table = 'post_images';
