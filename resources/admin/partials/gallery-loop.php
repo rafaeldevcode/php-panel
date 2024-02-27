@@ -2,7 +2,7 @@
     <?php loadHtml(__DIR__.'/../../partials/preloader', ['position' => 'absolute', 'type' => 'gallery']) ?>
 
     <div class="flex flex-wrap justify-center" id="gallery">
-        <?php foreach ($images->data as $image): ?>
+        <?php foreach ($images->data as $image) { ?>
             <div class="m-2 gallery">
                 <input 
                     hidden
@@ -18,16 +18,16 @@
                     <img class="rounded w-full h-full object-contain" src="<?php asset("assets/images/{$image->file}") ?>" alt="<?php echo $image->name ?>">
                 </label>
             </div>
-        <?php endforeach; ?>
+        <?php } ?>
     </div>
 
-    <?php if(!is_null($images->next)): ?>
+    <?php if (!is_null($images->next)) { ?>
         <div class="flex mt-3 justify-center">
             <button data-search="<?php echo isset($search) ? $search : '' ?>" data-next-page="<?php echo $images->next ?>" class="btn btn-sm btn-color-main text-light font-bold" type="button" title="Load more images">
                 Carregar mais
             </button>
         </div>
-    <?php endif ?>
+    <?php } ?>
 
     <div class="border-secondary border-t-2 pt-3 flex justify-between items-start sm:align-items-center flex-col sm:flex-row mt-3 p-3">
         <div>
@@ -43,9 +43,9 @@
             <form class="flex flex-row justify-center sm:justify-end items-end space-x-2">
                 <input type="file" id="input-upload" hidden accept=".svg, .jpg, .jpeg, .png, .webp" multiple>
 
-                <?php if(isset($close) && $close == true): ?>
+                <?php if (isset($close) && $close == true) { ?>
                     <button title='Fechar modal' type='button' class='btn btn-secondary' data-modal-close="popup">Fechar</button>
-                <?php endif ?>
+                <?php } ?>
 
                 <div class="d-flex flex-column">
                     <button title="Realiar upload" type="button" class="btn btn-info text-light font-bold" id="upload">
@@ -54,9 +54,9 @@
                     </button>
                 </div>
 
-                <?php if(isset($use) && $use == true): ?>
+                <?php if (isset($use) && $use == true) { ?>
                     <button disabled title='Selecionar imagem' type='button' class='btn btn-color-main text-light' id="selected">Selecionar</button>
-                <?php endif;?>
+                <?php } ?>
             </form>
         </div>
     </div>

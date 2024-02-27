@@ -36,7 +36,7 @@ class ExecuteMigrations
 
     public function __call(string $method, array $arguments): self
     {
-        if(isset($arguments[0])):
+        if (isset($arguments[0])) {
             $lenght = isset($arguments[1]) ? $arguments[1] : 255;
 
             $this->current_column = [
@@ -51,25 +51,25 @@ class ExecuteMigrations
             $this->columns[] = $this->current_column;
 
             $this->current_indice = count($this->columns)-1;
-        endif;
+        };
 
         return $this;
     }
 
     public function nullable(): self
     {
-        if(empty($this->columns[$this->current_indice]['default'])):
+        if (empty($this->columns[$this->current_indice]['default'])) {
             $this->columns[$this->current_indice]['nullable'] = ' DEFAULT NULL';
-        endif;
+        };
 
         return $this;
     }
 
     public function default(string $value): self
     {
-        if($this->columns[$this->current_indice]['nullable'] == ' NOT NULL'):
+        if ($this->columns[$this->current_indice]['nullable'] == ' NOT NULL') {
             $this->columns[$this->current_indice]['default'] = " DEFAULT '{$value}'";
-        endif;
+        };
 
         return $this;
     }
@@ -122,9 +122,9 @@ class ExecuteMigrations
         $query = "CREATE TABLE IF NOT EXISTS $this->table";
         $count_column = count($this->columns);
 
-        if($count_column > 0) $query .= " (";
+        if ($count_column > 0) $query .= " (";
 
-        foreach($this->columns as $column):
+        foreach ($this->columns as $column) {
             $column_name = $column['column_name'];
             $column_type = $column['column_type'];
             $nullable = $column['nullable'];
@@ -133,26 +133,26 @@ class ExecuteMigrations
             $unique = $column['unique'];
 
             $query .= "`{$column_name}` {$column_type}{$nullable}{$default}{$primary_key}{$unique}, ";
-        endforeach;
+        };
 
-        if($this->timestamps):
+        if ($this->timestamps) {
             $query .= "`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP";
-        endif;
+        };
 
-        if($count_column > 0) $query .= ")";
+        if ($count_column > 0) $query .= ")";
         $query = str_replace(', )', ')', $query);
 
         $this->connection->exec($query);
 
-        if(!empty($this->constraint)):
-            foreach($this->constraint as $key):
+        if (!empty($this->constraint)) {
+            foreach ($this->constraint as $key) {
                 $query = "ALTER TABLE {$this->table} ADD KEY `fk_{$key['table']}_{$this->table}` (`{$key['foreign_key']}`)";
                 $this->connection->exec($query);
                 
                 $query = "ALTER TABLE {$this->table} ADD CONSTRAINT `fk_{$key['table']}_{$this->table}` FOREIGN KEY (`{$key['foreign_key']}`) REFERENCES `{$key['table']}` (`{$key['column_references']}`)";
                 $this->connection->exec($query);
-            endforeach;
-        endif;
+            };
+        };
     }
 
     public function verifyExistsMigrations(): bool
@@ -169,7 +169,7 @@ class ExecuteMigrations
 
     private function getColumnType(string $method, int $lenght = 255): string
     {
-        switch($method):
+        switch ($method) {
             case 'string':
                 return "VARCHAR({$lenght})";
             case 'integer':
@@ -192,6 +192,6 @@ class ExecuteMigrations
                 return "DOUBLE";
             default:
                 throw new Exception("Tipo de coluna inválido: $method");
-        endswitch;
+        };
     }
 }

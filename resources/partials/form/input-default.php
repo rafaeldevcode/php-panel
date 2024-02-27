@@ -24,9 +24,9 @@
         </span>
 
         <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-            <?php if(isset($icon)): ?>
+            <?php if (isset($icon)) { ?>
                 <i class='<?php echo $icon ?> absolute mr-2 my-2 ml-1 text-secondary'></i>
-            <?php endif; ?>
+            <?php } ?>
         </span>
 
         <input 
@@ -39,11 +39,11 @@
             <?php echo $attr ?>
         />
 
-        <?php if($type === 'password'): ?>
+        <?php if ($type === 'password') { ?>
             <button type='button' data-id-pass="show-pass" title='Exibir senha' class='btn-color-main px-1 rounded-r absolute top-0 right-0 h-full'>
                 <i class='bi bi-eye-fill'></i>
             </button>
-        <?php endif; ?>
+        <?php } ?>
 
         <span class='absolute right-0 bottom-0 validit'></span>
     </label>

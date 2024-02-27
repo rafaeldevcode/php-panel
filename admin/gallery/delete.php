@@ -5,7 +5,7 @@
 
     $gallery = new Gallery();
 
-    foreach(requests()->ids as $id):
+    foreach (requests()->ids as $id) {
         $image = $gallery->find($id);
 
         isset($image->data) && deleteDir(__DIR__."/../../public/assets/images/{$image->data->file}");
@@ -13,7 +13,7 @@
         $image->posts()->detach($id);
 
         $image->delete();
-    endforeach;
+    };
 
     session([
         'message' => 'Image(s) removida(s) com sucesso!',

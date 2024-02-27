@@ -12,7 +12,7 @@
     $thumbnail = !empty($requests->thumbnail) ? $requests->thumbnail : null;
     $collection = isset($requests->collection) ? $requests->collection : null;
 
-    if(is_null($post->where('slug', '=', $slug)->first())):  
+    if (is_null($post->where('slug', '=', $slug)->first())) {
         $new_post = $post->create([
             'content' => $requests->content,
             'excerpt' => getExcerpt($requests->content),
@@ -31,11 +31,11 @@
         ]);
         
         return header(route('/admin/posts', true), true, 302);
-    else:
+    } else {
         session([
             'message' => 'A slug já está sendo utilizada, por favor tente outra!',
             'type'    => 'danger'
         ]);
         
         return header(route('/admin/posts?method=create', true), true, 302);
-    endif;
+    };

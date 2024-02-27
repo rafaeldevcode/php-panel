@@ -4,7 +4,7 @@
 
     $method = empty(querys('method')) ? 'read' : querys('method');
 
-    if($method == 'read'):
+    if ($method == 'read') {
         $post = new Posts();
         $requests = requests();
         $posts = !isset($requests->search) ? $post->paginate(20) : $post->where('title', 'LIKE', "%{$requests->search}%")->paginate(20);
@@ -13,7 +13,7 @@
         $body = __DIR__."/body/read";
 
         $data = ['posts' => $posts];
-    elseif($method == 'edit'):
+    } elseif($method == 'edit') {
         $post = new Posts();
         $galery = new Gallery();
 
@@ -23,13 +23,13 @@
         $body = __DIR__."/body/form";
 
         $data = ['action' => '/admin/posts/update', 'post' => $post->data, 'images' => $post->images()->data];
-    elseif($method == 'create'):
+    } elseif($method == 'create') {
         $background = 'bg-primary';
         $text  = 'Adicionar';
         $body = __DIR__."/body/form";
 
         $data = ['action' => '/admin/posts/create'];
-    endif;
+    };
 
     loadHtml(__DIR__.'/../../resources/admin/layout', [
         'background'        => $background,

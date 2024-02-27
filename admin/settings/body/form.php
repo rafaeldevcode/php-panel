@@ -233,14 +233,14 @@
                     </div>
 
                     <div class="flex flex-wrap justify-center">
-                        <?php foreach (getPreloaders() as $indice => $image): ?>
+                        <?php foreach (getPreloaders() as $indice => $image) { ?>
                             <div class='m-2'>
                                 <input data-checked="add-style" hidden type='radio' name='preloader_image' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo isset($settings) && $image['src'] == $settings->preloader_image ? 'checked' : '' ?>>
                                 <label for='<?php echo $indice ?>' class='block rounded cursor-pointer w-[80px] h-[80px] border border-secondary'>
                                     <img class="w-full rounded" src="<?php asset("/assets/images/preloaders/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
                                 </label>
                             </div>
-                        <?php endforeach; ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

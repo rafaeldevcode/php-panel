@@ -1,6 +1,6 @@
 <?php
 
-if(!function_exists('routes')):
+if (!function_exists('routes')) {
     function routes(): array
     {
         return [
@@ -29,23 +29,23 @@ if(!function_exists('routes')):
             '/api/gallery/create',
         ];
     }
-endif;
+};
 
-if(!function_exists('route')):
+if (!function_exists('route')) {
     function route(string $path = '', bool $redirection = false)
     {
         $project_path = env('PROJECT_PATH');
         $path = $project_path . $path;
 
-        if($redirection):
+        if ($redirection) {
             return "Location: $path";
-        endif;
+        };
 
         echo $path;
     }
-endif;
+};
 
-if(!function_exists('getFileName')):
+if (!function_exists('getFileName')) {
     function getFileName(string $path): string 
     {
         $method_posts = ['update', 'delete', 'create', 'update-avatar', 'logout'];
@@ -54,9 +54,7 @@ if(!function_exists('getFileName')):
         $file = $array[$count-1];
         $file = in_array($file, $method_posts) ? $file : 'index';
 
-        if(in_array($file, $method_posts)): 
-            unset($array[$count-1]);
-        endif;
+        if (in_array($file, $method_posts)) unset($array[$count-1]);
 
         array_push($array, $file);
 
@@ -64,4 +62,4 @@ if(!function_exists('getFileName')):
 
         return $path;
     }
-endif;
+};

@@ -5,15 +5,15 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
-if (! function_exists('env')):
+if (! function_exists('env')) {
     function env($key): string
     {
-        if(isset($_ENV[$key])):
+        if (isset($_ENV[$key])) {
             $env = $_ENV[$key];
-        else:
+        } else {
             $env = '';
-        endif;
+        };
 
         return $env;
     }
-endif;
+};

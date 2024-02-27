@@ -10,7 +10,7 @@
     $user = new User();
     $login = $user->login($data['email'], $data['password']);
 
-    if($login['status']):
+    if ($login['status']) {
         session([
             'message' => $login['message'],
             'type' => 'success',
@@ -21,7 +21,7 @@
         ]);
 
         return header(route('/admin/dashboard', true), true, 302);
-    else:
+    } else {
 
         session([
             'message' => $login['message'],
@@ -29,4 +29,4 @@
         ]);
 
         return header(route('/login', true), true, 302);
-    endif;
+    };

@@ -9,14 +9,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel='stylesheet' href='<?php asset('libs/bootstrap-icons/bootstrap-icons.min.css?ver='.APP_VERSION) ?>' />
 
-    <?php if(isset($plugins) && in_array('tinymce', $plugins)): ?>
+    <?php if (isset($plugins) && in_array('tinymce', $plugins)) { ?>
         <!-- Tinymce start -->
         <script type="text/javascript" src="<?php asset('libs/tinymce/tinymce.js?ver='.APP_VERSION) ?>"></script>
         <link rel='stylesheet' href='<?php asset('libs/tinymce/skins/ui/oxide/skin.min.css?ver='.APP_VERSION) ?>' />
         <link rel='stylesheet' href='<?php asset('libs/tinymce/skins/ui/oxide/content.min.css?ver='.APP_VERSION) ?>' />
         <link rel='stylesheet' href='<?php asset('libs/tinymce/skins/content/default/content.css?ver='.APP_VERSION) ?>' />
         <!-- Tinymce end -->
-    <?php endif ?>
+    <?php } ?>
 
     <link rel='stylesheet' href='<?php asset('libs/tailwind/admin/style.css?ver='.APP_VERSION) ?>' />
     <link rel='stylesheet' href='<?php asset('assets/css/globals.css?ver='.APP_VERSION) ?>' />
@@ -95,7 +95,7 @@
         Modal.init();
     </script>
 
-    <?php if(isset($plugins) && in_array('tinymce', $plugins)): ?>
+    <?php if (isset($plugins) && in_array('tinymce', $plugins)) { ?>
         <!-- Tinymce start -->
         <script type="text/javascript" src="<?php asset('libs/tinymce/themes/silver/theme.js?ver='.APP_VERSION) ?>"></script>
         <script type="text/javascript" src="<?php asset('libs/tinymce/models/dom/model.js?ver='.APP_VERSION) ?>"></script>
@@ -117,7 +117,7 @@
         <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/link/plugin.min.js?ver='.APP_VERSION) ?>"></script>
         <script type="text/javascript" src="<?php asset('libs/tinymce/plugins/code/plugin.min.js?ver='.APP_VERSION) ?>"></script>
         <!-- Tinymce end -->
-    <?php endif ?>
+    <?php } ?>
 
     <?php if(function_exists('loadInFooter')) loadInFooter(); ?>
 </body>

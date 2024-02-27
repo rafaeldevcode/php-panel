@@ -8,7 +8,7 @@ require __DIR__.'/helpers/routes.php';
 
 !defined('APP_VERSION') && define('APP_VERSION', '1.5.0');
 
-if (! function_exists('asset')):
+if (! function_exists('asset')) {
     function asset(string $path, bool $return = false): ?string
     {
         $protocol = ((isset($_SERVER['HTTPS'])) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
@@ -18,25 +18,25 @@ if (! function_exists('asset')):
 
         $url = "{$protocol}://{$host}{$project_path}{$assets_path}/{$path}";
 
-        if($return): 
+        if ($return) {
             return $url;
-        else:
+        } else {
             echo $url;
             return null;
-        endif;
+        };
     }
-endif;
+};
 
-if (!function_exists('dd')):
+if (!function_exists('dd')) {
     function dd(): void
     {
         echo '<pre>';
         array_map(function($x) {var_dump($x);}, func_get_args());
         die;
     }
-endif;
+};
 
-if (!function_exists('loadHtml')):
+if (!function_exists('loadHtml')) {
     function loadHtml(string $path, array $data = []): void
     {
         extract($data);
@@ -45,9 +45,9 @@ if (!function_exists('loadHtml')):
 
         require $path;
     }
-endif;
+};
 
-if (!function_exists('path')):
+if (!function_exists('path')) {
     function path(): string
     {
         $project_path = env('PROJECT_PATH');
@@ -56,11 +56,11 @@ if (!function_exists('path')):
             ($_SERVER['SERVER_NAME'] === '127.0.0.1') ||
             ($_SERVER['SERVER_NAME'] === '0.0.0.0') ||
             ($_SERVER['SERVER_NAME'] == env('IP_ROOT'))
-        ) :
+        ) {
             $path = $_SERVER['REQUEST_URI'];
-        else :
+        } else {
             $path = $_SERVER['REQUEST_URI'];
-        endif;
+        };
 
         $path = str_replace($project_path, '', $path);
 
@@ -68,14 +68,14 @@ if (!function_exists('path')):
 
         return rtrim($path, '/');
     }
-endif;
+};
 
-if (!function_exists('getIconMessage')):
+if (!function_exists('getIconMessage')) {
     function getIconMessage(?string $type): string
     {
         $icon = 'bi bi-question-circle-fill';
 
-        switch ($type ) :
+        switch ($type) {
             case 'danger':
                 $icon = 'bi bi-dash-circle-fill';
                 break;
@@ -90,18 +90,18 @@ if (!function_exists('getIconMessage')):
             case 'info':
                 $icon = 'bi bi-info-circle-fill';
                 break;
-        endswitch;
+        };
 
         return $icon;
     }
-endif;
+};
 
-if (!function_exists('redirectIfTotalEqualsZero')):
+if (!function_exists('redirectIfTotalEqualsZero')) {
     function redirectIfTotalEqualsZero(string $class, string $route, string $message): bool
     {
         $class = new $class;
         
-        if($class->count() == 0):
+        if ($class->count() == 0) {
             session([
                 'message' => $message,
                 'type' => 'info'
@@ -109,23 +109,23 @@ if (!function_exists('redirectIfTotalEqualsZero')):
 
             header(route($route, true), true, 302);
             return true;
-        endif;
+        };
 
         return false;
     }
-endif;
+};
 
-if (!function_exists('getArraySelect')):
+if (!function_exists('getArraySelect')) {
     function getArraySelect(array $object, string $key, string $value): array
     {
         $data = [];
 
-        foreach($object as $object):
+        foreach ($object as $object) {
             $data = $data+[$object->{$key} => $object->{$value}];
-        endforeach;
+        };
 
         return $data;
     }
-endif;
+};
 
 !defined('SETTINGS') && define('SETTINGS', (array)getSiteSettings());

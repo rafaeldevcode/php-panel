@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($posts->data as $post): ?>
+                    <?php foreach ($posts->data as $post) { ?>
                         <tr class="bg-white border-b hover:bg-gray-50">
                             <td class="w-4 p-2">
                                 <div class="flex items-center">
@@ -72,20 +72,20 @@
                                 </button>
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
 
 
-        <?php if(count($posts->data) == 0): ?>
+        <?php if (count($posts->data) == 0) { ?>
             <div class="p-2 h-[300px] flex justify-center items-center">
                 <img class="h-full" src="<?php asset('assets/images/empty.svg') ?>" alt="Nenhum dado encontrado">
             </div>
-        <?php endif; ?>
+        <?php } ?>
     </section>
 
-    <?php if(isset($posts->page)):
+    <?php if (isset($posts->page)) {
         loadHtml(__DIR__.'/../../../resources/admin/partials/pagination', [
             'page'   => $posts->page,
             'count'  => $posts->count,
@@ -93,5 +93,5 @@
             'prev'   => $posts->prev,
             'search' => $posts->search
         ]);
-    endif; ?>
+    } ?>
 </section>

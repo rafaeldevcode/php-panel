@@ -2,26 +2,26 @@
     $is_required = null;
     $attr = null;
 
-    if(isset($attributes)):
-        if(is_array($attributes)):
-            foreach($attributes as $indice => $attribute):
+    if (isset($attributes)) {
+        if (is_array($attributes)) {
+            foreach ($attributes as $indice => $attribute) {
                 $attr .= "{$indice}={$attribute} ";
                 $is_required = $indice == 'required' ? '*' : null;
-            endforeach;
-        else:
+            };
+        } else {
             $attr = $attributes;
             $is_required = $attributes == 'required' ? '*' : null;
-        endif;
-    endif;
+        };
+    };
 ?>
 
 <div class="my-3">
     <label class="text-secondary text-sm font-bold" for="<?php echo $name ?>"><?php echo $label ?><span class="text-danger"><?php echo $is_required ?></span></label>
 
     <div class='flex flex-col relative'>
-        <?php if(isset($icon)): ?>
+        <?php if (isset($icon)) { ?>
             <i class='<?php echo $icon ?> absolute m-2 text-secondary'></i>
-        <?php endif; ?>
+        <?php } ?>
 
         <textarea 
             rows="4"

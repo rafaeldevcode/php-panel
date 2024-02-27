@@ -4,7 +4,7 @@ use Src\Models\AccessToken;
 use Src\Models\Setting;
 use Src\Models\Gallery;
 
-if (!function_exists('normalizeBreadcrumps')):
+if (!function_exists('normalizeBreadcrumps')) {
     function normalizeBreadcrumps(): array
     {
         $breadcrumps_normalize = [];
@@ -12,27 +12,27 @@ if (!function_exists('normalizeBreadcrumps')):
         $breadcrumps = array_filter($breadcrumps);
         $path = '';
 
-        foreach($breadcrumps as $breadcrump):
-            if(substr($breadcrump, 0, 1) !== '?'):
+        foreach ($breadcrumps as $breadcrump) {
+            if (substr($breadcrump, 0, 1) !== '?') {
                 $path = "{$path}/{$breadcrump}";
 
                 array_push($breadcrumps_normalize, [
                     'path' => $path,
                     'title' => $breadcrump
                 ]);
-            endif;
-        endforeach;
+            };
+        };
 
         return $breadcrumps_normalize;
     }
-endif;
+};
 
-if (!function_exists('saveImage')):
+if (!function_exists('saveImage')) {
     function saveImage(string $image_key, string|null $old_file, int|null $indice = null): stdClass|null
     {
         $gallery = new Gallery();
         
-        if(!is_null($indice)):
+        if (!is_null($indice)) {
             $file = ['images' => [
                 'name' => $_FILES[$image_key]['name'][$indice],
                 'type' => $_FILES[$image_key]['type'][$indice],
@@ -40,11 +40,11 @@ if (!function_exists('saveImage')):
                 'error' => $_FILES[$image_key]['error'][$indice],
                 'size' => $_FILES[$image_key]['size'][$indice]
             ]];
-        else:
+        } else {
             $file = $_FILES;
-        endif;
+        };
 
-        if(isset($file['images']) && !empty($file['images']['name'])):
+        if (isset($file['images']) && !empty($file['images']['name'])) {
             $year = date('Y');
             $month = date('m');
             createDir(__DIR__."/../../public/assets/images/uploads/{$year}/{$month}/", 0755);
@@ -67,23 +67,23 @@ if (!function_exists('saveImage')):
             move_uploaded_file($file['images']['tmp_name'], __DIR__."/../../public/assets/images/{$file_path}");
 
             return $gallery;
-        endif;
+        };
 
         return null;
     }
-endif;
+};
 
-if (!function_exists('getSiteSettings')) :
+if (!function_exists('getSiteSettings')) {
     function getSiteSettings(): stdClass|null
     {
-        if(!isset($_SESSION)):
+        if (!isset($_SESSION)) {
             session_start();
-        endif;
+        };
 
-        if(isset($_SESSION['site_settings'])):
+        if (isset($_SESSION['site_settings'])) {
 
             $settings = $_SESSION['site_settings'];
-        else:
+        } else {
             $settings = new Setting();
             $gallery = new Gallery();
             $settings = $settings->first();
@@ -94,34 +94,34 @@ if (!function_exists('getSiteSettings')) :
             $settings->site_bg_login = isset($settings->site_bg_login) ? $gallery->find($settings->site_bg_login)->data->file : null;
 
             session(['site_settings' => $settings]);
-        endif;
+        };
         
         return $settings;
     }
-endif;
+};
 
-if (!function_exists('getDates')) :
+if (!function_exists('getDates')) {
     function getDates(string $start_date, string $end_date): array
     {
-        if(empty($start_date) && empty($end_date)):
+        if (empty($start_date) && empty($end_date)) {
 
             $dates = [];
-        elseif(empty($start_date) && !empty($end_date)):
+        } elseif (empty($start_date) && !empty($end_date)) {
 
             $dates = ["{$end_date} 00:00:00", "{$end_date} 23:59:59"];
-        elseif(!empty($start_date) && empty($end_date)):
+        } elseif (!empty($start_date) && empty($end_date)) {
 
             $dates = ["{$start_date} 00:00:00", "{$start_date} 23:59:59"];
-        elseif(!empty($start_date) && !empty($end_date)):
+        } elseif (!empty($start_date) && !empty($end_date)) {
 
             $dates = ["{$start_date} 00:00:00", "{$end_date} 23:59:59"];
-        endif;
+        };
 
         return $dates;
     }
-endif;
+};
 
-if (!function_exists('getStates')) :
+if (!function_exists('getStates')) {
     function getStates(): array
     {
         return [
@@ -155,9 +155,9 @@ if (!function_exists('getStates')) :
             "DF" => "Distrito Federal"
         ];
     }
-endif;
+};
 
-if (!function_exists('getAvatars')):
+if (!function_exists('getAvatars')) {
     function getAvatars(): array
     {
         return [
@@ -259,9 +259,9 @@ if (!function_exists('getAvatars')):
             ]
         ];
     }
-endif;
+};
 
-if (!function_exists('getPreloaders')):
+if (!function_exists('getPreloaders')) {
     function getPreloaders(): array
     {
         return [
@@ -311,33 +311,33 @@ if (!function_exists('getPreloaders')):
             ]
         ];
     }
-endif;
+};
 
-if(!function_exists('getOnly')):
+if (!function_exists('getOnly')) {
     function getOnly(array $only, array $data, bool $contains = true): array
     {
         $keys = [];
         $values = [];
 
-        foreach($data as $indice => $value):
-            if($contains):
-                if(in_array($indice, $only)):
+        foreach ($data as $indice => $value) {
+            if ($contains) {
+                if (in_array($indice, $only)) {
                     array_push($keys, $indice);
                     array_push($values, $value);
-                endif;
-            else:
-                if(!in_array($indice, $only)):
+                };
+            } else {
+                if (!in_array($indice, $only)) {
                     array_push($keys, $indice);
                     array_push($values, $value);
-                endif;
-            endif;
-        endforeach;
+                };
+            };
+        };
 
         return array_combine($keys, $values);
     }
-endif;
+};
 
-if(!function_exists('normalizeSlug')):
+if (!function_exists('normalizeSlug')) {
     function normalizeSlug(string $slug): string
     {
         $slug = preg_replace("/[áàãâä]/u", "a", $slug);
@@ -366,12 +366,12 @@ if(!function_exists('normalizeSlug')):
 
         return $slug;
     }
-endif;
+};
 
-if(!function_exists('getExcerpt')):
+if (!function_exists('getExcerpt')) {
     function getExcerpt(?string $content, int $lenght = 200): ?string
     {
-        if(is_null($content)) return $content;
+        if (is_null($content)) return $content;
 
         $paragraphs = strip_tags($content, '<p>');
         $paragraph = preg_split('/<p[^>]*>/', $paragraphs);
@@ -381,57 +381,57 @@ if(!function_exists('getExcerpt')):
 
         return html_entity_decode($excerpt);
     }
-endif;
+};
 
-if(!function_exists('createDir')):
+if (!function_exists('createDir')) {
     function createDir(string $path, int $permission): bool
     {
         $success = false;
 
-        if(!is_dir($path)):
-            if(mkdir($path, $permission, true)):
+        if (!is_dir($path)) {
+            if (mkdir($path, $permission, true)) {
                 $success = true;
-            else:
+            } else {
                 $success = false;
-            endif;
-        else:
+            };
+        } else {
             $success = true;
-        endif;
+        };
 
         return $success;
     }
-endif;
+};
 
-if(!function_exists('deleteDir')):
+if (!function_exists('deleteDir')) {
     function deleteDir(string $path): string
     {
         $message = '';
 
-        if(file_exists($path)):
-            if(unlink($path)):
+        if (file_exists($path)) {
+            if (unlink($path)) {
                 $message = 'deleted';
-            else:
+            } else {
                 $message = 'not deleted';
-            endif;
-        else:
+            };
+        } else {
             $message = 'not found';
-        endif;
+        };
 
         return $message;
     }
-endif;
+};
 
-if(!function_exists('extractIdsLoggedUsers')):
+if (!function_exists('extractIdsLoggedUsers')) {
     function extractIdsLoggedUsers(): array
     {
         $tokens = new AccessToken();
         $tokens = $tokens->get();
         $ids = [];
 
-        foreach($tokens as $token):
+        foreach ($tokens as $token) {
             array_push($ids, $token->user_id);
-        endforeach;
+        };
         
         return $ids;
     }
-endif;
+};

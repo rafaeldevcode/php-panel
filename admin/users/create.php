@@ -5,14 +5,14 @@
 
     $requests = requests();
 
-    if($requests->password !== $requests->repeat_password):
+    if ($requests->password !== $requests->repeat_password) {
         session([
             'message' => 'As senhas não conferem, tente novamente!',
             'type' => 'danger'
         ]);
         
         return header(route('/admin/users?method=create', true), true, 302);
-    else:
+    } else {
         $password = password_hash($requests->password, PASSWORD_BCRYPT);
         $status = isset($requests->status) ? $requests->status : 'off';
 
@@ -31,4 +31,4 @@
         ]);
 
         return header(route('/admin/users', true), true, 302);
-    endif;
+    };

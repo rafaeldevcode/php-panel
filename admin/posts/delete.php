@@ -6,9 +6,7 @@
     $post = new Posts;
     $requests = requests();
 
-    foreach($requests->ids as $ID):
-        $post->find($ID)->delete();
-    endforeach;
+    foreach ($requests->ids as $ID) $post->find($ID)->delete();
 
     session([
         'message' => 'Post(s) removido(s) com sucesso!',

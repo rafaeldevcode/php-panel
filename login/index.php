@@ -1,8 +1,4 @@
-<?php 
-    require __DIR__ .'/../bootstrap/bootstrap.php';
-
-    if(autenticate(false)) return header(route('/admin/dashboard', true), true, 302);
-?>
+<?php if(autenticate(false)) return header(route('/admin/dashboard', true), true, 302) ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR" class="h-full w-full">

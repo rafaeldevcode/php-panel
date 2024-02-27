@@ -2,17 +2,17 @@
     $is_required = null;
     $attr = null;
 
-    if(isset($attributes)):
-        if(is_array($attributes)):
-            foreach($attributes as $indice => $attribute):
+    if (isset($attributes)) {
+        if(is_array($attributes)) {
+            foreach ($attributes as $indice => $attribute) {
                 $attr .= "{$indice}={$attribute} ";
                 $is_required = $indice == 'required' ? '*' : null;
-            endforeach;
-        else:
+            };
+        } else {
             $attr = $attributes;
             $is_required = $attributes == 'required' ? '*' : null;
-        endif;
-    endif;
+        };
+    };
 ?>
 
 <div class="mr-3 mt-3 relative">

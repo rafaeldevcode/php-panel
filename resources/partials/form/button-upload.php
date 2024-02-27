@@ -5,22 +5,22 @@
     $is_required = null;
     $attr = null;
 
-    if(isset($attributes)):
-        if(is_array($attributes)):
-            foreach($attributes as $indice => $attribute):
+    if (isset($attributes)) {
+        if (is_array($attributes)) {
+            foreach ($attributes as $indice => $attribute) {
                 $attr .= "{$indice}={$attribute} ";
                 $is_required = $indice == 'required' ? '*' : null;
-            endforeach;
-        else:
+            };
+        } else {
             $attr = $attributes;
             $is_required = $attributes == 'required' ? '*' : null;
-        endif;
-    endif;
+        };
+    };
 
-    if(isset($value)):
+    if (isset($value)) {
         $gallery = new Gallery();
         $images = [$gallery->find($value)->data];
-    endif;
+    }
 ?>
 
 <div class="flex flex-col relative">
@@ -35,16 +35,16 @@
 
     <div class="flex flex-wrap" data-upload-selected="<?php echo $name ?>" data-required="<?php echo isset($is_required) ? 'required' : '' ?>">
         <!-- Add this snippet only when creating a new record and it is mandatory - start -->
-        <?php if(isset($is_required) && !isset($images)): ?>
+        <?php if (isset($is_required) && !isset($images)) { ?>
             <div class="m-2 w-[150px] h-[150px] rounded">
                 <input value="" type="text" hidden name="<?php echo $type == 'checkbox' ? "{$name}[]" : $name ?>" data-checked="add-style" <?php echo $attr ?>>
                 <span class='absolute left-0 top-0 mt-5 validit'></span>
             </div>
-        <?php endif; ?>
+        <?php } ?>
         <!-- Add this snippet only when creating a new record and it is mandatory - end -->
 
-        <?php if(isset($images)): 
-            foreach($images as $image): ?>
+        <?php if (isset($images)) {
+            foreach ($images as $image) { ?>
                 <div class="m-2 w-[150px] h-[150px] rounded">
                     <input value="<?php echo $image->id ?>" type="text" hidden name="<?php echo $type == 'checkbox' ? "{$name}[]" : $name ?>" data-checked="add-style" <?php echo $attr ?>>
                     
@@ -58,11 +58,11 @@
                         <img class="rounded-b w-full h-full object-contain" src="<?php asset("assets/images/{$image->file}") ?>" alt="<?php echo $image->name ?>">
                     </div>
 
-                    <?php if(isset($is_required)): ?>
+                    <?php if (isset($is_required)) { ?>
                         <span class='absolute left-0 top-0 mt-5 validit'></span>
-                    <?php endif; ?>
+                    <?php } ?>
                 </div>
-            <?php endforeach;
-        endif ?>
+            <?php };
+        } ?>
     </div>
 </div>

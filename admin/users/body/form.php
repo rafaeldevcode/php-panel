@@ -1,8 +1,8 @@
 <section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
     <form method="POST" action="<?php route($action) ?>">
-        <?php if(isset($user)): ?>
+        <?php if (isset($user)) { ?>
             <input type="hidden" name="id" value="<?php echo $user->id ?>">
-        <?php endif ?>
+        <?php } ?>
 
         <div class='flex justify-between flex-wrap'>
             <div class='w-full md:w-6/12 px-4'>

@@ -12,11 +12,11 @@ class User extends Model
     {
         $user = $this->where('email', '=', $email)->first();
 
-        if(isset($user)):
-            if($user->status == 'off'):
+        if (isset($user)) {
+            if ($user->status == 'off') {
 
                 return ['status' => false, 'message' => 'Este usuário está inativo!'];
-            elseif(password_verify($password, $user->password)):
+            } elseif (password_verify($password, $user->password)) {
                 $this->removeTokensInvalid($user->id);
                 $token = $this->generateToken(); 
 
@@ -29,29 +29,29 @@ class User extends Model
                 $user->token = $token;
 
                 return ['status' => true, 'message' => "Login efetuado com sucesso! Bem vindo {$user->name}", 'user' => $user];
-            else:
+            } else {
 
                 return ['status' => false, 'message' => 'Senha inválida!'];
-            endif;
-        else:
+            };
+        } else {
 
             return ['status' => false, 'message' => "Usuário não cadastrado no sistema!"];
-        endif;
+        };
     }
 
     public function logout(?int $user_id = null): void
     {
         $acc_token = new AccessToken();
 
-        if(isset($user_id)):
+        if (isset($user_id)) {
             $acc_token->where('user_id', '=', $user_id)->delete();
-        else:
+        } else {
             $token = $_SESSION['token'];
 
             $acc_token->where('token', '=', $token)->delete();
 
             session_destroy();
-        endif;
+        };
     }
 
     public function token(): AccessToken

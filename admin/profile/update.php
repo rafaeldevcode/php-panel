@@ -7,15 +7,15 @@
     $requests = requests();
     $current_pass = $user->find($requests->id)->data->password;
 
-    if(!empty($requests->password)): // Check if the password field is not empty to update it
-        if($requests->password !== $requests->repeat_password || !password_verify($requests->current_password, $current_pass)):
+    if (!empty($requests->password)) {
+        if ($requests->password !== $requests->repeat_password || !password_verify($requests->current_password, $current_pass)) {
             session([
                 'message' => 'As senhas não conferem!',
                 'type' => 'danger'
             ]);
 
             return header(route('/admin/profile', true), true, 302);
-        endif;
+        };
 
         $user->update([
             'name' => $requests->name,
@@ -28,7 +28,7 @@
         ]);
 
         return header(route('/admin/profile', true), true, 302);
-    else: // Update user without changing password
+    } else {
         $user->update([
             'name' => $requests->name
         ], $requests->id);
@@ -39,4 +39,4 @@
         ]);
 
         return header(route('/admin/profile', true), true, 302);
-    endif;
+    };

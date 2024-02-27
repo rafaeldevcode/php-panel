@@ -43,13 +43,13 @@
         'maintenance' => $maintenance
     ];
 
-    if(!isset($current_setting)):
+    if (!isset($current_setting)) {
 
         $setting->create($data);
-    else:
+    } else {
         
         $setting->find($current_setting->id)->update($data);
-    endif;
+    };
 
     unset($_SESSION['site_settings']);
 

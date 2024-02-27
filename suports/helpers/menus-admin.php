@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('menusAdmin')):
+if (!function_exists('menusAdmin')) {
     function menusAdmin(): array
     {
         $menus = [
@@ -38,4 +38,4 @@ if (!function_exists('menusAdmin')):
 
         return $menus;
     }
-endif;
+};
