@@ -40,7 +40,7 @@ if (isset($argv[1])) {
             };
         };
 
-        echo empty($migrates) ? 'No migration to perform!' : 'Migration finished!';
+        echo empty($migrates) ? "No migration to perform!\n\n" : "Migration finished!\n\n";
     } elseif ($argv[1] == 'initial-setup') {
         $user = new User();
         $gallery = new Gallery();
@@ -92,7 +92,7 @@ if (isset($argv[1])) {
         ]);
 
         echo "Email: {$email} \n";
-        echo "Senha: {$password}";
+        echo "Senha: {$password}\n\n";
     } elseif ($argv[1] == 'change-color-svg') {
         if (isset($argv[2]) || isset($argv[3])) {
             $old_color = strtolower($argv[2]);
@@ -112,9 +112,9 @@ if (isset($argv[1])) {
                 file_put_contents("{$path}{$image}", $new_svg_content);
             };
 
-            echo 'Colors changed successfully!';
+            echo "Colors changed successfully!\n\n";
         } else {
-            echo 'It is necessary to inform the old color and the new color!';
+            echo "It is necessary to inform the old color and the new color!\n\n";
         };
     };
 };
