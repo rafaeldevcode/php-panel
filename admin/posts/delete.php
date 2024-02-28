@@ -12,7 +12,7 @@ foreach ($requests->ids as $ID) {
 }
 
 session([
-    'message' => 'Post(s) removido(s) com sucesso!',
+    'message' => __('Post(s) removed successfully!'),
     'type' => 'success',
 ]);
 

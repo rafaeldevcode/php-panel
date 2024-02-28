@@ -406,12 +406,12 @@ if (!function_exists('deleteDir')) {
 
         if (file_exists($path)) {
             if (unlink($path)) {
-                $message = 'deleted';
+                $message = __('deleted');
             } else {
-                $message = 'not deleted';
+                $message = __('not deleted');
             };
         } else {
-            $message = 'not found';
+            $message = __('not found');
         };
 
         return $message;

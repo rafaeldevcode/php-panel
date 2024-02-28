@@ -37,10 +37,10 @@
             <li class='flex flex-row items-center rounded hover:bg-danger ease-linear duration-300' data-item-menu='inactive'>
                 <div class='nav-icon text-color-main text-center w-full'>
                     <form action="<?php route('/login/logout') ?>" class='block font-bold p-2' method="POST">
-                        <button type="submit" title="Fazer logout" class='flex text-light w-full'>
+                        <button type="submit" title="<?php _e('Log out') ?>" class='flex text-light w-full'>
                             <i class='bi bi-box-arrow-right text-lg w-[25px]'></i>
                             <div class='ml-2 opacity-1 block md:opacity-0 md:hidden' data-item-active='false'>
-                                Logout
+                                <?php _e('Log out') ?>
                             </div>
                         </button>
                     </form>

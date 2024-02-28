@@ -2,7 +2,7 @@
     <form class="p-3">
         <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-checkbox-switch', [
             'name' => 'select_several',
-            'label' => 'Selecionar todas as imagens',
+            'label' => __('Select all images'),
             'attributes' => [
                 'data-button' => 'select-several',
             ],
@@ -12,6 +12,6 @@
     <?php loadHtml(__DIR__ . '/../../../resources/admin/partials/gallery-loop', [
         'images' => $images,
         'search' => $search,
-        'text_button' => 'Uploads',
+        'text_button' => __('Uploads'),
     ]) ?>
 </section>

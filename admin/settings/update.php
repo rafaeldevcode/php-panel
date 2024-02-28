@@ -53,7 +53,7 @@ if (!isset($current_setting)) {
 unset($_SESSION['site_settings']);
 
 session([
-    'message' => 'Configurações atualizadas com sucesso!',
+    'message' => __('Settings updated successfully!'),
     'type' => 'success',
 ]);
 

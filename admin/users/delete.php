@@ -10,7 +10,7 @@ $requests = requests();
 foreach ($requests->ids as $ID) {
     if ($ID == 1) {
         session([
-            'message' => 'A remoção de usuários foi interrompida, tentiva de remoção de um usuário do sistema!',
+            'message' => __('User removal was interrupted, attempt to remove a user from the system!'),
             'type' => 'danger',
         ]);
 
@@ -21,7 +21,7 @@ foreach ($requests->ids as $ID) {
 };
 
 session([
-    'message' => 'Usuário(s) removido(s) com sucesso!',
+    'message' => __('User(s) removed successfully!'),
     'type' => 'success',
 ]);
 

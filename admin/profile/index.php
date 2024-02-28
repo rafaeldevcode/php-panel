@@ -7,9 +7,9 @@ $user = $user->find($_SESSION['user_id'])->data;
 
 loadHtml(__DIR__ . '/../../resources/admin/layout', [
     'background' => 'bg-success',
-    'type' => 'Editar',
+    'type' => __('Edit'),
     'icon' => 'bi bi-person-bounding-box',
-    'title' => 'Perfil',
+    'title' => __('Profile'),
     'body' => __DIR__ . '/body/form',
     'data' => ['user' => $user],
 ]);

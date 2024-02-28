@@ -1,7 +1,7 @@
 <footer class='p-4 border-t shadow-sm bg-white'>
     <div class="flex justify-between items-center flex-col md:flex-row">
         <div class='h-[30px] w-auto my-auto'>
-            <a href='<?php route('/admin/dashboard') ?>' title='Voltar a página inicial'>
+            <a href='<?php route('/admin/dashboard') ?>' title='<?php _e('Return to home page') ?>'>
                 <img class='h-full' src='<?php !is_null(SETTINGS) && !empty(SETTINGS['site_logo_main']) ? asset('assets/images/' . SETTINGS['site_logo_main'] . '') : asset('assets/images/logo_secondary.png') ?>' alt="Logo <?php echo env('APP_NAME') ?>" />
             </a>
         </div>

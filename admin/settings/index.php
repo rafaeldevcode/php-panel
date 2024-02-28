@@ -6,9 +6,9 @@ $settings = $settings->first();
 
 loadHtml(__DIR__ . '/../../resources/admin/layout', [
     'background' => 'bg-success',
-    'type' => 'Editar',
+    'type' => __('Edit'),
     'icon' => 'bi bi-gear-fill',
-    'title' => 'Configurações',
+    'title' => __('Settings'),
     'body' => __DIR__ . '/body/form',
     'data' => ['settings' => $settings],
 ]);

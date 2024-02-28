@@ -9,9 +9,9 @@ $images = !isset($search) ? $gallery->paginate(30) : $gallery->where('name', 'LI
 
 loadHtml(__DIR__ . '/../../resources/admin/layout', [
     'background' => 'bg-secondary',
-    'type' => 'Visualizar',
+    'type' => __('View'),
     'icon' => 'bi bi-images',
-    'title' => 'Galeria',
+    'title' => __('Gallery'),
     'route_delete' => '/admin/gallery/delete',
     'route_search' => '/admin/gallery',
     'body' => __DIR__ . '/body/read',

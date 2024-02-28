@@ -3,7 +3,7 @@
 } ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR" class="h-full w-full">
+<html lang="<?php echo getLang() ?>" class="h-full w-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +47,7 @@
                     <?php loadHtml(__DIR__ . '/../resources/partials/form/input-default', [
                         'icon' => 'bi bi-envelope-fill',
                         'name' => 'email',
-                        'label' => 'Email',
+                        'label' => __('Email'),
                         'type' => 'email',
                         'attributes' => 'required',
                     ]) ?>
@@ -58,7 +58,7 @@
                     <?php loadHtml(__DIR__ . '/../resources/partials/form/input-default', [
                         'icon' => 'bi bi-key-fill',
                         'name' => 'password',
-                        'label' => 'Senha',
+                        'label' => __('Password'),
                         'type' => 'password',
                         'attributes' => 'required',
                     ]) ?>
@@ -69,7 +69,7 @@
                     <?php loadHtml(__DIR__ . '/../resources/partials/form/input-button', [
                         'type' => 'submit',
                         'style' => 'color-main',
-                        'title' => 'Realizar login',
+                        'title' => __('Log in'),
                         'value' => 'Logar',
                     ]) ?>
                 </div>

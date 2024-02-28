@@ -40,7 +40,7 @@ endif;
         />
 
         <?php if ($type === 'password') { ?>
-            <button type='button' data-id-pass="show-pass" title='Exibir senha' class='btn-color-main px-1 rounded-r absolute top-0 right-0 h-full'>
+            <button type='button' data-id-pass="show-pass" title='<?php _e('View password') ?>' class='btn-color-main px-1 rounded-r absolute top-0 right-0 h-full'>
                 <i class='bi bi-eye-fill'></i>
             </button>
         <?php } ?>

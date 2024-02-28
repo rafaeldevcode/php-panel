@@ -6,31 +6,31 @@ if (!function_exists('menusAdmin')) {
         $menus = [
             'dashboard' => [
                 'path' => '/admin/dashboard',
-                'title' => 'Dashboard',
+                'title' => __('Dashboard'),
                 'icon' => 'bi bi-speedometer',
                 'count' => null,
             ],
             'users' => [
                 'path' => '/admin/users',
-                'title' => 'Usuários',
+                'title' => __('Users'),
                 'icon' => 'bi bi-people-fill',
                 'count' => null,
             ],
             'posts' => [
                 'path' => '/admin/posts',
-                'title' => 'Posts',
+                'title' => __('Posts'),
                 'icon' => 'bi bi-pin-angle-fill',
                 'count' => null,
             ],
             'gallery' => [
                 'path' => '/admin/gallery',
-                'title' => 'Galeria',
+                'title' => __('Gallery'),
                 'icon' => 'bi bi-images',
                 'count' => null,
             ],
             'settings' => [
                 'path' => '/admin/settings',
-                'title' => 'Configurações',
+                'title' => __('Settings'),
                 'icon' => 'bi bi-gear-fill',
                 'count' => null,
             ],

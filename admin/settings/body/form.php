@@ -5,7 +5,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-link',
                     'name' => 'site_name',
-                    'label' => 'Nome do site',
+                    'label' => __('Website name'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->site_name : '',
                 ]) ?>
@@ -15,7 +15,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-card-text',
                     'name' => 'site_description',
-                    'label' => 'Descrição do site',
+                    'label' => __('Website description'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->site_description : '',
                 ]) ?>
@@ -25,7 +25,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-geo-alt-fill',
                     'name' => 'andress',
-                    'label' => 'Endereço da empresa',
+                    'label' => __("Company's adress"),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->andress : '',
                 ]) ?>
@@ -35,7 +35,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-telephone-fill',
                     'name' => 'phone',
-                    'label' => 'Telefone da empresa (adicionar DDD)',
+                    'label' => __('Company telephone number (add area code)'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->phone : '',
                 ]) ?>
@@ -45,7 +45,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-envelope-fill',
                     'name' => 'email',
-                    'label' => 'Email da empresa',
+                    'label' => __('Company email'),
                     'type' => 'email',
                     'value' => isset($settings) ? $settings->email : '',
                 ]) ?>
@@ -55,7 +55,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-linkedin',
                     'name' => 'profile_linkedin',
-                    'label' => 'linkedin da empresa',
+                    'label' => __('Company Linkedin'),
                     'type' => 'url',
                     'value' => isset($settings) ? $settings->profile_linkedin : '',
                 ]) ?>
@@ -65,7 +65,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-facebook',
                     'name' => 'profile_facebook',
-                    'label' => 'Facebook da empresa',
+                    'label' => __('Company Facebook'),
                     'type' => 'url',
                     'value' => isset($settings) ? $settings->profile_facebook : '',
                 ]) ?>
@@ -75,7 +75,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-instagram',
                     'name' => 'profile_instagram',
-                    'label' => 'Instagram da empresa',
+                    'label' => __('Company Instagram'),
                     'type' => 'url',
                     'value' => isset($settings) ? $settings->profile_instagram : '',
                 ]) ?>
@@ -85,7 +85,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-twitter',
                     'name' => 'profile_twitter',
-                    'label' => 'Twitter da empresa',
+                    'label' => __('Company Twitter'),
                     'type' => 'url',
                     'value' => isset($settings) ? $settings->profile_twitter : '',
                 ]) ?>
@@ -95,7 +95,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-whatsapp',
                     'name' => 'whatsapp',
-                    'label' => 'Whatsapp da empresa (adicionar DDD)',
+                    'label' => __('Company WhatsApp (add area code)'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->whatsapp : '',
                 ]) ?>
@@ -105,7 +105,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-chat-quote-fill',
                     'name' => 'whatsapp_message',
-                    'label' => 'Menssagem padrão para o whatsapp',
+                    'label' => __('Standard message for whatsapp'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->whatsapp_message : '',
                 ]) ?>
@@ -115,7 +115,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-telegram',
                     'name' => 'telegram',
-                    'label' => 'Telegram da empresa (Usar o nome de usuário)',
+                    'label' => __('Company Telegram (Use username)'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->telegram : '',
                 ]) ?>
@@ -125,7 +125,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-chat-quote-fill',
                     'name' => 'telegram_message',
-                    'label' => 'Menssagem padrão para o telegram',
+                    'label' => __('Standard message for Telegram'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->telegram_message : '',
                 ]) ?>
@@ -135,7 +135,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-c-circle-fill',
                     'name' => 'copyright',
-                    'label' => 'Copyright no rodapé do site',
+                    'label' => __('Copyright in the website footer'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->copyright : '',
                 ]) ?>
@@ -145,7 +145,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-facebook',
                     'name' => 'facebook_pixel',
-                    'label' => 'Pixel do facebook',
+                    'label' => __('Facebook pixel'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->facebook_pixel : '',
                 ]) ?>
@@ -155,7 +155,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-tiktok',
                     'name' => 'tiktok_pixel',
-                    'label' => 'Pixel do tiktok',
+                    'label' => __('Tiktok pixel'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->tiktok_pixel : '',
                 ]) ?>
@@ -165,7 +165,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-google',
                     'name' => 'google_analytics_pixel',
-                    'label' => 'Pixel do google analytics',
+                    'label' => __('Google analytics pixel'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->google_analytics_pixel : '',
                 ]) ?>
@@ -175,7 +175,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-google',
                     'name' => 'googleads_pixel',
-                    'label' => 'Pixel do google ads',
+                    'label' => __('Google ads pixel'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->googleads_pixel : '',
                 ]) ?>
@@ -185,7 +185,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-google',
                     'name' => 'tagmanager_pixel',
-                    'label' => 'Pixel do google tagmanager',
+                    'label' => __('Google tagmanager pixel'),
                     'type' => 'text',
                     'value' => isset($settings) ? $settings->tagmanager_pixel : '',
                 ]) ?>
@@ -194,7 +194,7 @@
             <div class='w-full px-4'>
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-checkbox-switch', [
                     'name' => 'maintenance',
-                    'label' => 'Ativar modo de manutenção (Inativo | Ativo)',
+                    'label' => __('Enable maintenance mode (Inactive | Active)'),
                     'value' => isset($settings) ? $settings->maintenance : 'off',
                 ]) ?>
             </div>
@@ -202,7 +202,7 @@
             <div class='w-full px-4'>
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-checkbox-switch', [
                     'name' => 'construction',
-                    'label' => 'Ativar modo de construção (Inativo | Ativo)',
+                    'label' => __('Enable build mode (Inactive | Active)'),
                     'value' => isset($settings) ? $settings->construction : 'off',
                 ]) ?>
             </div>
@@ -210,7 +210,7 @@
             <div class='w-full px-4'>
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-checkbox-switch', [
                     'name' => 'cookies',
-                    'label' => 'Ativar aviso de cookies (Inativo | Ativo)',
+                    'label' => __('Enable cookie notice (Inactive | Active)'),
                     'value' => isset($settings) ? $settings->cookies : 'off',
                 ]) ?>
             </div>
@@ -219,17 +219,17 @@
                 <div class='w-full'>
                     <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-checkbox-switch', [
                         'name' => 'preloader',
-                        'label' => 'Ativar preloader (Inativo | Ativo)',
+                        'label' => __('Activate preloader (Inactive | Active)'),
                         'value' => isset($settings) ? $settings->preloader : 'off',
                         'attributes' => 'onclick="Preloader.habilit(event);"',
                     ]) ?>
 
-                    <p class="text-secondary">Preloader é uma animação que é executada até que a página esteja carregada e pronta para ser exibida.</p>
+                    <p class="text-secondary"><?php _e('Preloader is an animation that runs until the page is loaded and ready to be displayed.') ?></p>
                 </div>
 
                 <div id="box-preloader" class="border border-color-main rounded" style="display: <?php echo !isset($settings) || $settings->preloader == 'off' ? 'none' : 'flex' ?>;">
                     <div class="p-2">
-                        <p class="text-secondary">Escolha uma imagem de animação</p>
+                        <p class="text-secondary"><?php _e('Choose an animation image') ?></p>
                     </div>
 
                     <div class="flex flex-wrap justify-center">
@@ -248,28 +248,28 @@
             <div class='w-full flex flex-wrap mt-6 px-3'>
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/button-upload', [
                     'name' => 'site_logo_main',
-                    'label' => 'Logo principal (Cor principal)',
+                    'label' => __('Main logo (Main color)'),
                     'value' => (isset($settings) && !empty($settings->site_logo_main)) ? $settings->site_logo_main : null,
                     'type' => 'radio',
                 ]) ?>
 
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/button-upload', [
                     'name' => 'site_logo_secondary',
-                    'label' => 'Logo segundário (Na cor branca)',
+                    'label' => __('Secondary logo (in white)'),
                     'value' => (isset($settings) && !empty($settings->site_logo_secondary)) ? $settings->site_logo_secondary : null,
                     'type' => 'radio',
                 ]) ?>
 
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/button-upload', [
                     'name' => 'site_favicon',
-                    'label' => 'Favicon do site',
+                    'label' => __('Website favicon'),
                     'value' => (isset($settings) && !empty($settings->site_favicon)) ? $settings->site_favicon : null,
                     'type' => 'radio',
                 ]) ?>
 
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/button-upload', [
                     'name' => 'site_bg_login',
-                    'label' => 'Fundo da tela de login',
+                    'label' => __('Login screen background'),
                     'value' => (isset($settings) && !empty($settings->site_bg_login)) ? $settings->site_bg_login : null,
                     'type' => 'radio',
                 ]) ?>
@@ -280,8 +280,8 @@
             <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-button', [
                 'type' => 'submit',
                 'style' => 'color-main',
-                'title' => 'Savar configurações',
-                'value' => 'Salvar',
+                'title' => __('Save'),
+                'value' => __('Save'),
             ]) ?>
         </div>
     </form>

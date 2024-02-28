@@ -12,7 +12,7 @@ class User extends Model
 
         if (isset($user)) {
             if ($user->status == 'off') {
-                return ['status' => false, 'message' => 'Este usuário está inativo!'];
+                return ['status' => false, 'message' => __('This user is inactive!')];
             } elseif (password_verify($password, $user->password)) {
                 $this->removeTokensInvalid($user->id);
                 $token = $this->generateToken();
@@ -25,12 +25,12 @@ class User extends Model
 
                 $user->token = $token;
 
-                return ['status' => true, 'message' => "Login efetuado com sucesso! Bem vindo {$user->name}", 'user' => $user];
+                return ['status' => true, 'message' => __('Login successfully! Welcome :user', [':user' => $user->name]), 'user' => $user];
             } else {
-                return ['status' => false, 'message' => 'Senha inválida!'];
+                return ['status' => false, 'message' => __('Invalid password!')];
             };
         } else {
-            return ['status' => false, 'message' => 'Usuário não cadastrado no sistema!'];
+            return ['status' => false, 'message' => __('User not registered in the system!')];
         };
     }
 

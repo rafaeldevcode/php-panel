@@ -7,14 +7,14 @@
 
                     <?php foreach (normalizeBreadcrumps() as $breadcrump) { ?>
                         <li class='mx-2'>
-                            <a title="Breadcrumps item" class='text-secondary bg-gray-200 rounded-full text-xs py-1 px-3 block font-bold hover:bg-color-main hover:text-white ease-in duration-300' href='<?php route($breadcrump['path']) ?>'><?php echo $breadcrump['title'] ?></a>
+                            <a title="<?php echo $breadcrump['title'] ?>" class='text-secondary bg-gray-200 rounded-full text-xs py-1 px-3 block font-bold hover:bg-color-main hover:text-white ease-in duration-300' href='<?php route($breadcrump['path']) ?>'><?php echo $breadcrump['title'] ?></a>
                         </li>
                     <?php } ?>
                 </ul>
             </div>
 
             <div class='flex frex-nowrap my-2 items-'>
-                <button type='button' id='back' title='Voltar a página anterior' class='rounded py-2 px-1 btn-color-main mr-1 text-light'>
+                <button type='button' id='back' title='<?php _e('Return to previous page') ?>' class='rounded py-2 px-1 btn-color-main mr-1 text-light'>
                     <i class="bi bi-arrow-bar-left text-2xl"></i>
                 </button>
                 
@@ -36,13 +36,13 @@
 
                 <div class="flex justify-center sm:justify-end">
                     <?php if (isset($route_delete)) { ?>
-                        <button data-button="delete-several" id='deleteAll' type='button' title='Remover vários(a) <?php echo $title ?>' class='btn text-xs font-bold btn-danger mx-1 text-light' data-route='<?php route($route_delete) ?>' disabled>
-                            Remover
+                        <button data-button="delete-several" id='deleteAll' type='button' title='<?php _e('Remove multiple :title', [':title' => $title]) ?>' class='btn text-xs font-bold btn-danger mx-1 text-light' data-route='<?php route($route_delete) ?>' disabled>
+                            <?php _e('Remove') ?>
                         </button>
                     <?php } ?>
 
                     <?php if (isset($route_add)) { ?>
-                        <a href='<?php route($route_add) ?>' title='Adicionar <?php echo $title ?>' class='text-xs btn btn-primary font-bold mx-1 text-center'>Adicionar</a>
+                        <a href='<?php route($route_add) ?>' title='<?php _e('Add') ?> <?php echo $title ?>' class='text-xs btn btn-primary font-bold mx-1 text-center'><?php _e('Add') ?></a>
                     <?php } ?>
                 </div>
             </div>

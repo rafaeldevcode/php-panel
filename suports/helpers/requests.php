@@ -69,7 +69,7 @@ if (!function_exists('verifyMethod')) {
         switch ($error) {
             case 500:
                 $type = 'warning';
-                $message = "{$_SERVER['REQUEST_METHOD']} method not allowed";
+                $message = __(':method method not allowed', [':method' => $_SERVER['REQUEST_METHOD']]);
 
                 break;
         };

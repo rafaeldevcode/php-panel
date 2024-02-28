@@ -11,7 +11,7 @@ $current_pass = $user->find($requests->id)->data->password;
 if (!empty($requests->password)) {
     if ($requests->password !== $requests->repeat_password || !password_verify($requests->current_password, $current_pass)) {
         session([
-            'message' => 'As senhas não conferem!',
+            'message' => __("The passwords don't match, try again!"),
             'type' => 'danger',
         ]);
 
@@ -24,7 +24,7 @@ if (!empty($requests->password)) {
     ], $requests->id);
 
     session([
-        'message' => 'Usuário editado com sucesso!',
+        'message' => __('User edited successfully!'),
         'type' => 'success',
     ]);
 
@@ -35,7 +35,7 @@ if (!empty($requests->password)) {
     ], $requests->id);
 
     session([
-        'message' => 'Usuário editado com sucesso!',
+        'message' => __('User edited successfully!'),
         'type' => 'success',
     ]);
 

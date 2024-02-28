@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     array_push($data[1], ['next' => $images->next]);
 } else {
-    $data = ['success' => false, 'message' => 'Method Not Allowed'];
+    $data = ['success' => false, 'message' => __('Method Not Allowed')];
 };
 
 echo json_encode($data);

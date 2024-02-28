@@ -11,7 +11,7 @@ $status = empty($requests->status) ? 'off' : $requests->status;
 if (!empty($requests->password)) {
     if ($requests->password !== $requests->repeat_password) {
         session([
-            'message' => 'As senhas não conferem!',
+            'message' => __("The passwords don't match, try again!"),
             'type' => 'danger',
         ]);
 
@@ -33,7 +33,7 @@ if (!empty($requests->password)) {
 };
 
 session([
-    'message' => 'Usuário editado com sucesso!',
+    'message' => __('User edited successfully!'),
     'type' => 'success',
 ]);
 
