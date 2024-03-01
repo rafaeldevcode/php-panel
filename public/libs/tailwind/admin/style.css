@@ -1290,6 +1290,16 @@ video {
   padding-bottom: 1rem;
 }
 
+.\!px-3 {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+
+.\!py-1 {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
 .pl-2 {
   padding-left: 0.5rem;
 }
@@ -1380,6 +1390,15 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-\[\.2rem\] {
+  font-size: .2rem;
+}
+
+.\!text-xs {
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
 }
 
 .font-bold {

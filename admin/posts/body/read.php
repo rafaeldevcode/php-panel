@@ -1,10 +1,10 @@
 <section class='p-3 bg-light mx-0 sm:mx-3 my-3 rounded shadow-sm'>
     <section>
         <div class="relative overflow-x-auto max-w-[2000px] mx-auto mb-4 rounded border">
-            <table class="w-full text-xs text-left">
+            <table class="w-full text-left">
                 <thead class="text-white uppercase bg-color-main">
                     <tr>
-                        <th scope="col" class="p-2">
+                        <th scope="col" class="!py-1 !px-3">
                             <div class="flex items-center">
                                 <input 
                                     data-button="select-several"
@@ -15,21 +15,21 @@
                                 <label for="checkbox-all-search" class="sr-only">checkbox</label>
                             </div>
                         </th>
-                        <th scope="col" class="p-2">
-                            <?php _e('Name') ?>
+                        <th scope="col" class="!py-1 !px-3">
+                            <span class="text-sm"><?php _e('Name') ?></span>
                         </th>
-                        <th scope="col" class="p-2">
-                            <?php _e('Status') ?>
+                        <th scope="col" class="!py-1 !px-3">
+                            <span class="text-sm"><?php _e('Status') ?></span>
                         </th>
-                        <th scope="col" class="p-2 text-right">
-                            <?php _e('Actions') ?>
+                        <th scope="col" class="!py-1 !px-3 text-right">
+                            <span class="text-sm"><?php _e('Actions') ?></span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($posts->data as $post) { ?>
                         <tr class="bg-white border-b hover:bg-gray-50">
-                            <td class="w-4 p-2">
+                            <td class="w-4 !py-1 !px-3">
                                 <div class="flex items-center">
                                     <input 
                                         value='<?php echo $post->id ?>' 
@@ -42,15 +42,15 @@
                                     <label for="checkbox-table-search-<?php echo $post->id ?>" class="sr-only">checkbox</label>
                                 </div>
                             </td>
-                            <td scope="row" class="p-2 font-medium text-gray-900 whitespace-nowrap">
-                                <?php echo $post->title ?>
+                            <td scope="row" class="!py-1 !px-3 font-medium text-gray-900 whitespace-nowrap">
+                                <span class="text-sm"><?php echo $post->title ?>
                             </td>
-                            <td class="p-2">
+                            <td class="!py-1 !px-3">
                                 <span class="rounded text-xs text-light px-2 py-1 bg-<?php echo (is_null($post->status) || $post->status == 'off') ? 'danger' : 'primary' ?>">
                                     <?php echo (is_null($post->status) || $post->status == 'off') ? __('Inactive') : __('Active') ?>
                                 </span>
                             </td>
-                            <td class="flex items-center justify-end p-2 space-x-2 right">
+                            <td class="flex items-center justify-end !py-1 !px-3 space-x-2 right">
                                 <a target="_blank" rel="noopener" href="<?php route("/blog/{$post->slug}") ?>" title='<?php _e('View post :title', [':title' => $post->title]) ?>' class='text-xs p-2 rounded btn-info text-light fw-bold'>
                                     <i class="bi bi-eye-fill"></i>
                                 </a>
