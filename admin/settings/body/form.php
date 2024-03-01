@@ -191,6 +191,18 @@
                 ]) ?>
             </div>
 
+            <?php getAvailableLanguages() ?>
+
+            <div class='w-full md:w-6/12 px-4'>
+                <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-select', [
+                    'icon' => 'bi bi-translate',
+                    'name' => 'admin_lang',
+                    'label' => __('Admin panel language'),
+                    'value' => isset($settings) ? $settings->admin_lang : null,
+                    'array' => getAvailableLanguages(),
+                ]) ?>
+            </div>
+
             <div class='w-full px-4'>
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-checkbox-switch', [
                     'name' => 'maintenance',

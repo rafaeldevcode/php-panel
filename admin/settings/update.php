@@ -42,6 +42,7 @@ $data = [
     'site_bg_login' => $requests->site_bg_login ?? null,
     'construction' => $construction,
     'maintenance' => $maintenance,
+    'admin_lang' => $requests->admin_lang,
 ];
 
 if (!isset($current_setting)) {

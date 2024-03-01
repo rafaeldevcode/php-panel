@@ -131,5 +131,6 @@
     ":method method not allowed": ":method method not allowed",
     "Remove post :title": "Remove post :title",
     "Log out user :name" : "Log out user :name",
-    "We use essential cookies and similar technologies in accordance with our Privacy Policies and, by continuing to browse, you agree to these conditions.": "We use essential cookies and similar technologies in accordance with our Privacy Policies and, by continuing to browse, you agree to these conditions."
+    "We use essential cookies and similar technologies in accordance with our Privacy Policies and, by continuing to browse, you agree to these conditions.": "We use essential cookies and similar technologies in accordance with our Privacy Policies and, by continuing to browse, you agree to these conditions.",
+    "Admin panel language": "Admin panel language"
 }
