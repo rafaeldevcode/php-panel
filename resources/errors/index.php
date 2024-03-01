@@ -21,7 +21,7 @@
                     <li class='text-4xl'><?php echo $message ?></li>
                 </ul>
 
-                <button id='back' class='mt-4 btn btn-<?php echo $type ?> text-light'>Voltar</button>
+                <button id='back' class='mt-4 btn btn-<?php echo $type ?> text-light' title="<?php _e('To go back') ?>"><?php _e('To go back') ?></button>
             </div>
         </main>
     </body>

@@ -29,7 +29,7 @@ if (isset($value)) {
         <span class="text-danger"><?php echo $is_required ?></span>
     </label>
 
-    <button id="<?php echo $name ?>" type="button" title="Open modal gallery" class="border rounded p-2 border-color-main m-2" data-upload="<?php echo $name ?>">
+    <button id="<?php echo $name ?>" type="button" title="<?php _e('Open gallery modal') ?>" class="border rounded p-2 border-color-main m-2" data-upload="<?php echo $name ?>">
         <img class="w-full" src="<?php asset('assets/images/select-files.png') ?>" alt="Open gallery">
     </button>
 

@@ -3,7 +3,7 @@
 } ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR" class="h-full w-full">
+<html lang="<?php echo getLang() ?>" class="h-full w-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
     <?php loadHtml(__DIR__ . '/../resources/partials/message') ?>
 
     <main class="h-full w-full flex flex-nowrap">
-        <div class='w-7/12 relative section-image-login'>
+        <div class='w-7/12 relative hidden lg:block'>
             <div class='absolute top-0 left-0 image-bg-login' style="background-image: url(<?php !is_null(SETTINGS) && !empty(SETTINGS['site_bg_login']) ? asset('assets/images/' . SETTINGS['site_bg_login'] . '') : asset('assets/images/login_bg.jpg') ?>)"></div>
 
             <div class='absolute bottom-0 left-0 m-2 flex flex-nowrap'>
@@ -47,7 +47,7 @@
                     <?php loadHtml(__DIR__ . '/../resources/partials/form/input-default', [
                         'icon' => 'bi bi-envelope-fill',
                         'name' => 'email',
-                        'label' => 'Email',
+                        'label' => __('Email'),
                         'type' => 'email',
                         'attributes' => 'required',
                     ]) ?>
@@ -58,7 +58,7 @@
                     <?php loadHtml(__DIR__ . '/../resources/partials/form/input-default', [
                         'icon' => 'bi bi-key-fill',
                         'name' => 'password',
-                        'label' => 'Senha',
+                        'label' => __('Password'),
                         'type' => 'password',
                         'attributes' => 'required',
                     ]) ?>
@@ -69,7 +69,7 @@
                     <?php loadHtml(__DIR__ . '/../resources/partials/form/input-button', [
                         'type' => 'submit',
                         'style' => 'color-main',
-                        'title' => 'Realizar login',
+                        'title' => __('Log in'),
                         'value' => 'Logar',
                     ]) ?>
                 </div>

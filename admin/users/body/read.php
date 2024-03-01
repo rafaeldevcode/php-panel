@@ -1,4 +1,4 @@
-<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
+<section class='p-3 bg-light mx-0 sm:mx-3 my-3 rounded shadow-sm'>
     <section>
         <div class="relative overflow-x-auto max-w-[2000px] mx-auto mb-4 rounded border">
             <table class="w-full text-xs text-left">
@@ -16,19 +16,19 @@
                             </div>
                         </th>
                         <th scope="col" class="p-2">
-                            Thumb
+                            <?php _e('Avatar') ?>
                         </th>
                         <th scope="col" class="p-2">
-                            Nome
+                            <?php _e('Name') ?>
                         </th>
                         <th scope="col" class="p-2">
-                            Email
+                            <?php _e('Email') ?>
                         </th>
                         <th scope="col" class="p-2">
-                            Status
+                            <?php _e('Status') ?>
                         </th>
                         <th scope="col" class="p-2 text-right">
-                            Ações
+                            <?php _e('Actions') ?>
                         </th>
                     </tr>
                 </thead>
@@ -39,7 +39,7 @@
                                 <div class="flex items-center">
                                     <input 
                                         value='<?php echo $user->id ?>' 
-                                        data-message-delete='Esta ação irá remover todos os usuários selecionados!'
+                                        data-message-delete='<?php _e('This action will remove all selected users!') ?>'
                                         type='checkbox'
                                         data-button="delete-enable"
                                         id="checkbox-table-search-<?php echo $user->id ?>" 
@@ -61,11 +61,11 @@
                             </td>
                             <td class="p-2">
                                 <span class="rounded text-xs text-light px-2 py-1 bg-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?>">
-                                    <?php echo (is_null($user->status) || $user->status == 'off') ? 'Inativo' : 'Ativo' ?>
+                                    <?php echo (is_null($user->status) || $user->status == 'off') ? __('Inactive') : __('Active') ?>
                                 </span>
                             </td>
                             <td class="flex items-center justify-end p-2 space-x-2 right">
-                                <a href="<?php route("/admin/users/?method=edit&id={$user->id}") ?>" title='Editar usuário <?php echo $user->name ?>' class='text-xs p-2 rounded btn-primary text-light fw-bold'>
+                                <a href="<?php route("/admin/users/?method=edit&id={$user->id}") ?>" title='<?php _e('Edit user :name', [':name' => $user->name]) ?>' class='text-xs p-2 rounded btn-primary text-light fw-bold'>
                                     <i class='bi bi-pencil-square'></i>
                                 </a>
 
@@ -73,9 +73,9 @@
                                     data-button="delete"
                                     data-route='<?php route('/admin/users/delete') ?>'
                                     data-delete-id='<?php echo $user->id ?>'
-                                    data-message-delete='Esta ação irá remover o usuário "<?php echo $user->name ?>"!'
+                                    data-message-delete='<?php _e('This action will remove the user :name!', [':name' => $user->name]) ?>'
                                     type='button'
-                                    title='Remover usuário <?php echo $user->name ?>'
+                                    title='<?php _e('Remove user :name', [':name' => $user->name]) ?>'
                                     class='p-2 text-xs rounded btn-danger text-light fw-bold'
                                 >
                                     <i class='bi bi-trash-fill'></i>
@@ -85,7 +85,7 @@
                                     <input type="hidden" name="id" value="<?php echo $user->id ?>">
                                     <button
                                         type='submit'
-                                        title='Deslogar usuário <?php echo $user->name ?>'
+                                        title='<?php _e('Log out user :name', [':name' => $user->name]) ?>'
                                         class='p-2 text-xs rounded cursor-pointer btn-<?php echo (!in_array($user->id, $ids) || $user->id === $_SESSION['user_id']) ? 'secondary' : 'info' ?> text-light'
                                         <?php echo (!in_array($user->id, $ids) || $user->id === $_SESSION['user_id']) ? 'disabled' : '' ?>
                                     >
@@ -101,7 +101,7 @@
 
         <?php if (count($users->data) == 0) { ?>
             <div class="p-2 h-[300px] flex justify-center items-center">
-                <img class="h-full" src="<?php asset('assets/images/empty.svg') ?>" alt="Nenhum dado encontrado">
+                <img class="h-full" src="<?php asset('assets/images/empty.svg') ?>" alt="<?php _e('No data found') ?>">
             </div>
         <?php } ?>
     </section>

@@ -27,6 +27,6 @@ if (strpos($path, '/admin') !== false && !autenticate()) {
 
         loadHtml(__DIR__ . '/..' . getFileName($path));
     } else {
-        abort(404, 'Not Found', 'danger');
+        abort(404, __('Not Found'), 'danger');
     };
 };

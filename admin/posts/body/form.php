@@ -1,4 +1,4 @@
-<section class='p-3 bg-light m-0 sm:m-3 rounded shadow-lg'>
+<section class='p-3 bg-light mx-0 sm:mx-3 my-3 rounded shadow-sm'>
     <form method="POST" action="<?php route($action) ?>">
         <?php if (isset($post)) { ?>
             <input type="hidden" name="id" value="<?php echo $post->id ?>">
@@ -14,7 +14,7 @@
                     <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                         'icon' => 'bi bi-hash',
                         'name' => 'title',
-                        'label' => 'Título',
+                        'label' => __('Title'),
                         'type' => 'text',
                         'attributes' => 'required',
                         'value' => isset($post) ? $post->title : null,
@@ -25,7 +25,7 @@
                     <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                         'icon' => 'bi bi-link',
                         'name' => 'slug',
-                        'label' => 'Slug (Sem espaços e aacentos)',
+                        'label' => __('Slug (Without spaces and accents)'),
                         'type' => 'text',
                         'value' => isset($post) ? $post->slug : null,
                     ]) ?>
@@ -35,11 +35,11 @@
                     <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-select', [
                         'icon' => 'bi bi-hash',
                         'name' => 'status',
-                        'label' => 'Status',
+                        'label' => __('Status'),
                         'value' => isset($post) ? $post->status : null,
                         'array' => [
-                            'published' => 'Publicado',
-                            'draft' => 'Rascunho',
+                            'published' => __('Published'),
+                            'draft' => __('Draft'),
                         ],
                     ]) ?>
                 </div>
@@ -47,7 +47,7 @@
                 <div class='w-full'>
                     <?php loadHtml(__DIR__ . '/../../../resources/partials/form/button-upload', [
                         'name' => 'thumbnail',
-                        'label' => 'Imagen de destaque',
+                        'label' => __('Featured image'),
                         'value' => isset($post) ? $post->thumbnail : null,
                         'type' => 'radio',
                     ]) ?>
@@ -58,7 +58,7 @@
         <div class='w-full flex flex-wrap my-4'>
             <?php loadHtml(__DIR__ . '/../../../resources/partials/form/button-upload', [
                 'name' => 'collection',
-                'label' => 'Galeria de imagens',
+                'label' => __('Image gallery'),
                 'images' => isset($post) ? $images : null,
                 'type' => 'checkbox',
             ]) ?>
@@ -68,8 +68,8 @@
             <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-button', [
                 'type' => 'submit',
                 'style' => 'color-main',
-                'title' => 'Savar post',
-                'value' => 'Salvar',
+                'title' => __('Save'),
+                'value' => __('Save'),
             ]) ?>
         </div>
     </form>

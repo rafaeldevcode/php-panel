@@ -15,7 +15,7 @@ $user->logout($user_id);
 
 if (isset($user_id)) {
     session([
-        'message' => 'Logout realizado com sucesso!',
+        'message' => __('Logout successful!'),
         'type' => 'success',
     ]);
 

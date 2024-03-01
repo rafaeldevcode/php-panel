@@ -17,7 +17,7 @@ foreach (requests()->ids as $id) {
 };
 
 session([
-    'message' => 'Image(s) removida(s) com sucesso!',
+    'message' => __('Images removed successfully!'),
     'type' => 'success',
 ]);
 

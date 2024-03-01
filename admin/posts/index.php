@@ -9,7 +9,7 @@ if ($method == 'read') {
     $requests = requests();
     $posts = !isset($requests->search) ? $post->paginate(20) : $post->where('title', 'LIKE', "%{$requests->search}%")->paginate(20);
     $background = 'bg-secondary';
-    $text = 'Visualizar';
+    $text = __('View');
     $body = __DIR__ . '/body/read';
 
     $data = ['posts' => $posts];
@@ -19,13 +19,13 @@ if ($method == 'read') {
 
     $post = $post->find(querys('id'));
     $background = 'bg-success';
-    $text = 'Editar';
+    $text = __('Edit');
     $body = __DIR__ . '/body/form';
 
     $data = ['action' => '/admin/posts/update', 'post' => $post->data, 'images' => $post->images()->data];
 } elseif ($method == 'create') {
     $background = 'bg-primary';
-    $text = 'Adicionar';
+    $text = __('Add');
     $body = __DIR__ . '/body/form';
 
     $data = ['action' => '/admin/posts/create'];
@@ -35,7 +35,7 @@ loadHtml(__DIR__ . '/../../resources/admin/layout', [
     'background' => $background,
     'type' => $text,
     'icon' => 'bi bi-pin-angle-fill',
-    'title' => 'Posts',
+    'title' => __('Posts'),
     'route_delete' => $method == 'read' ? '/admin/posts/delete' : null,
     'route_add' => $method == 'create' ? null : '/admin/posts?method=create',
     'route_search' => '/admin/posts',

@@ -9,9 +9,9 @@
                 <input type="hidden" name="search" value="<?php echo $search ?>">
             <?php } ?>
 
-            <button type="submit" title='Página anterior' class='btn btn-secondary' <?php echo is_null($prev) ? 'disabled' : '' ?>>
+            <button type="submit" title='<?php _e('Previous page') ?>' class='btn btn-secondary' <?php echo is_null($prev) ? 'disabled' : '' ?>>
                 <i class='bi bi-arrow-left-short'></i>
-                Anterior
+                <?php _e('Previous') ?>
             </button>
         </form>
 
@@ -31,8 +31,8 @@
                 <input type="hidden" name="search" value="<?php echo $search ?>">
             <?php } ?>
 
-            <button type="submit" title='Próxima página' class='btn btn-secondary' <?php echo is_null($next) ? 'disabled' : '' ?>>
-                Próximo
+            <button type="submit" title='<?php _e('Next page') ?>' class='btn btn-secondary' <?php echo is_null($next) ? 'disabled' : '' ?>>
+                <?php _e('Next') ?>
                 <i class='bi bi-arrow-right-short'></i>
             </button>
         </form>

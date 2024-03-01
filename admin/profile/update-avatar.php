@@ -11,7 +11,7 @@ $user->find($_POST['id'])->update([
 ]);
 
 session([
-    'message' => 'Usuário editado com sucesso!',
+    'message' => __('User edited successfully!'),
     'type' => 'success',
     'user_avatar' => $_POST['avatar'],
 ]);

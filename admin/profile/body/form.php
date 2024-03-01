@@ -1,4 +1,4 @@
-<section class='p-3 bg-white m-0 sm:m-3 rounded shadow-lg'>
+<section class='p-3 bg-white m-0 sm:m-3 rounded shadow-sm'>
     <div class='relative'>
         <div class='relative profile-bg' style="background-image: url(<?php !is_null(SETTINGS) && !empty(SETTINGS['site_bg_login']) ? asset('assets/images/' . SETTINGS['site_bg_login'] . '') : asset('assets/images/login_bg.jpg') ?>)"></div>
 
@@ -8,9 +8,9 @@
             <button
                 class='absolute bottom-0 left-0 w-full h-full bg-white font-bold text-color-main rounded-full opacity-0 ease-linear duration-300 hover:opacity-100'
                 data-toggle="avatar"
-                title="Abrir modal com imagens de perfil"
+                title="<?php _e('Change profile picture') ?>"
             >
-                Alterar
+                <?php _e('Change') ?>
             </button>
         </div>
 
@@ -21,7 +21,7 @@
         <div class='absolute top-0 right-0 m-3'>
             <span class='text-light bg-<?php echo (is_null($user->status) || $user->status == 'off') ? 'danger' : 'primary' ?> rounded px-2 py-1 font-bold'>
                 <i class='bi bi-circle-fill'></i>
-                <?php echo (is_null($user->status) || $user->status == 'off') ? 'Inativo' : 'Ativo' ?>
+                <?php echo (is_null($user->status) || $user->status == 'off') ? __('Inactive') : __('Active') ?>
             </span>
         </div>
     </div>
@@ -34,7 +34,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-person-fill',
                     'name' => 'name',
-                    'label' => 'Nome do usuário',
+                    'label' => __('Name'),
                     'type' => 'bi bi-person-fill',
                     'value' => $user->name,
                     'attributes' => 'required',
@@ -45,7 +45,7 @@
                 <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-default', [
                     'icon' => 'bi bi-envelope-fill',
                     'name' => 'email',
-                    'label' => 'Email',
+                    'label' => __('Email'),
                     'type' => 'email',
                     'value' => $user->email,
                     'attributes' => [
@@ -60,7 +60,7 @@
                     'icon' => 'bi bi-key-fill',
                     'name' => 'current_password',
                     'type' => 'password',
-                    'label' => 'Senha atual (Deixe em branco caso não queira altera-la)',
+                    'label' => __('Current password (Leave it blank if you do not want to change it)'),
                 ]) ?>
             </div>
 
@@ -69,7 +69,7 @@
                     'icon' => 'bi bi-key-fill',
                     'name' => 'password',
                     'type' => 'password',
-                    'label' => 'Nova senha',
+                    'label' => __('New Password'),
                 ]) ?>
             </div>
 
@@ -78,7 +78,7 @@
                     'icon' => 'bi bi-key-fill',
                     'name' => 'repeat_password',
                     'type' => 'password',
-                    'label' => 'Repita sua nova senha',
+                    'label' => __('Repeat your new password'),
                 ]) ?>
             </div>
         </div>
@@ -87,8 +87,8 @@
             <?php loadHtml(__DIR__ . '/../../../resources/partials/form/input-button', [
                 'type' => 'submit',
                 'style' => 'color-main',
-                'title' => 'Savar usuário',
-                'value' => 'Salvar',
+                'title' => __('Save'),
+                'value' => __('Save')
             ]) ?>
         </div>
     </form>

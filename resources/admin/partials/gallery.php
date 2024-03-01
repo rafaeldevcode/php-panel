@@ -12,9 +12,9 @@ $images = $gallery->paginate(30);
     <div class="bg-white overflow-y-auto rounded p-8 relative h-full w-full max-w-[1000px]" data-modal-body="popup">
         <div class='border border-color-main rounded'>
             <div class='bg-color-main p-4 rounded-t'>
-                <h5 class='font-bold text-white' id='modalGalleryLabel'>Galeria de imagens</h5>
+                <h5 class='font-bold text-white' id='modalGalleryLabel'><?php _e('Image gallery') ?></h5>
 
-                <button data-modal-close="popup" type="button" title="Fechar modal" class="absolute top-0 right-2 text-gray-500 hover:text-gray-800 w-[20px] opacity-50">
+                <button data-modal-close="popup" type="button" title="<?php _e('Close') ?>" class="absolute top-0 right-2 text-gray-500 hover:text-gray-800 w-[20px] opacity-50">
                     <i class="bi bi-x text-2xl"></i>
                 </button>
             </div>

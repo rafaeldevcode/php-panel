@@ -27,14 +27,14 @@ if (is_null($post->where('slug', '=', $slug)->first())) {
     $post->find($new_post->id)->images()->sync($collection);
 
     session([
-        'message' => 'Post adicionado com sucesso!',
+        'message' => __('Post added successfully!'),
         'type' => 'success',
     ]);
 
     return header(route('/admin/posts', true), true, 302);
 } else {
     session([
-        'message' => 'A slug já está sendo utilizada, por favor tente outra!',
+        'message' => __('The slug is already being used, please try another one!'),
         'type' => 'danger',
     ]);
 

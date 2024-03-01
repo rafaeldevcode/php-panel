@@ -18,34 +18,29 @@ class Menu{
     
             const menu = $('#menu');
             const aside = $('aside');
-            const items = document.querySelectorAll('div[data-item-active]');
-            const divBtn = $('#divClosed');
+            const items = document.querySelectorAll('[data-item-active]');
+            const divBtn = $('#div-closed');
         
-            if(width <= 750){
+            if(width <= 720){
         
                 if(event.target.checked){
-                    menu.addClass('menuMobileOppen');
+                    menu.addClass('menu-mobile-open');
         
                     aside.attr('data-expanded', 'mobile-active');
-                    divBtn.addClass('divClosed');
+                    divBtn.addClass('div-closed');
                     divBtn.attr('data-divbtn-closed', 'active');
-        
-                    Cookies.set('open_menu', true, 500000);
                 }else{
-                    menu.removeClass('menuMobileOppen');
+                    menu.removeClass('menu-mobile-open');
                     divBtn.attr('data-divbtn-closed', 'desactive');
         
                     document.getElementById('checkbox-menu').checked = false;
         
                     setTimeout(()=>{
                         aside.attr('data-expanded', 'mobile-desactive');
-                        divBtn.removeClass('divClosed');
+                        divBtn.removeClass('div-closed');
                     }, 200);
-
-                    Cookies.forget('open_menu');
                 }
             }else{
-        
                 if(event.target.checked){
                     aside.attr('data-expanded', 'active');
         
@@ -110,7 +105,7 @@ class Menu{
         const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const buttonMenu = $('#checkbox-menu');
         const aside = $('aside');
-        const items = document.querySelectorAll('div[data-item-active]');
+        const items = document.querySelectorAll('[data-item-active]');
         const isOpen = Cookies.get('open_menu');
     
         if(width > 750){
