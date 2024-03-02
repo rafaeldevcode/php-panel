@@ -35,7 +35,7 @@ if (!function_exists('getLangKey')) {
 }
 
 if (!function_exists('getLang')) {
-    function getLang(): string 
+    function getLang(): string
     {
         if (!isset($_SESSION)) {
             session_start();
@@ -57,9 +57,9 @@ if (!function_exists('getAvailableLanguages')) {
         foreach ($files as $file) {
             if ($file !== '.' && $file !== '..') {
                 $array = explode('.', $file);
-                
+
                 if (isset($array[1]) && $array[1] === 'json') {
-                    $langs = $langs+[$array[0] => $array[0]];
+                    $langs = $langs + [$array[0] => $array[0]];
                 }
             }
         }
