@@ -132,4 +132,4 @@ if (!function_exists('getArraySelect')) {
     }
 };
 
-!defined('SETTINGS') && define('SETTINGS', (array)getSiteSettings());
+!defined('SETTINGS') && define('SETTINGS', getSiteSettings());

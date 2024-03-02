@@ -9,12 +9,12 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
 
-        fbq('init', '<?php echo $pixel ?>');
+        fbq('init', '<?php echo SETTINGS->facebook_pixel ?>');
 
         fbq('track', 'PageView');
     </script>
 <?php } else { ?>
     <noscript>
-        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo $pixel ?>&ev=PageView&noscript=1"/>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo SETTINGS->facebook_pixel ?>&ev=PageView&noscript=1"/>
     </noscript>
 <?php } ?>

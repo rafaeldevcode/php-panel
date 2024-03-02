@@ -15,7 +15,7 @@
         <div class='flex items-center flex-nowrap'>
             <div class='h-[40px] w-auto my-auto'>
                 <a href='<?php route('/admin/dashboard') ?>' title='<?php _e('Return to home page') ?>'>
-                    <img class='h-full' src='<?php !is_null(SETTINGS) && !empty(SETTINGS['site_logo_secondary']) ? asset('assets/images/' . SETTINGS['site_logo_secondary'] . '') : asset('assets/images/logo_secondary.png') ?>' alt="Logo <?php echo env('APP_NAME') ?>" />
+                    <img class='h-full' src='<?php asset('assets/images/' . SETTINGS->site_logo_secondary) ?>' alt="Logo <?php echo SETTINGS->site_name ?>" />
                 </a>
             </div>
         </div>

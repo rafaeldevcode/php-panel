@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="<?php echo getLang() ?>">
 <head>
-    <?php !is_null(SETTINGS) && !empty(SETTINGS['google_analytics']) ? loadHtml(__DIR__ . '/../partials/google-analytics', ['header' => true, 'pixel' => SETTINGS['google_analytics']]) : ''; ?>
-    <?php !is_null(SETTINGS) && !empty(SETTINGS['facebook_pixel']) ? loadHtml(__DIR__ . '/../partials/facebook-pixel', ['header' => true, 'pixel' => SETTINGS['facebook_pixel']]) : ''; ?>
+    <?php !empty(SETTINGS->google_analytics) ? loadHtml(__DIR__ . '/../partials/google-analytics', ['header' => true]) : ''; ?>
+    <?php !empty(SETTINGS->facebook_pixel) ? loadHtml(__DIR__ . '/../partials/facebook-pixel', ['header' => true]) : ''; ?>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,15 +21,15 @@
     <link rel='stylesheet' href='<?php asset('libs/tailwind/admin/style.css?ver=' . APP_VERSION) ?>' />
     <link rel='stylesheet' href='<?php asset('assets/css/globals.css?ver=' . APP_VERSION) ?>' />
     
-    <link rel="shortcut icon" href="<?php !is_null(SETTINGS) && !empty(SETTINGS['site_favicon']) ? asset('assets/images/' . SETTINGS['site_favicon'] . '') : asset('assets/images/favicon.svg') ?>" alt="Logo <?php echo env('APP_NAME') ?>">
+    <link rel="shortcut icon" href="<?php asset('assets/images/' . SETTINGS->site_favicon) ?>" alt="Logo <?php echo SETTINGS->site_name ?>">
 
     <meta name='author' content='Rafael Vieira | github.com/rafaeldevcode' />
-    <meta name="description" content="<?php echo !is_null(SETTINGS) ? SETTINGS['site_description'] : '' ?>">
+    <meta name="description" content="<?php echo SETTINGS->site_description ?>">
 
-    <title><?php echo !is_null(SETTINGS) && !empty(SETTINGS['site_name']) ? SETTINGS['site_name'] : env('APP_NAME') ?> | <?php echo $title ?></title>
+    <title><?php echo SETTINGS->site_name ?> | <?php echo $title ?></title>
 </head>
 <body class="bg-[#e4e4e4]">
-    <?php !is_null(SETTINGS) && !empty(SETTINGS['facebook_pixel']) ? loadHtml(__DIR__ . '/../partials/facebook-pixel', ['header' => false, 'pixel' => SETTINGS['facebook_pixel']]) : ''; ?>
+    <?php !empty(SETTINGS->facebook_pixel) ? loadHtml(__DIR__ . '/../partials/facebook-pixel', ['header' => false]) : ''; ?>
 
     <section class='flex flex-nowrap justify-between w-full'>
         <?php loadHtml(__DIR__ . '/partials/sidebar') ?>
@@ -58,7 +58,7 @@
     <?php loadHtml(__DIR__ . '/../partials/message') ?>
 
     <!-- Include Preloader -->
-    <?php !is_null(SETTINGS) && SETTINGS['preloader'] == 'on' && loadHtml(__DIR__ . '/../partials/preloader', ['position' => 'fixed', 'type' => 'body']) ?>
+    <?php SETTINGS->preloader == 'on' && loadHtml(__DIR__ . '/../partials/preloader', ['position' => 'fixed', 'type' => 'body']) ?>
 
     <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js?ver=' . APP_VERSION)?>"></script>
     <script type="text/javascript" src="<?php asset('assets/scripts/main.js?ver=' . APP_VERSION) ?>"></script>

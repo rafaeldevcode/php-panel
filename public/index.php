@@ -4,8 +4,8 @@ require __DIR__ . '/../bootstrap/bootstrap.php';
 
 $path = empty(path()) ? '/' : path();
 $routes = routes();
-$maintenance = is_null(SETTINGS) ? 'on' : SETTINGS['maintenance'];
-$construction = is_null(SETTINGS) ? 'on' : SETTINGS['construction'];
+$maintenance = SETTINGS->maintenance;
+$construction = SETTINGS->construction;
 
 if (strpos($path, '/admin') !== false && !autenticate()) {
     if ($path == '/login') {

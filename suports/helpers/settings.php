@@ -87,15 +87,17 @@ if (!function_exists('getSiteSettings')) {
             $gallery = new Gallery();
             $settings = $settings->first();
 
-            $settings->site_favicon = isset($settings->site_favicon) ? $gallery->find($settings->site_favicon)->data->file : null;
-            $settings->site_logo_main = isset($settings->site_logo_main) ? $gallery->find($settings->site_logo_main)->data->file : null;
-            $settings->site_logo_secondary = isset($settings->site_logo_secondary) ? $gallery->find($settings->site_logo_secondary)->data->file : null;
-            $settings->site_bg_login = isset($settings->site_bg_login) ? $gallery->find($settings->site_bg_login)->data->file : null;
+            $settings->site_favicon = $gallery->find($settings->site_favicon)->data->file;
+            $settings->site_logo_main = $gallery->find($settings->site_logo_main)->data->file;
+            $settings->site_logo_secondary = $gallery->find($settings->site_logo_secondary)->data->file;
+            $settings->site_bg_login = $gallery->find($settings->site_bg_login)->data->file;
+
+            $settings = json_encode($settings);
 
             session(['site_settings' => $settings]);
         };
 
-        return $settings;
+        return json_decode($settings);
     }
 };
 
