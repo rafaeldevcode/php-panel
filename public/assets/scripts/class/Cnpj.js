@@ -1,28 +1,11 @@
 'use strict';
 
-/**
- * Search for information from a CNPJ
- */
 class Cnpj{
-    /**
-     * @since 1.0.0
-     * 
-     * @param {object} elementClick 
-     * @param {object} elementCnpj 
-     * @returns {void}
-     */
     constructor(elementClick, elementCnpj){
         this.elementClick = elementClick;
         this.elementCnpj = elementCnpj;
     }
-    
-    /**
-     * Get information
-     * 
-     * @since 1.0.0
-     * 
-     * @returns {void}
-     */
+
     getInfos(){
         this.elementClick.click(() => {
             let cnpj = this.elementCnpj.val();

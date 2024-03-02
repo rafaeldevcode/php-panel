@@ -1,17 +1,6 @@
 'use strict';
 
-/**
- * Search all cities and states in Brazil
- */
 class Location{
-    /**
-     * Search all cities in Brazil
-     * 
-     * @since 1.0.0
-     * 
-     * @param {string|array} selector
-     * @returns {void}
-     */
     static citys(selector){
         selector = Array.isArray(selector) ? selector : [selector];
     
@@ -33,13 +22,6 @@ class Location{
         });
     }
     
-    /**
-     * Search all states in Brazil
-     * 
-     * @since 1.0.0
-     * 
-     * @returns {void}
-     */
     static states(){
         $.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?view=nivelado', (response) => {
             response.forEach((state) => {

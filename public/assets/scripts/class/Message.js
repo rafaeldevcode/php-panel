@@ -1,17 +1,6 @@
 'use strict';
 
-/**
- * Create or hiddens the message
- */
 class Message{
-    /**
-     * Hidden message
-     * 
-     * @since 1.0.0
-     * 
-     * @param {string} elementIndentfy 
-     * @return {void}
-     */
     static hide(elementIndentfy){
         this.clickHide();
         const message = $(elementIndentfy);
@@ -25,11 +14,6 @@ class Message{
         }, 5000);
     }
 
-    /**
-     * @since 1.5.0
-     * 
-     * @returns {void}
-     */
     static clickHide(){
         $('[data-message="hide"]').on('click', (event) => {
             const message = $(event.target).parent();
@@ -40,16 +24,7 @@ class Message{
             }, 1000);
         });
     }
-    
-    /**
-     * Create message
-     * 
-     * @since 1.0.0
-     * 
-     * @param {string} textMessage 
-     * @param {string} typeMessage 
-     * @returns {void}
-     */
+
     static create(textMessage, typeMessage){
         const messageContent = this.getContentMessage();
         const content = messageContent.content;
@@ -101,11 +76,6 @@ class Message{
         return classIcon;
     }
 
-    /**
-     * @since 1.5.0
-     * 
-     * @returns {object}
-     */
     static getContentMessage(){
         let messageContent = $('[data-message="content"]');
         let exists = true;

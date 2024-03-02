@@ -1,14 +1,6 @@
 'use strict';
 
 class Password{
-    /**
-     * Show passwords
-     * 
-     * @since 1.0.0
-     * 
-     * @param {string} elementsIds 
-     * @returns {void}
-     */
     static show(elementsIds) {
         const ids = document.querySelectorAll(elementsIds);
     

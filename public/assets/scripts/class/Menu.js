@@ -1,17 +1,6 @@
 'use strict';
 
-/**
- * Open and close menu, client and admin pages
- */
 class Menu{
-    /**
-     * Open and close menu admin
-     * 
-     * @since 1.0.0
-     * 
-     * @param {object} element 
-     * @return {void}
-     */
     static admin(element){
         element.click((event) => {
             const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -71,13 +60,6 @@ class Menu{
         });
     }
 
-    /**
-     * Open and close menu client
-     * 
-     * @since 1.0.0
-     * 
-     * @returns {void}
-     */
     static client(){
         $('#checkbox-menu').click((event) => {
             const nav = $(event.target).parent().parent().parent().find('nav');
