@@ -4,7 +4,7 @@
             <form id='menu' class='menu'>
                 <input class='hidden menu-input' type='checkbox' id='checkbox-menu'>
 
-                <label class='relative block ml-2 menu_label cursor-pointer h-[18px] w-[25px] text-transparent' for="checkbox-menu">
+                <label class='relative block ml-2 menu-label cursor-pointer h-[18px] w-[25px] text-transparent' for="checkbox-menu">
                     <span class='absolute block rounded bg-light'>.</span>
                     <span class='absolute block rounded bg-light'>.</span>
                     <span class='absolute block rounded bg-light'>.</span>
