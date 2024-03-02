@@ -35,6 +35,16 @@ class Model
         }
     }
 
+    public function hasTable(): bool
+    {
+        $query = "SHOW TABLES LIKE '{$this->table}'";
+
+        // Executa a consulta SQL
+        $resultado = $this->connection->query($query);
+
+        return $resultado->rowCount() > 0 ? true : false;
+    }
+
     public function where(string $column, string $operator, ?string $value): self
     {
         $this->wheres[] = [

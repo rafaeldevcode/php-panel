@@ -4,6 +4,43 @@ use Src\Models\AccessToken;
 use Src\Models\Setting;
 use Src\Models\Gallery;
 
+if (!function_exists('getDefaultSiteSettings')) {
+    function getDefaultSiteSettings(): array
+    {
+        return [
+            'site_name' => env('APP_NAME'),
+            'site_description' => __('Realize seu login!'),
+            'andress' => '',
+            'phone' => '',
+            'email' => '',
+            'whatsapp' => '',
+            'telegram' => '',
+            'profile_linkedin' => '',
+            'profile_facebook' => '',
+            'profile_instagram' => '',
+            'profile_twitter' => '',
+            'google_analytics_pixel' => '',
+            'copyright' => '',
+            'telegram_message' => '',
+            'whatsapp_message' => '',
+            'facebook_pixel' => '',
+            'tiktok_pixel' => '',
+            'tagmanager_pixel' => '',
+            'googleads_pixel' => '',
+            'preloader' => 'off',
+            'cookies' => '',
+            'preloader_image' => '',
+            'site_logo_main' => 'logo_main.svg',
+            'site_logo_secondary' => 'logo_secondary.png',
+            'site_favicon' => 'favicon.png',
+            'site_bg_login' => 'bg_login.jpg',
+            'construction' => '',
+            'maintenance' => 'on',
+            'admin_lang' => 'en',
+        ];
+    }
+};
+
 if (!function_exists('normalizeBreadcrumps')) {
     function normalizeBreadcrumps(): array
     {
@@ -85,14 +122,19 @@ if (!function_exists('getSiteSettings')) {
         } else {
             $settings = new Setting();
             $gallery = new Gallery();
-            $settings = $settings->first();
 
-            $settings->site_favicon = $gallery->find($settings->site_favicon)->data->file;
-            $settings->site_logo_main = $gallery->find($settings->site_logo_main)->data->file;
-            $settings->site_logo_secondary = $gallery->find($settings->site_logo_secondary)->data->file;
-            $settings->site_bg_login = $gallery->find($settings->site_bg_login)->data->file;
+            if ($settings->hasTable()) {
+                $settings = $settings->first();
 
-            $settings = json_encode($settings);
+                $settings->site_favicon = $gallery->find($settings->site_favicon)->data->file;
+                $settings->site_logo_main = $gallery->find($settings->site_logo_main)->data->file;
+                $settings->site_logo_secondary = $gallery->find($settings->site_logo_secondary)->data->file;
+                $settings->site_bg_login = $gallery->find($settings->site_bg_login)->data->file;
+    
+                $settings = json_encode($settings);
+            } else {
+                $settings = json_encode(getDefaultSiteSettings());
+            }
 
             session(['site_settings' => $settings]);
         };
