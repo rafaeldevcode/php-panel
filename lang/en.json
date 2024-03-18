@@ -132,5 +132,9 @@
     "Remove post :title": "Remove post :title",
     "Log out user :name" : "Log out user :name",
     "We use essential cookies and similar technologies in accordance with our Privacy Policies and, by continuing to browse, you agree to these conditions.": "We use essential cookies and similar technologies in accordance with our Privacy Policies and, by continuing to browse, you agree to these conditions.",
-    "Admin panel language": "Admin panel language"
+    "Admin panel language": "Admin panel language",
+    "maintenance": "maintenance",
+    "We are making some adjustments and improvements.<br>We'll be back soon!": "We are making some adjustments and improvements.<br>We'll be back soon!",
+    "construction": "construction",
+    "We are still in the construction process.<br>We will be live soon!": "We are still in the construction process.<br>We will be live soon!"
 }

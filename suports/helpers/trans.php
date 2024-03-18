@@ -41,7 +41,7 @@ if (!function_exists('getLang')) {
             session_start();
         };
 
-        $lang = !autenticate() ? $_SESSION['client_lang'] : SETTINGS->admin_lang;
+        $lang = !autenticate() ? 'en' : SETTINGS->admin_lang;
 
         return is_null($lang) ? 'en' : $lang;
     }

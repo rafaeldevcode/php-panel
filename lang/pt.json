@@ -132,5 +132,9 @@
     "Remove post :title": "Remover postagem :title",
     "Log out user :name" : "Desconectar usuário :name",
     "We use essential cookies and similar technologies in accordance with our Privacy Policies and, by continuing to browse, you agree to these conditions.": "Utilizamos cookies essenciais e tecnologias semelhantes de acordo com nossas Políticas de Privacidade e, ao continuar navegando, você concorda com estas condições.",
-    "Admin panel language": "Idioma do painel de admin"
+    "Admin panel language": "Idioma do painel de admin",
+    "maintenance": "manutenção",
+    "We are making some adjustments and improvements.<br>We'll be back soon!": "Estamos realizando alguns ajustes e melhorias.<br>Voltamos em breve!",
+    "construction": "construção",
+    "We are still in the construction process.<br>We will be live soon!": "Ainda estamos em processo de construção.<br>Em breve estaremos no ar!"
 }

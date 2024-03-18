@@ -9,7 +9,7 @@ if (!function_exists('getDefaultSiteSettings')) {
     {
         return [
             'site_name' => env('APP_NAME'),
-            'site_description' => __('Realize seu login!'),
+            'site_description' => 'Realize seu login!',
             'andress' => '',
             'phone' => '',
             'email' => '',
@@ -123,7 +123,7 @@ if (!function_exists('getSiteSettings')) {
             $settings = new Setting();
             $gallery = new Gallery();
 
-            if ($settings->hasTable()) {
+            if (hasFileEnv() && $settings->hasTable()) {
                 $settings = $settings->first();
 
                 $settings->site_favicon = $gallery->find($settings->site_favicon)->data->file;
