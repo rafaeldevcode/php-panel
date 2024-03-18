@@ -5,11 +5,9 @@ use Dotenv\Dotenv;
 if (!function_exists('hasFileEnv')) {
     function hasFileEnv(): bool
     {
-        $path = __DIR__ . '/../.env';
+        $path = __DIR__ . '/../../.env';
         
-        $has = file_exists($path) ? true : false;
-
-        return $has;
+        return file_exists($path);
     }
 };
 

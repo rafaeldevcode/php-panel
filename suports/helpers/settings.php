@@ -9,7 +9,7 @@ if (!function_exists('getDefaultSiteSettings')) {
     {
         return [
             'site_name' => env('APP_NAME'),
-            'site_description' => 'Realize seu login!',
+            'site_description' => 'Log in!',
             'andress' => '',
             'phone' => '',
             'email' => '',
