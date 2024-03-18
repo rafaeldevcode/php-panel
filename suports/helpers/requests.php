@@ -92,9 +92,9 @@ if (!function_exists('urlBase')) {
 };
 
 if (!function_exists('abort')) {
-    function abort(int $error_code, string $message, string $type): void
+    function abort(int|string $error_code, string $message, string $type): void
     {
-        loadHtml(__DIR__ . '/../../resources/errors/index', [
+        loadHtml(__DIR__ . '/../../resources/layout', [
             'error' => $error_code,
             'type' => $type,
             'message' => $message,

@@ -17,10 +17,10 @@ if (strpos($path, '/admin') !== false && !autenticate()) {
     if (in_array($path, $routes)) {
         if (!autenticate() && strpos($path, '/login') === false) {
             if ($construction === 'on') {
-                loadHtml(__DIR__ . '/../resources/client/construction');
+                abort(__('construction'), __("We are still in the construction process.<br>We will be live soon!"), 'color-main');
                 die;
             } elseif ($maintenance === 'on') {
-                loadHtml(__DIR__ . '/../resources/client/maintenance');
+                abort(__('maintenance'), __("We are making some adjustments and improvements.<br>We'll be back soon!"), 'color-main');
                 die;
             };
         };

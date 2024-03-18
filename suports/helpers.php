@@ -80,18 +80,23 @@ if (!function_exists('getIconMessage')) {
         switch ($type) {
             case 'danger':
                 $icon = 'bi bi-dash-circle-fill';
+
                 break;
             case 'success':
                 $icon = 'by bi-check-circle-fill';
+
                 break;
             case 'warning':
                 $icon = 'bi bi-exclamation-circle-fill';
+
                 break;
             case 'secondary':
                 $icon = 'bi bi-question-circle-fill';
+
                 break;
             case 'info':
                 $icon = 'bi bi-info-circle-fill';
+
                 break;
         };
 

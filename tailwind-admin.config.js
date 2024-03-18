@@ -9,10 +9,9 @@ module.exports = {
         "./public/libs/tailwind/import.css",
         "./public/assets/scripts/**/*.js",
         "./resources/admin/**/*.php",
-        "./resources/errors/*.php",
+        "./resources/*.php",
         "./resources/partials/**/*.php",
         "./admin/**/*.php",
-        "./policies/*.php",
         "./login/*.php",
     ],
     theme: {
