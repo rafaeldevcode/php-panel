@@ -13,7 +13,7 @@ class Users extends ExecuteMigrations
         $this->string('email', 50)->unique();
         $this->string('password', 200);
         $this->char('status', 3)->default('on');
-        $this->string('avatar')->default('default.png');
+        $this->integer('avatar')->nullable();
         $this->timestamps();
 
         $this->create();

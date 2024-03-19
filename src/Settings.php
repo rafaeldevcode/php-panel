@@ -54,7 +54,7 @@ class Settings
         $email = 'administrador@example.com';
         $password = '@Admin4431!';
 
-        $user = $user->create([
+        $newUser = $user->create([
             'name' => $name,
             'email' => $email,
             'password' => password_hash($password, PASSWORD_BCRYPT),
@@ -63,28 +63,35 @@ class Settings
         $favicon = $gallery->create([
             'name' => 'favicon',
             'file' => 'favicon.svg',
-            'user_id' => $user->id,
+            'user_id' => $newUser->id,
             'size' => 0,
         ]);
 
         $logo_main = $gallery->create([
             'name' => 'logo main',
             'file' => 'logo_main.svg',
-            'user_id' => $user->id,
+            'user_id' => $newUser->id,
             'size' => 0,
         ]);
 
         $logo_secondary = $gallery->create([
             'name' => 'logo secondary',
             'file' => 'logo_secondary.png',
-            'user_id' => $user->id,
+            'user_id' => $newUser->id,
             'size' => 0,
         ]);
 
         $bg_login = $gallery->create([
             'name' => 'bg login',
             'file' => 'bg_login.jpg',
-            'user_id' => $user->id,
+            'user_id' => $newUser->id,
+            'size' => 0,
+        ]);
+
+        $avatar = $gallery->create([
+            'name' => 'bg login',
+            'file' => 'avatar.jpg',
+            'user_id' => $newUser->id,
             'size' => 0,
         ]);
 
@@ -94,6 +101,8 @@ class Settings
             'site_favicon' => $favicon->id,
             'site_bg_login' => $bg_login->id,
         ]);
+
+        $user->find($newUser->id)->update(['avatar', $avatar->id]);
 
         echo "Email: {$email} \n";
         echo "Senha: {$password}\n\n";

@@ -3,11 +3,15 @@
         <div class='relative profile-bg' style="background-image: url(<?php asset('assets/images/' . SETTINGS->site_bg_login) ?>)"></div>
 
         <div class='mx-auto relative w-[100px] h-[100px] mt-[-50px]'>
-            <img class='border border-color-main w-full absolute bottom-0 left-0 rounded-full' src='<?php asset('/assets/images/users/' . $user->avatar) ?>' alt='<?php echo $user->name ?>'/>
-
+            <?php loadHtml(__DIR__ . '/../../../resources/partials/image', [
+                'id' => $user->avatar,
+                'alt' => $user->name,
+                'class' => 'border border-color-main w-full h-full absolute bottom-0 left-0 rounded-full'
+            ]) ?>
+            
             <button
                 class='absolute bottom-0 left-0 w-full h-full bg-white font-bold text-color-main rounded-full opacity-0 ease-linear duration-300 hover:opacity-100'
-                data-toggle="avatar"
+                data-toggle="modal-avatar"
                 title="<?php _e('Change profile picture') ?>"
             >
                 <?php _e('Change') ?>

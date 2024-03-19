@@ -1,5 +1,5 @@
-<div data-modal="avatar" class="z-[99999] fixed top-0 left-0 w-full h-full items-center justify-center hidden z-50">
-    <div class='bg-white max-w-[800px] border border-color-main rounded' data-modal-body="popup">
+<div data-modal="modal-avatar" class="z-[99999] fixed top-0 left-0 w-full h-full items-center justify-center hidden z-50">
+    <div class='bg-white min-w-[800px] border border-color-main rounded' data-modal-body="popup">
         <form action="<?php route('/admin/profile/update-avatar') ?>" method="POST">
             <input type="hidden" name="id" value="<?php echo $user_id ?>">
             <div class='bg-color-main relative'>
@@ -10,20 +10,16 @@
                 <h2 class="bg-color-main font-bold text-white px-2 py-4 rounded-t text-gray-900"><?php _e('Choose an image') ?></h2>
             </div>
 
-            <div>
-                <div class='flex flex-wrap justify-evenly m-0'>
-                    <?php foreach (getAvatars() as $indice => $image) { ?>
-                        <div class='m-2'>
-                            <input data-checked="add-style" hidden type='radio' name='avatar' id='<?php echo $indice ?>' value='<?php echo $image['src'] ?>' <?php echo $image['src'] == $avatar ? 'checked' : '' ?>>
-                            <label for='<?php echo $indice ?>' class='rounded-full block cursor-pointer w-[80px] h-[80px]'>
-                                <img class="w-full rounded-full" src="<?php asset("/assets/images/users/{$image['src']}") ?>" alt="<?php echo $image['alt'] ?>">
-                            </label>
-                        </div>
-                    <?php } ?>
-                </div>
+            <div class='flex flex-wrap justify-center items-center m-4'>
+                <?php loadHtml(__DIR__ . '/../../partials/form/button-upload', [
+                    'name' => 'avatar',
+                    'label' => __('Avatar'),
+                    'value' => $avatar,
+                    'type' => 'radio',
+                ]) ?>
             </div>
 
-            <div class="flex justify-end p-2">
+            <div class="flex justify-end p-2 mt-4">
                 <?php loadHtml(__DIR__ . '/../../partials/form/input-button', [
                     'type' => 'submit',
                     'style' => 'color-main',
