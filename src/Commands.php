@@ -8,7 +8,7 @@ use Src\Models\Gallery;
 use Src\Models\Setting;
 use Src\Models\User;
 
-class Settings
+class Commands
 {
     public function migrate()
     {
