@@ -126,12 +126,16 @@ if (!function_exists('getSiteSettings')) {
             if (hasFileEnv() && $settings->hasTable()) {
                 $settings = $settings->first();
 
-                $settings->site_favicon = $gallery->find($settings->site_favicon)->data->file;
-                $settings->site_logo_main = $gallery->find($settings->site_logo_main)->data->file;
-                $settings->site_logo_secondary = $gallery->find($settings->site_logo_secondary)->data->file;
-                $settings->site_bg_login = $gallery->find($settings->site_bg_login)->data->file;
-    
-                $settings = json_encode($settings);
+                if (isset($settings)) {
+                    $settings->site_favicon = $gallery->find($settings->site_favicon)->data->file;
+                    $settings->site_logo_main = $gallery->find($settings->site_logo_main)->data->file;
+                    $settings->site_logo_secondary = $gallery->find($settings->site_logo_secondary)->data->file;
+                    $settings->site_bg_login = $gallery->find($settings->site_bg_login)->data->file;
+        
+                    $settings = json_encode($settings);
+                } else {
+                    $settings = json_encode(getDefaultSiteSettings());
+                }
             } else {
                 $settings = json_encode(getDefaultSiteSettings());
             }

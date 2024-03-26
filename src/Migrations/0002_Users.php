@@ -6,7 +6,7 @@ class Users extends ExecuteMigrations
 {
     public $table = 'users';
 
-    public function init()
+    public function up()
     {
         $this->integer('id')->primaryKey();
         $this->string('name', 50);
@@ -17,5 +17,10 @@ class Users extends ExecuteMigrations
         $this->timestamps();
 
         $this->create();
+    }
+
+    public function down()
+    {
+        $this->dropTable();
     }
 }

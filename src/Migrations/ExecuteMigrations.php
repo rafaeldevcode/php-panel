@@ -161,6 +161,28 @@ class ExecuteMigrations
         };
     }
 
+    public function dropColumn(string $column): self
+    {
+        $query = "ALTER TABLE {$this->table} DROP COLUMN :{$column};";
+    
+        $statement = $this->connection->prepare($query);
+    
+        $statement->bindParam(":{$column}", $column, PDO::PARAM_STR);
+    
+        $statement->execute();
+
+        return $this;
+    }
+
+    public function dropTable(): void
+    {
+        $query = "DROP TABLE {$this->table}";
+
+        $statement = $this->connection->prepare($query);
+
+        $statement->execute();
+    }
+    
     public function verifyExistsMigrations(): bool
     {
         $table_name = 'migrations';

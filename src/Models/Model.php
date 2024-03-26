@@ -39,7 +39,6 @@ class Model
     {
         $query = "SHOW TABLES LIKE '{$this->table}'";
 
-        // Executa a consulta SQL
         $resultado = $this->connection->query($query);
 
         return $resultado->rowCount() > 0 ? true : false;

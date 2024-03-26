@@ -10,7 +10,7 @@ use Src\Models\User;
 
 class Commands
 {
-    public function migrate()
+    public function migrateUp()
     {
         $executeMigrations = new ExecuteMigrations();
         $migrations = new Migrations();
@@ -30,7 +30,7 @@ class Commands
                 echo "Running the '{$class}' migration.\n";
 
                 $exec = new $class();
-                $exec->init();
+                $exec->up();
 
                 $migrations->create(['name' => $file]);
 
@@ -44,68 +44,96 @@ class Commands
         echo empty($migrates) ? "No migration to perform!\n\n" : "Migration finished!\n\n";
     }
 
+    public function migrateDown()
+    {
+        $migrations = new Migrations();
+
+        $contents = scandir(__DIR__ . '/../src/Migrations/');
+        $contents = array_reverse(array_slice($contents, 2, -1));
+
+        foreach ($contents as $file) {
+            $class = explode('.', $file)[0];
+
+            require __DIR__ . "/../src/Migrations/{$file}";
+            $class = 'Src\\Migrations\\' . substr($class, 5);
+
+            $exec = new $class();
+            $exec->down();
+
+            if ($migrations->hasTable()) {
+                $migrations->where('name', '=', $file)->delete();
+            }
+        };
+
+        echo "Migration finished!\n\n";
+    }
+
     public function initialSetup()
     {
         $user = new User();
         $gallery = new Gallery();
         $settings = new Setting();
 
-        $name = 'Administrador';
-        $email = 'administrador@example.com';
-        $password = '@Admin4431!';
-
-        $newUser = $user->create([
-            'name' => $name,
-            'email' => $email,
-            'password' => password_hash($password, PASSWORD_BCRYPT),
-        ]);
-
-        $favicon = $gallery->create([
-            'name' => 'favicon',
-            'file' => 'favicon.svg',
-            'user_id' => $newUser->id,
-            'size' => 0,
-        ]);
-
-        $logo_main = $gallery->create([
-            'name' => 'logo main',
-            'file' => 'logo_main.svg',
-            'user_id' => $newUser->id,
-            'size' => 0,
-        ]);
-
-        $logo_secondary = $gallery->create([
-            'name' => 'logo secondary',
-            'file' => 'logo_secondary.png',
-            'user_id' => $newUser->id,
-            'size' => 0,
-        ]);
-
-        $bg_login = $gallery->create([
-            'name' => 'bg login',
-            'file' => 'bg_login.jpg',
-            'user_id' => $newUser->id,
-            'size' => 0,
-        ]);
-
-        $avatar = $gallery->create([
-            'name' => 'bg login',
-            'file' => 'avatar.jpg',
-            'user_id' => $newUser->id,
-            'size' => 0,
-        ]);
-
-        $settings->create([
-            'site_logo_main' => $logo_main->id,
-            'site_logo_secondary' => $logo_secondary->id,
-            'site_favicon' => $favicon->id,
-            'site_bg_login' => $bg_login->id,
-        ]);
-
-        $user->find($newUser->id)->update(['avatar', $avatar->id]);
-
-        echo "Email: {$email} \n";
-        echo "Senha: {$password}\n\n";
+        if (! $user->hasTable() || ! $gallery->hasTable() || ! $settings->hasTable()) {
+            echo "It is not possible to run initial setup before carrying out the migrations!\n\n";
+        } else {
+            $name = 'Administrador';
+            $email = 'administrador@example.com';
+            $password = '@Admin4431!';
+    
+            $user = $user->create([
+                'name' => $name,
+                'email' => $email,
+                'password' => password_hash($password, PASSWORD_BCRYPT),
+            ]);
+    
+            $favicon = $gallery->create([
+                'name' => 'favicon',
+                'file' => 'favicon.svg',
+                'user_id' => $user->id,
+                'size' => 0,
+            ]);
+    
+            $logo_main = $gallery->create([
+                'name' => 'logo main',
+                'file' => 'logo_main.svg',
+                'user_id' => $user->id,
+                'size' => 0,
+            ]);
+    
+            $logo_secondary = $gallery->create([
+                'name' => 'logo secondary',
+                'file' => 'logo_secondary.png',
+                'user_id' => $user->id,
+                'size' => 0,
+            ]);
+    
+            $bg_login = $gallery->create([
+                'name' => 'bg login',
+                'file' => 'bg_login.jpg',
+                'user_id' => $user->id,
+                'size' => 0,
+            ]);
+    
+            $avatar = $gallery->create([
+                'name' => 'bg login',
+                'file' => 'avatar.jpg',
+                'user_id' => $user->id,
+                'size' => 0,
+            ]);
+    
+            $settings->create([
+                'site_logo_main' => $logo_main->id,
+                'site_logo_secondary' => $logo_secondary->id,
+                'site_favicon' => $favicon->id,
+                'site_bg_login' => $bg_login->id,
+            ]);
+    
+            (new User())->find($user->id)->update(['avatar' => $avatar->id]);
+    
+            echo "Email: {$email} \n";
+            echo "Senha: {$password}\n\n";
+        }
     }
 
     public function changeColorSvg(?string $current, ?string $new)
