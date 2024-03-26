@@ -137,5 +137,11 @@
     "We are making some adjustments and improvements.<br>We'll be back soon!": "We are making some adjustments and improvements.<br>We'll be back soon!",
     "construction": "construction",
     "We are still in the construction process.<br>We will be live soon!": "We are still in the construction process.<br>We will be live soon!",
-    "Log in!": "Log in!"
+    "Log in!": "Log in!",
+    "admin": "admin",
+    "dashboard": "dashboard",
+    "users": "users",
+    "gallery": "gallery",
+    "settings": "settings",
+    "profile": "profile"
 }

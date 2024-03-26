@@ -7,7 +7,7 @@
 
                     <?php foreach (normalizeBreadcrumps() as $breadcrump) { ?>
                         <li class='mx-2'>
-                            <a title="<?php echo $breadcrump['title'] ?>" class='text-secondary bg-gray-200 rounded-full text-xs py-1 px-3 block font-bold hover:bg-color-main hover:text-white ease-in duration-300' href='<?php route($breadcrump['path']) ?>'><?php echo $breadcrump['title'] ?></a>
+                            <a title="<?php _e($breadcrump['title']) ?>" class='text-secondary bg-gray-200 rounded-full text-xs py-1 px-3 block font-bold hover:bg-color-main hover:text-white ease-in duration-300' href='<?php route($breadcrump['path']) ?>'><?php _e($breadcrump['title']) ?></a>
                         </li>
                     <?php } ?>
                 </ul>
