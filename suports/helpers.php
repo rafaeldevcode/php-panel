@@ -32,7 +32,7 @@ if (!function_exists('asset')) {
         $projectPath = env('PROJECT_PATH');
         $assetsPath = env('ASSETS_PATH');
 
-        $url = "{$protocol}://{$host}{$projectPath}{$assetsPath}/{$path}";
+        $url = "{$protocol}://{$host}{$projectPath}{$assetsPath}/{$path}?ver=" . APP_VERSION;
 
         if ($return) {
             return $url;
