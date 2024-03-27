@@ -1,16 +1,16 @@
 <?php
-$is_required = null;
+$isRequired = null;
 $attr = null;
 
 if (isset($attributes)) {
     if (is_array($attributes)) {
         foreach ($attributes as $indice => $attribute) {
             $attr .= "{$indice}={$attribute} ";
-            $is_required = $indice == 'required' ? '*' : null;
+            $isRequired = $indice == 'required' ? '*' : null;
         };
     } else {
         $attr = $attributes;
-        $is_required = $attributes == 'required' ? '*' : null;
+        $isRequired = $attributes == 'required' ? '*' : null;
     };
 };
 ?>
@@ -28,7 +28,7 @@ if (isset($attributes)) {
         >
         
         <label for="<?php echo $name ?>" class="w-full py-4 ml-2 text-sm font-medium text-secondary">
-            <?php echo $label . $is_required ?>
+            <?php echo $label . $isRequired ?>
         </label>
     </div>
     

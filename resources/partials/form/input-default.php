@@ -1,26 +1,26 @@
 <?php
-$is_required = null;
+$isRequired = null;
 $attr = null;
 
 if(isset($attributes)):
     if(is_array($attributes)):
         foreach($attributes as $indice => $attribute):
             $attr .= "{$indice}={$attribute} ";
-            $is_required = $indice == 'required' ? '*' : null;
+            $isRequired = $indice == 'required' ? '*' : null;
         endforeach;
     else:
         $attr = $attributes;
-        $is_required = $attributes == 'required' ? '*' : null;
+        $isRequired = $attributes == 'required' ? '*' : null;
     endif;
 endif;
 ?>
 
 <div class="my-3">
-    <label class="text-secondary text-sm font-bold" for="<?php echo $name ?>"><?php echo $label ?><span class="text-danger"><?php echo $is_required ?></span></label>
+    <label class="text-secondary text-sm font-bold" for="<?php echo $name ?>"><?php echo $label ?><span class="text-danger"><?php echo $isRequired ?></span></label>
 
     <label class="relative block">
         <span class="sr-only">
-            <?php echo $label . $is_required ?>
+            <?php echo $label . $isRequired ?>
         </span>
 
         <span class="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -31,7 +31,7 @@ endif;
 
         <input 
             class="placeholder:italic placeholder:text-secondary block bg-white w-full border border-secondary rounded py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-color-main focus:ring-color-main focus:ring-1 sm:text-sm" 
-            placeholder="<?php echo $label . $is_required ?>" 
+            placeholder="<?php echo $label . $isRequired ?>" 
             type="<?php echo $type ?>" 
             name="<?php echo $name ?>"
             id="<?php echo $name ?>"

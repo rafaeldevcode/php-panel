@@ -1,12 +1,10 @@
 <?php
 
-require __DIR__ . '/../../bootstrap/bootstrap.php';
-
 use Src\Models\Gallery;
 
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $requests = requests();
     $data = [[], []];
     $gallery = new Gallery();

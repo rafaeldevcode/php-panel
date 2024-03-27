@@ -6,10 +6,10 @@ use Src\Models\User;
 
 $user = new User();
 $requests = requests();
-$current_pass = $user->find($requests->id)->data->password;
+$currentPass = $user->find($requests->id)->data->password;
 
 if (!empty($requests->password)) {
-    if ($requests->password !== $requests->repeat_password || !password_verify($requests->current_password, $current_pass)) {
+    if ($requests->password !== $requests->repeat_password || !password_verify($requests->current_password, $currentPass)) {
         session([
             'message' => __("The passwords don't match, try again!"),
             'type' => 'danger',

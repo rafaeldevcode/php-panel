@@ -15,13 +15,13 @@ class Commands
         $executeMigrations = new ExecuteMigrations();
         $migrations = new Migrations();
 
-        $migrations_exists = $executeMigrations->verifyExistsMigrations();
+        $migrationsExists = $executeMigrations->verifyExistsMigrations();
         $contents = scandir(__DIR__ . '/../src/Migrations/');
         $contents = array_slice($contents, 2, -1);
         $migrates = [];
 
         foreach ($contents as $file) {
-            if (!$migrations_exists || empty($migrations->where('name', '=', $file)->get())) {
+            if (!$migrationsExists || empty($migrations->where('name', '=', $file)->get())) {
                 $class = explode('.', $file)[0];
 
                 require __DIR__ . "/../src/Migrations/{$file}";
@@ -35,7 +35,7 @@ class Commands
                 $migrations->create(['name' => $file]);
 
                 array_push($migrates, $file);
-                $migrations_exists = true;
+                $migrationsExists = true;
 
                 echo "Migration from {$class} finished!\n\n";
             };
@@ -94,21 +94,21 @@ class Commands
                 'size' => 0,
             ]);
     
-            $logo_main = $gallery->create([
+            $logoMain = $gallery->create([
                 'name' => 'logo main',
                 'file' => 'logo_main.svg',
                 'user_id' => $user->id,
                 'size' => 0,
             ]);
     
-            $logo_secondary = $gallery->create([
+            $logoSecondary = $gallery->create([
                 'name' => 'logo secondary',
                 'file' => 'logo_secondary.png',
                 'user_id' => $user->id,
                 'size' => 0,
             ]);
     
-            $bg_login = $gallery->create([
+            $bgLogin = $gallery->create([
                 'name' => 'bg login',
                 'file' => 'bg_login.jpg',
                 'user_id' => $user->id,
@@ -123,10 +123,10 @@ class Commands
             ]);
     
             $settings->create([
-                'site_logo_main' => $logo_main->id,
-                'site_logo_secondary' => $logo_secondary->id,
+                'site_logo_main' => $logoMain->id,
+                'site_logo_secondary' => $logoSecondary->id,
                 'site_favicon' => $favicon->id,
-                'site_bg_login' => $bg_login->id,
+                'site_bg_login' => $bgLogin->id,
             ]);
     
             (new User())->find($user->id)->update(['avatar' => $avatar->id]);
@@ -139,8 +139,8 @@ class Commands
     public function changeColorSvg(?string $current, ?string $new)
     {
         if (isset($current) || isset($new)) {
-            $old_color = strtolower($current);
-            $new_color = strtolower($new);
+            $oldColor = strtolower($current);
+            $newColor = strtolower($new);
 
             $path = __DIR__ . '/../public/assets/images/';
             $images = scandir($path);
@@ -149,11 +149,11 @@ class Commands
             });
 
             foreach ($images as $image) {
-                $svg_content = file_get_contents("{$path}{$image}");
+                $svgContent = file_get_contents("{$path}{$image}");
 
-                $new_svg_content = str_replace($old_color, $new_color, $svg_content);
+                $newSvgContent = str_replace($oldColor, $newColor, $svgContent);
 
-                file_put_contents("{$path}{$image}", $new_svg_content);
+                file_put_contents("{$path}{$image}", $newSvgContent);
             };
 
             echo "Colors changed successfully!\n\n";

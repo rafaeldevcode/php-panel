@@ -17,8 +17,8 @@ class User extends Model
                 $this->removeTokensInvalid($user->id);
                 $token = $this->generateToken();
 
-                $acc_token = new AccessToken();
-                $acc_token->create([
+                $accToken = new AccessToken();
+                $accToken->create([
                     'token' => $token,
                     'user_id' => $user->id,
                 ]);
@@ -34,16 +34,16 @@ class User extends Model
         };
     }
 
-    public function logout(?int $user_id = null): void
+    public function logout(?int $userId = null): void
     {
-        $acc_token = new AccessToken();
+        $accToken = new AccessToken();
 
-        if (isset($user_id)) {
-            $acc_token->where('user_id', '=', $user_id)->delete();
+        if (isset($userId)) {
+            $accToken->where('user_id', '=', $userId)->delete();
         } else {
             $token = $_SESSION['token'];
 
-            $acc_token->where('token', '=', $token)->delete();
+            $accToken->where('token', '=', $token)->delete();
 
             session_destroy();
         };
@@ -64,9 +64,9 @@ class User extends Model
         return bin2hex(random_bytes(30));
     }
 
-    protected function removeTokensInvalid(int $user_id): void
+    protected function removeTokensInvalid(int $userId): void
     {
-        $acc_token = new AccessToken();
-        $acc_token->where('user_id', '=', $user_id)->delete();
+        $accToken = new AccessToken();
+        $accToken->where('user_id', '=', $userId)->delete();
     }
 }

@@ -1,22 +1,22 @@
 <?php
-$is_required = null;
+$isRequired = null;
 $attr = null;
 
 if (isset($attributes)) {
     if (is_array($attributes)) {
         foreach ($attributes as $indice => $attribute) {
             $attr .= "{$indice}={$attribute} ";
-            $is_required = $indice == 'required' ? '*' : null;
+            $isRequired = $indice == 'required' ? '*' : null;
         };
     } else {
         $attr = $attributes;
-        $is_required = $attributes == 'required' ? '*' : null;
+        $isRequired = $attributes == 'required' ? '*' : null;
     };
 };
 ?>
 
 <div class="my-3">
-    <label class="text-secondary text-sm font-bold" for="<?php echo $name ?>"><?php echo $label ?><span class="text-danger"><?php echo $is_required ?></span></label>
+    <label class="text-secondary text-sm font-bold" for="<?php echo $name ?>"><?php echo $label ?><span class="text-danger"><?php echo $isRequired ?></span></label>
 
     <div class='flex flex-col relative'>
         <?php if (isset($icon)) { ?>
@@ -28,7 +28,7 @@ if (isset($attributes)) {
             <?php echo $attr ?>
             id="<?php echo $name ?>" 
             name="<?php echo $name ?>" 
-            placeholder="<?php echo $label . $is_required ?>"
+            placeholder="<?php echo $label . $isRequired ?>"
             class="pl-8 placeholder:italic placeholder:text-secondary block p-2 w-full text-sm text-secondary rounded border border-secondary shadow-sm focus:outline-none focus:border-color-main focus:ring-color-main focus:ring-1" 
         ><?php echo isset($value) ? $value : '' ?></textarea>
             

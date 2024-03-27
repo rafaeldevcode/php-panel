@@ -42,9 +42,9 @@
                 'type' => $type,
                 'icon' => $icon,
                 'title' => $title,
-                'route_delete' => isset($route_delete) ? $route_delete : null,
-                'route_add' => isset($route_add) ? $route_add : null,
-                'route_search' => isset($route_search) ? $route_search : null,
+                'routeDelete' => isset($routeDelete) ? $routeDelete : null,
+                'routeAdd' => isset($routeAdd) ? $routeAdd : null,
+                'routeSearch' => isset($routeSearch) ? $routeSearch : null,
             ]) ?>
 
             <?php loadHtml($body, isset($data) ? $data : []) ?>

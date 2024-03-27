@@ -12,6 +12,6 @@
     <?php loadHtml(__DIR__ . '/../../../resources/admin/partials/gallery-loop', [
         'images' => $images,
         'search' => $search,
-        'text_button' => __('Uploads'),
+        'textButton' => __('Uploads'),
     ]) ?>
 </section>

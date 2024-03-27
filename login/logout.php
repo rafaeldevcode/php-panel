@@ -7,7 +7,8 @@ autenticate();
 
 use Src\Models\User;
 
-$user_id = isset($_POST['id']) ? $_POST['id'] : null;
+$requests = requests();
+$user_id = isset($requests->id) ? $requests->id : null;
 $redirection = '/login';
 
 $user = new User();

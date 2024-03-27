@@ -34,9 +34,9 @@ loadHtml(__DIR__ . '/../../resources/admin/layout', [
     'type' => $text,
     'icon' => 'bi bi-people-fill',
     'title' => __('Users'),
-    'route_delete' => $method == 'read' ? '/admin/users/delete' : null,
-    'route_add' => $method == 'create' ? null : '/admin/users?method=create',
-    'route_search' => '/admin/users',
+    'routeDelete' => $method == 'read' ? '/admin/users/delete' : null,
+    'routeAdd' => $method == 'create' ? null : '/admin/users?method=create',
+    'routeSearch' => '/admin/users',
     'body' => $body,
     'data' => $data,
 ]);

@@ -49,7 +49,7 @@
 
                 <div class="d-flex flex-column">
                     <button title="Realiar upload" type="button" class="btn btn-info text-light font-bold" id="upload">
-                        <?php echo isset($text_button) ? $text_button : '' ?>
+                        <?php echo isset($textButton) ? $textButton : '' ?>
                         <i class="bi bi-upload"></i>
                     </button>
                 </div>
