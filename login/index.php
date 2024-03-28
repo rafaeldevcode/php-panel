@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel='stylesheet' href='<?php asset('libs/tailwind/admin/style.css?ver=' . APP_VERSION) ?>' />
-    <link rel='stylesheet' href='<?php asset('libs/bootstrap-icons/bootstrap-icons.min.css?ver=' . APP_VERSION) ?>' />
-    <link rel='stylesheet' href='<?php asset('assets/css/globals.css?ver=' . APP_VERSION) ?>' />
+    <link rel='stylesheet' href='<?php asset('libs/tailwind/admin/style.css') ?>' />
+    <link rel='stylesheet' href='<?php asset('libs/bootstrap-icons/bootstrap-icons.min.css') ?>' />
+    <link rel='stylesheet' href='<?php asset('assets/css/globals.css') ?>' />
     <meta name='author' content='Rafael Vieira | github.com/rafaeldevcode' />
     <link rel="shortcut icon" href="<?php asset('assets/images/' . SETTINGS->site_favicon) ?>" alt="Logo <?php echo SETTINGS->site_name ?>">
 
@@ -77,11 +77,11 @@
         </div>
     </main>
 
-    <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js?ver=' . APP_VERSION)?>"></script>
-    <script type="text/javascript" src="<?php asset('libs/bootstrap/bootstrap.js?ver=' . APP_VERSION) ?>"></script>
-    <script type="text/javascript" src="<?php asset('assets/scripts/class/Message.js?ver=' . APP_VERSION) ?>"></script>
-    <script type="text/javascript" src="<?php asset('assets/scripts/class/Password.js?ver=' . APP_VERSION) ?>"></script>
-    <script type="text/javascript" src="<?php asset('assets/scripts/class/ValidateForm.js?ver=' . APP_VERSION) ?>"></script>
+    <script type="text/javascript" src="<?php asset('libs/jquery/jquery.js')?>"></script>
+    <script type="text/javascript" src="<?php asset('libs/bootstrap/bootstrap.js') ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Message.js') ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Password.js') ?>"></script>
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/ValidateForm.js') ?>"></script>
     <script type="text/javascript">
         Message.hide('[data-message]');
         Password.show('[data-id-pass]');

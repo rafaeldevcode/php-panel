@@ -14,7 +14,7 @@ $thumbnail = !empty($requests->thumbnail) ? $requests->thumbnail : null;
 $collection = isset($requests->collection) ? $requests->collection : null;
 
 if (is_null($post->where('slug', '=', $slug)->first())) {
-    $new_post = $post->create([
+    $newPost = $post->create([
         'content' => $requests->content,
         'excerpt' => getExcerpt($requests->content),
         'title' => $requests->title,
@@ -24,7 +24,7 @@ if (is_null($post->where('slug', '=', $slug)->first())) {
         'thumbnail' => $thumbnail,
     ]);
 
-    $post->find($new_post->id)->images()->sync($collection);
+    $post->find($newPost->id)->images()->sync($collection);
 
     session([
         'message' => __('Post added successfully!'),

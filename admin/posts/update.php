@@ -8,11 +8,11 @@ $requests = requests();
 $post = new Posts();
 
 $slug = normalizeSlug($requests->title, $requests->slug);
-$post_slug = $post->where('slug', '=', $slug)->first();
+$postSlug = $post->where('slug', '=', $slug)->first();
 $thumbnail = isset($requests->thumbnail) ? $requests->thumbnail : null;
 $collection = isset($requests->collection) ? $requests->collection : null;
 
-if (is_null($post_slug) || $post_slug->id == $requests->id) {
+if (is_null($postSlug) || $postSlug->id == $requests->id) {
     $post = $post->find($requests->id);
 
     $post->update([

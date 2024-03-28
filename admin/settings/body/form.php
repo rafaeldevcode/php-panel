@@ -199,7 +199,7 @@
                     'name' => 'admin_lang',
                     'label' => __('Admin panel language'),
                     'value' => isset($settings) ? $settings->admin_lang : null,
-                    'array' => getAvailableLanguages(),
+                    'options' => getAvailableLanguages(),
                 ]) ?>
             </div>
 

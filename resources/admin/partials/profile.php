@@ -1,7 +1,11 @@
 <div class='flex flex-nowrap items-center shadow-md p-2 sticky top-0'>
     <div class='w-[45px] h-[45px]'>
         <a href='<?php route('/admin/profile') ?>' title='<?php _e('Edit profile') ?>'>
-            <img class='border rounded-full border-color-main' src='<?php asset("assets/images/users/{$_SESSION['user_avatar']}") ?>' alt='<?php echo $_SESSION['user_name'] ?>' />
+            <?php loadHtml(__DIR__ . '/../../partials/image', [
+                'id' => $_SESSION['user_avatar'],
+                'alt' => $_SESSION['user_name'],
+                'class' => 'border rounded-full border-color-main',
+            ]) ?>
         </a>
     </div>
     

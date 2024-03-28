@@ -36,9 +36,9 @@ loadHtml(__DIR__ . '/../../resources/admin/layout', [
     'type' => $text,
     'icon' => 'bi bi-pin-angle-fill',
     'title' => __('Posts'),
-    'route_delete' => $method == 'read' ? '/admin/posts/delete' : null,
-    'route_add' => $method == 'create' ? null : '/admin/posts?method=create',
-    'route_search' => '/admin/posts',
+    'routeDelete' => $method == 'read' ? '/admin/posts/delete' : null,
+    'routeAdd' => $method == 'create' ? null : '/admin/posts?method=create',
+    'routeSearch' => '/admin/posts',
     'body' => $body,
     'data' => $data,
     'plugins' => ['tinymce'],
@@ -49,30 +49,30 @@ function loadInFooter(): void
     loadHtml(__DIR__ . '/../../resources/admin/partials/gallery');
     loadHtml(__DIR__ . '/../../resources/admin/partials/modal-delete') ?>
 
-        <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver=' . APP_VERSION) ?>"></script>
-        <script type="text/javascript">
-            const gallery = new Gallery();
-            gallery.openModalSelect($('[data-upload=thumbnail]'), 'radio');
-            gallery.openModalSelect($('[data-upload=collection]'), 'checkbox');
+    <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js') ?>"></script>
+    <script type="text/javascript">
+        const gallery = new Gallery();
+        gallery.openModalSelect($('[data-upload=thumbnail]'), 'radio');
+        gallery.openModalSelect($('[data-upload=collection]'), 'checkbox');
 
-            tinymce.init({
-                selector: '#tinymce',
-                language: 'pt_BR',
-                height: 500,
-                image_advtab: true,
-                plugins: 'code anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat code',
-                file_picker_callback: (callback, value, meta) => {
-                    if(meta.filetype == 'image') {
-                        (async () => {
-                            const images = await gallery.selectedFilesTinymce('radio');
+        tinymce.init({
+            selector: '#tinymce',
+            language: 'pt_BR',
+            height: 500,
+            image_advtab: true,
+            plugins: 'code anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat code',
+            file_picker_callback: (callback, value, meta) => {
+                if(meta.filetype == 'image') {
+                    (async () => {
+                        const images = await gallery.selectedFilesTinymce('radio');
 
-                            if(images.length > 0) {
-                                callback(images[0].url, { alt: images[0].alt, width: '100%', height: 'auto' }); 
-                            }
-                        })();
-                    }
+                        if(images.length > 0) {
+                            callback(images[0].url, { alt: images[0].alt, width: '100%', height: 'auto' }); 
+                        }
+                    })();
                 }
-            });
-        </script>
-    <?php }
+            }
+        });
+    </script>
+<?php }

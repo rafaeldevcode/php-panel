@@ -2,19 +2,18 @@
 
 require __DIR__ . '/bootstrap/bootstrap.php';
 
-use Src\Settings;
+use Src\Commands;
 
-$settings = new Settings();
+$commands = new Commands();
 
 if (isset($argv[1])) {
-    if ($argv[1] == 'migrate') {
-
-        $settings->migrate();
+    if ($argv[1] == 'migrate-up') {
+        $commands->migrateUp();
     } elseif ($argv[1] == 'initial-setup') {
-
-        $settings->initialSetup();
+        $commands->initialSetup();
     } elseif ($argv[1] == 'change-color-svg') {
-        
-        $settings->changeColorSvg($argv[2], $argv[3]);
+        $commands->changeColorSvg($argv[2], $argv[3]);
+    } elseif ($argv[1] == 'migrate-down') {
+        $commands->migrateDown();
     };
 };

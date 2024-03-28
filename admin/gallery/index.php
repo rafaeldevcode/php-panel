@@ -12,7 +12,7 @@ loadHtml(__DIR__ . '/../../resources/admin/layout', [
     'type' => __('View'),
     'icon' => 'bi bi-images',
     'title' => __('Gallery'),
-    'route_delete' => '/admin/gallery/delete',
+    'routeelete' => '/admin/gallery/delete',
     'route_search' => '/admin/gallery',
     'body' => __DIR__ . '/body/read',
     'data' => ['images' => $images, 'search' => $search],
@@ -23,7 +23,7 @@ function loadInFooter(): void
     loadHtml(__DIR__ . '/../../resources/admin/partials/modal-delete');
     loadHtml(__DIR__ . '/../../resources/admin/partials/gallery-preview') ?>
 
-        <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js?ver=' . APP_VERSION) ?>"></script>
+        <script type="text/javascript" src="<?php asset('assets/scripts/class/Gallery.js') ?>"></script>
 
         <script type="text/javascript">
             const gallery = new Gallery();

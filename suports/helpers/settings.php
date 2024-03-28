@@ -44,7 +44,7 @@ if (!function_exists('getDefaultSiteSettings')) {
 if (!function_exists('normalizeBreadcrumps')) {
     function normalizeBreadcrumps(): array
     {
-        $breadcrumps_normalize = [];
+        $breadcrumpsNormalize = [];
         $breadcrumps = explode('/', path());
         $breadcrumps = array_filter($breadcrumps);
         $path = '';
@@ -53,29 +53,29 @@ if (!function_exists('normalizeBreadcrumps')) {
             if (substr($breadcrump, 0, 1) !== '?') {
                 $path = "{$path}/{$breadcrump}";
 
-                array_push($breadcrumps_normalize, [
+                array_push($breadcrumpsNormalize, [
                     'path' => $path,
                     'title' => $breadcrump,
                 ]);
             };
         };
 
-        return $breadcrumps_normalize;
+        return $breadcrumpsNormalize;
     }
 };
 
 if (!function_exists('saveImage')) {
-    function saveImage(string $image_key, string|null $old_file, int|null $indice = null): stdClass|null
+    function saveImage(string $imageKey, ?string $oldFile, ?int $indice = null): ?stdClass
     {
         $gallery = new Gallery();
 
         if (!is_null($indice)) {
             $file = ['images' => [
-                'name' => $_FILES[$image_key]['name'][$indice],
-                'type' => $_FILES[$image_key]['type'][$indice],
-                'tmp_name' => $_FILES[$image_key]['tmp_name'][$indice],
-                'error' => $_FILES[$image_key]['error'][$indice],
-                'size' => $_FILES[$image_key]['size'][$indice],
+                'name' => $_FILES[$imageKey]['name'][$indice],
+                'type' => $_FILES[$imageKey]['type'][$indice],
+                'tmp_name' => $_FILES[$imageKey]['tmp_name'][$indice],
+                'error' => $_FILES[$imageKey]['error'][$indice],
+                'size' => $_FILES[$imageKey]['size'][$indice],
             ]];
         } else {
             $file = $_FILES;
@@ -86,22 +86,22 @@ if (!function_exists('saveImage')) {
             $month = date('m');
             createDir(__DIR__ . "/../../public/assets/images/uploads/{$year}/{$month}/", 0755);
 
-            $file_name = bin2hex(random_bytes(25));
+            $fileName = bin2hex(random_bytes(25));
             $extencion = explode('/', $file['images']['type'])[1];
             $extencion = str_replace('+xml', '', $extencion);
-            $file_path = "uploads/{$year}/{$month}/{$file_name}.{$extencion}";
+            $filePath = "uploads/{$year}/{$month}/{$fileName}.{$extencion}";
 
             $name = str_replace(['.jpeg', '.jpg', '.webp', '.svg', '.svg+xml', '.png'], '', $file['images']['name']);
             $name = str_replace(['_', '-'], ' ', $name);
 
             $gallery = $gallery->create([
                 'name' => $name,
-                'file' => $file_path,
+                'file' => $filePath,
                 'user_id' => $_SESSION['user_id'],
                 'size' => $file['images']['size'],
             ]);
 
-            move_uploaded_file($file['images']['tmp_name'], __DIR__ . "/../../public/assets/images/{$file_path}");
+            move_uploaded_file($file['images']['tmp_name'], __DIR__ . "/../../public/assets/images/{$filePath}");
 
             return $gallery;
         };
@@ -111,7 +111,7 @@ if (!function_exists('saveImage')) {
 };
 
 if (!function_exists('getSiteSettings')) {
-    function getSiteSettings(): stdClass|null
+    function getSiteSettings(): ?stdClass
     {
         if (!isset($_SESSION)) {
             session_start();
@@ -126,12 +126,16 @@ if (!function_exists('getSiteSettings')) {
             if (hasFileEnv() && $settings->hasTable()) {
                 $settings = $settings->first();
 
-                $settings->site_favicon = $gallery->find($settings->site_favicon)->data->file;
-                $settings->site_logo_main = $gallery->find($settings->site_logo_main)->data->file;
-                $settings->site_logo_secondary = $gallery->find($settings->site_logo_secondary)->data->file;
-                $settings->site_bg_login = $gallery->find($settings->site_bg_login)->data->file;
-    
-                $settings = json_encode($settings);
+                if (isset($settings)) {
+                    $settings->site_favicon = $gallery->find($settings->site_favicon)->data->file;
+                    $settings->site_logo_main = $gallery->find($settings->site_logo_main)->data->file;
+                    $settings->site_logo_secondary = $gallery->find($settings->site_logo_secondary)->data->file;
+                    $settings->site_bg_login = $gallery->find($settings->site_bg_login)->data->file;
+
+                    $settings = json_encode($settings);
+                } else {
+                    $settings = json_encode(getDefaultSiteSettings());
+                }
             } else {
                 $settings = json_encode(getDefaultSiteSettings());
             }
@@ -144,159 +148,19 @@ if (!function_exists('getSiteSettings')) {
 };
 
 if (!function_exists('getDates')) {
-    function getDates(string $start_date, string $end_date): array
+    function getDates(string $startDate, string $endDate): array
     {
-        if (empty($start_date) && empty($end_date)) {
+        if (empty($startDate) && empty($endDate)) {
             $dates = [];
-        } elseif (empty($start_date) && !empty($end_date)) {
-            $dates = ["{$end_date} 00:00:00", "{$end_date} 23:59:59"];
-        } elseif (!empty($start_date) && empty($end_date)) {
-            $dates = ["{$start_date} 00:00:00", "{$start_date} 23:59:59"];
-        } elseif (!empty($start_date) && !empty($end_date)) {
-            $dates = ["{$start_date} 00:00:00", "{$end_date} 23:59:59"];
+        } elseif (empty($startDate) && !empty($endDate)) {
+            $dates = ["{$endDate} 00:00:00", "{$endDate} 23:59:59"];
+        } elseif (!empty($startDate) && empty($endDate)) {
+            $dates = ["{$startDate} 00:00:00", "{$startDate} 23:59:59"];
+        } elseif (!empty($startDate) && !empty($endDate)) {
+            $dates = ["{$startDate} 00:00:00", "{$endDate} 23:59:59"];
         };
 
         return $dates;
-    }
-};
-
-if (!function_exists('getStates')) {
-    function getStates(): array
-    {
-        return [
-            '' => '---',
-            'AC' => 'Acre',
-            'AL' => 'Alagoas',
-            'AP' => 'Amapá',
-            'AM' => 'Amazonas',
-            'BA' => 'Bahia',
-            'CE' => 'Ceará',
-            'ES' => 'Espírito Santo',
-            'GO' => 'Goiás',
-            'MA' => 'Maranhão',
-            'MT' => 'Mato Grosso',
-            'MS' => 'Mato Grosso do Sul',
-            'MG' => 'Minas Gerais',
-            'PA' => 'Pará',
-            'PB' => 'Paraíba',
-            'PR' => 'Paraná',
-            'PE' => 'Pernambuco',
-            'PI' => 'Piauí',
-            'RJ' => 'Rio de Janeiro',
-            'RN' => 'Rio Grande do Norte',
-            'RS' => 'Rio Grande do Sul',
-            'RO' => 'Rondônia',
-            'RR' => 'Roraima',
-            'SC' => 'Santa Catarina',
-            'SP' => 'São Paulo',
-            'SE' => 'Sergipe',
-            'TO' => 'Tocantins',
-            'DF' => 'Distrito Federal',
-        ];
-    }
-};
-
-if (!function_exists('getAvatars')) {
-    function getAvatars(): array
-    {
-        return [
-            1 => [
-                'src' => 'default.png',
-                'alt' => 'Default',
-            ],
-            2 => [
-                'src' => 'ant_man.png',
-                'alt' => 'Ant Man',
-            ],
-            3 => [
-                'src' => 'avangers.png',
-                'alt' => 'Avangers',
-            ],
-            4 => [
-                'src' => 'black_hawk.png',
-                'alt' => 'Black Hawk',
-            ],
-            5 => [
-                'src' => 'black_panther.png',
-                'alt' => 'Black Panther',
-            ],
-            6 => [
-                'src' => 'black_widow.png',
-                'alt' => 'Black Widow',
-            ],
-            7 => [
-                'src' => 'captain_america.png',
-                'alt' => 'Captain America',
-            ],
-            8 => [
-                'src' => 'captain_marvel.png',
-                'alt' => 'Captain Marvel',
-            ],
-            9 => [
-                'src' => 'daredevil.png',
-                'alt' => 'Daredevil',
-            ],
-            10 => [
-                'src' => 'elektra.png',
-                'alt' => 'Eleketra',
-            ],
-            11 => [
-                'src' => 'ghost_rider.png',
-                'alt' => 'Ghost Rider',
-            ],
-            12 => [
-                'src' => 'hulk.png',
-                'alt' => 'Hulk',
-            ],
-            13 => [
-                'src' => 'iron_first.png',
-                'alt' => 'Iron First',
-            ],
-            14 => [
-                'src' => 'iron_man.png',
-                'alt' => 'Iron Man',
-            ],
-            15 => [
-                'src' => 'jessica_jones.png',
-                'alt' => 'Jessica Jones',
-            ],
-            16 => [
-                'src' => 'luke_cage.png',
-                'alt' => 'Luke Cage',
-            ],
-            17 => [
-                'src' => 'moon_knight.png',
-                'alt' => 'Moon Knight',
-            ],
-            18 => [
-                'src' => 'nova.png',
-                'alt' => 'Nova',
-            ],
-            19 => [
-                'src' => 'punisher.png',
-                'alt' => 'Punisher',
-            ],
-            20 => [
-                'src' => 'spider_gwen.png',
-                'alt' => 'Spider Gwen',
-            ],
-            21 => [
-                'src' => 'spider_ham.png',
-                'alt' => 'Spider Ham',
-            ],
-            22 => [
-                'src' => 'spider_man.png',
-                'alt' => 'Spider Man',
-            ],
-            23 => [
-                'src' => 'vision.png',
-                'alt' => 'Vision',
-            ],
-            24 => [
-                'src' => 'wasp.png',
-                'alt' => 'Wasp',
-            ],
-        ];
     }
 };
 

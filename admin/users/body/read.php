@@ -50,7 +50,11 @@
                             </td>
                             <td scope='row' class="py-1 px-3">
                                 <div class='user w-[45px] h-[45px]'>
-                                    <img class='w-full' src='<?php asset("assets/images/users/{$user->avatar}") ?>' alt='<?php echo $user->name ?>'>
+                                    <?php loadHtml(__DIR__ . '/../../../resources/partials/image', [
+                                        'id' => $user->avatar,
+                                        'alt' => $user->name,
+                                        'class' => 'w-full rounded-full',
+                                    ]) ?>
                                 </div>
                             </td>
                             <td scope="row" class="py-1 px-3 whitespace-nowrap">

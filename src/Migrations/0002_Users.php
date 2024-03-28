@@ -6,16 +6,21 @@ class Users extends ExecuteMigrations
 {
     public $table = 'users';
 
-    public function init()
+    public function up()
     {
         $this->integer('id')->primaryKey();
         $this->string('name', 50);
         $this->string('email', 50)->unique();
         $this->string('password', 200);
         $this->char('status', 3)->default('on');
-        $this->string('avatar')->default('default.png');
+        $this->integer('avatar')->nullable();
         $this->timestamps();
 
         $this->create();
+    }
+
+    public function down()
+    {
+        $this->dropTable();
     }
 }

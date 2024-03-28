@@ -1,3 +1,23 @@
+<?php
+$attr = '';
+
+if (isset($attributes)) {
+    if (is_array($attributes)) {
+        foreach ($attributes as $indice => $attribute) {
+            $attr .= "{$indice}={$attribute} ";
+        };
+    } else {
+        $attr = $attributes;
+    }
+}
+?>
+
 <div class='flex flex-col my-3'>
-    <input class='btn cursor-pointer btn-<?php echo $style ?> py-2 w-[200px] font-bold text-xl text-light' type="<?php echo $type ?>" title="<?php echo $title ?>" value="<?php echo $value ?>" <?php echo isset($attributes) ? $attributes : '' ?>>
+    <button class='flex items-center justify-center btn cursor-pointer btn-<?php echo $style ?> py-2 w-[150px] font-bold text-lg text-light' type="<?php echo $type ?>" title="<?php echo $title ?>" <?php echo $attr ?>>
+        <?php echo $value ?>
+
+        <?php if (isset($icon)) { ?>
+            <i class='<?php echo $icon ?> mr-2 text-lg'></i>
+        <?php } ?>
+    </button>
 </div>
