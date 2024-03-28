@@ -1,37 +1,38 @@
 <?php
-$isRequired = null;
-$attr = null;
+$isRequired = '';
+$attr = '';
 
 if(isset($attributes)):
     if(is_array($attributes)):
         foreach($attributes as $indice => $attribute):
             $attr .= "{$indice}={$attribute} ";
-            $isRequired = $indice == 'required' ? '*' : null;
+            $isRequired = $indice == 'required' ? '*' : '';
         endforeach;
     else:
         $attr = $attributes;
-        $isRequired = $attributes == 'required' ? '*' : null;
+        $isRequired = $attributes == 'required' ? '*' : '';
     endif;
 endif;
 ?>
 
 <div class="my-3">
-    <label class="text-secondary text-sm font-bold" for="<?php echo $name ?>"><?php echo $label ?><span class="text-danger"><?php echo $isRequired ?></span></label>
+    <?php if (isset($label)) { ?>
+        <label class="text-secondary text-sm font-bold" for="<?php echo $name ?>">
+            <?php echo $label ?>
+            <span class="text-danger"><?php echo $isRequired ?></span>
+        </label>
+    <?php } ?>
 
     <label class="relative block">
-        <span class="sr-only">
-            <?php echo $label . $isRequired ?>
-        </span>
-
-        <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-            <?php if (isset($icon)) { ?>
+        <?php if (isset($icon)) { ?>
+            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                 <i class='<?php echo $icon ?> absolute mr-2 my-2 ml-1 text-secondary'></i>
-            <?php } ?>
-        </span>
+            </span>
+        <?php } ?>
 
         <input 
-            class="placeholder:italic placeholder:text-secondary block bg-white w-full border border-secondary rounded py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-color-main focus:ring-color-main focus:ring-1 sm:text-sm" 
-            placeholder="<?php echo $label . $isRequired ?>" 
+            class="placeholder:italic placeholder:text-secondary block bg-white w-full border border-secondary rounded py-2 <?php echo isset($icon) ? 'pl-9' : 'pl-3' ?> pr-3 shadow-sm focus:outline-none focus:border-color-main focus:ring-color-main focus:ring-1 sm:text-sm" 
+            placeholder="<?php echo isset($label) ? "{$label}{$isRequired}" : '' ?>" 
             type="<?php echo $type ?>" 
             name="<?php echo $name ?>"
             id="<?php echo $name ?>"

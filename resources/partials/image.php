@@ -1,9 +1,9 @@
 <?php
-    use Src\Models\Gallery;
+use Src\Models\Gallery;
 
-    $id = isset($id) ? $id : 0;
-    $gallery = new Gallery();
-    $thumbnail = $gallery->find($id);
+$id = isset($id) ? $id : 0;
+$gallery = new Gallery();
+$thumbnail = $gallery->find($id);
 ?>
 
 <?php if($thumbnail->data): ?>

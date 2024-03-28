@@ -36,7 +36,7 @@ class EmailServices
 
     public function setDebug(): self
     {
-        $this->mail->SMTPDebug  = SMTP::DEBUG_SERVER;
+        $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
         return $this;
     }

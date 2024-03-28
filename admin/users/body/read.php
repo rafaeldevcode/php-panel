@@ -53,7 +53,7 @@
                                     <?php loadHtml(__DIR__ . '/../../../resources/partials/image', [
                                         'id' => $user->avatar,
                                         'alt' => $user->name,
-                                        'class' => 'w-full rounded-full'
+                                        'class' => 'w-full rounded-full',
                                     ]) ?>
                                 </div>
                             </td>

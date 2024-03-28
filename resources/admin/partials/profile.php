@@ -4,7 +4,7 @@
             <?php loadHtml(__DIR__ . '/../../partials/image', [
                 'id' => $_SESSION['user_avatar'],
                 'alt' => $_SESSION['user_name'],
-                'class' => 'border rounded-full border-color-main'
+                'class' => 'border rounded-full border-color-main',
             ]) ?>
         </a>
     </div>

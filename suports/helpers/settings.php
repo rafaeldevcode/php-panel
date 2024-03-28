@@ -131,7 +131,7 @@ if (!function_exists('getSiteSettings')) {
                     $settings->site_logo_main = $gallery->find($settings->site_logo_main)->data->file;
                     $settings->site_logo_secondary = $gallery->find($settings->site_logo_secondary)->data->file;
                     $settings->site_bg_login = $gallery->find($settings->site_bg_login)->data->file;
-        
+
                     $settings = json_encode($settings);
                 } else {
                     $settings = json_encode(getDefaultSiteSettings());

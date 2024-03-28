@@ -74,63 +74,63 @@ class Commands
         $gallery = new Gallery();
         $settings = new Setting();
 
-        if (! $user->hasTable() || ! $gallery->hasTable() || ! $settings->hasTable()) {
+        if (!$user->hasTable() || !$gallery->hasTable() || !$settings->hasTable()) {
             echo "It is not possible to run initial setup before carrying out the migrations!\n\n";
         } else {
             $name = 'Administrador';
             $email = 'administrador@example.com';
             $password = '@Admin4431!';
-    
+
             $user = $user->create([
                 'name' => $name,
                 'email' => $email,
                 'password' => password_hash($password, PASSWORD_BCRYPT),
             ]);
-    
+
             $favicon = $gallery->create([
                 'name' => 'favicon',
                 'file' => 'favicon.svg',
                 'user_id' => $user->id,
                 'size' => 0,
             ]);
-    
+
             $logoMain = $gallery->create([
                 'name' => 'logo main',
                 'file' => 'logo_main.svg',
                 'user_id' => $user->id,
                 'size' => 0,
             ]);
-    
+
             $logoSecondary = $gallery->create([
                 'name' => 'logo secondary',
                 'file' => 'logo_secondary.png',
                 'user_id' => $user->id,
                 'size' => 0,
             ]);
-    
+
             $bgLogin = $gallery->create([
                 'name' => 'bg login',
                 'file' => 'bg_login.jpg',
                 'user_id' => $user->id,
                 'size' => 0,
             ]);
-    
+
             $avatar = $gallery->create([
                 'name' => 'bg login',
                 'file' => 'avatar.jpg',
                 'user_id' => $user->id,
                 'size' => 0,
             ]);
-    
+
             $settings->create([
                 'site_logo_main' => $logoMain->id,
                 'site_logo_secondary' => $logoSecondary->id,
                 'site_favicon' => $favicon->id,
                 'site_bg_login' => $bgLogin->id,
             ]);
-    
+
             (new User())->find($user->id)->update(['avatar' => $avatar->id]);
-    
+
             echo "Email: {$email} \n";
             echo "Senha: {$password}\n\n";
         }

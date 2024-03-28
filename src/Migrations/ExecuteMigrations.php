@@ -164,11 +164,11 @@ class ExecuteMigrations
     public function dropColumn(string $column): self
     {
         $query = "ALTER TABLE {$this->table} DROP COLUMN :{$column};";
-    
+
         $statement = $this->connection->prepare($query);
-    
+
         $statement->bindParam(":{$column}", $column, PDO::PARAM_STR);
-    
+
         $statement->execute();
 
         return $this;
@@ -182,7 +182,7 @@ class ExecuteMigrations
 
         $statement->execute();
     }
-    
+
     public function verifyExistsMigrations(): bool
     {
         $tableName = 'migrations';

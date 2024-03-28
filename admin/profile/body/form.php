@@ -6,7 +6,7 @@
             <?php loadHtml(__DIR__ . '/../../../resources/partials/image', [
                 'id' => $user->avatar,
                 'alt' => $user->name,
-                'class' => 'border border-color-main w-full h-full absolute bottom-0 left-0 rounded-full'
+                'class' => 'border border-color-main w-full h-full absolute bottom-0 left-0 rounded-full',
             ]) ?>
             
             <button

@@ -6,7 +6,7 @@ if (!function_exists('hasFileEnv')) {
     function hasFileEnv(): bool
     {
         $path = __DIR__ . '/../../.env';
-        
+
         return file_exists($path);
     }
 };

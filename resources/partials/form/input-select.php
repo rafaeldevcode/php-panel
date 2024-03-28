@@ -1,41 +1,43 @@
 <?php
-$isRequired = null;
-$attr = null;
+$isRequired = '';
+$attr = '';
 
 if (isset($attributes)) {
     if (is_array($attributes)) {
         foreach ($attributes as $indice => $attribute) {
             $attr .= "{$indice}={$attribute} ";
-            $isRequired = $indice == 'required' ? '*' : null;
+            $isRequired = $indice == 'required' ? '*' : '';
         };
     } else {
         $attr = $attributes;
-        $isRequired = $attributes == 'required' ? '*' : null;
+        $isRequired = $attributes == 'required' ? '*' : '';
     };
 };
 ?>
 
 <div class='flex flex-col my-3'>
-    <label for="<?php echo $name ?>" class="block mb-1 text-sm font-bold text-secondary">
-        <?php echo $label ?>
-        <span class="text-danger"><?php echo $isRequired ?></span>
-    </label>
+    <?php if (isset($label)) { ?>
+        <label for="<?php echo $name ?>" class="block mb-1 text-sm font-bold text-secondary">
+            <?php echo $label ?>
+            <span class="text-danger"><?php echo $isRequired ?></span>
+        </label>
+    <?php } ?>
 
     <div class="relative">
-        <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-            <?php if (isset($icon)) { ?>
+        <?php if (isset($icon)) { ?>
+            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                 <i class='<?php echo $icon ?> absolute mr-2 my-2 ml-1 text-secondary'></i>
-            <?php } ?>
-        </span>
+            </span>
+        <?php } ?>
 
         <select 
             id="<?php echo $name ?>"
             name="<?php echo $name ?>"
             <?php echo $attr ?>
-            class="ps-8 shadow-sm italic border bg-white focus:outline-none border-secondary text-secondary text-sm rounded focus:ring-color-main focus:ring-1 focus:border-color-main block w-full py-2"
+            class="<?php echo isset($icon) ? 'pl-9' : 'pl-3' ?> shadow-sm italic border bg-white focus:outline-none border-secondary text-secondary text-sm rounded focus:ring-color-main focus:ring-1 focus:border-color-main block w-full py-2"
         >
-            <?php foreach ($array as $indice => $item) { ?>
-                <option value='<?php echo $indice ?>' <?php echo isset($value) && $indice == $value ? 'selected' : '' ?>><?php echo $item ?></option>
+            <?php foreach ($options as $indice => $option) { ?>
+                <option value='<?php echo $indice ?>' <?php echo isset($value) && $indice == $value ? 'selected' : '' ?>><?php echo $option ?></option>
             <?php } ?>
         </select>
 

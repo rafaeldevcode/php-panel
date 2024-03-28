@@ -37,7 +37,7 @@
                         'name' => 'status',
                         'label' => __('Status'),
                         'value' => isset($post) ? $post->status : null,
-                        'array' => [
+                        'options' => [
                             'published' => __('Published'),
                             'draft' => __('Draft'),
                         ],
