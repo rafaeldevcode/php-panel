@@ -1,9 +1,5 @@
-@media only screen and ( max-width: 992px )
-    .section-image-login
-        display: none
-
-@media only screen and ( max-width: 750px )
-    .menu_input
+@media only screen and ( max-width: 720px )
+    .menu-input
         &:checked + label span:nth-child(1)
             transform: rotate(-45deg)
             width: 100%
@@ -18,26 +14,25 @@
             width: 100%
             top: 11px
 
-    .sidebar[data-expanded='desactive']
+    [data-expanded='desactive']
         animation: none
 
-    .sidebar[data-expanded='active']
+    [data-expanded='active']
         animation: none
 
-    .sidebar[data-expanded='mobile-active']
+    [data-expanded='mobile-active']
         animation: expandedAsideMobile .4s ease-out forwards
 
-    .sidebar[data-expanded='mobile-desactive']
+    [data-expanded='mobile-desactive']
         animation: toRecalldAsideMobile .4s ease-out
 
-    .sidebar
         position: fixed
         top: 0
         left: 0
         z-index: 99999
         transform: translateX(-200px)
 
-    .divClosed
+    .div-closed
         position: fixed
         width: 100%
         height: 100%
@@ -47,13 +42,13 @@
         z-index: 1
         opacity: 0
 
-    div[data-divbtn-closed='active']
+    [data-divbtn-closed='active']
         animation: showItem .4s .2s linear forwards
 
-    div[data-divbtn-closed='desactive']
+    [data-divbtn-closed='desactive']
         animation: hiddeItem .2s linear
 
-    .menuMobileOppen
+    .menu-mobile-open
         position: fixed
         top: 0
         right: 0
@@ -61,37 +56,8 @@
         margin: 15px
         animation: hiddeItem .2s linear
 
-    .hiddeItem
-        opacity: 1
-
-    .dNone
-        display: block
-
-    .iconManu
-        width: auto
-
-    div[data-item-active='false']
+    [data-item-active='false']
         animation: none
 
-
-@media only screen and ( max-width: 605px )
-    .card-dashboard
-        width: 100%
-
-@media only screen and ( max-width: 420px )
-    .breadcrumps-overflow
-        max-width: 320px
-        overflow-x: auto
-        margin-bottom: .8rem
-
-@media only screen and ( max-width: 385px )
-    .gallery
-        width: 120px
-        height: 120px
-
-        img
-            width: 120px
-            height: 120px
-
-    [data-upload]
-        max-width: 120px
+    .w-calc
+        width: calc( 100% )

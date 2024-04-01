@@ -12,38 +12,38 @@ class User extends Model
 
         if (isset($user)) {
             if ($user->status == 'off') {
-                return ['status' => false, 'message' => 'Este usuário está inativo!'];
+                return ['status' => false, 'message' => __('This user is inactive!')];
             } elseif (password_verify($password, $user->password)) {
                 $this->removeTokensInvalid($user->id);
                 $token = $this->generateToken();
 
-                $acc_token = new AccessToken();
-                $acc_token->create([
+                $accToken = new AccessToken();
+                $accToken->create([
                     'token' => $token,
                     'user_id' => $user->id,
                 ]);
 
                 $user->token = $token;
 
-                return ['status' => true, 'message' => "Login efetuado com sucesso! Bem vindo {$user->name}", 'user' => $user];
+                return ['status' => true, 'message' => __('Login successfully! Welcome :user', [':user' => $user->name]), 'user' => $user];
             } else {
-                return ['status' => false, 'message' => 'Senha inválida!'];
+                return ['status' => false, 'message' => __('Invalid password!')];
             };
         } else {
-            return ['status' => false, 'message' => 'Usuário não cadastrado no sistema!'];
+            return ['status' => false, 'message' => __('User not registered in the system!')];
         };
     }
 
-    public function logout(?int $user_id = null): void
+    public function logout(?int $userId = null): void
     {
-        $acc_token = new AccessToken();
+        $accToken = new AccessToken();
 
-        if (isset($user_id)) {
-            $acc_token->where('user_id', '=', $user_id)->delete();
+        if (isset($userId)) {
+            $accToken->where('user_id', '=', $userId)->delete();
         } else {
             $token = $_SESSION['token'];
 
-            $acc_token->where('token', '=', $token)->delete();
+            $accToken->where('token', '=', $token)->delete();
 
             session_destroy();
         };
@@ -64,9 +64,9 @@ class User extends Model
         return bin2hex(random_bytes(30));
     }
 
-    protected function removeTokensInvalid(int $user_id): void
+    protected function removeTokensInvalid(int $userId): void
     {
-        $acc_token = new AccessToken();
-        $acc_token->where('user_id', '=', $user_id)->delete();
+        $accToken = new AccessToken();
+        $accToken->where('user_id', '=', $userId)->delete();
     }
 }

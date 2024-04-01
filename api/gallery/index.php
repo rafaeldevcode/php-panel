@@ -1,12 +1,10 @@
 <?php
 
-require __DIR__ . '/../../bootstrap/bootstrap.php';
-
 use Src\Models\Gallery;
 
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $requests = requests();
     $data = [[], []];
     $gallery = new Gallery();
@@ -24,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     array_push($data[1], ['next' => $images->next]);
 } else {
-    $data = ['success' => false, 'message' => 'Method Not Allowed'];
+    $data = ['success' => false, 'message' => __('Method Not Allowed')];
 };
 
 echo json_encode($data);

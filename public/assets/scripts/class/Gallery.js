@@ -1,15 +1,6 @@
 'use strict';
 
-/**
- * Remove or add image preview when uploading
- */
 class Gallery{
-    /**
-     * @since 1.2.0
-     *
-     * @param {boolean} preloader
-     * @returns {void}
-     */
     constructor(preloader = true) {
         this.inputType = null;
         this.inputName = null;
@@ -29,12 +20,6 @@ class Gallery{
         if(this.preloader) Preloader.hide('gallery');
     }
 
-    /**
-     * @since 1.2.0
-     *
-     * @param {object} element
-     * @returns {Promise}
-     */
     save(element){
         element.val('');
 
@@ -75,13 +60,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.2.0
-     *
-     * @param {int} page
-     * @param {string} search
-     * @returns {Promise}
-     */
     get(page, search){
         return new Promise((resolve, reject) => {
             const count = 30;
@@ -102,11 +80,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.2.0
-     *
-     * @returns {void}
-     */
     remove(){
         $('[data-upload-image="remove"]').click((event) => {
             const button = $(event.target).attr('data-upload-image') ? $(event.target) : $(event.target).parent();
@@ -129,11 +102,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.3.0
-     *
-     * @returns {void}
-     */
     uploads() {
         $('#upload').on('click', async (event) => {
             event.preventDefault();
@@ -156,11 +124,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.3.0
-     *
-     * @returns {void}
-     */
     async loadMore(){
         $('[data-next-page]').click(async (event) => {
             if(this.preloader) Preloader.show('gallery');
@@ -190,12 +153,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.2.0
-     *
-     * @param {string} inputType
-     * @returns {void}
-     */
     changeInputType(inputType) {
         this.inputType = inputType;
         this.inputName = inputType == 'radio' ? 'images' : 'images[]';
@@ -208,13 +165,6 @@ class Gallery{
         this.inputType == 'radio' ? this.setSelectedRadioValue() : this.setSelectedCheckboxValues();
     }
 
-    /**
-     * @since 1.3.0
-     *
-     * @param {object} element
-     * @param {string} inputType
-     * @returns {void}
-     */
     openModalSelect(element, inputType) {
         element.click((event) => {
             event.preventDefault();
@@ -229,12 +179,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.3.0
-     *
-     * @param {object} response
-     * @returns {void}
-     */
     addImagesInGallery(response, checked){
         response.forEach((res) => {
             const div = $('<div />');
@@ -284,11 +228,6 @@ class Gallery{
         $('[data-gallery="empty"]').addClass('hidden');
     }
 
-    /**
-     * @since 1.3.0
-     *
-     * @returns {void}
-     */
     selectedFiles(){
         $('#selected').click(() => {
             if(this.currentClick !== null){
@@ -369,11 +308,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.3.0
-     *
-     * @returns {Promise}
-     */
     selectedFilesTinymce(inputType){
         Modal.open('gallery');
         this.changeInputType(inputType);
@@ -388,11 +322,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.3.0
-     *
-     * @returns {void}
-     */
     setSelectedRadioValue() {
         $('input[type=radio]').click(() => {
             const selectedRadio = $('#gallery').find('input[type="radio"]:checked');
@@ -412,11 +341,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.3.0
-     *
-     * @returns {void}
-     */
     setSelectedCheckboxValues() {
         $('input[type="checkbox"]').click(() => {
             const selectedCheckboxes = document.querySelectorAll('#gallery input[type="checkbox"]:checked');
@@ -440,22 +364,12 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.2.0
-     *
-     * @returns {void}
-     */
     dbClickSelect() {
         $('label[data-click="double"]').dblclick(() => {
             $('#selected').click();
         });
     }
 
-    /**
-     * @since 1.2.0
-     *
-     * @returns {void}
-     */
     dbClickPreview() {
         $('label[data-click="double"]').dblclick((event) => {
             this.images = this.extractInfoImage($('#gallery').find('img'));
@@ -478,12 +392,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.2.0
-     *
-     * @param {Object} imagePreview
-     * @returns {void}
-     */
     previous(imagePreview){
         $('#previous').click(() => {
             this.currentPosition = this.currentPosition === 0
@@ -500,12 +408,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.2.0
-     *
-     * @param {object} imagePreview
-     * @returns {void}
-     */
     next(imagePreview){
         $('#next').click(() => {
             this.currentPosition = this.currentPosition === this.images.length-1
@@ -522,12 +424,6 @@ class Gallery{
         });
     }
 
-    /**
-     * @since 1.2.0
-     *
-     * @param {object} images
-     * @returns {object}
-     */
     extractInfoImage(images){
         const imagesObj = [];
 
@@ -543,13 +439,7 @@ class Gallery{
 
         return imagesObj;
     }
-
-    /**
-     * @since 1.2.0
-     *
-     * @param {string} id
-     * @returns {void}
-     */
+    
     setCurrentPosition(id){
         const currentImage = this.images.filter((image) => {
             return image.src === id ? true : false;

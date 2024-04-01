@@ -1,18 +1,10 @@
 'use strict';
 
-/**
- * @since 1.0.0
- *
- * Validate fields form
- */
 class ValidateForm{
     constructor(){
         this.fields = document.querySelectorAll('[required]');
     }
 
-    /**
-     * @returns {void}
-     */
     init(){
         for(let field of this.fields){
             field.addEventListener('invalid', (event) => {
@@ -26,21 +18,11 @@ class ValidateForm{
         }
     }
 
-    /**
-     *
-     * @param {object} event
-     */
     customValidation(event){
         let field = event.target;
         this.validateField(field);
     }
 
-    /**
-     * @since 1.0.0
-     *
-     * @param {*} field
-     * @returns {void}
-     */
     validateField(field){
         const error = this.verifyError(field);
 
@@ -53,11 +35,6 @@ class ValidateForm{
         }
     }
 
-    /**
-     *
-     * @param {*} field
-     * @returns {boolean}
-     */
     verifyError(field){
         let foundError = false;
 
@@ -70,13 +47,6 @@ class ValidateForm{
         return foundError;
     }
 
-    /**
-     * @since 1.0.0
-     *
-     * @param {string} typeError
-     * @param {*} field
-     * @returns {string}
-     */
     customMessage(typeError, field){
         const valueMissing = this.getMessage('valueMissing');
 
@@ -97,13 +67,6 @@ class ValidateForm{
         }
     }
 
-    /**
-     * @since 1.0.0
-     *
-     * @param {string} message
-     * @param {*} field
-     * @returns {void}
-     */
     setCustomMessage(message, field){
         if(field){
             const spanError = field.parentNode.querySelector('span.validit');
@@ -118,12 +81,6 @@ class ValidateForm{
         }
     }
 
-    /**
-     * @since 1.0.0
-     *
-     * @param {string} phoneId
-     * @returns {void}
-     */
     validatePhoneNotEmpty(phoneId){
         document.getElementById(phoneId).addEventListener('input', (event) => {
             const phone = event.target;
@@ -138,12 +95,6 @@ class ValidateForm{
         });
     }
 
-    /**
-     * @since 1.0.0
-     *
-     * @param {string} typeMessage
-     * @returns {string}
-     */
     getMessage(typeMessage){
         const messages = {
             valueMissing: 'Por favor, preencha este campo!',

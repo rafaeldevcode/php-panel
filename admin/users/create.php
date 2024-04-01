@@ -8,7 +8,7 @@ $requests = requests();
 
 if ($requests->password !== $requests->repeat_password) {
     session([
-        'message' => 'As senhas não conferem, tente novamente!',
+        'message' => __("The passwords don't match, try again!"),
         'type' => 'danger',
     ]);
 
@@ -27,7 +27,7 @@ if ($requests->password !== $requests->repeat_password) {
     ]);
 
     session([
-        'message' => 'Usuário adicionado com sucesso!',
+        'message' => __('User added successfully!'),
         'type' => 'success',
     ]);
 

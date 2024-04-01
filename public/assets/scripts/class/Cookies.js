@@ -1,18 +1,6 @@
 'use strict';
 
-/**
- * Get or set cookies
- */
 class Cookies{
-    /**
-     * @since 1.0.0
-     * 
-     * @param {string} cname 
-     * @param {string} cvalue 
-     * @param {number} cexpires 
-     * @param {string} cpath 
-     * @return {void}
-     */
     static set(cname, cvalue, cexpires, cpath = '/') {
         let cookie = `${cname}=${cvalue}`;
         let now = new Date();
@@ -23,12 +11,6 @@ class Cookies{
             document.cookie = `${cookie};expires=${now.toUTCString()};path=${cpath}`;
     }
 
-    /**
-     * @since 1.0.0
-     * 
-     * @param {string} cname 
-     * @returns {string|boolean}
-     */
     static get(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -48,12 +30,6 @@ class Cookies{
         return false;
     }
 
-    /**
-     * @since 1.2.0
-     * 
-     * @param {string} cname 
-     * @returns {void}
-     */
     static forget(cname){
         document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     }

@@ -6,7 +6,7 @@ class Posts extends ExecuteMigrations
 {
     public $table = 'posts';
 
-    public function init()
+    public function up()
     {
         $this->integer('id')->primaryKey();
         $this->string('title', 255);
@@ -24,5 +24,10 @@ class Posts extends ExecuteMigrations
         $this->timestamps();
 
         $this->create();
+    }
+
+    public function down()
+    {
+        $this->dropTable();
     }
 }

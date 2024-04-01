@@ -6,7 +6,7 @@ class Gallery extends ExecuteMigrations
 {
     public $table = 'gallery';
 
-    public function init()
+    public function up()
     {
         $this->integer('id')->primaryKey();
         $this->string('name', 150);
@@ -20,5 +20,10 @@ class Gallery extends ExecuteMigrations
         $this->foreignKey('user_id')->references('id')->on('users');
 
         $this->create();
+    }
+
+    public function down()
+    {
+        $this->dropTable();
     }
 }

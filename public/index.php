@@ -4,8 +4,8 @@ require __DIR__ . '/../bootstrap/bootstrap.php';
 
 $path = empty(path()) ? '/' : path();
 $routes = routes();
-$maintenance = is_null(SETTINGS) ? 'on' : SETTINGS['maintenance'];
-$construction = is_null(SETTINGS) ? 'on' : SETTINGS['construction'];
+$maintenance = SETTINGS->maintenance;
+$construction = SETTINGS->construction;
 
 if (strpos($path, '/admin') !== false && !autenticate()) {
     if ($path == '/login') {
@@ -17,16 +17,16 @@ if (strpos($path, '/admin') !== false && !autenticate()) {
     if (in_array($path, $routes)) {
         if (!autenticate() && strpos($path, '/login') === false) {
             if ($construction === 'on') {
-                loadHtml(__DIR__ . '/../resources/client/construction');
+                abort(__('construction'), __('We are still in the construction process.<br>We will be live soon!'), 'color-main');
                 die;
             } elseif ($maintenance === 'on') {
-                loadHtml(__DIR__ . '/../resources/client/maintenance');
+                abort(__('maintenance'), __("We are making some adjustments and improvements.<br>We'll be back soon!"), 'color-main');
                 die;
             };
         };
 
         loadHtml(__DIR__ . '/..' . getFileName($path));
     } else {
-        abort(404, 'Not Found', 'danger');
+        abort(404, __('Not Found'), 'danger');
     };
 };

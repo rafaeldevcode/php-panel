@@ -100,7 +100,7 @@ span[data-valid="true"]
     i
         font-size: .8rem
 
-// Animação da mensagem ao validar usuário e senha
+// Message animation when validating username and password
 [data-message="true"]
     animation: 1s showMessage ease-out
     z-index: 100
@@ -108,9 +108,9 @@ span[data-valid="true"]
 [data-message="false"]
     animation: 1s hiddeMessage ease-out forwards
 
-// Sandwiche menu
+// Sandwich menu
 .menu
-    &_label
+    &-label
         span
             height: 3px
             width: 100%
@@ -128,7 +128,7 @@ span[data-valid="true"]
                 top: 16px
                 width: 100%
 
-    &_input
+    &-input
         &:checked + label span:nth-child(1)
             transform: rotate(-25deg)
             width: 60%
@@ -158,28 +158,18 @@ span[data-valid="true"]
 [data-item-menu="active"]
     background: $color-main
 
-div[data-item-active='false']
+[data-item-active='false']
     animation: hiddeItem .2s linear forwards
 
-div[data-item-active='true']
+[data-item-active='true']
     display: block
     animation: showItem .2s .4s linear forwards
 
-.submenu
-    width: 130px
-    transform: translateX(100%)
-    z-index: 100
-    display: none
-    opacity: 0
-    transition: all .4s
-
-    &_li
-        a
-            padding: .4rem
-            transition: all .4s
-
-            &:hover
-                background: $color-main
+.mainmenu
+    &:hover
+        .submenu
+            display: block
+            opacity: 1
 
 [data-submenu="true"]
     display: none
@@ -204,7 +194,7 @@ div[data-item-active='true']
         height: 100%
         background: linear-gradient(0deg, #0000003c 50%, rgba(0,0,0,1) 100%)
 
-// Modal de imagens do perfil
+// Profile image modal
 [data-checked="add-style"]
     &:checked ~ label
         border: 2px solid $color-main
@@ -269,7 +259,7 @@ input[type="checkbox"]
     &-mirror
         @include pageCustomMirror($color-main)
 
-// Limitar a quantidade de caracteres em determinadas colunas
+// Limit the number of characters in certain columns
 .limit-caracter
     display: block
     white-space: nowrap
@@ -312,6 +302,9 @@ input[type="checkbox"]
 
     [data-modal-body]
         animation: openPopupScale .3s ease-in-out reverse
+
+.w-calc
+    width: calc( 100% - 61px )
 
 @import  ./_mediaqueries
 @import ./_keyframes

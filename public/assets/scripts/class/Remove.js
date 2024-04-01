@@ -1,23 +1,10 @@
 'use strict';
 
-/**
- * Remove items
- */
 class Remove{
-    /**
-     * @returns {void}
-     */
     constructor(){
         this.buttons = document.querySelectorAll('[data-button="delete"]');
     }
 
-    /**
-     * Start deletion process
-     *
-     * @since 1.0.0
-     *
-     * @returns {void}
-     */
     init(){
         this.disableEnableButton();
 
@@ -40,14 +27,6 @@ class Remove{
         });
     }
 
-    /**
-     * Open modal to confirm item deletion
-     *
-     * @since 1.0.0
-     *
-     * @param {object} event
-     * @returns {void}
-     */
     removeItem(event){
         const button = $(event.target).attr('data-button') ? event.target : event.target.parentNode;
         const route = $(button).attr('data-route');
@@ -77,14 +56,6 @@ class Remove{
         });
     }
 
-    /**
-     * Open modal to confirm the deletion of several items
-     *
-     * @since 1.0.0
-     *
-     * @param {object} event
-     * @returns {void}
-     */
     removeAllItems(event){
         const allItems = [];
         const button = event.target;
@@ -121,12 +92,6 @@ class Remove{
         });
     }
 
-    /**
-     * Select several items
-     *
-     * @param {object}
-     * @returns {void}
-     */
     selectSeveral(event){
         this.disableEnableButton();
 
@@ -149,13 +114,6 @@ class Remove{
         }
     }
 
-    /**
-     * Disable or enable delete button
-     *
-     * @since 1.0.0
-     *
-     * @returns {void}
-     */
     disableEnableButton(){
         const inputs = document.querySelectorAll('[data-button="delete-enable"]');
         const btnDeleteAll = $('#deleteAll');
@@ -172,14 +130,6 @@ class Remove{
         };
     }
 
-    /**
-     * Remove inputs from modal that has already been closed
-     *
-     * @since 1.0.0
-     *
-     * @param {object} inputs
-     * @returns {void}
-     */
     removeInputs(inputs){
         for (let i = 0; i < inputs.length; i++) {
             if($(inputs[i]).attr('name') !== '_token'){
@@ -188,15 +138,6 @@ class Remove{
         }
     }
 
-    /**
-     * Check if an item exists in an array
-     *
-     * @since 1.0.0
-     *
-     * @param {string} value
-     * @param {array} array
-     * @returns {boolean}
-     */
     inArray(value, array) {
         var length = array.length;
 

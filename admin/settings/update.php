@@ -6,7 +6,7 @@ use Src\Models\Setting;
 
 $setting = new Setting();
 $requests = requests();
-$current_setting = $setting->first();
+$currentSetting = $setting->first();
 
 $preloader = isset($requests->preloader) ? $requests->preloader : 'off';
 $cookies = isset($requests->cookies) ? $requests->cookies : 'off';
@@ -42,18 +42,19 @@ $data = [
     'site_bg_login' => $requests->site_bg_login ?? null,
     'construction' => $construction,
     'maintenance' => $maintenance,
+    'admin_lang' => $requests->admin_lang,
 ];
 
-if (!isset($current_setting)) {
+if (!isset($currentSetting)) {
     $setting->create($data);
 } else {
-    $setting->find($current_setting->id)->update($data);
+    $setting->find($currentSetting->id)->update($data);
 };
 
 unset($_SESSION['site_settings']);
 
 session([
-    'message' => 'Configurações atualizadas com sucesso!',
+    'message' => __('Settings updated successfully!'),
     'type' => 'success',
 ]);
 

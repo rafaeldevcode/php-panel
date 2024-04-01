@@ -14,25 +14,34 @@ class Model
     private $wheres = [];
     private $orWheres = [];
     private $connection;
-    private $foreign_pivot_key = null;
-    private $related_pivot_key = null;
-    private $related_id = null;
-    private $related_table = null;
+    private $foreignPivotKey = null;
+    private $relatedPivotKey = null;
+    private $relatedId = null;
+    private $relatedTable = null;
 
     public function __construct()
     {
-        $db_host = env('DB_HOST');
-        $db_user = env('DB_USERNAME');
-        $db_password = env('DB_PASSWORD');
-        $db_name = env('DB_DATABASE_NAME');
+        $dbHost = env('DB_HOST');
+        $dbUser = env('DB_USERNAME');
+        $dbPassword = env('DB_PASSWORD');
+        $dbName = env('DB_DATABASE_NAME');
 
         try {
-            $connection = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+            $connection = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->connection = $connection;
         } catch(PDOException $e) {
             echo 'Query error: ' . $e->getMessage();
         }
+    }
+
+    public function hasTable(): bool
+    {
+        $query = "SHOW TABLES LIKE '{$this->table}'";
+
+        $statement = $this->connection->query($query);
+
+        return $statement->rowCount() > 0 ? true : false;
     }
 
     public function where(string $column, string $operator, ?string $value): self
@@ -69,15 +78,15 @@ class Model
         return $this;
     }
 
-    public function count(): int|null
+    public function count(): ?int
     {
-        $where_clause = $this->whereClausure();
+        $whereClause = $this->whereClausure();
 
-        $query = "SELECT COUNT(id) as total FROM {$this->table}{$where_clause->clausure}";
+        $query = "SELECT COUNT(id) as total FROM {$this->table}{$whereClause->clausure}";
 
         $statement = $this->connection->prepare($query);
 
-        foreach ($where_clause->bindings as $column => $value):
+        foreach ($whereClause->bindings as $column => $value):
             $statement->bindValue(":{$column}", $value);
         endforeach;
 
@@ -92,17 +101,17 @@ class Model
         return null;
     }
 
-    public function first(?array $columns = null): stdClass|null
+    public function first(?array $columns = null): ?stdClass
     {
         $columns = !is_null($columns) ? implode(', ', $columns) : '*';
 
-        $where_clause = $this->whereClausure();
+        $whereClause = $this->whereClausure();
 
-        $query = "SELECT {$columns} FROM {$this->table}{$where_clause->clausure} LIMIT 1";
+        $query = "SELECT {$columns} FROM {$this->table}{$whereClause->clausure} LIMIT 1";
 
         $statement = $this->connection->prepare($query);
 
-        foreach ($where_clause->bindings as $column => $value):
+        foreach ($whereClause->bindings as $column => $value):
             $statement->bindValue(":{$column}", $value);
         endforeach;
 
@@ -117,19 +126,19 @@ class Model
         return $this->data;
     }
 
-    public function last(?string $order_column = null, ?array $columns = null): stdClass|null
+    public function last(?string $orderColumn = null, ?array $columns = null): ?stdClass
     {
         $columns = !is_null($columns) ? implode(', ', $columns) : '*';
 
-        $order_column = isset($order_column) ? $order_column : 'id';
+        $orderColumn = isset($orderColumn) ? $orderColumn : 'id';
 
-        $where_clause = $this->whereClausure();
+        $whereClause = $this->whereClausure();
 
-        $query = "SELECT {$columns} FROM {$this->table}{$where_clause->clausure} ORDER BY {$order_column} DESC LIMIT 1";
+        $query = "SELECT {$columns} FROM {$this->table}{$whereClause->clausure} ORDER BY {$orderColumn} DESC LIMIT 1";
 
         $statement = $this->connection->prepare($query);
 
-        foreach ($where_clause->bindings as $column => $value):
+        foreach ($whereClause->bindings as $column => $value):
             $statement->bindValue(":{$column}", $value);
         endforeach;
 
@@ -144,7 +153,7 @@ class Model
         return $this->data;
     }
 
-    public function create(array $data): stdClass|null
+    public function create(array $data): ?stdClass
     {
         $columns = implode(', ', array_keys($data));
         $bindings = ':' . implode(', :', array_keys($data));
@@ -159,10 +168,10 @@ class Model
 
         $statement->execute();
 
-        $last_insert_id = $this->connection->lastInsertId();
+        $lastInsertId = $this->connection->lastInsertId();
 
         if($statement->rowCount() > 0 && $this->existColumn('id')):
-            $this->find($last_insert_id);
+            $this->find($lastInsertId);
 
             return $this->data;
         endif;
@@ -170,17 +179,17 @@ class Model
         return null;
     }
 
-    public function get(?array $columns = null): array|null
+    public function get(?array $columns = null): ?array
     {
         $columns = !is_null($columns) ? implode(', ', $columns) : '*';
 
-        $where_clause = $this->whereClausure();
+        $whereClause = $this->whereClausure();
 
-        $query = "SELECT $columns FROM {$this->table}{$where_clause->clausure}";
+        $query = "SELECT $columns FROM {$this->table}{$whereClause->clausure}";
 
         $statement = $this->connection->prepare($query);
 
-        foreach ($where_clause->bindings as $column => $value):
+        foreach ($whereClause->bindings as $column => $value):
             $statement->bindValue(":{$column}", $value);
         endforeach;
 
@@ -196,7 +205,7 @@ class Model
     public function update(array $data): bool
     {
         $query = '';
-        $where_clause = $this->whereClausure();
+        $whereClause = $this->whereClausure();
 
         foreach($data as $indice => $value):
             $query .= "{$indice} = :d_{$indice}, ";
@@ -204,7 +213,7 @@ class Model
 
         $query = rtrim($query, ', ');
 
-        $query = "UPDATE {$this->table} SET {$query}{$where_clause->clausure}";
+        $query = "UPDATE {$this->table} SET {$query}{$whereClause->clausure}";
 
         $statement = $this->connection->prepare($query);
 
@@ -212,7 +221,7 @@ class Model
             $statement->bindValue(":d_{$indice}", $value);
         endforeach;
 
-        foreach ($where_clause->bindings as $column => $value):
+        foreach ($whereClause->bindings as $column => $value):
             $statement->bindValue(":{$column}", $value);
         endforeach;
 
@@ -221,20 +230,20 @@ class Model
 
     public function delete(): bool
     {
-        $where_clause = $this->whereClausure();
+        $whereClause = $this->whereClausure();
 
-        $query = "DELETE FROM {$this->table}{$where_clause->clausure}";
+        $query = "DELETE FROM {$this->table}{$whereClause->clausure}";
 
         $statement = $this->connection->prepare($query);
 
-        foreach ($where_clause->bindings as $column => $value):
+        foreach ($whereClause->bindings as $column => $value):
             $statement->bindValue(":{$column}", $value);
         endforeach;
 
         return $statement->execute();
     }
 
-    public function paginate(int $limit, string $order_column = 'id'): stdClass
+    public function paginate(int $limit, string $orderColumn = 'id'): stdClass
     {
         $count = ceil(($this->count() / $limit));
         $page = ($count == 0 ? 0 : 1);
@@ -247,13 +256,13 @@ class Model
 
         $start = (($page == 0 ? 1 : $page) * $limit) - $limit;
 
-        $where_clause = $this->whereClausure();
+        $whereClause = $this->whereClausure();
 
-        $query = "SELECT * FROM {$this->table}{$where_clause->clausure} ORDER BY $order_column DESC LIMIT $start, $limit";
+        $query = "SELECT * FROM {$this->table}{$whereClause->clausure} ORDER BY $orderColumn DESC LIMIT $start, $limit";
 
         $statement = $this->connection->prepare($query);
 
-        foreach ($where_clause->bindings as $column => $value):
+        foreach ($whereClause->bindings as $column => $value):
             $statement->bindValue(":{$column}", $value);
         endforeach;
 
@@ -272,19 +281,19 @@ class Model
         ]));
     }
 
-    public function belongsToMany(string $related, string $table, string $foreign_pivot_key, string $related_pivot_key)
+    public function belongsToMany(string $related, string $table, string $foreignPivotKey, string $relatedPivotKey)
     {
         $related = new $related();
 
         $id = empty($this->data) ? 0 : $this->data->id;
 
-        $this->setRelatioships($related, $id, $table, $foreign_pivot_key, $related_pivot_key);
+        $this->setRelatioships($related, $id, $table, $foreignPivotKey, $relatedPivotKey);
 
         $query = "
             SELECT {$related->table}. *
             FROM {$related->table}
-            INNER JOIN {$table} ON {$related->table}.id = {$table}.{$related_pivot_key}
-            WHERE {$table}.{$foreign_pivot_key} = :foreign_pivot_key
+            INNER JOIN {$table} ON {$related->table}.id = {$table}.{$relatedPivotKey}
+            WHERE {$table}.{$foreignPivotKey} = :foreign_pivot_key
         ";
 
         $statement = $this->connection->prepare($query);
@@ -296,13 +305,13 @@ class Model
         return $related;
     }
 
-    public function hasMany(string $related, string $table, string $foreign_pivot_key)
+    public function hasMany(string $related, string $table, string $foreignPivotKey)
     {
         $related = new $related();
 
         $id = empty($this->data) ? 0 : $this->data->id;
 
-        $query = "SELECT * FROM {$table} WHERE {$foreign_pivot_key} = :foreign_pivot_key";
+        $query = "SELECT * FROM {$table} WHERE {$foreignPivotKey} = :foreign_pivot_key";
         $statement = $this->connection->prepare($query);
         $statement->bindParam(':foreign_pivot_key', $id, PDO::PARAM_INT);
         $statement->execute();
@@ -312,13 +321,13 @@ class Model
         return $related;
     }
 
-    public function belongsTo(string $related, string $table, string $foreign_pivot_key)
+    public function belongsTo(string $related, string $table, string $foreignPivotKey)
     {
         $related = new $related();
 
         $id = empty($this->data) ? 0 : $this->data->id;
 
-        $query = "SELECT * FROM {$table} WHERE id = (SELECT {$foreign_pivot_key} FROM {$this->table} WHERE id = :id)";
+        $query = "SELECT * FROM {$table} WHERE id = (SELECT {$foreignPivotKey} FROM {$this->table} WHERE id = :id)";
         $statement = $this->connection->prepare($query);
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         $statement->execute();
@@ -339,43 +348,43 @@ class Model
         endif;
 
         $existing = [];
-        $select_query = "SELECT {$this->related_pivot_key} FROM {$this->related_table} WHERE {$this->foreign_pivot_key} = :foreign_pivot_key";
-        $select_statement = $this->connection->prepare($select_query);
-        $select_statement->bindValue(':foreign_pivot_key', $this->related_id, PDO::PARAM_INT);
-        $select_statement->execute();
+        $selectQuery = "SELECT {$this->relatedPivotKey} FROM {$this->relatedTable} WHERE {$this->foreignPivotKey} = :foreign_pivot_key";
+        $selectStatement = $this->connection->prepare($selectQuery);
+        $selectStatement->bindValue(':foreign_pivot_key', $this->relatedId, PDO::PARAM_INT);
+        $selectStatement->execute();
 
-        while ($row = $select_statement->fetch(PDO::FETCH_ASSOC)):
-            $existing[] = $row[$this->related_pivot_key];
+        while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)):
+            $existing[] = $row[$this->relatedPivotKey];
         endwhile;
 
-        $new_data = array_diff($attributes, $existing);
+        $newData = array_diff($attributes, $existing);
 
         try {
             $this->connection->beginTransaction(); // Start transaction
 
-            $insert_query = "INSERT IGNORE INTO {$this->related_table} ({$this->related_pivot_key}, {$this->foreign_pivot_key}) VALUES (:related_pivot_key, :foreign_pivot_key)";
-            $insert_statement = $this->connection->prepare($insert_query);
+            $insertQuery = "INSERT IGNORE INTO {$this->relatedTable} ({$this->relatedPivotKey}, {$this->foreignPivotKey}) VALUES (:related_pivot_key, :foreign_pivot_key)";
+            $insertStatement = $this->connection->prepare($insertQuery);
 
-            foreach ($new_data as $new_data_id):
-                $insert_statement->bindValue(':related_pivot_key', $new_data_id, PDO::PARAM_INT);
-                $insert_statement->bindValue(':foreign_pivot_key', $this->related_id, PDO::PARAM_INT);
+            foreach ($newData as $newDataId):
+                $insertStatement->bindValue(':related_pivot_key', $newDataId, PDO::PARAM_INT);
+                $insertStatement->bindValue(':foreign_pivot_key', $this->relatedId, PDO::PARAM_INT);
 
-                if (!$insert_statement->execute()):
+                if (!$insertStatement->execute()):
                     throw new Exception('There was an unexpected error during insertion!');
                 endif;
             endforeach;
 
-            // $not_contains = implode(',', array_fill(0, count($attributes), '?'));
-            $not_contains = implode(',', $attributes);
-            $delete_query = "DELETE FROM {$this->related_table} WHERE {$this->foreign_pivot_key} = :foreign_pivot_key AND {$this->related_pivot_key} NOT IN ({$not_contains})";
-            $delete_statement = $this->connection->prepare($delete_query);
-            $delete_statement->bindValue(':foreign_pivot_key', $this->related_id, PDO::PARAM_INT);
+            // $notContains = implode(',', array_fill(0, count($attributes), '?'));
+            $notContains = implode(',', $attributes);
+            $deleteQuery = "DELETE FROM {$this->relatedTable} WHERE {$this->foreignPivotKey} = :foreign_pivot_key AND {$this->relatedPivotKey} NOT IN ({$notContains})";
+            $deleteStatement = $this->connection->prepare($deleteQuery);
+            $deleteStatement->bindValue(':foreign_pivot_key', $this->relatedId, PDO::PARAM_INT);
 
             // foreach ($attributes as $index => $value):
-            //     $delete_statement->bindValue($index + 1, $value, PDO::PARAM_INT);
+            //     $deleteStatement->bindValue($index + 1, $value, PDO::PARAM_INT);
             // endforeach;
 
-            $delete_statement->execute();
+            $deleteStatement->execute();
 
             $this->connection->commit(); // Confirm transaction
 
@@ -396,14 +405,14 @@ class Model
         try {
             $this->connection->beginTransaction(); // Start transaction
 
-            $insert_query = "INSERT IGNORE INTO {$this->related_table} ({$this->related_pivot_key}, {$this->foreign_pivot_key}) VALUES (:related_pivot_key, :foreign_pivot_key)";
-            $insert_statement = $this->connection->prepare($insert_query);
+            $insertQuery = "INSERT IGNORE INTO {$this->relatedTable} ({$this->relatedPivotKey}, {$this->foreignPivotKey}) VALUES (:related_pivot_key, :foreign_pivot_key)";
+            $insertStatement = $this->connection->prepare($insertQuery);
 
             foreach ($$attributes as $attribute):
-                $insert_statement->bindValue(':related_pivot_key', $attribute, PDO::PARAM_INT);
-                $insert_statement->bindValue(':foreign_pivot_key', $this->related_id, PDO::PARAM_INT);
+                $insertStatement->bindValue(':related_pivot_key', $attribute, PDO::PARAM_INT);
+                $insertStatement->bindValue(':foreign_pivot_key', $this->relatedId, PDO::PARAM_INT);
 
-                if (!$insert_statement->execute()):
+                if (!$insertStatement->execute()):
                     throw new Exception('There was an unexpected error during insertion!');
                 endif;
             endforeach;
@@ -427,11 +436,11 @@ class Model
         try {
             $this->connection->beginTransaction(); // Start transaction
 
-            $delete_query = "DELETE FROM {$this->related_table} WHERE {$this->foreign_pivot_key} = :foreign_pivot_key";
+            $deleteQuery = "DELETE FROM {$this->relatedTable} WHERE {$this->foreignPivotKey} = :foreign_pivot_key";
 
-            $delete_statement = $this->connection->prepare($delete_query);
-            $delete_statement->bindValue(':foreign_pivot_key', $this->related_id, PDO::PARAM_INT);
-            $delete_statement->execute();
+            $deleteStatement = $this->connection->prepare($deleteQuery);
+            $deleteStatement->bindValue(':foreign_pivot_key', $this->relatedId, PDO::PARAM_INT);
+            $deleteStatement->execute();
 
             $this->connection->commit(); // Confirm transaction
 
@@ -445,30 +454,30 @@ class Model
 
     private function whereClausure(): stdClass
     {
-        $where_clause = '';
+        $whereClause = '';
         $bindings = [];
 
         foreach ($this->wheres as $index => $where):
-            $where_clause .= ($index === 0 ? ' WHERE ' : ' AND ');
-            $where_clause .= "{$where['column']} {$where['operator']} :{$where['column']}";
+            $whereClause .= ($index === 0 ? ' WHERE ' : ' AND ');
+            $whereClause .= "{$where['column']} {$where['operator']} :{$where['column']}";
             $bindings[$where['column']] = $where['value'];
         endforeach;
 
         foreach ($this->orWheres as $index => $where):
-            $where_clause .= ' OR ';
-            $where_clause .= "{$where['column']} {$where['operator']} :{$where['column']}";
+            $whereClause .= ' OR ';
+            $whereClause .= "{$where['column']} {$where['operator']} :{$where['column']}";
             $bindings[$where['column']] = $where['value'];
         endforeach;
 
         return json_decode(json_encode([
-            'clausure' => $where_clause,
+            'clausure' => $whereClause,
             'bindings' => $bindings,
         ]));
     }
 
     private function existColumn(string $column): bool
     {
-        $db_name = env('DB_DATABASE_NAME');
+        $dbName = env('DB_DATABASE_NAME');
         $query = 'SELECT COUNT(*) AS colExists
             FROM information_schema.columns
             WHERE table_schema = :dbname
@@ -476,7 +485,7 @@ class Model
                 AND column_name = :column';
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bindParam(':dbname', $db_name, PDO::PARAM_STR);
+        $stmt->bindParam(':dbname', $dbName, PDO::PARAM_STR);
         $stmt->bindParam(':table', $this->table, PDO::PARAM_STR);
         $stmt->bindParam(':column', $column, PDO::PARAM_STR);
         $stmt->execute();
@@ -486,11 +495,11 @@ class Model
         return $result['colExists'] > 0 ? true : false;
     }
 
-    private function setRelatioships(mixed $related, int $related_id, string $related_table, string $foreign_pivot_key, string $related_pivot_key): void
+    private function setRelatioships(mixed $related, int $relatedId, string $relatedTable, string $foreignPivotKey, string $relatedPivotKey): void
     {
-        $related->foreign_pivot_key = $foreign_pivot_key;
-        $related->related_pivot_key = $related_pivot_key;
-        $related->related_id = $related_id;
-        $related->related_table = $related_table;
+        $related->foreignPivotKey = $foreignPivotKey;
+        $related->relatedPivotKey = $relatedPivotKey;
+        $related->relatedId = $relatedId;
+        $related->relatedTable = $relatedTable;
     }
 }

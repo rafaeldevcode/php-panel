@@ -34,8 +34,8 @@ if (!function_exists('routes')) {
 if (!function_exists('route')) {
     function route(string $path = '', bool $redirection = false)
     {
-        $project_path = env('PROJECT_PATH');
-        $path = $project_path . $path;
+        $projectPath = env('PROJECT_PATH');
+        $path = $projectPath . $path;
 
         if ($redirection) {
             return "Location: $path";
@@ -48,13 +48,13 @@ if (!function_exists('route')) {
 if (!function_exists('getFileName')) {
     function getFileName(string $path): string
     {
-        $method_posts = ['update', 'delete', 'create', 'update-avatar', 'logout'];
+        $methodPosts = ['update', 'delete', 'create', 'update-avatar', 'logout'];
         $array = explode('/', $path);
         $count = count($array);
         $file = $array[$count - 1];
-        $file = in_array($file, $method_posts) ? $file : 'index';
+        $file = in_array($file, $methodPosts) ? $file : 'index';
 
-        if (in_array($file, $method_posts)) {
+        if (in_array($file, $methodPosts)) {
             unset($array[$count - 1]);
         }
 

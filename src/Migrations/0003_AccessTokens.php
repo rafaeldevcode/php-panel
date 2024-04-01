@@ -6,7 +6,7 @@ class AccessTokens extends ExecuteMigrations
 {
     public $table = 'access_token';
 
-    public function init()
+    public function up()
     {
         $this->integer('id')->primaryKey();
         $this->integer('user_id');
@@ -15,5 +15,10 @@ class AccessTokens extends ExecuteMigrations
         $this->foreignKey('user_id')->references('id')->on('users');
 
         $this->create();
+    }
+
+    public function down()
+    {
+        $this->dropTable();
     }
 }

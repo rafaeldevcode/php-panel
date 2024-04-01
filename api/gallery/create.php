@@ -1,11 +1,9 @@
 <?php
 
-require __DIR__ . '/../../bootstrap/bootstrap.php';
-
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $data = ['success' => false, 'message' => 'Method Not Allowed'];
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $data = ['success' => false, 'message' => __('Method Not Allowed')];
 } else {
     $data = [];
 

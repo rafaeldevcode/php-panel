@@ -1,5 +1,6 @@
 <?php
 
+require __DIR__ . '/helpers/trans.php';
 require __DIR__ . '/helpers/env.php';
 require __DIR__ . '/helpers/settings.php';
 require __DIR__ . '/helpers/requests.php';
@@ -8,15 +9,30 @@ require __DIR__ . '/helpers/routes.php';
 
 !defined('APP_VERSION') && define('APP_VERSION', '1.5.0');
 
+if (!function_exists('server')) {
+    function server(?string $option = null): stdClass|string
+    {
+        $server = $_SERVER;
+
+        if (isset($option)) {
+            return isset($server[$option]) ? $server[$option] : null;
+        }
+
+        return json_decode(json_encode($server));
+    }
+};
+
 if (!function_exists('asset')) {
     function asset(string $path, bool $return = false): ?string
     {
-        $protocol = ((isset($_SERVER['HTTPS'])) && ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
-        $host = $_SERVER['HTTP_HOST'];
-        $project_path = env('PROJECT_PATH');
-        $assets_path = env('ASSETS_PATH');
+        $server = server();
 
-        $url = "{$protocol}://{$host}{$project_path}{$assets_path}/{$path}";
+        $protocol = ((isset($server->HTTPS)) && ($server->HTTPS == 'on') ? 'https' : 'http');
+        $host = $server->HTTP_HOST;
+        $projectPath = env('PROJECT_PATH');
+        $assetsPath = env('ASSETS_PATH');
+
+        $url = "{$protocol}://{$host}{$projectPath}{$assetsPath}/{$path}?ver=" . APP_VERSION;
 
         if ($return) {
             return $url;
@@ -51,19 +67,20 @@ if (!function_exists('loadHtml')) {
 if (!function_exists('path')) {
     function path(): string
     {
-        $project_path = env('PROJECT_PATH');
+        $projectPath = env('PROJECT_PATH');
+        $server = server();
 
-        if (($_SERVER['SERVER_NAME'] === 'localhost') ||
-            ($_SERVER['SERVER_NAME'] === '127.0.0.1') ||
-            ($_SERVER['SERVER_NAME'] === '0.0.0.0') ||
-            ($_SERVER['SERVER_NAME'] == env('IP_ROOT'))
+        if (($server->SERVER_NAME === 'localhost') ||
+            ($server->SERVER_NAME === '127.0.0.1') ||
+            ($server->SERVER_NAME === '0.0.0.0') ||
+            ($server->SERVER_NAME === env('IP_ROOT'))
         ) {
-            $path = $_SERVER['REQUEST_URI'];
+            $path = $server->REQUEST_URI;
         } else {
-            $path = $_SERVER['REQUEST_URI'];
+            $path = $server->REQUEST_URI;
         };
 
-        $path = str_replace($project_path, '', $path);
+        $path = str_replace($projectPath, '', $path);
 
         $path = explode('?', $path)[0];
 
@@ -91,7 +108,8 @@ if (!function_exists('getIconMessage')) {
                 break;
             case 'secondary':
                 $icon = 'bi bi-question-circle-fill';
-                // no break
+
+                break;
             case 'info':
                 $icon = 'bi bi-info-circle-fill';
 
@@ -135,4 +153,4 @@ if (!function_exists('getArraySelect')) {
     }
 };
 
-!defined('SETTINGS') && define('SETTINGS', (array)getSiteSettings());
+!defined('SETTINGS') && define('SETTINGS', getSiteSettings());

@@ -10,22 +10,22 @@ class ExecuteMigrations
 {
     private $connection = null;
     private $columns = [];
-    private $current_column = [];
-    private $current_indice = 0;
-    private $current_foreign_key = 0;
+    private $currentColumn = [];
+    private $currentIndice = 0;
+    private $currentForeignKey = 0;
     private $timestamps = false;
     private $constraint = [];
     public $table;
 
     public function __construct()
     {
-        $db_host = env('DB_HOST');
-        $db_user = env('DB_USERNAME');
-        $db_password = env('DB_PASSWORD');
-        $db_name = env('DB_DATABASE_NAME');
+        $dbHost = env('DB_HOST');
+        $dbUser = env('DB_USERNAME');
+        $dbPassword = env('DB_PASSWORD');
+        $dbName = env('DB_DATABASE_NAME');
 
         try {
-            $connection = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+            $connection = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->connection = $connection;
         } catch(PDOException $e) {
@@ -38,7 +38,7 @@ class ExecuteMigrations
         if (isset($arguments[0])) {
             $lenght = isset($arguments[1]) ? $arguments[1] : 255;
 
-            $this->current_column = [
+            $this->currentColumn = [
                 'column_name' => $arguments[0],
                 'column_type' => $this->getColumnType($method, (int)$lenght),
                 'nullable' => ' NOT NULL',
@@ -47,9 +47,9 @@ class ExecuteMigrations
                 'unique' => '',
             ];
 
-            $this->columns[] = $this->current_column;
+            $this->columns[] = $this->currentColumn;
 
-            $this->current_indice = count($this->columns) - 1;
+            $this->currentIndice = count($this->columns) - 1;
         };
 
         return $this;
@@ -57,8 +57,8 @@ class ExecuteMigrations
 
     public function nullable(): self
     {
-        if (empty($this->columns[$this->current_indice]['default'])) {
-            $this->columns[$this->current_indice]['nullable'] = ' DEFAULT NULL';
+        if (empty($this->columns[$this->currentIndice]['default'])) {
+            $this->columns[$this->currentIndice]['nullable'] = ' DEFAULT NULL';
         };
 
         return $this;
@@ -66,8 +66,8 @@ class ExecuteMigrations
 
     public function default(string $value): self
     {
-        if ($this->columns[$this->current_indice]['nullable'] == ' NOT NULL') {
-            $this->columns[$this->current_indice]['default'] = " DEFAULT '{$value}'";
+        if ($this->columns[$this->currentIndice]['nullable'] == ' NOT NULL') {
+            $this->columns[$this->currentIndice]['default'] = " DEFAULT '{$value}'";
         };
 
         return $this;
@@ -75,7 +75,7 @@ class ExecuteMigrations
 
     public function unique(): self
     {
-        $this->columns[$this->current_indice]['unique'] = ' UNIQUE';
+        $this->columns[$this->currentIndice]['unique'] = ' UNIQUE';
 
         return $this;
     }
@@ -89,32 +89,32 @@ class ExecuteMigrations
 
     public function primaryKey(): self
     {
-        $this->columns[$this->current_indice]['primary_key'] = ' AUTO_INCREMENT PRIMARY KEY';
+        $this->columns[$this->currentIndice]['primary_key'] = ' AUTO_INCREMENT PRIMARY KEY';
 
         return $this;
     }
 
-    public function foreignKey(string $foreign_key): self
+    public function foreignKey(string $foreignKey): self
     {
         $this->constraint[] = [
-            'foreign_key' => $foreign_key,
+            'foreign_key' => $foreignKey,
         ];
 
-        $this->current_foreign_key = count($this->constraint) - 1;
+        $this->currentForeignKey = count($this->constraint) - 1;
 
         return $this;
     }
 
-    public function references(string $column_references): self
+    public function references(string $columnReferences): self
     {
-        $this->constraint[$this->current_foreign_key]['column_references'] = $column_references;
+        $this->constraint[$this->currentForeignKey]['column_references'] = $columnReferences;
 
         return $this;
     }
 
     public function on(string $table): self
     {
-        $this->constraint[$this->current_foreign_key]['table'] = $table;
+        $this->constraint[$this->currentForeignKey]['table'] = $table;
 
         return $this;
     }
@@ -122,28 +122,28 @@ class ExecuteMigrations
     public function create(): void
     {
         $query = "CREATE TABLE IF NOT EXISTS $this->table";
-        $count_column = count($this->columns);
+        $countColumn = count($this->columns);
 
-        if ($count_column > 0) {
+        if ($countColumn > 0) {
             $query .= ' (';
         }
 
         foreach ($this->columns as $column) {
-            $column_name = $column['column_name'];
-            $column_type = $column['column_type'];
+            $columnName = $column['column_name'];
+            $columnType = $column['column_type'];
             $nullable = $column['nullable'];
             $default = $column['default'];
-            $primary_key = $column['primary_key'];
+            $primaryKey = $column['primary_key'];
             $unique = $column['unique'];
 
-            $query .= "`{$column_name}` {$column_type}{$nullable}{$default}{$primary_key}{$unique}, ";
+            $query .= "`{$columnName}` {$columnType}{$nullable}{$default}{$primaryKey}{$unique}, ";
         };
 
         if ($this->timestamps) {
             $query .= '`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP';
         };
 
-        if ($count_column > 0) {
+        if ($countColumn > 0) {
             $query .= ')';
         }
         $query = str_replace(', )', ')', $query);
@@ -161,13 +161,35 @@ class ExecuteMigrations
         };
     }
 
+    public function dropColumn(string $column): self
+    {
+        $query = "ALTER TABLE {$this->table} DROP COLUMN :{$column};";
+
+        $statement = $this->connection->prepare($query);
+
+        $statement->bindParam(":{$column}", $column, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        return $this;
+    }
+
+    public function dropTable(): void
+    {
+        $query = "DROP TABLE {$this->table}";
+
+        $statement = $this->connection->prepare($query);
+
+        $statement->execute();
+    }
+
     public function verifyExistsMigrations(): bool
     {
-        $table_name = 'migrations';
+        $tableName = 'migrations';
 
         $query = 'SHOW TABLES LIKE :table_name';
         $statement = $this->connection->prepare($query);
-        $statement->bindValue(':table_name', $table_name, PDO::PARAM_STR);
+        $statement->bindValue(':table_name', $tableName, PDO::PARAM_STR);
         $statement->execute();
 
         return $statement->rowCount() > 0 ? true : false;
@@ -197,7 +219,7 @@ class ExecuteMigrations
             case 'double':
                 return 'DOUBLE';
             default:
-                throw new Exception("Tipo de coluna inválido: $method");
+                throw new Exception("Tipo de coluna inválido: {$method}");
         };
     }
 }

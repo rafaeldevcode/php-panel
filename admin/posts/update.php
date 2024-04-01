@@ -8,11 +8,11 @@ $requests = requests();
 $post = new Posts();
 
 $slug = normalizeSlug($requests->title, $requests->slug);
-$post_slug = $post->where('slug', '=', $slug)->first();
+$postSlug = $post->where('slug', '=', $slug)->first();
 $thumbnail = isset($requests->thumbnail) ? $requests->thumbnail : null;
 $collection = isset($requests->collection) ? $requests->collection : null;
 
-if (is_null($post_slug) || $post_slug->id == $requests->id) {
+if (is_null($postSlug) || $postSlug->id == $requests->id) {
     $post = $post->find($requests->id);
 
     $post->update([
@@ -27,14 +27,14 @@ if (is_null($post_slug) || $post_slug->id == $requests->id) {
     $post->images()->sync($collection);
 
     session([
-        'message' => 'Post editado com sucesso!',
+        'message' => __('Post edited successfully!'),
         'type' => 'success',
     ]);
 
     return header(route('/admin/posts', true), true, 302);
 } else {
     session([
-        'message' => 'A slug já está sendo utilizada, por favor tente outra!',
+        'message' => __('The slug is already being used, please try another one!'),
         'type' => 'danger',
     ]);
 

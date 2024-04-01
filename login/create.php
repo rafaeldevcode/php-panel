@@ -6,10 +6,10 @@ verifyMethod(500, 'POST');
 
 use Src\Models\User;
 
-$data = $_POST;
+$requests = requests();
 
 $user = new User();
-$login = $user->login($data['email'], $data['password']);
+$login = $user->login($requests->email, $requests->password);
 
 if ($login['status']) {
     session([

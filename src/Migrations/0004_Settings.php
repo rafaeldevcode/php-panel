@@ -6,7 +6,7 @@ class Settings extends ExecuteMigrations
 {
     public $table = 'settings';
 
-    public function init()
+    public function up()
     {
         $this->integer('id')->primaryKey();
         $this->string('site_name', 50)->nullable();
@@ -22,6 +22,7 @@ class Settings extends ExecuteMigrations
         $this->char('cookies', 3)->default('off');
         $this->char('maintenance', 3)->default('off');
         $this->char('construction', 3)->default('off');
+        $this->char('admin_lang', 5)->default('en');
         $this->string('preloader_image', 21)->default('preloader_default.gif');
         $this->string('facebook_pixel', 20)->nullable();
         $this->string('tiktok_pixel', 25)->nullable();
@@ -34,11 +35,16 @@ class Settings extends ExecuteMigrations
         $this->string('profile_linkedin', 100)->nullable();
         $this->string('telegram', 20)->nullable();
         $this->string('whatsapp', 20)->nullable();
-        $this->string('phone', 20)->nullable(0);
+        $this->string('phone', 20)->nullable();
         $this->string('email', 50)->nullable();
         $this->string('andress', 120)->nullable();
         $this->timestamps();
 
         $this->create();
+    }
+
+    public function down()
+    {
+        $this->dropTable();
     }
 }
